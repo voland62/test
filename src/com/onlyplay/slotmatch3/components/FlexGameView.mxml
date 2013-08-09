@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" implements="com.onlyplay.slotmatch3.view.IGameView">
+
+<mx:Script>
+	<![CDATA[
+			private var _w : Number;
+			private var _h : Number;
+
+			public function get w() : Number
+			{
+				return _w;
+			}
+
+			public function set w(w : Number) : void
+			{
+				_w = w;
+			}
+
+			public function get h() : Number
+			{
+				return _h;
+			}
+
+			public function set h(h : Number) : void
+			{
+				_h = h;
+			}
+
+			public function showSping(newState : Array) : void
+			{
+			}
+
+			public function drawLines(winLines : Array) : void
+			{
+			}
+
+			public function setReady() : void
+			{
+			}
+
+			public function setName(name : String) : void
+			{
+			}
+
+			public function setExperinece(experience : int, level:int, leftVal:int, rightVal:int) : void
+			{
+			}
+
+			public function setMoney(money : int) : void
+			{
+			}
+
+			public function updateConfig(serverConfig : ServerLocationConfigProtobuf) : void
+			{
+			}
+
+			public function setUpperBet(getWholeBet : Number) : void
+			{
+			}
+
+			public function setBetPerLine(betPerLine : Number) : void
+			{
+			}
+
+			public function setLines(linesNum : uint) : void
+			{
+			}
+
+			public function setWin( win:Number ) : void
+			{
+			}
+
+			public function setCurrenMoney(currentMoney : int) : void
+			{
+			}
+
+			public function setPlayers(players : Array) : void
+			{
+			}
+
+			public function updatePlayerFromList(index : int, newPlayerState : Object) : void
+			{
+			}
+
+			public function setProgress(lastProgress : int, targetProgress : int) : void
+			{
+			}
+
+			public function setSlotState() : void
+			{
+			}
+
+			public function setMatchState() : void
+			{
+			}
+
+			public function setMatchCurrentTime(matchCurrentTime : Number) : void
+			{
+			}
+
+			public function setMatchMaxTime(maxTime : Number) : void
+			{
+			}
+	]]>
+</mx:Script>
+
+</mx:Panel>
