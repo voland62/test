@@ -561,7 +561,7 @@ package com.onlyplay.slotmatch3.components
 			_moneyTf.text = money.toString();
 		}
 
-		public function updateConfig(serverConfig : ServerLocationConfigProtobuf) : void
+		public function updateConfig(serverConfig : IslandProtobuf) : void
 		{
 			_maxBetButton.text = (serverConfig.maxBet * serverConfig.maxLines).toString();
 		}

@@ -1,11 +1,14 @@
 package com.onlyplay.slotmatch3.controller
 {
-	import com.onlyplay.slotmatch3.model.GameModel;
-	import com.netease.protobuf.Message;
+	import flash.events.Event;
+
 	import robotlegs.bender.bundles.mvcs.Command;
 
+	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.services.ISlotService;
 	import com.onlyplay.slotmatch3.services.ServiceEvent;
+
+	import flash.events.IEventDispatcher;
 
 	/**
 	 * @author Design3d
@@ -17,22 +20,77 @@ package com.onlyplay.slotmatch3.controller
 		[Inject]
 		public var event : ServiceEvent;
 		[Inject]
-		public var gameModel:GameModel;
-		
+		public var gameModel : GameModel;
+		[Inject]
+		public var eventDispatcher : IEventDispatcher;
+
 		override public function execute() : void
 		{
 			log("OnLoginCommand.execute()");
-			
-			var message:PlayerLoginResponseProtobuf = event.message as PlayerLoginResponseProtobuf;
+
+			var message : LoginResponseProtobuf = event.message as LoginResponseProtobuf;
 			log(message.toString());
 			gameModel.gameId = message.gameId;
+
+			//gameModel._ready = true;
+			gameModel.userInfo = message.player;
+			gameModel.islands = message.islands;
+			gameModel.achievements = message.achievements;
 			
 			
-			service.getUserData( gameModel.gameId );
 			
-			//service.enterLocation();
+
+			gameModel.currentIsland = getCurrentIsland(message.islands, message.player.currentIslandId);
+			gameModel.currentLocation = getCurrentLocation(gameModel.currentIsland.locations, message.player.currentLocationId);
+
+			gameModel.currentBet.linesNum = gameModel.currentLocation.maxLinesAmount;
+			gameModel.currentBet.betPerLine = gameModel.currentLocation.minBet;
+			gameModel.currentExperience = gameModel.getExperienceStuff(message.player.experience);
 			
-			service.enterRoom();
+			
+			
+			
+			eventDispatcher.dispatchEvent(new Event("currenBetUpdated"));
+			eventDispatcher.dispatchEvent(new Event("userDataUpdated"));
+
+			// gameModel.serverConfig = getFirstLocation(message.locations);
+
+			// TODO: consider doing this via models method? like GameModel.setCurrenBet(linesNum, betBerLine);
+
+			//eventDispatcher.dispatchEvent(new Event("ready"));
+			// eventDispatcher.dispatchEvent(new Event("currenBetUpdated"));
+			// eventDispatcher.dispatchEvent(new Event("serverConfigUpdated"));
+			
+			
+			
+			
+			// service.getUserData( gameModel.gameId );
+			
+			service.enterLocation( gameModel.currentIsland.islandId, gameModel.currentLocation.locationId );
+			
+			
+			// service.enterRoom();
+		}
+
+		private function getCurrentLocation(locations : Array, locationId : int) : LocationProtobuf
+		{
+			for each (var location : LocationProtobuf in locations)
+			{
+				if (location.locationId == locationId) return location;
+			}
+			return null;
+		}
+
+		private function getCurrentIsland(islands : IslandsProtobuf, islandId : int) : IslandProtobuf
+		{
+			for each (var island : IslandProtobuf in islands.islands)
+			{
+				if (island.islandId == islandId)
+				{
+					return island;
+				}
+			}
+			return null;
 		}
 	}
 }

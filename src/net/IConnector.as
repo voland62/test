@@ -10,6 +10,6 @@ package net
 	{
 		function connect(url : String, port : int) : void;
 
-		function send(message : com.netease.protobuf.Message, packageId : int, ...args) : void;
+		function send(message : com.netease.protobuf.Message, ...args) : void;
 	}
 }

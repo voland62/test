@@ -145,18 +145,18 @@ package com.onlyplay.slotmatch3.components.games.elements.list
 		public function set data(value : Object) : void
 		{
 			_data = value;
-			var d : ServerRoomPlayerStateProtobuf = _data as ServerRoomPlayerStateProtobuf;
-
-			if ( d )
-			{
-				tf.text = d.playerInfo.name;
-				_winAmountTf.text = d.lastWin.toString();
-				frendProgress.maxValue = d.targetProgress;
-				frendProgress.value = d.progress;
-				_levelTf.text = d.currentLevel;
-				//targetProgress
-				// _levelTf.text = d.playerInfo.
-			}
+//			var d :  = _data as ServerRoomPlayerStateProtobuf;
+//
+//			if ( d )
+//			{
+//				tf.text = d.playerInfo.name;
+//				_winAmountTf.text = d.lastWin.toString();
+//				frendProgress.maxValue = d.targetProgress;
+//				frendProgress.value = d.progress;
+//				_levelTf.text = d.currentLevel;
+//				//targetProgress
+//				// _levelTf.text = d.playerInfo.
+//			}
 		}
 
 		public function set selected(value : Boolean) : void

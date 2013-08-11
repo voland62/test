@@ -41,7 +41,7 @@ package com.onlyplay.slotmatch3.view
 			addContextListener("showSpin", showSpin);
 			addContextListener("userDataUpdated", onUserData);
 			addContextListener("currenBetUpdated", onCurrentBetUpdated);
-			addContextListener("serverConfigUpdated", onServerConfigUpdate);
+			//addContextListener("serverConfigUpdated", onServerConfigUpdate);
 			addContextListener("currentMoneyChanged", onCurrentMoneyChanged);
 			addContextListener("onPlayerUpdated", onPlayerUpdated);
 			addContextListener("playersListUpdated", onPlayersListUpdated);
@@ -92,11 +92,11 @@ package com.onlyplay.slotmatch3.view
 		// TODO: звести на модели соответствующий массив и заполнять только его по приходу плеердата
 		private function makeCorrections(players:Array):void
 		{
-			for each (var player : ServerRoomPlayerStateProtobuf in players)
-			{
-				player.targetProgress = gameModel.targetProgress;
-				player.currentLevel = gameModel.getExperienceStuff(player.playerInfo.experience).level;
-			}					
+//			for each (var player : ServerRoomPlayerStateProtobuf in players)
+//			{
+//				player.targetProgress = gameModel.targetProgress;
+//				player.currentLevel = gameModel.getExperienceStuff(player.playerInfo.experience).level;
+//			}					
 		}
 
 		private function onPlayersListUpdated(e : Event) : void
@@ -160,11 +160,13 @@ package com.onlyplay.slotmatch3.view
 
 		private function onServerConfigUpdate(e : Event) : void
 		{
-			view.updateConfig(gameModel.serverConfig);
+			log("GameViewMediator.onServerConfigUpdate(e):" + "TODO");
+			//view.updateConfig(gameModel.serverConfig);
 		}
 
 		private function onUserData(e : Event) : void
 		{
+			log("GameViewMediator.onUserData(e)");
 			view.setName(gameModel.userInfo.name);
 			view.setExperinece(gameModel.currentExperience.experience,
 								gameModel.currentExperience.level,
@@ -182,8 +184,10 @@ package com.onlyplay.slotmatch3.view
 		{
 			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
 			view.setMoney(gameModel.currentMoney);
-			makeCorrections(gameModel.players);
-			view.setPlayers(gameModel.players);
+			
+			//makeCorrections(gameModel.players);
+			//view.setPlayers(gameModel.players);
+			
 			view.setReady();
 		}
 

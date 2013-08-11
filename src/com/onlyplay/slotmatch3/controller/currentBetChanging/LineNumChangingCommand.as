@@ -26,8 +26,8 @@ package com.onlyplay.slotmatch3.controller.currentBetChanging
 		{
 			var delta : Number = event.delta;
 
-			var maxVal : Number = gameModel.serverConfig.maxLines;
-			var minVal : Number = gameModel.serverConfig.minLines;
+			var maxVal : Number = gameModel.currentLocation.maxLinesAmount;//currentIsland.maxLines;
+			var minVal : Number = gameModel.currentLocation.minLinesAmount;//currentIsland.minLines;
 			var interval:Number = maxVal - minVal + 1;
 			var val :Number = gameModel.currentBet.linesNum + delta;
 

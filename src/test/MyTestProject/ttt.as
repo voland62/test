@@ -21,8 +21,9 @@ package test.MyTestProject
 		{
 			trace("ttt.ttt()");
 
-			var serverUrl : String = "192.168.1.100";
-			var port : int = 12800;
+			//var serverUrl : String = "192.168.1.100";
+			var serverUrl : String = "10.0.1.100";
+			var port : int = 12801;
 
 			connector = new SocketConnector();
 			connector.addEventListener("onConnect", onConnect);
@@ -48,11 +49,11 @@ package test.MyTestProject
 
 			if (_readyToPlay)
 			{
-				var packageId :int = MessagesMap.getIdByClass(ClientSpinProtobuf);
-				var message : ClientSpinProtobuf = new ClientSpinProtobuf();
-				message.linesQuantity = 1;
-				message.betAmount = 1;
-				connector.send(message, packageId);
+//				var packageId :int = MessagesMap.getIdByClass(ClientSpinProtobuf);
+//				var message : ClientSpinProtobuf = new ClientSpinProtobuf();
+//				message.linesQuantity = 1;
+//				message.betAmount = 1;
+//				connector.send(message, packageId);
 			}
 		}
 
@@ -67,34 +68,34 @@ package test.MyTestProject
 			if (e.packageId == 1003)
 			{
 				// send login
-				var packageId : int = MessagesMap.getIdByClass(PlayerLoginRequestProtobuf);
-				var message : PlayerLoginRequestProtobuf = new PlayerLoginRequestProtobuf();
-				message.gameId = 0;
-				// новый?
-				connector.send(message, packageId);
+//				var packageId : int = MessagesMap.getIdByClass(PlayerLoginRequestProtobuf);
+//				var message : PlayerLoginRequestProtobuf = new PlayerLoginRequestProtobuf();
+//				message.gameId = 0;
+//				// новый?
+//				connector.send(message, packageId);
 			}
 
 			if ( e.packageId == 1005) // on login
 			{
-				var respond : PlayerLoginResponseProtobuf = e.message as PlayerLoginResponseProtobuf;
-
-				if ( respond.status == 1)
-				{
-					// enter location
-					sendEnterLocation();
-				}
+//				var respond : PlayerLoginResponseProtobuf = e.message as PlayerLoginResponseProtobuf;
+//
+//				if ( respond.status == 1)
+//				{
+//					// enter location
+//					sendEnterLocation();
+//				}
 			}
 
 			if ( e.packageId == 1011)
 			{
-				var respond_ : ServerRoomConfigProtobuf = e.message as ServerRoomConfigProtobuf;
-				_readyToPlay = true;
+//				var respond_ : ServerRoomConfigProtobuf = e.message as ServerRoomConfigProtobuf;
+//				_readyToPlay = true;
 			}
 			
 			if ( e.packageId == 1031)// spin response
 			{
-				var resp:ServerSpinProtobuf = e.message as ServerSpinProtobuf;
-				log('resp.stack.iconInfo.length: ' + (resp.stack.iconInfo.length));
+//				var resp:ServerSpinProtobuf = e.message as ServerSpinProtobuf;
+//				log('resp.stack.iconInfo.length: ' + (resp.stack.iconInfo.length));
 			}
 			
 			
@@ -104,12 +105,12 @@ package test.MyTestProject
 
 		private function sendEnterLocation() : void
 		{
-			log("ttt.sendEnterLocation()");
-			var packageId : int = MessagesMap.getIdByClass(ClientEnterLocationProtobuf);
-			var message : ClientEnterLocationProtobuf = new ClientEnterLocationProtobuf();
-			message.islandId = 1;
-			message.locationId = 1;
-			connector.send(message, packageId);
+//			log("ttt.sendEnterLocation()");
+//			var packageId : int = MessagesMap.getIdByClass(ClientEnterLocationProtobuf);
+//			var message : ClientEnterLocationProtobuf = new ClientEnterLocationProtobuf();
+//			message.islandId = 1;
+//			message.locationId = 1;
+//			connector.send(message, packageId);
 		}
 
 		private function onConnect(e : Event) : void
@@ -117,9 +118,9 @@ package test.MyTestProject
 			log("ttt.onConnect(e)");
 
 			// sending handshake
-			var handshakeMassage : ClientHandShakeProtobuf = new ClientHandShakeProtobuf();
-			var packageId : int = MessagesMap.getIdByClass(ClientHandShakeProtobuf);
-			connector.send(handshakeMassage, packageId);
+//			var handshakeMassage : ClientHandShakeProtobuf = new ClientHandShakeProtobuf();
+//			var packageId : int = MessagesMap.getIdByClass(ClientHandShakeProtobuf);
+//			connector.send(handshakeMassage, packageId);
 		}
 	}
 }

@@ -55,8 +55,8 @@ package com.onlyplay.slotmatch3
 			
 			// в обход контроллера? Почему?
 			// может лучше диспатчить?
-			//_flashGameView.setSlotState();
-			_flashGameView.setMatchState();
+			_flashGameView.setSlotState();
+			//_flashGameView.setMatchState();
 			
 			_flashGameView.w = stage.stageWidth;
 			_flashGameView.h = stage.stageHeight;

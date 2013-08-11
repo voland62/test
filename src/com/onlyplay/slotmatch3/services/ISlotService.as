@@ -9,7 +9,7 @@ package com.onlyplay.slotmatch3.services
 
 		function login( gameId:int ) : void;
 
-		function makeHandShake() : void;
+		//function makeHandShake() : void;
 
 		//function enterLocation() : void;
 
@@ -18,6 +18,8 @@ package com.onlyplay.slotmatch3.services
 		function getUserData(gameId : int) : void;
 
 		function enterRoom() : void;
+		
+		function enterLocation(  islandId:int,  locatinId:int ):void;
 
 		function dispatchLastProgressToAll(win : Number) : void;
 	}

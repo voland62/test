@@ -15,7 +15,7 @@ package com.onlyplay.slotmatch3.controller
 		override public function execute() : void
 		{
 			//log("MakeHandShakeCommand.execute()");
-			service.makeHandShake();
+			//service.makeHandShake();
 		}
 	}
 }

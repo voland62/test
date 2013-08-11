@@ -5,20 +5,31 @@ package com.onlyplay.slotmatch3.model
 	 */
 	public class GameModel
 	{
-		public var _ready : Boolean = false;
+		// spin
 		public var icons : Array;
 		public var winLines : Array;
+		
+		// chat
+		public var players : Array;
+		
+		
+		public var targetProgress : int;
+		public var lastProgress : int = 0;
+		
+		public var _ready : Boolean = false;
 		public var gameId : int;
-		public var userInfo : PlayerInfoProtobuf;
-		public var serverConfig : ServerLocationConfigProtobuf;
+		public var currentIsland : IslandProtobuf;
+		public var currentLocation :LocationProtobuf;
 		public var currentBet : Bet = new Bet();
 		public var currentMoney : int;
 		public var win : Number = 0;
-		public var players : Array;
-		public var targetProgress : int;
-		public var lastProgress : int = 0;
 		public var levelsArray : Array = genLevels();
 		public var currentExperience : Exp;
+		
+		//--- new model ----------------
+		public var islands:IslandsProtobuf;
+		public var userInfo : PlayerProtobuf;
+		public var achievements:AchievementsProtobuf;
 		
 		
 

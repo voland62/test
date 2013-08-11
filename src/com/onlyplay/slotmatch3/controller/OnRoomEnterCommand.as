@@ -23,17 +23,17 @@ package com.onlyplay.slotmatch3.controller
 		override public function execute() : void
 		{
 			log("------- OnRoomEnterCommand.execute()");
-			
-			var message :ServerRoomStateProtobuf = event.message as ServerRoomStateProtobuf;
-			log(message.toString());
-			
-			gameModel._ready = true; 
-			gameModel.targetProgress = message.money;
-			
-			gameModel.players = message.players;
-			
-			//eventDispatcher.dispatchEvent(new Event(""));
-			eventDispatcher.dispatchEvent(new Event("ready"));
+//			
+//			var message :ServerRoomStateProtobuf = event.message as ServerRoomStateProtobuf;
+//			log(message.toString());
+//			
+//			gameModel._ready = true; 
+//			gameModel.targetProgress = message.money;
+//			
+//			gameModel.players = message.players;
+//			
+//			//eventDispatcher.dispatchEvent(new Event(""));
+//			eventDispatcher.dispatchEvent(new Event("ready"));
 		}
 	}
 }

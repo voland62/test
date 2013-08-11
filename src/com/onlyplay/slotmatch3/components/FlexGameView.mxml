@@ -50,9 +50,9 @@
 			{
 			}
 
-			public function updateConfig(serverConfig : ServerLocationConfigProtobuf) : void
-			{
-			}
+//			public function updateConfig(serverConfig : ServerLocationConfigProtobuf) : void
+//			{
+//			}
 
 			public function setUpperBet(getWholeBet : Number) : void
 			{

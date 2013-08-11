@@ -33,38 +33,41 @@ package com.onlyplay.slotmatch3.controller
 			// return;
 
 			// lines
-			var message : ServerSpinProtobuf = event.message as ServerSpinProtobuf;
-			gameModel.icons = Parser.parseSpinData(message.stack.iconInfo);
-
-			var lines : Array = Parser.parseByteArray(message.winLines);
-			var linesPoints : Array = [];
-			for each (var i : int in lines)
-			{
-				linesPoints.push(LinesData.lines[i]);
-			}
-
-			gameModel.winLines = linesPoints;
-
-			// total win
-			var winMultiplyers : Array = Parser.parseByteArray(message.winLinesMultipliers, 2);
-			var winItemsInLines : Array = Parser.parseByteArray(message.winLinesIconsAmount);
-
-			var totalWin : Number = 0;
-
-			for (var j : int = 0; j < winMultiplyers.length; j++)
-			{
-				totalWin += winMultiplyers[j] * winItemsInLines[j];
-			}
-
-			gameModel.win = totalWin;
-			trace('totalWin: ' + (totalWin));
-
-			if ( gameModel.win > 0)
-			{
-				service.dispatchLastProgressToAll( gameModel.win );
-			}
-
-			// populating model
+			var message : SpinResponseProtobuf = event.message as SpinResponseProtobuf;
+			gameModel.icons = Parser.parseSpinData( message.icons);
+//
+			//var lines : Array = Parser.parseByteArray(message.winLines);
+//			var linesPoints : Array = [];
+//			for each (var i : int in lines)
+//			{
+//				linesPoints.push(LinesData.lines[i]);
+//			}
+//
+			gameModel.winLines = message.winLines.lines;//linesPoints;
+			gameModel.win = message.winMoney;
+			
+			
+//
+//			// total win
+//			var winMultiplyers : Array = Parser.parseByteArray(message.winLinesMultipliers, 2);
+//			var winItemsInLines : Array = Parser.parseByteArray(message.winLinesIconsAmount);
+//
+//			var totalWin : Number = 0;
+//
+//			for (var j : int = 0; j < winMultiplyers.length; j++)
+//			{
+//				totalWin += winMultiplyers[j] * winItemsInLines[j];
+//			}
+//
+//			gameModel.win = totalWin;
+//			trace('totalWin: ' + (totalWin));
+//
+//			if ( gameModel.win > 0)
+//			{
+//				service.dispatchLastProgressToAll( gameModel.win );
+//			}
+//
+//			// populating model
 			eventDispatcher.dispatchEvent(new Event("showSpin"));
 		}
 	}

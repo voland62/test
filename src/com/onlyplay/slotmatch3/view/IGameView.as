@@ -25,7 +25,7 @@ package com.onlyplay.slotmatch3.view
 
 		function setMoney(money : int) : void;
 
-		function updateConfig(serverConfig : ServerLocationConfigProtobuf) : void;
+		//function updateConfig(serverConfig : ServerLocationConfigProtobuf) : void;
 
 		function setUpperBet(getWholeBet : Number) : void;
 

@@ -47,12 +47,11 @@ package net
 			dispatchEvent(new Event("onConnect"));
 		}
 
-		private function makeEnvelope(package_id : int, messageLength : int) : ByteArray
+		private function makeEnvelope(messageLength : int) : ByteArray
 		{
 			var envelope : ByteArray = new ByteArray();
 			envelope.endian = Endian.LITTLE_ENDIAN;
 			envelope.writeShort(0);
-			envelope.writeShort(package_id);
 			envelope.writeShort(messageLength);
 			envelope.writeShort(0);
 			return envelope;
@@ -80,32 +79,20 @@ package net
 		{
 			if ( currentEnvelope )
 			{
-				var res : Array = getPackeageLength(currentEnvelope);
-				var packageLength : int = res[1];
-				var packageId : int = res[0];
+				var packageLength : int = getPackeageLength(currentEnvelope);
 
 				if ( socket.bytesAvailable >= packageLength ) // detecting if the end of package
-				{	
+				{
 					var m : ByteArray = new ByteArray();
 					m.endian = Endian.LITTLE_ENDIAN;
 					socket.readBytes(m, 0, packageLength);
 
-					var vo : com.netease.protobuf.Message;
-					var messageClass : Class = MessagesMap.getMessageClassById(packageId);
-					if (messageClass)
-					{
-						vo = new messageClass();
-						vo.mergeFrom(m);
-					}
-					else
-					{
-						log("unknown class for packageId:" + packageId);
-					}
+//					var root : Root = new Root();
+//					root.mergeFrom(m);
 
 					var event : DynamicEvent = new DynamicEvent("onMessage");
 
-					event.message = vo;
-					event.packageId = packageId;
+					event.message = m;
 					dispatchEvent(event);
 
 					currentEnvelope = null;
@@ -114,27 +101,25 @@ package net
 			}
 			else
 			{
-				if ( socket.bytesAvailable >= 8 )
+				if ( socket.bytesAvailable >= 6 )
 				{
 					currentEnvelope = new ByteArray();
 					currentEnvelope.endian = Endian.LITTLE_ENDIAN;
-					socket.readBytes(currentEnvelope, 0, 8);
-					
+					socket.readBytes(currentEnvelope, 0, 6);
+
 					parseData();
 				}
 			}
 		}
 
-		private function getPackeageLength(currentEnvelope : ByteArray) : Array
+		private function getPackeageLength(currentEnvelope : ByteArray) : int
 		{
 			currentEnvelope.position = 0;
 			currentEnvelope.readShort();
-			var messageId : int = currentEnvelope.readShort();
-			//log('messageId: ' + (messageId));
-			var packageLength : int = currentEnvelope.readShort();
-			//log('packageLength: ' + (packageLength));
 
-			return [messageId, packageLength];
+			var packageLength : int = currentEnvelope.readShort();
+
+			return packageLength;
 		}
 
 		// IConnector
@@ -144,27 +129,19 @@ package net
 			socket.connect(url, port);
 		}
 
-		public function send(message : com.netease.protobuf.Message, packageId : int, ...args) : void
+		public function send(message : com.netease.protobuf.Message, ...args) : void
 		{
-			// log("SocketConnector.send(message, args)");
+			log("SocketConnector.send(message, args)");
 
 			var m : ByteArray = new ByteArray();
 			m.endian = Endian.LITTLE_ENDIAN;
-			// trace('message.length: ' + (message.length));
 			message.writeTo(m);
-			// m.length;
-			// trace('message.length: ' + (message.length));
 
-			var envelope : ByteArray = makeEnvelope(packageId, m.length);
-
-			// trace('envelope.length: ' + (envelope.length));
+			var envelope : ByteArray = makeEnvelope(m.length);
 			envelope.writeBytes(m);
-			// trace('envelope.length: ' + (envelope.length));
-
-			// handshakeMassage.writeTo(socket);
 			socket.writeBytes(envelope);
-			// socket.endian = Endian.LITTLE_ENDIAN;
 			socket.flush();
+			
 		}
 	}
 }
