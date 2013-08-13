@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.model
 {
+	import com.netease.protobuf.Message;
 	/**
 	 * @author Design3d
 	 */
@@ -29,7 +30,8 @@ package com.onlyplay.slotmatch3.model
 		//--- new model ----------------
 		public var islands:IslandsProtobuf;
 		public var userInfo : PlayerProtobuf;
-		public var achievements:AchievementsProtobuf;
+		public var achievements : AchievementsProtobuf;
+		
 		
 		
 

@@ -177,8 +177,8 @@ package com.onlyplay.slotmatch3.components
 					_matchComponent.resetVisuals();
 					//_matchComponent.startReinitAnimation();
 					_matchComponent.playShuffleAnimation();
-					Animations.spiralVideo(_animBase, 
-						new Point(_matchComponent.x + (_matchComponent.width>>1), _matchComponent.y +(_matchComponent.height>>1)));					
+//					Animations.spiralVideo(_animBase, 
+//						new Point(_matchComponent.x + (_matchComponent.width>>1), _matchComponent.y +(_matchComponent.height>>1)));					
 					});
 
 			plusButton = new PlusButton();
@@ -652,7 +652,8 @@ package com.onlyplay.slotmatch3.components
 			{
 				_animBase.removeChild(microbonusIcon);
 				var event : DynamicEvent = new DynamicEvent("onBonus");
-				event.bonusType = bonusType;
+				event.
+				bonusType = bonusType;
 				dispatchEvent(event);
 			}
 		}
@@ -685,6 +686,7 @@ package com.onlyplay.slotmatch3.components
 		{
 			if (_slotMashine) _slotMashine.visible = false;
 			if (!_matchComponent) createMatchComponent();
+			_matchComponent.animBaseForSpiral = _animBase;
 			_matchComponent.visible = true;
 			_paymentsFake.visible = false;
 			_toMach3Button.visible = false;
@@ -739,6 +741,16 @@ package com.onlyplay.slotmatch3.components
 		public function setMatchMaxTime(maxTime : Number) : void
 		{
 			_timeProgress.maxTime = maxTime;
+		}
+
+		public function matchReinit() : void
+		{
+			// Здесь мы говоим матч компоненту - сделать новый филд и
+			// проиграть reinit анимацию
+			
+			_matchComponent.reinit();
+			_matchComponent.playFall();
+			
 		}
 	}
 }

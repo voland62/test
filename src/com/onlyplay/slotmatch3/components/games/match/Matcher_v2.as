@@ -22,8 +22,7 @@ package com.onlyplay.slotmatch3.components.games.match
 		private static var _fildPattern : Array;
 
 		// --- API -----------------------------------------
-		
-		public static function shuffle3 ( field:Array ):Array
+		public static function shuffle3(field : Array) : Array
 		{
 			var f : Array = clone(field);
 
@@ -31,48 +30,56 @@ package com.onlyplay.slotmatch3.components.games.match
 			for each (var currentPlace : Object  in _fildPattern)
 			{
 				var farNeighbours : Array = _container.filter(farNeigbourFilter);
-				
+
 				function farNeigbourFilter(place : Object, ..._) : Boolean
 				{
 					return _isFarNeighbour(place, currentPlace);
 				}
 
-				var itemFromField : ItemModel = getMostPossibleItem(farNeighbours, f);//getRandomFromField(neighboursTypes, f);
-																
+				var itemFromField : ItemModel = getMostPossibleItem(farNeighbours, f);
+				// getRandomFromField(neighboursTypes, f);
+
 				itemFromField.x = currentPlace.x;
 				itemFromField.y = currentPlace.y;
 				_container.push(itemFromField);
 			}
-			
-			
-			function getMostPossibleItem( farNeighbourss:Array , fieldContainer:Array):ItemModel 
+
+			function getMostPossibleItem(farNeighbourss : Array, fieldContainer : Array) : ItemModel
 			{
-				var excludeGroups:Array = []; 
+				var excludeGroups : Array = [];
 				partition(excludeGroups, farNeighbourss, foo_);
-				excludeGroups = excludeGroups.filter(function (group:Array, ..._):Boolean{ return group.length >= 2;});
-				//log ( excludeGroups );
-				
+				excludeGroups = excludeGroups.filter(function(group : Array, ..._) : Boolean
+				{
+					return group.length >= 2;
+				});
+				// log ( excludeGroups );
+
 				if (excludeGroups.length > 0)
 				{
 					// как альтернатива, мы можем строить гистограмму
-					var excludeTypes:Array = excludeGroups.map(function (excludeGroup:Array, ..._):*{ return excludeGroup[0].type});
-					var types:Array = Util.range(type_num);
-					var variants:Array = substruct(types, excludeTypes);
-					//log(variants);
-					
+					var excludeTypes : Array = excludeGroups.map(function(excludeGroup : Array, ..._) : *
+					{
+						return excludeGroup[0].type
+					});
+					var types : Array = Util.range(type_num);
+					var variants : Array = substruct(types, excludeTypes);
+					// log(variants);
+
 					// сейчас делаем самый примитивный подход. Самый првильный - по-моему на базе гистограмм.
-					for (var i : int = 0; i < fieldContainer.length ; i++) {
-						var currentItem:ItemModel = fieldContainer[i];
-						if ( variants.indexOf(currentItem.type ) != -1 )
+					for (var i : int = 0; i < fieldContainer.length; i++)
+					{
+						var currentItem : ItemModel = fieldContainer[i];
+						if ( variants.indexOf(currentItem.type) != -1 )
 						{
 							return fieldContainer.splice(i, 1)[0];
 						}
 					}
-					
-					
-					//var goodType:int = variants[Util.randInt(variants.length)];
-					return fieldContainer.splice(Util.randInt(fieldContainer.length), 1)[0];//goodType; 
-					
+
+					// var goodType:int = variants[Util.randInt(variants.length)];
+					log("Matcher_v2.getMostPossibleItem(farNeighbourss, fieldContainer)");
+					log("interesting thing, match detected");
+					return fieldContainer.splice(Util.randInt(fieldContainer.length), 1)[0];
+					// goodType;
 				}
 				else
 				{
@@ -82,29 +89,27 @@ package com.onlyplay.slotmatch3.components.games.match
 					return fieldContainer.splice(Util.randInt(fieldContainer.length), 1)[0];
 				}
 			}
-			
-			function foo_(a:ItemModel, b:ItemModel  ):Boolean
+
+			function foo_(a : ItemModel, b : ItemModel) : Boolean
 			{
-				var dX:int = a.x - b.x;
-				var dY:int = a.y - b.y;
-				return a.type == b.type && ((dX <= 2 && dY == 0) || (dY <= 2 && dX == 0)) && !(dX == 0 && dY == 0);				
+				var dX : int = a.x - b.x;
+				var dY : int = a.y - b.y;
+				return a.type == b.type && ((dX <= 2 && dY == 0) || (dY <= 2 && dX == 0)) && !(dX == 0 && dY == 0);
 			}
 
-//			function getRandomFromField(neighboursTypes : Array, container : Array) : ItemModel
-//			{
-//				for (var i : int = 0; i < container.length; i++)
-//				{
-//					var item : ItemModel = container[i];
-//					if (  neighboursTypes.indexOf(item.type) == -1 ) return container.splice(i, 1)[0];
-//				}
-//				return container.splice(Util.randInt(container.length), 1)[0];
-//			}
+			// function getRandomFromField(neighboursTypes : Array, container : Array) : ItemModel
+			// {
+			// for (var i : int = 0; i < container.length; i++)
+			// {
+			// var item : ItemModel = container[i];
+			// if (  neighboursTypes.indexOf(item.type) == -1 ) return container.splice(i, 1)[0];
+			// }
+			// return container.splice(Util.randInt(container.length), 1)[0];
+			// }
 
 			return _container;
-
 		}
-		
-		
+
 		public static function genField3(fieldShape : int, ...options) : Array
 		{
 			initFieldShape(fieldShape, options);
@@ -113,7 +118,7 @@ package com.onlyplay.slotmatch3.components.games.match
 			for each (var currentPlace : Object  in _fildPattern)
 			{
 				var farNeighbours : Array = _container.filter(farNeigbourFilter);
-				//log(farNeighbours.length);
+				// log(farNeighbours.length);
 				var possibleType : int = getMostPossibleType(farNeighbours);
 
 				_container.push(new ItemModel(currentPlace.x, currentPlace.y, possibleType, (++idCounter).toString()));
@@ -123,46 +128,77 @@ package com.onlyplay.slotmatch3.components.games.match
 					return _isFarNeighbour(place, currentPlace);
 				}
 			}
-			
-			function getMostPossibleType( farNeighbourss:Array ):int
+
+			function getMostPossibleType(farNeighbourss : Array) : int
 			{
-				var excludeGroups:Array = []; 
+				var excludeGroups : Array = [];
 				partition(excludeGroups, farNeighbourss, foo);
-				excludeGroups = excludeGroups.filter(function (group:Array, ..._):Boolean{ return group.length >= 2;});
-				//log ( excludeGroups );
-				
+				excludeGroups = excludeGroups.filter(function(group : Array, ..._) : Boolean
+				{
+					return group.length >= 2;
+				});
+				// log ( excludeGroups );
+
 				if (excludeGroups.length > 0)
 				{
 					// как альтернатива, мы можем строить гистограмму
-					var excludeTypes:Array = excludeGroups.map(function (excludeGroup:Array, ..._):*{ return excludeGroup[0].type});
-					var types:Array = Util.range(type_num);
-					var variants:Array = substruct(types, excludeTypes);
+					var excludeTypes : Array = excludeGroups.map(function(excludeGroup : Array, ..._) : *
+					{
+						return excludeGroup[0].type
+					});
+					var types : Array = Util.range(type_num);
+					var variants : Array = substruct(types, excludeTypes);
 					log(variants);
-					
-					var goodType:int = variants[Util.randInt(variants.length)];
+
+					/**
+					 *  Здесь, вообще, для общего случая важно проверять variants.length > 0, и если нет вариантов -
+					 *  то значит будет автоматч. И надо как-то об этом давать знать вызывающему коду ( возврат кода ошибки,
+					 *  выброс эксцершена, событие ...)
+					 *  
+					 *  Для текущего матча - это мо-моему никогда не произйдёт
+					 */
+
+					if (variants.length == 0)
+					{
+						log("Matcher_v2.getMostPossibleType(farNeighbourss)");
+						log("Attention: нема вариантов");
+					}
+
+					var goodType : int = variants[Util.randInt(variants.length)];
 					return goodType;
-					
 				}
 				else
 				{
-					log("any");
+					// log("-any-");
 					// Возвращаем любой из всего спектра
 					return Util.randInt(type_num);
 				}
 			}
-			
-			function foo(a:ItemModel, b:ItemModel  ):Boolean
-			{
-				var dX:int = a.x - b.x;
-				var dY:int = a.y - b.y;
-				return a.type == b.type && ((dX <= 2 && dY == 0) || (dY <= 2 && dX == 0)) && !(dX == 0 && dY == 0);				
-			}
-			
 
+			function foo(a : ItemModel, b : ItemModel) : Boolean
+			{
+				var dX : int = a.x - b.x;
+				var dY : int = a.y - b.y;
+				return a.type == b.type && ((dX <= 2 && dY == 0) || (dY <= 2 && dX == 0)) && !(dX == 0 && dY == 0);
+			}
+
+			// проверка на существование следующего хода
+			// TODO: реализовать вариант с гарантированным как митимум одним первым ходом
+			// это когда я где-то на поле ставлю свап-возможную конфигурацию
+			// var swaps:Array = getPossibleSwaps(_container);
+			// if ( swaps.length == 0 )
+			// {
+			// return genField3.apply(null, [fieldShape].concat(options));
+			// }
+			// else
+			// {
+			//
+			// return _container;
+			// }
 			return _container;
 		}
-		
-		private static function _isFarNeighbour(a:Object , b:Object):Boolean
+
+		private static function _isFarNeighbour(a : Object, b : Object) : Boolean
 		{
 			var dX : int = Math.abs(a.x - b.x);
 			var dY : int = Math.abs(a.y - b.y);
@@ -181,207 +217,202 @@ package com.onlyplay.slotmatch3.components.games.match
 			}
 		}
 
-//		public static function genField2(fieldShape : int, ...options) : Array
-//		{
-//			// var currentPlace:Object  = fieldShape[0];
-//
-//			initFieldShape(fieldShape, options);
-//
-//			// делаем самый простой случай
-//			var _container : Array = [];
-//			for each (var currentPlace : Object  in _fildPattern)
-//			{
-//				var neighboursTypes : Array = _container.filter(foo).map(function(item : ItemModel, ..._) : *
-//				{
-//					return item.type;
-//				});
-//				var possibleType : int = getMostPossibleType(neighboursTypes);
-//
-//				_container.push(new ItemModel(currentPlace.x, currentPlace.y, possibleType, (++idCounter).toString()));
-//
-//				function foo(place : Object, ..._) : Boolean
-//				{
-//					return _isNeigbour(place, currentPlace);
-//				}
-//			}
-//
-//			function getMostPossibleType(neighboursTypes : Array) : int
-//			{
-//				var types : Array = Util.range(type_num);
-//				var possType : int;
-//
-//				var possibleTypes : Array = substruct(types, neighboursTypes);
-//				if (possibleTypes.length > 0)
-//				{
-//					possType = possibleTypes[Util.randInt(possibleTypes.length)];
-//				}
-//				else
-//				{
-//					log("we come into the branche ,where we make current item's type as neibour's one");
-//					// Здесь я предлагаю смотреть на клетку дальше от соседа и смотреть чтобы не было матча
-//					for each (var nType : int in neighboursTypes)
-//					{
-//						var farNeighbourType : int = getFarNeighbour();
-//						// if ()
-//					}
-//				}
-//				return possType;
-//			}
-//
-//			function getFarNeighbour() : *
-//			{
-//				// TODO
-//			}
-//
-//			return _container;
-//		}
-
-//		public static function shuffle(field : Array) : Array
-//		{
-//			var f : Array = clone(field);
-//
-//			// делаем самый простой случай
-//			// TODO: вынести  генерацию гистограмм в утильный метод типа group-by или group-all
-//			// var histogramm : Array = [];
-//			// var histogramm_ : Array = Util.partition(field, function(a : ItemModel, b : ItemModel) : Boolean
-//			// {
-//			// return a.type == b.type;
-//			// });
-//			// for each (var group : Array in histogramm_)
-//			// {
-//			//				//  check for existance !!! ???
-//			// var index : int = group[0].type;
-//			// histogramm[ index ] = group;
-//			// }
-//
-//			var _container : Array = [];
-//			for each (var currentPlace : Object  in _fildPattern)
-//			{
-//				var neighboursTypes : Array = _container.filter(foo).map(function(item : ItemModel, ..._) : *
-//				{
-//					return item.type;
-//				});
-//				// var possibleType : int = getMostPossibleType(neighboursTypes);
-//
-//				// _container.push(new ItemModel(currentPlace.x, currentPlace.y, possibleType, (++idCounter).toString()));
-//				var itemFromField : ItemModel = getRandomFromField(neighboursTypes, f);
-//				// getGoodItemFromField(neighboursTypes, histogramm);
-//				itemFromField.x = currentPlace.x;
-//				itemFromField.y = currentPlace.y;
-//				_container.push(itemFromField);
-//
-//				function foo(place : Object, ..._) : Boolean
-//				{
-//					return _isNeigbour(place, currentPlace);
-//				}
-//			}
-//
-//			function getRandomFromField(neighboursTypes : Array, container : Array) : ItemModel
-//			{
-//				for (var i : int = 0; i < container.length; i++)
-//				{
-//					var item : ItemModel = container[i];
-//					if (  neighboursTypes.indexOf(item.type) == -1 ) return container.splice(i, 1)[0];
-//				}
-//				return container.splice(Util.randInt(container.length), 1)[0];
-//			}
-//
-//			function getGoodItemFromField(neighboursTypes : Array, histogramm : Array) : ItemModel
-//			{
-//				// здесь мы подбирамем новый item из гистограммы и модифицируем гистограмму
-//				// TODO: переписать более элегантно
-//				var types : Array = Util.range(type_num);
-//				var possibleTypes : Array = substruct(types, neighboursTypes);
-//				var possibleGroups : Array = [];
-//
-//				for each (var itemType : int in possibleTypes)
-//				{
-//					var group : Array = histogramm[itemType];
-//					if ( group && group.length > 0)
-//					{
-//						possibleGroups.push(group);
-//					}
-//				}
-//
-//				possibleGroups.sortOn("length", Array.NUMERIC);
-//
-//				// var lastGroup : Array = possibleGroups[possibleGroups.length - 1];
-//				var randGroup : Array = possibleGroups[Util.randInt(possibleGroups.length)];
-//				var index : int = Util.randInt(randGroup.length);
-//				var goodItem : ItemModel = randGroup.splice(index, 1)[0];
-//
-//				if ( !goodItem)
-//				{
-//					log("something bad");
-//				}
-//
-//				return goodItem;
-//			}
-//
-//			// function getMostPossibleType(neighboursTypes : Array) : int
-//			// {
-//			// var types : Array = Util.range(type_num);
-//			// var possType : int;
-//			//
-//			// var possibleTypes : Array = substruct(types, neighboursTypes);
-//			// if (possibleTypes.length > 0)
-//			// {
-//			// possType = possibleTypes[Util.randInt(possibleTypes.length)];
-//			// }
-//			// else
-//			// {
-//			// log("we come into the branche ,where we make current item's type as neibour's one");
-//			//					//  Здесь я предлагаю смотреть на клетку дальше от соседа и смотреть чтобы не было матча
-//			// for each (var nType : int in neighboursTypes)
-//			// {
-//			// var farNeighbourType : int = getFarNeighbour();
-//			//
-//			//						//  if ()
-//			// }p
-//			// }
-//			// return possType;
-//			// }
-//			//
-//			// function getFarNeighbour() : *
-//			// {
-//			//				//  TODO
-//			// }
-//
-//			return _container;
-//		}
-
-//		public static function genField(fieldShape : int, ...options) : Array
-//		{
-//			var attempts : int = 0;
-//
-//			_fildPattern = FieldShapes.getFieldPattern(fieldShape, options);
-//
-//			do
-//			{
-//				var _container : Array = [];
-//
-//				for each (var el : Object in _fildPattern)
-//				{
-//					_container.push(new ItemModel(el.x, el.y, getRandInt(type_num), (++idCounter).toString()));
-//					// this is for speed now
-//					// bring it to separate code
-//					_w = Math.max(_w, el.x + 1);
-//					_h = Math.max(_h, el.y + 1);
-//				}
-//
-//				var part : Array = [];
-//				partition(part, _container, _isNeigbour);
-//				var groups : Array = getValidGroups(part);
-//				log(groups.length);
-//			}
-//			while ( groups.length > 0 && attempts++ < 30);
-//			log("attemptions:" + attempts);
-//			return _container;
-//		}
-
-
-		//--- end generate and shuffle methods ------------------------------------------------------------------
-
+		// public static function genField2(fieldShape : int, ...options) : Array
+		// {
+		//			//  var currentPlace:Object  = fieldShape[0];
+		//
+		// initFieldShape(fieldShape, options);
+		//
+		//			//  делаем самый простой случай
+		// var _container : Array = [];
+		// for each (var currentPlace : Object  in _fildPattern)
+		// {
+		// var neighboursTypes : Array = _container.filter(foo).map(function(item : ItemModel, ..._) : *
+		// {
+		// return item.type;
+		// });
+		// var possibleType : int = getMostPossibleType(neighboursTypes);
+		//
+		// _container.push(new ItemModel(currentPlace.x, currentPlace.y, possibleType, (++idCounter).toString()));
+		//
+		// function foo(place : Object, ..._) : Boolean
+		// {
+		// return _isNeigbour(place, currentPlace);
+		// }
+		// }
+		//
+		// function getMostPossibleType(neighboursTypes : Array) : int
+		// {
+		// var types : Array = Util.range(type_num);
+		// var possType : int;
+		//
+		// var possibleTypes : Array = substruct(types, neighboursTypes);
+		// if (possibleTypes.length > 0)
+		// {
+		// possType = possibleTypes[Util.randInt(possibleTypes.length)];
+		// }
+		// else
+		// {
+		// log("we come into the branche ,where we make current item's type as neibour's one");
+		//					//  Здесь я предлагаю смотреть на клетку дальше от соседа и смотреть чтобы не было матча
+		// for each (var nType : int in neighboursTypes)
+		// {
+		// var farNeighbourType : int = getFarNeighbour();
+		//						//  if ()
+		// }
+		// }
+		// return possType;
+		// }
+		//
+		// function getFarNeighbour() : *
+		// {
+		//				//  TODO
+		// }
+		//
+		// return _container;
+		// }
+		// public static function shuffle(field : Array) : Array
+		// {
+		// var f : Array = clone(field);
+		//
+		//			//  делаем самый простой случай
+		//			//  TODO: вынести  генерацию гистограмм в утильный метод типа group-by или group-all
+		//			//  var histogramm : Array = [];
+		//			//  var histogramm_ : Array = Util.partition(field, function(a : ItemModel, b : ItemModel) : Boolean
+		//			//  {
+		//			//  return a.type == b.type;
+		//			//  });
+		//			//  for each (var group : Array in histogramm_)
+		//			//  {
+		//			//				//   check for existance !!! ???
+		//			//  var index : int = group[0].type;
+		//			//  histogramm[ index ] = group;
+		//			//  }
+		//
+		// var _container : Array = [];
+		// for each (var currentPlace : Object  in _fildPattern)
+		// {
+		// var neighboursTypes : Array = _container.filter(foo).map(function(item : ItemModel, ..._) : *
+		// {
+		// return item.type;
+		// });
+		//				//  var possibleType : int = getMostPossibleType(neighboursTypes);
+		//
+		//				//  _container.push(new ItemModel(currentPlace.x, currentPlace.y, possibleType, (++idCounter).toString()));
+		// var itemFromField : ItemModel = getRandomFromField(neighboursTypes, f);
+		//				//  getGoodItemFromField(neighboursTypes, histogramm);
+		// itemFromField.x = currentPlace.x;
+		// itemFromField.y = currentPlace.y;
+		// _container.push(itemFromField);
+		//
+		// function foo(place : Object, ..._) : Boolean
+		// {
+		// return _isNeigbour(place, currentPlace);
+		// }
+		// }
+		//
+		// function getRandomFromField(neighboursTypes : Array, container : Array) : ItemModel
+		// {
+		// for (var i : int = 0; i < container.length; i++)
+		// {
+		// var item : ItemModel = container[i];
+		// if (  neighboursTypes.indexOf(item.type) == -1 ) return container.splice(i, 1)[0];
+		// }
+		// return container.splice(Util.randInt(container.length), 1)[0];
+		// }
+		//
+		// function getGoodItemFromField(neighboursTypes : Array, histogramm : Array) : ItemModel
+		// {
+		//				//  здесь мы подбирамем новый item из гистограммы и модифицируем гистограмму
+		//				//  TODO: переписать более элегантно
+		// var types : Array = Util.range(type_num);
+		// var possibleTypes : Array = substruct(types, neighboursTypes);
+		// var possibleGroups : Array = [];
+		//
+		// for each (var itemType : int in possibleTypes)
+		// {
+		// var group : Array = histogramm[itemType];
+		// if ( group && group.length > 0)
+		// {
+		// possibleGroups.push(group);
+		// }
+		// }
+		//
+		// possibleGroups.sortOn("length", Array.NUMERIC);
+		//
+		//				//  var lastGroup : Array = possibleGroups[possibleGroups.length - 1];
+		// var randGroup : Array = possibleGroups[Util.randInt(possibleGroups.length)];
+		// var index : int = Util.randInt(randGroup.length);
+		// var goodItem : ItemModel = randGroup.splice(index, 1)[0];
+		//
+		// if ( !goodItem)
+		// {
+		// log("something bad");
+		// }
+		//
+		// return goodItem;
+		// }
+		//
+		//			//  function getMostPossibleType(neighboursTypes : Array) : int
+		//			//  {
+		//			//  var types : Array = Util.range(type_num);
+		//			//  var possType : int;
+		//			//
+		//			//  var possibleTypes : Array = substruct(types, neighboursTypes);
+		//			//  if (possibleTypes.length > 0)
+		//			//  {
+		//			//  possType = possibleTypes[Util.randInt(possibleTypes.length)];
+		//			//  }
+		//			//  else
+		//			//  {
+		//			//  log("we come into the branche ,where we make current item's type as neibour's one");
+		//			//					//   Здесь я предлагаю смотреть на клетку дальше от соседа и смотреть чтобы не было матча
+		//			//  for each (var nType : int in neighboursTypes)
+		//			//  {
+		//			//  var farNeighbourType : int = getFarNeighbour();
+		//			//
+		//			//						//   if ()
+		//			//  }p
+		//			//  }
+		//			//  return possType;
+		//			//  }
+		//			//
+		//			//  function getFarNeighbour() : *
+		//			//  {
+		//			//				//   TODO
+		//			//  }
+		//
+		// return _container;
+		// }
+		// public static function genField(fieldShape : int, ...options) : Array
+		// {
+		// var attempts : int = 0;
+		//
+		// _fildPattern = FieldShapes.getFieldPattern(fieldShape, options);
+		//
+		// do
+		// {
+		// var _container : Array = [];
+		//
+		// for each (var el : Object in _fildPattern)
+		// {
+		// _container.push(new ItemModel(el.x, el.y, getRandInt(type_num), (++idCounter).toString()));
+		//					//  this is for speed now
+		//					//  bring it to separate code
+		// _w = Math.max(_w, el.x + 1);
+		// _h = Math.max(_h, el.y + 1);
+		// }
+		//
+		// var part : Array = [];
+		// partition(part, _container, _isNeigbour);
+		// var groups : Array = getValidGroups(part);
+		// log(groups.length);
+		// }
+		// while ( groups.length > 0 && attempts++ < 30);
+		// log("attemptions:" + attempts);
+		// return _container;
+		// }
+		// --- end generate and shuffle methods ------------------------------------------------------------------
 		public static function getPossibleSwaps(field : Array) : Array
 		{
 			var swaps : Array = [];

@@ -48,6 +48,8 @@ package com.onlyplay.slotmatch3.view
 		function setSlotState():void
 		
 		function setMatchState() : void
+		
+		function matchReinit():void
 
 		function setMatchCurrentTime(matchCurrentTime : Number) : void;
 		function setMatchMaxTime(maxTime:Number):void

@@ -22,6 +22,9 @@ package net
 			map[2200] = SpinRequestProtobuf;
 			map[1200] = SpinResponseProtobuf;
 			
+			map[2300] = MatchEnterRequestProtobuf;
+			map[1300] = MatchEnterResponseProtobuf;
+			
 //			map[ 2001 ] = ClientHandShakeProtobuf;
 //			map[ 1001 ] = ServerHandShakeProtobuf;
 //			map[ 1003 ] = ServerConfigProtobuf;

@@ -84,8 +84,10 @@ package com.onlyplay.slotmatch3.components.games.match
 		private var _blastBackBase : DisplayObjectContainer;
 		private var _blastFrontBase : DisplayObjectContainer;
 		// fild dimantions
-		private var _w:uint = 6;
-		private var _h:uint = 6;
+		private var _w : uint = 6;
+		private var _h : uint = 6;
+		// костыль
+		public var animBaseForSpiral : DisplayObjectContainer;
 
 		public function MatchComponent()
 		{
@@ -134,18 +136,11 @@ package com.onlyplay.slotmatch3.components.games.match
 
 			_iconsBase.addEventListener(MouseEvent.CLICK, onMouseClick);
 		}
-		
-		
 
 		override public function get width() : Number
 		{
 			return _bg.width;
 		}
-		
-		
-		
-
-		
 
 		// ATTENTION: этот метод не универсальный - он требует знаний о внутренней структуре анимаций
 		private function onAnimCompleteFromTimeLine(e : Event) : void
@@ -154,39 +149,14 @@ package com.onlyplay.slotmatch3.components.games.match
 		}
 
 		// --- animations ------------------------------------
-		private function drop() : void
+		public function playDrop() : void
 		{
-			var delay : Number = 0;
-			// var delayShift:Number = 0.1;
-			var delta : Number = _h * _cellSize;
-			// TODO: вынести в переменную
+			Animations.drop(_field, _map, _h, _w, _cellSize);
+		}
 
-			for (var i : int = 0; i < _w; i++)
-			{
-				delay = i * 0.05;
-				for (var j : int = _h - 1; j >= 0; j--)
-				{
-					var item : ItemModel = Matcher_v2.getItemByCoords(_field, i, j) as ItemModel;
-					if (item)
-					{
-						var icon : DisplayObject = _map[item.id];
-						if (icon)
-						{
-							// var endPosition : Number = icon.y;
-							TweenLite.to(icon, 0.4, {y:icon.y + delta, ease:Quad.easeIn, delay:delay});
-
-							// icon.y -= delta;
-							// var timeLine:TimelineLite = new TimelineLite();
-							// timeLine.delay = delay;
-							// timeLine.append(TweenLite.to (icon, 0.25, {y:endPosition, ease:Linear.easeIn}));
-							// timeLine.append(TweenLite.to(icon, 0.1, {y:endPosition - bounceHeight, ease:Sine.easeOut}));
-							// timeLine.append( TweenLite.to(icon, 0.25, {y:endPosition, ease:Bounce.easeOut}));
-							//						//  TweenLite.from(icon, 0.25, {y:icon.y - delta, delay: delay });
-							delay += 0.03;
-						}
-					}
-				}
-			}
+		public function playFall() : void
+		{
+			Animations.fall(_h, _cellSize, _map);
 		}
 
 		// ---------------------------------------------------
@@ -274,17 +244,25 @@ package com.onlyplay.slotmatch3.components.games.match
 			// return super.height;
 		}
 
-		private function reinit() : void
+		public function reinit() : void
 		{
-			//_w = 14;
-			//_field = Matcher_v2.genField(FieldShapes.RECTANGULAR, _w, _h);
-			//_field = Matcher_v2.genField2(FieldShapes.RECTANGULAR, _w, _h);
-			_field = Matcher_v2.genField3(FieldShapes.RECTANGULAR, _w, _h);
+			do
+			{
+				// _w = 14;
+				// _field = Matcher_v2.genField(FieldShapes.RECTANGULAR, _w, _h);
+				// _field = Matcher_v2.genField2(FieldShapes.RECTANGULAR, _w, _h);
+				_field = Matcher_v2.genField3(FieldShapes.RECTANGULAR, _w, _h);
+				var swaps : Array = Matcher_v2.getPossibleSwaps(_field);
+				// _field = Matcher_v2.genField( FieldShapes.SMILE ); _w = 7;_h = 7;
+				// _field = Matcher_v2.genField3( FieldShapes.SMILE ); _w = 7;_h = 7;
+
+			}
+			while (swaps.length == 0);
+			_currentSwaps = swaps;
 			
-
-			// _field = Matcher_v2.genField( FieldShapes.SMILE ); _w = 7;_h = 7;
-			//_field = Matcher_v2.genField3( FieldShapes.SMILE ); _w = 7;_h = 7;
-
+			_showSwapsTimer.start();
+			
+			// --------------------
 			if (_map)
 			{
 				for each (var ic : DisplayObject in _map)
@@ -297,20 +275,6 @@ package com.onlyplay.slotmatch3.components.games.match
 
 			_map = new Dictionary(true);
 			drawGrid();
-
-			// playStartAnim();
-			// for each (var icon : DisplayObject in _map)
-			// {
-			// icon.y += -_cellSize * 6;
-			// }
-			// startFieldAnimation(_field, function() : void
-			// {
-			// _animPlaying = false;
-			// });
-		}
-
-		private function playStartAnim() : void
-		{
 		}
 
 		private function getBg(w : int, h : int, type : int) : DisplayObject
@@ -469,14 +433,22 @@ package com.onlyplay.slotmatch3.components.games.match
 
 							// log("-------------");
 
-							drop();
+							// playDrop();
+							//
+							// TweenLite.delayedCall(1, function() : void
+							// {
+							// reinit();
+							// Animations.fall(_h, _cellSize, _map);
+							//								//  fall();
+							// });
 
-							TweenLite.delayedCall(1, function() : void
-							{
-								reinit();
-								Animations.fall(_h, _cellSize, _map);
-								// fall();
-							});
+							// _field = Matcher_v2.shuffle3(_field);
+							// resetVisuals();
+							playShuffleAnimation();
+
+							// dispatchEvent( new Event ("noChoice"));
+
+							// Animations.spiralVideo(_animBase, new Point(_matchComponent.x + (_matchComponent.width >> 1), _matchComponent.y + (_matchComponent.height >> 1)));
 
 							_showSwapsTimer.start();
 						}
@@ -492,7 +464,7 @@ package com.onlyplay.slotmatch3.components.games.match
 			}
 		}
 
-		public function startReinitAnimation( onComplete:Function = null ) : void
+		public function startReinitAnimation(onComplete : Function = null) : void
 		{
 			// this is drop
 
@@ -513,31 +485,41 @@ package com.onlyplay.slotmatch3.components.games.match
 			// reinit();
 			// });
 		}
-		
-		public function playShuffleAnimation( onComplete:Function = null ):void
+
+		public function playShuffleAnimation(onComplete : Function = null) : void
 		{
-			var centerGlobal:Point = localToGlobal( new Point(_cellSize * _w >> 1, _cellSize * _h >> 1) );
-			//log(centerGlobal);
-			
-			Animations.spiralField(_map, centerGlobal, _cellSize, _iconsBase, foo);	
-			
-			function foo ():void
+			var centerGlobal : Point = localToGlobal(new Point(_cellSize * _w >> 1, _cellSize * _h >> 1));
+			// log(centerGlobal);
+
+			Animations.spiralField(_map, centerGlobal, _cellSize, _iconsBase, foo);
+
+			if ( animBaseForSpiral ) Animations.spiralVideo(animBaseForSpiral, centerGlobal);
+
+			function foo() : void
 			{
-				var newShuffledState:Array = Matcher_v2.shuffle3(_field);
-				log(newShuffledState.length);
 				
+				// TODO: вынести этот общий функционал с reinit() в отдельную функцию
+				do {
+					var newShuffledState : Array = Matcher_v2.shuffle3(_field);
+					var swaps:Array = Matcher_v2.getPossibleSwaps(newShuffledState);
+					
+				} while (swaps.length == 0);
+				
+				_currentSwaps = swaps;
+				_showSwapsTimer.start();
+				
+				//------------------------------------
+
 				_field = newShuffledState;
 				playBangAnimation();
 			}
 		}
-		
-		
-		public function playBangAnimation(  ):void
+
+		public function playBangAnimation() : void
 		{
-			var center:Point = new Point(_w * _cellSize >> 1, _h * _cellSize >> 1);
-			Animations.bangFromCenter(_map, _field, _cellSize , center); 
+			var center : Point = new Point(_w * _cellSize >> 1, _h * _cellSize >> 1);
+			Animations.bangFromCenter(_map, _field, _cellSize, center);
 		}
-		
 
 		// утильная функция. Нигде, кроме дебага не использовал пока
 		public function resetVisuals() : void
@@ -665,7 +647,7 @@ package com.onlyplay.slotmatch3.components.games.match
 						playChargeAnimation(micorbonusAnimItem.charge, micorbonusAnimItem.x, micorbonusAnimItem.y);
 					}
 
-					addBlustMoveieClip(icon.x , icon.y );
+					addBlustMoveieClip(icon.x, icon.y);
 					// attention
 					// _iconsBase.removeChild(icon);
 					iconsOnDelete.push(icon);

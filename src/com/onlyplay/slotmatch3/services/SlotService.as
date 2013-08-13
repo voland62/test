@@ -23,12 +23,12 @@ package com.onlyplay.slotmatch3.services
 		public var connector : IConnector;
 		[Inject]
 		public var eventDispatcher : IEventDispatcher;
-		
 
 		public function init() : void
 		{
 			// TODO: вынести в конфиг
 			var serverUrl : String = "10.0.1.100";
+			// var serverUrl : String = "213.160.129.246";
 			var port : int = 12801;
 
 			connector.addEventListener("onConnect", onConnect);
@@ -80,7 +80,7 @@ package com.onlyplay.slotmatch3.services
 			log("SlotService.login()");
 			// send login
 
-			var packageId:int = MessagesMap.getIdByClass(LoginRequestProtobuf);
+			var packageId : int = MessagesMap.getIdByClass(LoginRequestProtobuf);
 
 			var message : LoginRequestProtobuf = new LoginRequestProtobuf();
 			var deviceInfo : DeviceInfoProtobuf = new DeviceInfoProtobuf();
@@ -91,27 +91,25 @@ package com.onlyplay.slotmatch3.services
 
 			send(message, packageId);
 		}
-		
-		private function send ( message :Message, packageId:int):void
+
+		private function send(message : Message, packageId : int) : void
 		{
-			connector.send( packInRoot(message, packageId) );
+			connector.send(packInRoot(message, packageId));
 		}
-		
-		
-		private function packInRoot ( message:Message, packageId:int ):Root
+
+		private function packInRoot(message : Message, packageId : int) : Root
 		{
 			var root : Root = new Root();
 			root.packageId = packageId;
 			root.sessionKey = 0;
 			root.timestamp = new Date().time * 0.001;
-			
+
 			var ba : ByteArray = new ByteArray();
 			ba.endian = Endian.LITTLE_ENDIAN;
 			message.writeTo(ba);
 			root.packageData = ba;
 			return root;
 		}
-		
 
 		// public function makeHandShake() : void
 		// {
@@ -136,20 +134,19 @@ package com.onlyplay.slotmatch3.services
 			// message.locationId = 1;
 			// connector.send(message, packageId);
 		}
-		
-		public function enterLocation ( islandId:int,  locatinId:int ):void
+
+		public function enterLocation(islandId : int, locatinId : int) : void
 		{
-			var packageId:int = MessagesMap.getIdByClass( LocationEnterRequestProtobuf );
-			var message :LocationEnterRequestProtobuf = new LocationEnterRequestProtobuf();
+			var packageId : int = MessagesMap.getIdByClass(LocationEnterRequestProtobuf);
+			var message : LocationEnterRequestProtobuf = new LocationEnterRequestProtobuf();
 			message.islandId = islandId;
 			message.locationId = locatinId;
 			send(message, packageId);
 		}
-		
 
 		public function spin(linesQuantity : int, betAmount : int) : void
 		{
-			var packageId : int = MessagesMap.getIdByClass( SpinRequestProtobuf );
+			var packageId : int = MessagesMap.getIdByClass(SpinRequestProtobuf);
 			var message : SpinRequestProtobuf = new SpinRequestProtobuf();
 			message.bet = betAmount;
 			message.linesAmount = linesQuantity;
@@ -163,8 +160,8 @@ package com.onlyplay.slotmatch3.services
 			//			
 			// message.needInfo = true;
 			// message.needAmulet = true;
-			//			// message.linesQuantity = linesQuantity;
-			//			// message.betAmount = betAmount;
+			//			//  message.linesQuantity = linesQuantity;
+			//			//  message.betAmount = betAmount;
 			// connector.send(message, packageId);
 		}
 
@@ -175,6 +172,14 @@ package com.onlyplay.slotmatch3.services
 			// message.progress = win;
 			// message.experience = 0;
 			// connector.send(message, packageId);
+		}
+
+		public function enterMatch( lastWinFromSpin:Number) : void
+		{
+			var packageId : int = MessagesMap.getIdByClass(MatchEnterRequestProtobuf);
+			var message : MatchEnterRequestProtobuf = new MatchEnterRequestProtobuf();
+			message.money = lastWinFromSpin;
+			send(message, packageId);
 		}
 	}
 }

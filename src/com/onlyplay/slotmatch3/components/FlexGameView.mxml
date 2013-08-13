@@ -101,6 +101,10 @@
 			public function setMatchMaxTime(maxTime : Number) : void
 			{
 			}
+
+			public function matchReinit() : void
+			{
+			}
 	]]>
 </mx:Script>
 

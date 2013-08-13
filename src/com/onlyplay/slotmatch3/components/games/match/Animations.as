@@ -1,12 +1,12 @@
 package com.onlyplay.slotmatch3.components.games.match
 {
-	import com.greensock.easing.Cubic;
-	import com.greensock.easing.Quint;
-	import com.greensock.easing.Elastic;
 	import com.greensock.TimelineLite;
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Bounce;
+	import com.greensock.easing.Cubic;
+	import com.greensock.easing.Elastic;
 	import com.greensock.easing.Linear;
+	import com.greensock.easing.Quad;
 	import com.greensock.easing.Sine;
 	import com.onlyplay.slotmatch3.components.games.Util;
 
@@ -32,7 +32,7 @@ package com.onlyplay.slotmatch3.components.games.match
 		{
 			if ( animBase ) 
 			{
-				var centerGameAnimBase : Point = centerGlobal//animBase.globalToLocal(centerGlobal);
+				var centerGameAnimBase : Point = centerGlobal;//animBase.globalToLocal(centerGlobal);
 
 				var spir : Sprite = new spiral_();
 
@@ -56,6 +56,8 @@ package com.onlyplay.slotmatch3.components.games.match
 		public static function  spiralField(map : Dictionary, centerGlobal : Point, cellSize : Number, iconBase : DisplayObject, onComplete : Function = null) : void
 		{
 			// center - это координаты центра в коордитатах matchComponent'a.
+			
+			// spiralVideo(animBase, centerGlobal);
 
 			var centerIconsParent : Point = iconBase.globalToLocal(centerGlobal);
 			//
@@ -248,6 +250,41 @@ package com.onlyplay.slotmatch3.components.games.match
 			// delay += 0.1;
 			// }
 			// }
+		}
+
+		public static function drop( field:Array, map:Dictionary,  h:int, w:int, cellSize:Number) : void
+		{
+						var delay : Number = 0;
+			// var delayShift:Number = 0.1;
+			var delta : Number = h * cellSize;
+			// TODO: вынести в переменную
+
+			for (var i : int = 0; i < w; i++)
+			{
+				delay = i * 0.05;
+				for (var j : int = h - 1; j >= 0; j--)
+				{
+					var item : ItemModel = Matcher_v2.getItemByCoords( field, i, j) as ItemModel;
+					if (item)
+					{
+						var icon : DisplayObject = map[item.id];
+						if (icon)
+						{
+							// var endPosition : Number = icon.y;
+							TweenLite.to(icon, 0.4, {y:icon.y + delta, ease:Quad.easeIn, delay:delay});
+
+							// icon.y -= delta;
+							// var timeLine:TimelineLite = new TimelineLite();
+							// timeLine.delay = delay;
+							// timeLine.append(TweenLite.to (icon, 0.25, {y:endPosition, ease:Linear.easeIn}));
+							// timeLine.append(TweenLite.to(icon, 0.1, {y:endPosition - bounceHeight, ease:Sine.easeOut}));
+							// timeLine.append( TweenLite.to(icon, 0.25, {y:endPosition, ease:Bounce.easeOut}));
+							//						//  TweenLite.from(icon, 0.25, {y:icon.y - delta, delay: delay });
+							delay += 0.03;
+						}
+					}
+				}
+			}
 		}
 	}
 }

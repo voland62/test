@@ -22,5 +22,7 @@ package com.onlyplay.slotmatch3.services
 		function enterLocation(  islandId:int,  locatinId:int ):void;
 
 		function dispatchLastProgressToAll(win : Number) : void;
+
+		function enterMatch( lastWinFromSpin:Number) : void;
 	}
 }

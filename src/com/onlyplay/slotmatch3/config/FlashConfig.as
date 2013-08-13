@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.config
 {
+	import com.onlyplay.slotmatch3.controller.MakeMatchEnterRequestCommand;
 	import net.IConnector;
 	import net.MessagesMap;
 	import net.SocketConnector;
@@ -16,6 +17,7 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.controller.InitCommand;
 	import com.onlyplay.slotmatch3.controller.OnEnterLocationCommand;
 	import com.onlyplay.slotmatch3.controller.OnLoginCommand;
+	import com.onlyplay.slotmatch3.controller.OnMatchEnterCommand;
 	import com.onlyplay.slotmatch3.controller.OnSpinCommand;
 	import com.onlyplay.slotmatch3.controller.SpinCommand;
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.BetPerLineChangingCommand;
@@ -69,7 +71,8 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("init").toCommand(InitCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(LoginResponseProtobuf)).toCommand(OnLoginCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(LocationEnterResponseProtobuf)).toCommand(OnEnterLocationCommand);
-			commandMap.map(ServiceEvent.PREFIX +  MessagesMap.getIdByClass(SpinResponseProtobuf)).toCommand(OnSpinCommand);
+			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(SpinResponseProtobuf)).toCommand(OnSpinCommand);
+			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchEnterResponseProtobuf)).toCommand(OnMatchEnterCommand);
 			//commandMap.map(ServiceEvent.MAKE_HANDSHAKE).toCommand(MakeHandShakeCommand);
 			
 //			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerHandShakeProtobuf)).toCommand(OnHandShakeCommand);
@@ -85,7 +88,9 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("betPerLineChanged").toCommand(BetPerLineChangingCommand);
 			commandMap.map("lineNumChanged").toCommand(LineNumChangingCommand);
 			commandMap.map("max_bet").toCommand(MaxBetCommand);
-			commandMap.map("playMatch").toCommand(PlayMatchCommand);
+			//commandMap.map("playMatch").toCommand(PlayMatchCommand);
+			// toMatch
+			commandMap.map("toMatch").toCommand(MakeMatchEnterRequestCommand);
 			commandMap.map("onBonus").toCommand(OnBonusCommand);
 			//
 			

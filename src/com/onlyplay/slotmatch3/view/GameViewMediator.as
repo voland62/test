@@ -1,6 +1,7 @@
 package com.onlyplay.slotmatch3.view
 {
 	import com.onlyplay.slotmatch3.model.MatchGameModel;
+
 	import mx.events.DynamicEvent;
 
 	import com.onlyplay.slotmatch3.model.GameModel;
@@ -18,9 +19,8 @@ package com.onlyplay.slotmatch3.view
 		public var view : IGameView;
 		[Inject]
 		public var gameModel : GameModel;
-		
 		[Inject]
-		public var matchGameModel:MatchGameModel; 
+		public var matchGameModel : MatchGameModel;
 
 		override public function initialize() : void
 		{
@@ -39,9 +39,10 @@ package com.onlyplay.slotmatch3.view
 
 			addContextListener("ready", onReady);
 			addContextListener("showSpin", showSpin);
+			addContextListener("showMatch", showMatch);
 			addContextListener("userDataUpdated", onUserData);
 			addContextListener("currenBetUpdated", onCurrentBetUpdated);
-			//addContextListener("serverConfigUpdated", onServerConfigUpdate);
+			// addContextListener("serverConfigUpdated", onServerConfigUpdate);
 			addContextListener("currentMoneyChanged", onCurrentMoneyChanged);
 			addContextListener("onPlayerUpdated", onPlayerUpdated);
 			addContextListener("playersListUpdated", onPlayersListUpdated);
@@ -50,53 +51,49 @@ package com.onlyplay.slotmatch3.view
 			addContextListener("matchTimerTick", onMatchCurrenTimeTick);
 		}
 
-		private function onPhoto(e:Event) : void
+		private function onPhoto(e : Event) : void
 		{
-			
 		}
 
-		private function onBonus(e:DynamicEvent) : void
+		private function onBonus(e : DynamicEvent) : void
 		{
 			eventDispatcher.dispatchEvent(e);
 		}
 
-		private function onMatchCurrenTimeTick(e:Event) : void
+		private function onMatchCurrenTimeTick(e : Event) : void
 		{
-			view.setMatchCurrentTime( matchGameModel.currentTime ); 
+			view.setMatchCurrentTime(matchGameModel.currentTime);
 		}
 
-		private function onToMatch(e:Event) : void
+		private function onToMatch(e : Event) : void
 		{
-			dispatch(new Event("playMatch"));
-			view.setMatchState();
+			dispatch(e);
+			// dispatch(new Event("playMatch"));
 		}
 
-		private function onToSlot(e:Event) : void
+		private function onToSlot(e : Event) : void
 		{
 			view.setSlotState();
 		}
 
 		private function onExperienceChanged(e : Event) : void
 		{
-			view.setExperinece(gameModel.currentExperience.experience, 
-					gameModel.currentExperience.level, 
-					gameModel.currentExperience.leftVal, 
-					gameModel.currentExperience.rightVal);
+			view.setExperinece(gameModel.currentExperience.experience, gameModel.currentExperience.level, gameModel.currentExperience.leftVal, gameModel.currentExperience.rightVal);
 		}
 
 		private function onUpdateMyProgress(e : Event) : void
 		{
 			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
 		}
-		
+
 		// TODO: звести на модели соответствующий массив и заполнять только его по приходу плеердата
-		private function makeCorrections(players:Array):void
+		private function makeCorrections(players : Array) : void
 		{
-//			for each (var player : ServerRoomPlayerStateProtobuf in players)
-//			{
-//				player.targetProgress = gameModel.targetProgress;
-//				player.currentLevel = gameModel.getExperienceStuff(player.playerInfo.experience).level;
-//			}					
+			// for each (var player : ServerRoomPlayerStateProtobuf in players)
+			// {
+			// player.targetProgress = gameModel.targetProgress;
+			// player.currentLevel = gameModel.getExperienceStuff(player.playerInfo.experience).level;
+			// }
 		}
 
 		private function onPlayersListUpdated(e : Event) : void
@@ -161,17 +158,14 @@ package com.onlyplay.slotmatch3.view
 		private function onServerConfigUpdate(e : Event) : void
 		{
 			log("GameViewMediator.onServerConfigUpdate(e):" + "TODO");
-			//view.updateConfig(gameModel.serverConfig);
+			// view.updateConfig(gameModel.serverConfig);
 		}
 
 		private function onUserData(e : Event) : void
 		{
 			log("GameViewMediator.onUserData(e)");
 			view.setName(gameModel.userInfo.name);
-			view.setExperinece(gameModel.currentExperience.experience,
-								gameModel.currentExperience.level,
-								gameModel.currentExperience.leftVal,
-								gameModel.currentExperience.rightVal);
+			view.setExperinece(gameModel.currentExperience.experience, gameModel.currentExperience.level, gameModel.currentExperience.leftVal, gameModel.currentExperience.rightVal);
 			view.setMoney(gameModel.currentMoney);
 		}
 
@@ -184,10 +178,10 @@ package com.onlyplay.slotmatch3.view
 		{
 			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
 			view.setMoney(gameModel.currentMoney);
-			
-			//makeCorrections(gameModel.players);
-			//view.setPlayers(gameModel.players);
-			
+
+			// makeCorrections(gameModel.players);
+			// view.setPlayers(gameModel.players);
+
 			view.setReady();
 		}
 
@@ -195,12 +189,18 @@ package com.onlyplay.slotmatch3.view
 		{
 			view.setWin(gameModel.win);
 			view.showSping(gameModel.icons);
-			//view.drawLines(gameModel.winLines);
+			// view.drawLines(gameModel.winLines);
 		}
 
 		private function onSpin(e : Event = null) : void
 		{
 			dispatch(e);
+		}
+
+		private function showMatch(e : Event) : void
+		{
+			view.setMatchState();
+			view.matchReinit();
 		}
 	}
 }

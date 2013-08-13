@@ -1,5 +1,6 @@
 package test.MyTestProject
 {
+	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
 	import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
 	import com.onlyplay.slotmatch3.components.games.elements.PauseButton;
@@ -56,7 +57,7 @@ package test.MyTestProject
 	/**
 	 * @author Design3d
 	 */
-	[SWF(backgroundColor="#dddddd", frameRate="31", width="900", height="500")]
+	[SWF(backgroundColor="#dddddd", frameRate="31", width="900", height="600")]
 	public class TestAlternativaButton extends Sprite
 	{
 		[Embed( source="assets/font/FranklinGothicDemiC.otf", 
@@ -324,6 +325,16 @@ package test.MyTestProject
 			addChild(boosterPanel);
 
 			boosterPanel.x = stage.stageWidth - boosterPanel.width ;
+			
+			var freezeProgress :FreezeProgress = new FreezeProgress();
+			addChild(freezeProgress);
+			freezeProgress.percent = 0.5;
+			
+			freezeProgress.x = 100;
+			freezeProgress.y = 550;
+			
+			
+			
 		}
 	}
 }
