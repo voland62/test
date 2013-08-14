@@ -10,6 +10,7 @@ package com.onlyplay.slotmatch3.services
 	{
 		public static const PREFIX : String = "service_event_";
 		public static const MAKE_HANDSHAKE : String = "MAKE_HANDSHAKE";
+		public static const CHANGES:String = "changes";
 		
 		public var message: com.netease.protobuf.Message;
 		public var packageId:int;

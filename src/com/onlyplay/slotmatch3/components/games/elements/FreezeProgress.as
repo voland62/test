@@ -23,6 +23,9 @@ package com.onlyplay.slotmatch3.components.games.elements
 		protected static var DecorClass : Class;
 		[Embed(source="assets/facebook/facebook/id_6/id_6/multiplayer/cb.png", mimeType="image/png")]
 		protected static var CbClass : Class;
+		[Embed(source="assets/facebook/facebook/id_6/id_6/microbonus/microbonus_hod.png", mimeType="image/png")]
+		protected static var FlashIconClass : Class;
+		
 		protected var _progressStrip : Bitmap;
 		protected var _mask : Shape;
 		private var _bg : Bitmap;
@@ -30,6 +33,7 @@ package com.onlyplay.slotmatch3.components.games.elements
 		private var _decor : Bitmap;
 		private var _decorLeft : Bitmap;
 		private var _cb : Bitmap;
+		private var _flashIcon : Bitmap;
 
 		public function FreezeProgress()
 		{
@@ -72,15 +76,24 @@ package com.onlyplay.slotmatch3.components.games.elements
 			addChild(_decorLeft);
 
 			_decorLeft.scaleX = -1;
+			
+			
+			_flashIcon = new FlashIconClass();
+			addChild(_flashIcon);
+			
 
 			// _tf.border = true;
 			// _tf.visible = false;
+			
+			draw();
 		}
 
 		override protected function draw() : void
 		{
 			super.draw();
-
+			
+			_flashIcon.x = 7;
+			
 			_progressStrip.x = 28;
 			_progressStrip.y = 8;
 

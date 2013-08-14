@@ -197,6 +197,31 @@ package  {
 		/**
 		 *  @private
 		 */
+		public static const MINLEVEL:FieldDescriptor$TYPE_INT32 = new FieldDescriptor$TYPE_INT32("LocationProtobuf.minLevel", "minLevel", (16 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var minLevel$field:int;
+
+		public function clearMinLevel():void {
+			hasField$0 &= 0xffffffef;
+			minLevel$field = new int();
+		}
+
+		public function get hasMinLevel():Boolean {
+			return (hasField$0 & 0x10) != 0;
+		}
+
+		public function set minLevel(value:int):void {
+			hasField$0 |= 0x10;
+			minLevel$field = value;
+		}
+
+		public function get minLevel():int {
+			return minLevel$field;
+		}
+
+		/**
+		 *  @private
+		 */
 		override used_by_generated_code final function writeToBuffer(output:com.netease.protobuf.WritingBuffer):void {
 			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 1);
 			com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, this.locationId);
@@ -240,6 +265,10 @@ package  {
 				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 15);
 				com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, lastLinesAmount$field);
 			}
+			if (hasMinLevel) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 16);
+				com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, minLevel$field);
+			}
 			for (var fieldKey:* in this) {
 				super.writeUnknown(output, fieldKey);
 			}
@@ -262,6 +291,7 @@ package  {
 			var visited$count:uint = 0;
 			var lastBet$count:uint = 0;
 			var lastLinesAmount$count:uint = 0;
+			var minLevel$count:uint = 0;
 			while (input.bytesAvailable > bytesAfterSlice) {
 				var tag:uint = com.netease.protobuf.ReadUtils.read$TYPE_UINT32(input);
 				switch (tag >> 3) {
@@ -368,6 +398,13 @@ package  {
 					}
 					++lastLinesAmount$count;
 					this.lastLinesAmount = com.netease.protobuf.ReadUtils.read$TYPE_INT32(input);
+					break;
+				case 16:
+					if (minLevel$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LocationProtobuf.minLevel cannot be set twice.');
+					}
+					++minLevel$count;
+					this.minLevel = com.netease.protobuf.ReadUtils.read$TYPE_INT32(input);
 					break;
 				default:
 					super.readUnknown(input, tag);

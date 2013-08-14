@@ -52,7 +52,8 @@ package com.onlyplay.slotmatch3.components.games.match
 		// microbonuses assets
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/baks.png", mimeType="image/png")]
 		private static var Backs_Class : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/fire.png", mimeType="image/png")]
+		//[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/fire.png", mimeType="image/png")]
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/microbonus_hod.png", mimeType="image/png")]
 		private static var FireClass : Class;
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/time.png", mimeType="image/png")]
 		private static var HourGlass : Class;
@@ -65,7 +66,7 @@ package com.onlyplay.slotmatch3.components.games.match
 		private static var Pirate_6x6_BGClass : Class;
 		[Embed(source="/assets/facebook/facebook/backgrounds/underwater_6x6.png", mimeType="image/png")]
 		private static var UnderWater_6x6_BGClass : Class;
-		private var _cellSize : Number = 70;
+		private var _cellSize : Number = 65;
 		private var _field : Array;
 		private var _map : Dictionary ;
 		// = new Dictionary(true);

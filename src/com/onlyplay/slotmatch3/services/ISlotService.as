@@ -23,6 +23,8 @@ package com.onlyplay.slotmatch3.services
 
 		function dispatchLastProgressToAll(win : Number) : void;
 
-		function enterMatch( lastWinFromSpin:Number) : void;
+		function enterMatch(lastWinFromSpin : Number) : void;
+
+		function getRoomProgress() : void;
 	}
 }

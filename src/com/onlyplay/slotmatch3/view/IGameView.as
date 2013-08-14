@@ -52,7 +52,10 @@ package com.onlyplay.slotmatch3.view
 		function matchReinit():void
 
 		function setMatchCurrentTime(matchCurrentTime : Number) : void;
-		function setMatchMaxTime(maxTime:Number):void
+
+		function setMatchMaxTime(maxTime : Number) : void
+
+		function playWinAnimation(win : Number, onWinAnimComeplete : Function) : void;
 		
 	}
 }

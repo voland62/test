@@ -25,6 +25,9 @@ package net
 			map[2300] = MatchEnterRequestProtobuf;
 			map[1300] = MatchEnterResponseProtobuf;
 			
+			map[2110] = RoomProgressRequestProtobuf; 
+			map[1110] = RoomChangedEventProtobuf;
+			
 //			map[ 2001 ] = ClientHandShakeProtobuf;
 //			map[ 1001 ] = ServerHandShakeProtobuf;
 //			map[ 1003 ] = ServerConfigProtobuf;

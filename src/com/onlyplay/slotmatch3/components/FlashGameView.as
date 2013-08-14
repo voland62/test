@@ -1,8 +1,6 @@
 package com.onlyplay.slotmatch3.components
 {
-	import com.onlyplay.slotmatch3.components.games.match.Animations;
-	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
-
+	import com.greensock.TimelineLite;
 	import alternativa.gui.container.linear.VBox;
 	import alternativa.gui.container.tabPanel.TabData;
 	import alternativa.gui.controls.button.BaseButton;
@@ -14,6 +12,7 @@ package com.onlyplay.slotmatch3.components
 	import com.greensock.easing.Quad;
 	import com.onlyplay.slotmatch3.components.games.elements.BetButtonLeft;
 	import com.onlyplay.slotmatch3.components.games.elements.BetButtonRight;
+	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.LineButtonLeft;
 	import com.onlyplay.slotmatch3.components.games.elements.LineButtonRight;
 	import com.onlyplay.slotmatch3.components.games.elements.MapButton;
@@ -25,9 +24,11 @@ package com.onlyplay.slotmatch3.components
 	import com.onlyplay.slotmatch3.components.games.elements.ProgressBarBase;
 	import com.onlyplay.slotmatch3.components.games.elements.RoomProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.SettingsButton;
+	import com.onlyplay.slotmatch3.components.games.elements.StarProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.TimeProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.ToMach3Button;
 	import com.onlyplay.slotmatch3.components.games.elements.ToSlotButton;
+	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
 	import com.onlyplay.slotmatch3.components.games.elements.list.RoomList;
 	import com.onlyplay.slotmatch3.components.games.elements.ns.ExperienceProgressBar;
 	import com.onlyplay.slotmatch3.components.games.elements.tab.RoomTabButton;
@@ -75,6 +76,17 @@ package com.onlyplay.slotmatch3.components
 		private static var IslandBgClass : Class;
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/booster_all.png", mimeType="image/png")]
 		private static var PaymentsFakeClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/pl_schet.png", mimeType="image/png")]
+		private static var PlashkaBottomClass : Class;
+		
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/bg/up.png", mimeType="image/png")]
+		private static var PlashkaTopClass : Class;
+		
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/coins1.png", mimeType="image/png")]
+		private static var CoinMiniClass : Class;
+		
+		
+		
 		//
 		private var _bg : Bitmap;
 		private var _playButton : BaseButton;
@@ -113,6 +125,11 @@ package com.onlyplay.slotmatch3.components
 		private var _timeProgress : TimeProgress;
 		private var _animBase : DisplayObjectContainer;
 		private var _boosterPanel : BoosterPanel;
+		private var _energyProgress : FreezeProgress;
+		private var _plashka : Bitmap;
+		private var _coins1 : Bitmap;
+		private var _plashkaTop : Bitmap;
+		private var _starProgress : StarProgress;
 
 		public function FlashGameView()
 		{
@@ -127,9 +144,26 @@ package com.onlyplay.slotmatch3.components
 			_userFace = new FaceClass();
 			addChild(_userFace);
 
+			_plashka = new PlashkaBottomClass();
+			addChild(_plashka);
+
 			_bg = BgClass.getSingletone();
 			addChild(_bg);
-
+			
+			_plashkaTop = new PlashkaTopClass();
+			addChild(_plashkaTop);
+			
+			
+			_starProgress = new StarProgress();
+			addChild(_starProgress);
+			// starProgress.percent = 0.75;
+			//_starProgress.setProgress(0.25, false);
+			//_starProgress.setProgress(0.75, true);
+			
+			_starProgress.width = 235;
+			_starProgress.height = 21;
+			_starProgress.setProgress(0.75, false);
+			
 			_paymentsFake = new PaymentsFakeClass();
 			addChild(_paymentsFake);
 
@@ -140,6 +174,9 @@ package com.onlyplay.slotmatch3.components
 			_upperWinTf = createTf(100, 12, 0xf9fcbe);
 			addChild(_upperWinTf);
 			_upperWinTf.text = "ВЫИГРЫШ:";
+
+			//_coins1 = new CoinMiniClass();
+			//addChild(_coins1);
 
 			_upperWinAmountTf = createTf(100, 14, 0x00c400);
 			addChild(_upperWinAmountTf);
@@ -172,14 +209,15 @@ package com.onlyplay.slotmatch3.components
 
 			_photoButton = new PhotoButton();
 			addChild(_photoButton);
-			_photoButton.addEventListener("click", 
-				function (_:*):void{ 
-					_matchComponent.resetVisuals();
-					//_matchComponent.startReinitAnimation();
-					_matchComponent.playShuffleAnimation();
-//					Animations.spiralVideo(_animBase, 
-//						new Point(_matchComponent.x + (_matchComponent.width>>1), _matchComponent.y +(_matchComponent.height>>1)));					
-					});
+
+			_photoButton.addEventListener("click", function(_ : *) : void
+			{
+				_matchComponent.resetVisuals();
+				// _matchComponent.startReinitAnimation();
+				_matchComponent.playShuffleAnimation();
+				// Animations.spiralVideo(_animBase, 
+				// new Point(_matchComponent.x + (_matchComponent.width>>1), _matchComponent.y +(_matchComponent.height>>1)));
+			});
 
 			plusButton = new PlusButton();
 			addChild(plusButton);
@@ -296,10 +334,9 @@ package com.onlyplay.slotmatch3.components
 			_animBase.mouseChildren = false;
 			_animBase.addEventListener("animComplete", onAnimComplete, true);
 			addChild(_animBase);
-			
 		}
 
-		private function onAnimComplete(e: Event) : void
+		private function onAnimComplete(e : Event) : void
 		{
 			(e.currentTarget as DisplayObjectContainer).removeChild(e.target.parent as DisplayObject);
 		}
@@ -380,8 +417,24 @@ package com.onlyplay.slotmatch3.components
 
 		public function onResize(e : Event = null) : void
 		{
+			
+			_starProgress.x = 252;
+			_starProgress.y = 25;
+			
+						
+			_plashka.x = (_w - _plashka.width) >> 1;
+			_plashka.y = 460;
+			
+			_plashkaTop.x = 149;
+
+			if (_energyProgress)
+			{
+				_energyProgress.x = (_w - _energyProgress.width) >> 1;
+				_energyProgress.y = 40;
+			}
+
 			if (_boosterPanel)
-			{				
+			{
 				_boosterPanel.x = _w - _boosterPanel.width;
 				_boosterPanel.y = 76;
 			}
@@ -410,7 +463,7 @@ package com.onlyplay.slotmatch3.components
 			if (_matchComponent)
 			{
 				_matchComponent.x = (_w - _matchComponent.width) >> 1;
-				_matchComponent.y = 65;
+				_matchComponent.y = 69;
 			}
 
 			_paymentsFake.x = _w - _paymentsFake.width;
@@ -423,19 +476,22 @@ package com.onlyplay.slotmatch3.components
 			_userName.y = 11;
 
 			_upperWinTf.x = 250;
-			_upperWinTf.y = 25;
+			_upperWinTf.y = 469;
+
+			//_coins1.x = 250 + _upperWinTf.width;
+			//_coins1.y = 469;
 
 			_moneyIcon.x = 599;
 			_moneyIcon.y = 17;
 
 			_upperWinAmountTf.x = 308;
-			_upperWinAmountTf.y = 24;
+			_upperWinAmountTf.y = 469;
 
 			_upperBetTf.x = 370;
-			_upperBetTf.y = 25;
+			_upperBetTf.y = 469;
 
 			_upperBenAmountTf.x = 420;
-			_upperBenAmountTf.y = 24;
+			_upperBenAmountTf.y = 469;
 
 			_moneyTf.x = 623;
 			_moneyTf.y = 24;
@@ -637,7 +693,8 @@ package com.onlyplay.slotmatch3.components
 					target = _moneyIcon;
 					break;
 				case ItemModel.FLASH:
-					target = _roomProgress;
+					target = _energyProgress;
+					// _roomProgress;
 					break;
 				default:
 			}
@@ -674,8 +731,9 @@ package com.onlyplay.slotmatch3.components
 			_playButton.visible = true;
 			if (_toStotButton ) _toStotButton.visible = false;
 			if (_timeProgress) _timeProgress.visible = false;
-			
-			if (_boosterPanel) _boosterPanel.visible = false;;
+
+			if (_boosterPanel) _boosterPanel.visible = false;
+			if ( _energyProgress ) _energyProgress.visible = false;
 
 			addChildAt(_animBase, numChildren - 1);
 
@@ -726,9 +784,16 @@ package com.onlyplay.slotmatch3.components
 			}
 			_boosterPanel.visible = true;
 
+			if (!_energyProgress)
+			{
+				_energyProgress = new FreezeProgress();
+				addChild(_energyProgress);
+			}
+			_energyProgress.visible = true;
+
 			addChildAt(_animBase, numChildren - 1);
-			
-			//_matchComponent.startReinitAnimation();
+
+			// _matchComponent.startReinitAnimation();
 
 			onResize();
 		}
@@ -747,10 +812,32 @@ package com.onlyplay.slotmatch3.components
 		{
 			// Здесь мы говоим матч компоненту - сделать новый филд и
 			// проиграть reinit анимацию
-			
+
 			_matchComponent.reinit();
 			_matchComponent.playFall();
+		}
+
+		public function playWinAnimation(win : Number, onWinAnimComeplete : Function) : void
+		{
+			var tf :TextField = new TextField();
+			_animBase.addChild(tf);
+			tf.text = "Выйгрыш:" + win.toString();
+			tf.textColor = 0xFFFFFF;
+			tf.width = 100;
+			tf.height = 20;
+			tf.x = (_w - tf.width) >> 1;
+			tf.y = 60;
 			
+			function foo ():void
+			{
+				_animBase.removeChild(tf);
+				onWinAnimComeplete();
+			}
+			
+			
+			var timeLine:TimelineLite = new TimelineLite({onComplete:foo});
+			timeLine.append( TweenLite.to(tf, 1, { scaleX:2, scaleY:2}) );
+			timeLine.append( TweenLite.to(tf, 1, { scaleX:1, scaleY:1}) );
 		}
 	}
 }

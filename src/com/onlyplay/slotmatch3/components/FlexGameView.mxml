@@ -105,6 +105,10 @@
 			public function matchReinit() : void
 			{
 			}
+
+			public function playWinAnimation(win : Number, onWinAnimComeplete : Function) : void
+			{
+			}
 	]]>
 </mx:Script>
 

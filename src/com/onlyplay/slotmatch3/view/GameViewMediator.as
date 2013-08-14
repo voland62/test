@@ -40,15 +40,30 @@ package com.onlyplay.slotmatch3.view
 			addContextListener("ready", onReady);
 			addContextListener("showSpin", showSpin);
 			addContextListener("showMatch", showMatch);
+			addContextListener("locationChaged", onLocationChaged);
+			
 			addContextListener("userDataUpdated", onUserData);
 			addContextListener("currenBetUpdated", onCurrentBetUpdated);
 			// addContextListener("serverConfigUpdated", onServerConfigUpdate);
 			addContextListener("currentMoneyChanged", onCurrentMoneyChanged);
 			addContextListener("onPlayerUpdated", onPlayerUpdated);
 			addContextListener("playersListUpdated", onPlayersListUpdated);
-			addContextListener("updateMyProgress", onUpdateMyProgress);
-			addContextListener("currentExperienceChanged", onExperienceChanged);
+			// locationChaged
+			//addContextListener("updateMyProgress", onUpdateMyProgress);
+			//addContextListener("currentExperienceChanged", onExperienceChanged);
 			addContextListener("matchTimerTick", onMatchCurrenTimeTick);
+		}
+
+		private function onLocationChaged( e:Event) : void
+		{
+			// stars
+			
+			var newStarProgress:Number;
+			var q1:QuestProtobuf = gameModel.currentLocation.star1quest;
+			var q2:QuestProtobuf = gameModel.currentLocation.star2quest;
+			var q3:QuestProtobuf = gameModel.currentLocation.star3quest;
+			
+			
 		}
 
 		private function onPhoto(e : Event) : void
@@ -67,7 +82,8 @@ package com.onlyplay.slotmatch3.view
 
 		private function onToMatch(e : Event) : void
 		{
-			dispatch(e);
+			//dispatch(e);
+			showMatch( null );
 			// dispatch(new Event("playMatch"));
 		}
 
@@ -76,15 +92,15 @@ package com.onlyplay.slotmatch3.view
 			view.setSlotState();
 		}
 
-		private function onExperienceChanged(e : Event) : void
-		{
-			view.setExperinece(gameModel.currentExperience.experience, gameModel.currentExperience.level, gameModel.currentExperience.leftVal, gameModel.currentExperience.rightVal);
-		}
-
-		private function onUpdateMyProgress(e : Event) : void
-		{
-			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
-		}
+//		private function onExperienceChanged(e : Event) : void
+//		{
+//			view.setExperinece(gameModel.currentExperience.experience, gameModel.currentExperience.level, gameModel.currentExperience.leftVal, gameModel.currentExperience.rightVal);
+//		}
+//
+//		private function onUpdateMyProgress(e : Event) : void
+//		{
+//			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
+//		}
 
 		// TODO: звести на модели соответствующий массив и заполнять только его по приходу плеердата
 		private function makeCorrections(players : Array) : void
@@ -172,6 +188,20 @@ package com.onlyplay.slotmatch3.view
 		private function onAnimEnded(e : Event) : void
 		{
 			view.setReady();
+			
+			var wasWin:Boolean = true;
+			var win :Number = 10;
+			if (wasWin)
+			{
+				view.playWinAnimation (win , onWinAnimComeplete);// или подписаться
+			}
+			
+		}
+		
+		
+		private function onWinAnimComeplete():void
+		{
+			dispatch(new Event("requestRoomProgress"));
 		}
 
 		private function onReady(e : Event) : void

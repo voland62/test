@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.controller
 {
+	import mx.events.DynamicEvent;
 	import robotlegs.bender.bundles.mvcs.Command;
 
 	import com.onlyplay.slotmatch3.components.games.Parser;
@@ -45,6 +46,12 @@ package com.onlyplay.slotmatch3.controller
 //
 			gameModel.winLines = message.winLines.lines;//linesPoints;
 			gameModel.win = message.winMoney;
+			
+			if (message.winMoney)
+			{
+				// здесь мы стартуем анимацию вылета выйгрыша
+				//eventDispatcher.dispatchEvent(new DynamicEvent(""));
+			}
 			
 			
 //

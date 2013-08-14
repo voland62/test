@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.config
 {
+	import com.onlyplay.slotmatch3.controller.OnChageCommand;
 	import com.onlyplay.slotmatch3.controller.MakeMatchEnterRequestCommand;
 	import net.IConnector;
 	import net.MessagesMap;
@@ -73,6 +74,9 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(LocationEnterResponseProtobuf)).toCommand(OnEnterLocationCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(SpinResponseProtobuf)).toCommand(OnSpinCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchEnterResponseProtobuf)).toCommand(OnMatchEnterCommand);
+			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(RoomChangedEventProtobuf)).toCommand(OnRoomChangeedCommand);
+			commandMap.map(ServiceEvent.CHANGES).toCommand(OnChageCommand);
+			commandMap.map("requestRoomProgress").toCommand(RequestRoomProgressCommand);
 			//commandMap.map(ServiceEvent.MAKE_HANDSHAKE).toCommand(MakeHandShakeCommand);
 			
 //			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerHandShakeProtobuf)).toCommand(OnHandShakeCommand);

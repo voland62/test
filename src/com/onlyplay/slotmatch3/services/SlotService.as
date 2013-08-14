@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.services
 {
+	import RoomProgressRequestProtobuf.RoomProgressType;
 	import flash.utils.Endian;
 	import flash.utils.ByteArray;
 
@@ -62,6 +63,16 @@ package com.onlyplay.slotmatch3.services
 			{
 				log("message class not found for id:" + root.packageId);
 			}
+			
+			
+			if ( root.hasChanges && root.changes )
+			{
+				var changes : DataChangesProtobuf = root.changes;
+				var ev:ServiceEvent = new ServiceEvent( ServiceEvent.CHANGES );
+				ev.message = changes;
+				eventDispatcher.dispatchEvent(ev);
+			}
+			
 		}
 
 		private function onConnect(e : Event) : void
@@ -180,6 +191,14 @@ package com.onlyplay.slotmatch3.services
 			var message : MatchEnterRequestProtobuf = new MatchEnterRequestProtobuf();
 			message.money = lastWinFromSpin;
 			send(message, packageId);
+		}
+
+		public function getRoomProgress() : void
+		{
+			var packageId:int = MessagesMap.getIdByClass(RoomProgressRequestProtobuf);
+			var message:RoomProgressRequestProtobuf = new RoomProgressRequestProtobuf();
+			message.type = RoomProgressType.RP_SPIN;
+			//send(message, packageId);
 		}
 	}
 }

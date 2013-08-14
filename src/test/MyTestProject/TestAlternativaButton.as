@@ -1,5 +1,6 @@
 package test.MyTestProject
 {
+	import com.onlyplay.slotmatch3.components.games.elements.StarProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
 	import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
@@ -333,7 +334,17 @@ package test.MyTestProject
 			freezeProgress.x = 100;
 			freezeProgress.y = 550;
 			
+			var starProgress : StarProgress = new StarProgress();
+			addChild(starProgress);
+			// starProgress.percent = 0.75;
+			starProgress.setProgress(0.25, false);
+			starProgress.setProgress(0.75, true);
 			
+			starProgress.width = 400;
+			starProgress.height = 30;
+			
+			starProgress.x = 100;
+			starProgress.y = 490;
 			
 		}
 	}
