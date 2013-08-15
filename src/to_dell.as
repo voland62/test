@@ -1,5 +1,6 @@
 package
 {
+	import com.onlyplay.slotmatch3.components.games.WinBubble;
 	import flash.media.Video;
 	import tutorial.Person;
 
@@ -88,6 +89,13 @@ package
 		{
 			
 			
+			var winAnim:WinBubble = new WinBubble( "0123456789" );
+			addChild(winAnim);
+			
+			winAnim.x = stage.stageWidth >> 1;
+			winAnim.y = stage.stageHeight >> 1;
+			
+			return;
 			
 						//var r = Math.random() - 0.5;
 			

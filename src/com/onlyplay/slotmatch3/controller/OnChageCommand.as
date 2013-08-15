@@ -37,6 +37,17 @@ package com.onlyplay.slotmatch3.controller
 				eventDispatcher.dispatchEvent( new Event( "locationChaged" ));
 			}
 			
+			if (message.playerChanged)
+			{
+				//gameModel.currentExperience.experience = message.player.experience;
+				gameModel.currentExperience.level = message.player.level;
+				gameModel.currentExperience.leftVal = message.player.experience;
+				//trace('message.players.me.experience: ' + (message.players.me.experience));
+				gameModel.currentExperience.rightVal = message.player.experienceBound;
+				//trace('message.players.me.experienceBound: ' + (message.players.me.experienceBound));
+				eventDispatcher.dispatchEvent(new Event("experienceChaged"));
+			}
+			
 		}
 	}
 }

@@ -1,6 +1,8 @@
 package com.onlyplay.slotmatch3.components
 {
+	import com.onlyplay.slotmatch3.components.games.WinBubble;
 	import com.greensock.TimelineLite;
+
 	import alternativa.gui.container.linear.VBox;
 	import alternativa.gui.container.tabPanel.TabData;
 	import alternativa.gui.controls.button.BaseButton;
@@ -78,15 +80,10 @@ package com.onlyplay.slotmatch3.components
 		private static var PaymentsFakeClass : Class;
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/pl_schet.png", mimeType="image/png")]
 		private static var PlashkaBottomClass : Class;
-		
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/bg/up.png", mimeType="image/png")]
 		private static var PlashkaTopClass : Class;
-		
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/coins1.png", mimeType="image/png")]
 		private static var CoinMiniClass : Class;
-		
-		
-		
 		//
 		private var _bg : Bitmap;
 		private var _playButton : BaseButton;
@@ -149,21 +146,20 @@ package com.onlyplay.slotmatch3.components
 
 			_bg = BgClass.getSingletone();
 			addChild(_bg);
-			
+
 			_plashkaTop = new PlashkaTopClass();
 			addChild(_plashkaTop);
-			
-			
+
 			_starProgress = new StarProgress();
 			addChild(_starProgress);
 			// starProgress.percent = 0.75;
-			//_starProgress.setProgress(0.25, false);
-			//_starProgress.setProgress(0.75, true);
-			
+			// _starProgress.setProgress(0.25, false);
+			// _starProgress.setProgress(0.75, true);
+
 			_starProgress.width = 235;
 			_starProgress.height = 21;
 			_starProgress.setProgress(0.75, false);
-			
+
 			_paymentsFake = new PaymentsFakeClass();
 			addChild(_paymentsFake);
 
@@ -175,8 +171,8 @@ package com.onlyplay.slotmatch3.components
 			addChild(_upperWinTf);
 			_upperWinTf.text = "ВЫИГРЫШ:";
 
-			//_coins1 = new CoinMiniClass();
-			//addChild(_coins1);
+			// _coins1 = new CoinMiniClass();
+			// addChild(_coins1);
 
 			_upperWinAmountTf = createTf(100, 14, 0x00c400);
 			addChild(_upperWinAmountTf);
@@ -417,14 +413,12 @@ package com.onlyplay.slotmatch3.components
 
 		public function onResize(e : Event = null) : void
 		{
-			
 			_starProgress.x = 252;
 			_starProgress.y = 25;
-			
-						
+
 			_plashka.x = (_w - _plashka.width) >> 1;
 			_plashka.y = 460;
-			
+
 			_plashkaTop.x = 149;
 
 			if (_energyProgress)
@@ -478,8 +472,8 @@ package com.onlyplay.slotmatch3.components
 			_upperWinTf.x = 250;
 			_upperWinTf.y = 469;
 
-			//_coins1.x = 250 + _upperWinTf.width;
-			//_coins1.y = 469;
+			// _coins1.x = 250 + _upperWinTf.width;
+			// _coins1.y = 469;
 
 			_moneyIcon.x = 599;
 			_moneyIcon.y = 17;
@@ -617,9 +611,14 @@ package com.onlyplay.slotmatch3.components
 			_moneyTf.text = money.toString();
 		}
 
-		public function updateConfig(serverConfig : IslandProtobuf) : void
+//		public function updateConfig(serverConfig : IslandProtobuf) : void
+//		{
+//			_maxBetButton.text = (serverConfig.maxBet * serverConfig.maxLines).toString();
+//		}
+		
+		public function setMaxBet(maxBet:Number):void
 		{
-			_maxBetButton.text = (serverConfig.maxBet * serverConfig.maxLines).toString();
+			_maxBetButton.text = maxBet.toString();// (serverConfig.maxBet * serverConfig.maxLines).toString();
 		}
 
 		public function setUpperBet(wholeBet : Number) : void
@@ -819,25 +818,36 @@ package com.onlyplay.slotmatch3.components
 
 		public function playWinAnimation(win : Number, onWinAnimComeplete : Function) : void
 		{
-			var tf :TextField = new TextField();
-			_animBase.addChild(tf);
-			tf.text = "Выйгрыш:" + win.toString();
-			tf.textColor = 0xFFFFFF;
-			tf.width = 100;
-			tf.height = 20;
-			tf.x = (_w - tf.width) >> 1;
-			tf.y = 60;
-			
-			function foo ():void
+			// var tf :TextField = new TextField();
+			// _animBase.addChild(tf);
+			// tf.text = "Выйгрыш:" + win.toString();
+			// tf.textColor = 0xFFFFFF;
+			// tf.width = 100;
+			// tf.height = 20;
+			// tf.x = (_w - tf.width) >> 1;
+			// tf.y = 60;
+			//
+			var winBubble : WinBubble = new WinBubble(win.toString());
+			_animBase.addChild(winBubble);
+			winBubble.x = _w >> 1;
+			winBubble.y = 100;
+
+			function foo() : void
 			{
-				_animBase.removeChild(tf);
+				_animBase.removeChild(winBubble);
 				onWinAnimComeplete();
 			}
 			
+			winBubble.scaleX = winBubble.scaleY = 0.5;
 			
-			var timeLine:TimelineLite = new TimelineLite({onComplete:foo});
-			timeLine.append( TweenLite.to(tf, 1, { scaleX:2, scaleY:2}) );
-			timeLine.append( TweenLite.to(tf, 1, { scaleX:1, scaleY:1}) );
+			var timeLine : TimelineLite = new TimelineLite({onComplete:foo});
+			timeLine.append(TweenLite.to(winBubble, 1, {scaleX:1, scaleY:1}));
+			timeLine.append(TweenLite.to(winBubble, 1, {scaleX:0.1, scaleY:0.1, y:10}));
+		}
+
+		public function setStarsProgress(commonPercentage : Number) : void
+		{
+			_starProgress.setProgress(commonPercentage, true);
 		}
 	}
 }

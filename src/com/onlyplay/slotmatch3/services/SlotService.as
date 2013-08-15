@@ -82,7 +82,7 @@ package com.onlyplay.slotmatch3.services
 			// старт хэндшейк
 			// eventDispatcher.dispatchEvent(new ServiceEvent(ServiceEvent.));
 			// TODO: вынести в комманду
-			var gameId : int = 0;
+			var gameId : int = 270;//0;
 			login(gameId);
 		}
 
@@ -98,7 +98,7 @@ package com.onlyplay.slotmatch3.services
 			deviceInfo.clientVersion = "";
 			deviceInfo.udid = "flash";
 			message.deviceInfo = deviceInfo;
-			message.gameId = 0;
+			message.gameId = gameId;
 
 			send(message, packageId);
 		}
@@ -198,7 +198,7 @@ package com.onlyplay.slotmatch3.services
 			var packageId:int = MessagesMap.getIdByClass(RoomProgressRequestProtobuf);
 			var message:RoomProgressRequestProtobuf = new RoomProgressRequestProtobuf();
 			message.type = RoomProgressType.RP_SPIN;
-			//send(message, packageId);
+			send(message, packageId);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.onlyplay.slotmatch3.config
+package com.onlyplay.slotmatch3.controller
 {
 	import robotlegs.bender.bundles.mvcs.Command;
 
@@ -14,7 +14,7 @@ package com.onlyplay.slotmatch3.config
 		public var service : ISlotService;
 		override public function execute() : void
 		{
-			
+			service.getRoomProgress();
 
 		}
 

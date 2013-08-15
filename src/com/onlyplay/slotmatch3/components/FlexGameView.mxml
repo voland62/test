@@ -109,6 +109,14 @@
 			public function playWinAnimation(win : Number, onWinAnimComeplete : Function) : void
 			{
 			}
+
+			public function setStarsProgress(commonPercentage : Number) : void
+			{
+			}
+
+			public function setMaxBet(maxBet : Number) : void
+			{
+			}
 	]]>
 </mx:Script>
 

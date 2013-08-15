@@ -26,6 +26,8 @@ package com.onlyplay.slotmatch3.view
 		function setMoney(money : int) : void;
 
 		//function updateConfig(serverConfig : ServerLocationConfigProtobuf) : void;
+		
+		function setMaxBet(maxBet:Number):void;
 
 		function setUpperBet(getWholeBet : Number) : void;
 
@@ -56,6 +58,8 @@ package com.onlyplay.slotmatch3.view
 		function setMatchMaxTime(maxTime : Number) : void
 
 		function playWinAnimation(win : Number, onWinAnimComeplete : Function) : void;
+
+		function setStarsProgress(commonPercentage : Number) : void;
 		
 	}
 }

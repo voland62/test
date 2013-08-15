@@ -41,27 +41,49 @@ package com.onlyplay.slotmatch3.view
 			addContextListener("showSpin", showSpin);
 			addContextListener("showMatch", showMatch);
 			addContextListener("locationChaged", onLocationChaged);
+			addContextListener("onRoomProgressChanged", onRoomProgressChanged);
+			addContextListener("experienceChaged", onExperienceChaged);
+			addContextListener("playersListUpdated", onPlayersListUpdated);
+			//experienceChaged
 			
 			addContextListener("userDataUpdated", onUserData);
 			addContextListener("currenBetUpdated", onCurrentBetUpdated);
 			// addContextListener("serverConfigUpdated", onServerConfigUpdate);
 			addContextListener("currentMoneyChanged", onCurrentMoneyChanged);
 			addContextListener("onPlayerUpdated", onPlayerUpdated);
-			addContextListener("playersListUpdated", onPlayersListUpdated);
 			// locationChaged
 			//addContextListener("updateMyProgress", onUpdateMyProgress);
 			//addContextListener("currentExperienceChanged", onExperienceChanged);
 			addContextListener("matchTimerTick", onMatchCurrenTimeTick);
 		}
 
+		private function onExperienceChaged( e:Event ) : void
+		{
+			view.setExperinece( gameModel.currentExperience.experience, 
+								gameModel.currentExperience.level, 
+								gameModel.currentExperience.leftVal, 
+								gameModel.currentExperience.rightVal);
+		}
+
+		private function onRoomProgressChanged(e:Event) : void
+		{
+			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
+		}
+
 		private function onLocationChaged( e:Event) : void
 		{
 			// stars
-			
-			var newStarProgress:Number;
+						
 			var q1:QuestProtobuf = gameModel.currentLocation.star1quest;
 			var q2:QuestProtobuf = gameModel.currentLocation.star2quest;
 			var q3:QuestProtobuf = gameModel.currentLocation.star3quest;
+			
+			var commonMax: Number = q1.completeValue + q2.completeValue;
+			var commonCurrent : Number  = q1.currentValue + q2.currentValue;
+			
+			var commonPercentage:Number = commonCurrent / commonMax;
+			log('---commonPercentage: ' + (commonPercentage));
+			view.setStarsProgress( commonPercentage );
 			
 			
 		}
@@ -92,10 +114,6 @@ package com.onlyplay.slotmatch3.view
 			view.setSlotState();
 		}
 
-//		private function onExperienceChanged(e : Event) : void
-//		{
-//			view.setExperinece(gameModel.currentExperience.experience, gameModel.currentExperience.level, gameModel.currentExperience.leftVal, gameModel.currentExperience.rightVal);
-//		}
 //
 //		private function onUpdateMyProgress(e : Event) : void
 //		{
@@ -105,15 +123,16 @@ package com.onlyplay.slotmatch3.view
 		// TODO: звести на модели соответствующий массив и заполнять только его по приходу плеердата
 		private function makeCorrections(players : Array) : void
 		{
-			// for each (var player : ServerRoomPlayerStateProtobuf in players)
-			// {
-			// player.targetProgress = gameModel.targetProgress;
-			// player.currentLevel = gameModel.getExperienceStuff(player.playerInfo.experience).level;
-			// }
+			for each (var player : PlayerShortProtobuf in players)
+			{
+				player.targetProgress = gameModel.targetProgress;
+			//player.currentLevel = gameModel.getExperienceStuff(player.playerInfo.experience).level;
+			}
 		}
 
 		private function onPlayersListUpdated(e : Event) : void
 		{
+			//log("GameViewMediator.onPlayersListUpdated(e)");
 			// corrections
 			makeCorrections(gameModel.players);
 			view.setPlayers(gameModel.players);
@@ -190,8 +209,8 @@ package com.onlyplay.slotmatch3.view
 			view.setReady();
 			
 			var wasWin:Boolean = true;
-			var win :Number = 10;
-			if (wasWin)
+			var win :Number = gameModel.win;//10;
+			if ( win > 0)
 			{
 				view.playWinAnimation (win , onWinAnimComeplete);// или подписаться
 			}
@@ -208,6 +227,8 @@ package com.onlyplay.slotmatch3.view
 		{
 			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
 			view.setMoney(gameModel.currentMoney);
+			
+			view.setMaxBet( gameModel.currentLocation.maxBet * gameModel.currentLocation.maxLinesAmount);
 
 			// makeCorrections(gameModel.players);
 			// view.setPlayers(gameModel.players);

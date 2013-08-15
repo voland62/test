@@ -60,7 +60,6 @@ package com.onlyplay.slotmatch3.components.games.elements
 				 var star :Star = new Star();
 				 _starsBase.addChild(star);
 				 _stars.push(star);
-
 			}
 
 			_progressStrip.mask = _mask;
@@ -132,7 +131,7 @@ package com.onlyplay.slotmatch3.components.games.elements
 			for (var i : int = 0; i < _stars.length; i++) 
 			{
 				var star:Star = _stars[i];
-				star.x = delta * (i + 1);
+				star.x = int(delta * (i + 1)) - 1;
 				star.showStar( star.x < currentLength, _withAnim );
 //				if ( star.x < currentLength )
 //				{

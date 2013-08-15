@@ -1,7 +1,5 @@
 package com.onlyplay.slotmatch3.config
 {
-	import com.onlyplay.slotmatch3.controller.OnChageCommand;
-	import com.onlyplay.slotmatch3.controller.MakeMatchEnterRequestCommand;
 	import net.IConnector;
 	import net.MessagesMap;
 	import net.SocketConnector;
@@ -16,10 +14,14 @@ package com.onlyplay.slotmatch3.config
 
 	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
 	import com.onlyplay.slotmatch3.controller.InitCommand;
+	import com.onlyplay.slotmatch3.controller.MakeMatchEnterRequestCommand;
+	import com.onlyplay.slotmatch3.controller.OnChageCommand;
 	import com.onlyplay.slotmatch3.controller.OnEnterLocationCommand;
 	import com.onlyplay.slotmatch3.controller.OnLoginCommand;
 	import com.onlyplay.slotmatch3.controller.OnMatchEnterCommand;
+	import com.onlyplay.slotmatch3.controller.OnRoomChangeedCommand;
 	import com.onlyplay.slotmatch3.controller.OnSpinCommand;
+	import com.onlyplay.slotmatch3.controller.RequestRoomProgressCommand;
 	import com.onlyplay.slotmatch3.controller.SpinCommand;
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.BetPerLineChangingCommand;
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.LineNumChangingCommand;
@@ -77,6 +79,7 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(RoomChangedEventProtobuf)).toCommand(OnRoomChangeedCommand);
 			commandMap.map(ServiceEvent.CHANGES).toCommand(OnChageCommand);
 			commandMap.map("requestRoomProgress").toCommand(RequestRoomProgressCommand);
+			
 			//commandMap.map(ServiceEvent.MAKE_HANDSHAKE).toCommand(MakeHandShakeCommand);
 			
 //			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerHandShakeProtobuf)).toCommand(OnHandShakeCommand);

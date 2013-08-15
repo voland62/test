@@ -18,14 +18,14 @@ package com.onlyplay.slotmatch3.model
 		public var lastProgress : int = 0;
 		
 		public var _ready : Boolean = false;
-		public var gameId : int;
+		private var _gameId : int;
 		public var currentIsland : IslandProtobuf;
 		public var currentLocation :LocationProtobuf;
 		public var currentBet : Bet = new Bet();
 		public var currentMoney : int;
 		public var win : Number = 0;
 		public var levelsArray : Array = genLevels();
-		public var currentExperience : Exp;
+		public var currentExperience : Exp = new Exp();
 		
 		//--- new model ----------------
 		public var islands:IslandsProtobuf;
@@ -62,6 +62,16 @@ package com.onlyplay.slotmatch3.model
 			exp.rightVal = levelsArray[exp.level] - levelsArray[exp.level - 1];
 			
 			return exp;
+		}
+
+		public function get gameId() : int
+		{
+			return _gameId;
+		}
+
+		public function set gameId(newGameId : int) : void 
+		{
+			_gameId = newGameId;
 		}
 	}
 }

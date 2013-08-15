@@ -31,6 +31,7 @@ package com.onlyplay.slotmatch3.controller
 			var message : LoginResponseProtobuf = event.message as LoginResponseProtobuf;
 			log(message.toString());
 			gameModel.gameId = message.gameId;
+			//log('gameModel.gameId: ' + (gameModel.gameId));
 
 			//gameModel._ready = true;
 			gameModel.userInfo = message.player;
@@ -45,11 +46,15 @@ package com.onlyplay.slotmatch3.controller
 
 			gameModel.currentBet.linesNum = gameModel.currentLocation.maxLinesAmount;
 			gameModel.currentBet.betPerLine = gameModel.currentLocation.minBet;
-			gameModel.currentExperience = gameModel.getExperienceStuff(message.player.experience);
+			
+			// gameModel.currentExperience = gameModel.getExperienceStuff(message.player.experience);
+			gameModel.currentExperience.leftVal = message.player.experience;
+			gameModel.currentExperience.rightVal = message.player.experienceBound;
+			gameModel.currentExperience.level = message.player.level;
 			
 			
 			
-			
+			eventDispatcher.dispatchEvent( new Event( "locationChaged" ));
 			eventDispatcher.dispatchEvent(new Event("currenBetUpdated"));
 			eventDispatcher.dispatchEvent(new Event("userDataUpdated"));
 
