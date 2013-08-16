@@ -1,28 +1,12 @@
 package test.MyTestProject
 {
-	import com.onlyplay.slotmatch3.components.games.elements.StarProgress;
-	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
-	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
-	import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
-	import com.onlyplay.slotmatch3.components.games.elements.PauseButton;
-	import com.onlyplay.slotmatch3.components.games.elements.TimeProgress;
-	import com.onlyplay.slotmatch3.components.games.elements.scrollArea.PaymentsScrollArea;
-
-	import alternativa.gui.container.scrollPane.ScrollPane;
-
-	import flash.geom.Rectangle;
-	import flash.display.Bitmap;
-
-	import alternativa.gui.container.scrollArea.ScrollArea;
-
-	import com.onlyplay.slotmatch3.components.games.elements.FrendProgress;
-
+	import com.onlyplay.slotmatch3.components.dialogs.TimeIsOverDialog;
+	import com.onlyplay.slotmatch3.components.dialogs.Dialog;
+	import flash.events.MouseEvent;
 	import alternativa.gui.container.linear.VBox;
+	import alternativa.gui.container.scrollArea.ScrollArea;
+	import alternativa.gui.container.scrollPane.ScrollPane;
 	import alternativa.gui.container.tabPanel.TabData;
-
-	import com.onlyplay.slotmatch3.components.games.elements.tab.RoomTabButton;
-	import com.onlyplay.slotmatch3.components.games.elements.tab.RoomTabPanel;
-
 	import alternativa.gui.controls.button.BaseButton;
 	import alternativa.gui.controls.text.Label;
 	import alternativa.gui.controls.text.LabelTF;
@@ -33,10 +17,13 @@ package test.MyTestProject
 	import com.onlyplay.slotmatch3.components.games.elements.BetButtonLeft;
 	import com.onlyplay.slotmatch3.components.games.elements.BetButtonRight;
 	import com.onlyplay.slotmatch3.components.games.elements.BetStepper;
+	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
+	import com.onlyplay.slotmatch3.components.games.elements.FrendProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.LineButtonLeft;
 	import com.onlyplay.slotmatch3.components.games.elements.LineButtonRight;
 	import com.onlyplay.slotmatch3.components.games.elements.MapButton;
 	import com.onlyplay.slotmatch3.components.games.elements.MaxBetButton;
+	import com.onlyplay.slotmatch3.components.games.elements.PauseButton;
 	import com.onlyplay.slotmatch3.components.games.elements.PayButton;
 	import com.onlyplay.slotmatch3.components.games.elements.PhotoButton;
 	import com.onlyplay.slotmatch3.components.games.elements.PlayButton;
@@ -44,11 +31,19 @@ package test.MyTestProject
 	import com.onlyplay.slotmatch3.components.games.elements.ProgressBarBase;
 	import com.onlyplay.slotmatch3.components.games.elements.RoomProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.SettingsButton;
+	import com.onlyplay.slotmatch3.components.games.elements.StarProgress;
+	import com.onlyplay.slotmatch3.components.games.elements.TimeProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.ToMach3Button;
+	import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
+	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
 	import com.onlyplay.slotmatch3.components.games.elements.list.RoomList;
 	import com.onlyplay.slotmatch3.components.games.elements.ns.ExperienceProgressBar;
+	import com.onlyplay.slotmatch3.components.games.elements.scrollArea.PaymentsScrollArea;
 	import com.onlyplay.slotmatch3.components.games.elements.scroller.SimpleScrollBar;
+	import com.onlyplay.slotmatch3.components.games.elements.tab.RoomTabButton;
+	import com.onlyplay.slotmatch3.components.games.elements.tab.RoomTabPanel;
 
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -174,6 +169,7 @@ package test.MyTestProject
 			toMachButton.y = stage.stageHeight - toMachButton.height - 30;
 
 			var photoButton : BaseButton = new PhotoButton();
+			photoButton.addEventListener(MouseEvent.CLICK, onPhotoClick);
 			addChild(photoButton);
 			photoButton.y = 20;
 			photoButton.x = 3;
@@ -346,6 +342,17 @@ package test.MyTestProject
 			starProgress.x = 100;
 			starProgress.y = 490;
 			
+		}
+
+		private function onPhotoClick( e : MouseEvent) : void
+		{
+			var timeOverDialog: Dialog = new TimeIsOverDialog();
+			//timeOverDialog.width = 400;
+			//timeOverDialog.height = 200;
+			timeOverDialog.title = "Закончилось время";
+			timeOverDialog.x = (stage.stageWidth - timeOverDialog.width)>>1;
+			timeOverDialog.y = (stage.stageHeight - timeOverDialog.height)>>1;
+			addChild(timeOverDialog);
 		}
 	}
 }
