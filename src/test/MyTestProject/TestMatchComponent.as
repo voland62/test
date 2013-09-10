@@ -40,17 +40,21 @@ package test.MyTestProject
 			var fallBt:DisplayObject = makeButton(clr, "fall");
 			fallBt.x = shuffle_bt.x;
 			fallBt.y = shuffle_bt.y - 30;
+			
 			fallBt.addEventListener(MouseEvent.CLICK, function (e:Event):void{
 				matchComponent.resetVisuals(); 
 				matchComponent.playFall();});
+				
 			addChild(fallBt);
 			
 			var dropBt:DisplayObject = makeButton(clr, "drop");
 			dropBt.x = shuffle_bt.x;
 			dropBt.y = shuffle_bt.y - 60;
+			
 			dropBt.addEventListener(MouseEvent.CLICK, function (e:Event):void{ 
 				matchComponent.resetVisuals();
 				matchComponent.playDrop();});
+				
 			addChild(dropBt);
 			
 		}

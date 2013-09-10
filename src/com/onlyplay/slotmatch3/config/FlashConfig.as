@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.config
 {
+	import com.onlyplay.slotmatch3.controller.match.OnFlashEnergyEncreaseCommand;
 	import net.IConnector;
 	import net.MessagesMap;
 	import net.SocketConnector;
@@ -27,10 +28,12 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.LineNumChangingCommand;
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.MaxBetCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnBonusCommand;
-	import com.onlyplay.slotmatch3.controller.match.PlayMatchCommand;
+	import com.onlyplay.slotmatch3.controller.match.OnBoosterCommand;
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.model.MatchGameModel;
+	import com.onlyplay.slotmatch3.services.BoosterTimerService;
 	import com.onlyplay.slotmatch3.services.ISlotService;
+	import com.onlyplay.slotmatch3.services.MatchEnergyFallingService;
 	import com.onlyplay.slotmatch3.services.MatchTimerService;
 	import com.onlyplay.slotmatch3.services.ServiceEvent;
 	import com.onlyplay.slotmatch3.services.SlotService;
@@ -64,6 +67,8 @@ package com.onlyplay.slotmatch3.config
 			injector.map(IConnector).toSingleton(SocketConnector);
 			injector.map(ISlotService).toSingleton(SlotService);
 			injector.map(MatchTimerService).asSingleton();
+			injector.map(BoosterTimerService).asSingleton();
+			injector.map(MatchEnergyFallingService).asSingleton();
 			
 			// model
 			injector.map(UserModel).asSingleton();
@@ -79,6 +84,7 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(RoomChangedEventProtobuf)).toCommand(OnRoomChangeedCommand);
 			commandMap.map(ServiceEvent.CHANGES).toCommand(OnChageCommand);
 			commandMap.map("requestRoomProgress").toCommand(RequestRoomProgressCommand);
+			commandMap.map("onFlashEnergyIncrease").toCommand(OnFlashEnergyEncreaseCommand);
 			
 			//commandMap.map(ServiceEvent.MAKE_HANDSHAKE).toCommand(MakeHandShakeCommand);
 			
@@ -99,6 +105,7 @@ package com.onlyplay.slotmatch3.config
 			// toMatch
 			commandMap.map("toMatch").toCommand(MakeMatchEnterRequestCommand);
 			commandMap.map("onBonus").toCommand(OnBonusCommand);
+			commandMap.map("onBoosterClick").toCommand(OnBoosterCommand);
 			//
 			
 			// view ServerRoomPlayerStateProtobuf

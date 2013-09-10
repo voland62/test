@@ -7,8 +7,8 @@ package  {
 	import flash.utils.IDataOutput;
 	import flash.utils.IExternalizable;
 	import flash.errors.IOError;
-	import LeaderInfoProtobuf;
 	import LocationProtobuf;
+	import PlayerShortProtobuf;
 	// @@protoc_insertion_point(imports)
 
 	// @@protoc_insertion_point(class_metadata)
@@ -31,9 +31,9 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const LEADERS:RepeatedFieldDescriptor$TYPE_MESSAGE = new RepeatedFieldDescriptor$TYPE_MESSAGE("IslandProtobuf.leaders", "leaders", (3 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return LeaderInfoProtobuf; });
+		public static const LEADERS:RepeatedFieldDescriptor$TYPE_MESSAGE = new RepeatedFieldDescriptor$TYPE_MESSAGE("IslandProtobuf.leaders", "leaders", (3 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerShortProtobuf; });
 
-		[ArrayElementType("LeaderInfoProtobuf")]
+		[ArrayElementType("PlayerShortProtobuf")]
 		public var leaders:Array = [];
 
 		/**
@@ -66,6 +66,29 @@ package  {
 		/**
 		 *  @private
 		 */
+		public static const KING:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("IslandProtobuf.king", "king", (5 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerShortProtobuf; });
+
+		private var king$field:PlayerShortProtobuf;
+
+		public function clearKing():void {
+			king$field = null;
+		}
+
+		public function get hasKing():Boolean {
+			return king$field != null;
+		}
+
+		public function set king(value:PlayerShortProtobuf):void {
+			king$field = value;
+		}
+
+		public function get king():PlayerShortProtobuf {
+			return king$field;
+		}
+
+		/**
+		 *  @private
+		 */
 		override used_by_generated_code final function writeToBuffer(output:com.netease.protobuf.WritingBuffer):void {
 			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 1);
 			com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, this.islandId);
@@ -81,6 +104,10 @@ package  {
 				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 4);
 				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, opened$field);
 			}
+			if (hasKing) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 5);
+				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, king$field);
+			}
 			for (var fieldKey:* in this) {
 				super.writeUnknown(output, fieldKey);
 			}
@@ -92,6 +119,7 @@ package  {
 		override used_by_generated_code final function readFromSlice(input:flash.utils.IDataInput, bytesAfterSlice:uint):void {
 			var islandId$count:uint = 0;
 			var opened$count:uint = 0;
+			var king$count:uint = 0;
 			while (input.bytesAvailable > bytesAfterSlice) {
 				var tag:uint = com.netease.protobuf.ReadUtils.read$TYPE_UINT32(input);
 				switch (tag >> 3) {
@@ -106,7 +134,7 @@ package  {
 					this.locations.push(com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, new LocationProtobuf()));
 					break;
 				case 3:
-					this.leaders.push(com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, new LeaderInfoProtobuf()));
+					this.leaders.push(com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, new PlayerShortProtobuf()));
 					break;
 				case 4:
 					if (opened$count != 0) {
@@ -114,6 +142,14 @@ package  {
 					}
 					++opened$count;
 					this.opened = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
+					break;
+				case 5:
+					if (king$count != 0) {
+						throw new flash.errors.IOError('Bad data format: IslandProtobuf.king cannot be set twice.');
+					}
+					++king$count;
+					this.king = new PlayerShortProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.king);
 					break;
 				default:
 					super.readUnknown(input, tag);

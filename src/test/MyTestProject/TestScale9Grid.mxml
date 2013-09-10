@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- embed\Embed9slice.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    height="1200" width="600"> 
+
+    <fx:Script>
+        <![CDATA[
+            [Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/panel1_base_glowed.png"
+            ,scaleGridTop="30", scaleGridBottom="60", 
+                scaleGridLeft="30", scaleGridRight="35"
+                )]
+            [Bindable]
+            public var imgCls:Class;            
+        ]]>
+    </fx:Script>
+    
+    <s:VGroup>
+        <s:Image source="{imgCls}"/>
+        <s:Image source="{imgCls}" width="300" height="300"/>
+        <s:BitmapImage source="{imgCls}" width="300" height="300"/>
+        <!--<s:Image source="{imgCls}" width="450" height="450"/>-->
+    </s:VGroup>
+</s:Application>

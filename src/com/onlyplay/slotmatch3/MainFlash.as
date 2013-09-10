@@ -1,23 +1,24 @@
 package com.onlyplay.slotmatch3
 {
+	import alternativa.init.GUI;
+
+	import robotlegs.bender.bundles.mvcs.MVCSBundle;
+	import robotlegs.bender.extensions.contextView.ContextView;
+	import robotlegs.bender.framework.api.IContext;
+	import robotlegs.bender.framework.impl.Context;
+
 	import com.onlyplay.slotmatch3.components.FlashGameView;
-	import com.onlyplay.slotmatch3.components.games.match.ItemModel;
 	import com.onlyplay.slotmatch3.config.FlashConfig;
 	import com.onlyplay.slotmatch3.view.IGameView;
-	
+
+	import org.flintparticles.twoD.renderers.BitmapRenderer;
+
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
-	import flash.net.registerClassAlias;
-	
-	import alternativa.init.GUI;
-	
-	import robotlegs.bender.bundles.mvcs.MVCSBundle;
-	import robotlegs.bender.extensions.contextView.ContextView;
-	import robotlegs.bender.framework.api.IContext;
-	import robotlegs.bender.framework.impl.Context;
+	import flash.geom.Rectangle;
 
 	/**
 	 * @author Andrew
@@ -29,6 +30,7 @@ package com.onlyplay.slotmatch3
 		private var franklin : Class;
 		private var _context : IContext;
 		private var _flashGameView : IGameView;
+		private var _renderer : BitmapRenderer;
 
 		public function MainFlash()
 		{
@@ -36,31 +38,36 @@ package com.onlyplay.slotmatch3
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.stageFocusRect = false;
 
+			//
 			this.mouseEnabled = false;
 			this.tabEnabled = false;
-			
-			
 
 			GUI.init(stage);
 			GUI.hideLogo();
+			//
 
 			_context = new Context()
 				.install(MVCSBundle)
 				.configure(FlashConfig)
 				.configure(new ContextView(this));
 
-			_flashGameView = new FlashGameView();
+			//
+			_renderer = new BitmapRenderer(new Rectangle(0, 0, 760, 570));
+			_flashGameView = new FlashGameView( _renderer );
 			addChild(_flashGameView as DisplayObject);
-			
-			
+			//
+			//
 			// в обход контроллера? Почему?
 			// может лучше диспатчить?
 			_flashGameView.setSlotState();
-			//_flashGameView.setMatchState();
-			
+			// _flashGameView.setMatchState();
+
 			_flashGameView.w = stage.stageWidth;
 			_flashGameView.h = stage.stageHeight;
 			
+			// рендерер для партиклов
+			addChild(_renderer);
+
 
 			onResize();
 

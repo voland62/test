@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx">
+
+
+
+	<fx:Metadata>
+		[HostComponent("spark.components.SkinnableContainer")]
+	</fx:Metadata>
+
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+	<s:Graphic left="0" right="0">
+
+	</s:Graphic>
+
+
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/round_border_38.png", mimeType="image/png"
+			,scaleGridTop='18', scaleGridBottom='20',
+			scaleGridLeft='29', scaleGridRight='50'
+			)]
+			private  const _BorderClass : Class;
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/round_border_38_mask.png", mimeType="image/png"
+			,scaleGridTop='18', scaleGridBottom='20',
+			scaleGridLeft='29', scaleGridRight='50'
+			)]
+			private  const _MaskClass : Class;
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/tile_blue.png", mimeType="image/png")]
+			private  const _BgClass : Class;
+
+			protected function get borderClass() : Class
+			{
+				return _BorderClass;
+			}
+
+			protected function get maskClass() : Class
+			{
+				return _MaskClass;
+			}
+
+			protected function get bgClass() : Class
+			{
+				return _BgClass;
+			}
+			
+			// mask="{maskImage}" maskType="alpha"
+			
+
+		]]>
+	</fx:Script>
+
+
+	<s:BitmapImage left="0" right="0" source="{bgClass}" height="{frameImage.height}"
+		mask="{maskImage}" maskType="alpha"
+		fillMode="repeat" scaleMode="zoom"/>
+	<s:Group id="maskImage" left="0" right="0">
+		<s:BitmapImage left="0" right="0" source="{maskClass}"/>
+	</s:Group>
+	<s:BitmapImage id="frameImage" left="0" right="0" source="{borderClass}"/>
+	<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0"
+		minWidth="0" minHeight="0">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+	</s:Group>
+
+</s:Skin>

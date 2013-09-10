@@ -1,14 +1,15 @@
 package com.onlyplay.slotmatch3.view
 {
+	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
+	import robotlegs.bender.bundles.mvcs.Mediator;
+
+	import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
+	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.model.MatchGameModel;
 
 	import mx.events.DynamicEvent;
 
-	import com.onlyplay.slotmatch3.model.GameModel;
-
 	import flash.events.Event;
-
-	import robotlegs.bender.bundles.mvcs.Mediator;
 
 	/**
 	 * @author Design3d
@@ -36,6 +37,7 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("toMatch", onToMatch);
 			addViewListener("onBonus", onBonus);
 			addViewListener("onPhoto", onPhoto);
+			addViewListener("flashEnergy", onFlashEnergy);
 
 			addContextListener("ready", onReady);
 			addContextListener("showSpin", showSpin);
@@ -44,17 +46,56 @@ package com.onlyplay.slotmatch3.view
 			addContextListener("onRoomProgressChanged", onRoomProgressChanged);
 			addContextListener("experienceChaged", onExperienceChaged);
 			addContextListener("playersListUpdated", onPlayersListUpdated);
+			addContextListener("boosterAmountChanged", onBoosterClick);
 			//experienceChaged
 			
 			addContextListener("userDataUpdated", onUserData);
 			addContextListener("currenBetUpdated", onCurrentBetUpdated);
 			// addContextListener("serverConfigUpdated", onServerConfigUpdate);
 			addContextListener("currentMoneyChanged", onCurrentMoneyChanged);
+			addContextListener("currentFlashEnergyChanged", onCurrentFlashEnergyChanged);
 			addContextListener("onPlayerUpdated", onPlayerUpdated);
 			// locationChaged
 			//addContextListener("updateMyProgress", onUpdateMyProgress);
 			//addContextListener("currentExperienceChanged", onExperienceChanged);
 			addContextListener("matchTimerTick", onMatchCurrenTimeTick);
+			addContextListener("currentFlashEnergyChanged", onCurrentFlashEnergyChanged);
+		}
+
+		private function onFlashEnergy( e:DynamicEvent ) : void
+		{
+			var event:DynamicEvent = new DynamicEvent( "onFlashEnergyIncrease" );
+			event.val = e.val;
+			dispatch(event);
+		}
+
+
+
+		private function onCurrentFlashEnergyChanged(e:Event) : void
+		{
+			var state:int;
+			switch(matchGameModel.flashEnergyState){
+				case MatchGameModel.FLASH_ENERGY_NORM:
+					state = FreezeProgress.NORMAL;
+					break;
+				case MatchGameModel.FLASH_ENERGY_FREEZE:
+					state = FreezeProgress.FROZEN;
+					break;
+				case MatchGameModel.FLASH_ENERGY_FULL:
+					state = FreezeProgress.LOCKED;
+					break;
+				default:
+			}
+			view.setMatchCurrentFlashEnergy( 
+					matchGameModel.currentFlashEnergy , 
+					matchGameModel.currentLevel.energy , 
+					matchGameModel.currentLevel.multiplier,
+					state);
+		}
+
+		private function onBoosterClick(e:DynamicEvent) : void
+		{
+			view.playBooster( e.boosterType );
 		}
 
 		private function onExperienceChaged( e:Event ) : void
@@ -85,6 +126,8 @@ package com.onlyplay.slotmatch3.view
 			log('---commonPercentage: ' + (commonPercentage));
 			view.setStarsProgress( commonPercentage );
 			
+			view.initSlot( gameModel.currentIsland.islandId, gameModel.currentLocation.locationId);
+			
 			
 		}
 
@@ -104,8 +147,8 @@ package com.onlyplay.slotmatch3.view
 
 		private function onToMatch(e : Event) : void
 		{
-			//dispatch(e);
-			showMatch( null );
+			dispatch(e);
+			//showMatch( null );
 			// dispatch(new Event("playMatch"));
 		}
 
@@ -153,6 +196,7 @@ package com.onlyplay.slotmatch3.view
 		private function onMaxBet(e : DynamicEvent) : void
 		{
 			eventDispatcher.dispatchEvent(e);
+			view.hideLines();
 		}
 
 		private function onDec(e : DynamicEvent) : void
@@ -183,11 +227,12 @@ package com.onlyplay.slotmatch3.view
 			eventDispatcher.dispatchEvent(event);
 		}
 
-		private function onCurrentBetUpdated(e : Event) : void
+		private function onCurrentBetUpdated(e : DynamicEvent) : void
 		{
 			view.setUpperBet(gameModel.currentBet.getWholeBet());
 			view.setBetPerLine(gameModel.currentBet.betPerLine);
-			view.setLines(gameModel.currentBet.linesNum);
+			//var showLines:Boolean = e.hasOwnProperty("showLines") && e.showLines;
+			view.setLines(gameModel.currentBet.lines, e.showLines);
 		}
 
 		private function onServerConfigUpdate(e : Event) : void
@@ -210,9 +255,9 @@ package com.onlyplay.slotmatch3.view
 			
 			var wasWin:Boolean = true;
 			var win :Number = gameModel.win;//10;
-			if ( win > 0)
+			if ( win > 0 )
 			{
-				view.playWinAnimation (win , onWinAnimComeplete);// или подписаться
+				view.playWinAnimation (win , gameModel.winLines, onWinAnimComeplete);// или подписаться
 			}
 			
 		}
@@ -246,12 +291,14 @@ package com.onlyplay.slotmatch3.view
 		private function onSpin(e : Event = null) : void
 		{
 			dispatch(e);
+			view.hideLines();
 		}
 
 		private function showMatch(e : Event) : void
 		{
 			view.setMatchState();
-			view.matchReinit();
+			view.matchReinit( matchGameModel.matchModelProto.iconEnergy );
+			view.initFlashEnergy( matchGameModel.currentLevel.multiplier );
 		}
 	}
 }

@@ -1,5 +1,8 @@
 package com.onlyplay.slotmatch3.controller
 {
+	import mx.events.DynamicEvent;
+	import com.onlyplay.slotmatch3.model.BoosterVO;
+	import com.onlyplay.slotmatch3.model.MatchGameModel;
 	import flash.events.Event;
 
 	import robotlegs.bender.bundles.mvcs.Command;
@@ -22,6 +25,8 @@ package com.onlyplay.slotmatch3.controller
 		[Inject]
 		public var gameModel : GameModel;
 		[Inject]
+		public var matchModel: MatchGameModel;
+		[Inject]
 		public var eventDispatcher : IEventDispatcher;
 
 		override public function execute() : void
@@ -40,11 +45,13 @@ package com.onlyplay.slotmatch3.controller
 			
 			
 			
+			
 
 			gameModel.currentIsland = getCurrentIsland(message.islands, message.player.currentIslandId);
 			gameModel.currentLocation = getCurrentLocation(gameModel.currentIsland.locations, message.player.currentLocationId);
 
-			gameModel.currentBet.linesNum = gameModel.currentLocation.maxLinesAmount;
+			//gameModel.currentBet.linesNum = gameModel.currentLocation.maxLinesAmount;
+			gameModel.currentBet.lines =  gameModel.getLines( gameModel.currentLocation.maxLinesAmount );
 			gameModel.currentBet.betPerLine = gameModel.currentLocation.minBet;
 			
 			// gameModel.currentExperience = gameModel.getExperienceStuff(message.player.experience);
@@ -52,10 +59,29 @@ package com.onlyplay.slotmatch3.controller
 			gameModel.currentExperience.rightVal = message.player.experienceBound;
 			gameModel.currentExperience.level = message.player.level;
 			
+			// boosters
+			var maxes:Array = [null, 15, 30, 45, 75];
+			for each (var boost : BoosterProtobuf in message.player.boosters.boosters) 
+			{
+				
+				var b:BoosterVO = matchModel.boosters[boost.boosterId] || new BoosterVO();
+				  
+				b.amount = boost.amount; 
+				b.boosterId = boost.boosterId;
+				b.maxEnergy = maxes[ boost.boosterId ];
+				
+				
+				matchModel.boosters[ boost.boosterId ] = b;
+				
+			}
 			
+			//matchModel.boosters = message.player.boosters.boosters;
 			
 			eventDispatcher.dispatchEvent( new Event( "locationChaged" ));
-			eventDispatcher.dispatchEvent(new Event("currenBetUpdated"));
+			
+			var ev:DynamicEvent = new DynamicEvent("currenBetUpdated");
+			ev.showLines = false;
+			eventDispatcher.dispatchEvent(ev);
 			eventDispatcher.dispatchEvent(new Event("userDataUpdated"));
 
 			// gameModel.serverConfig = getFirstLocation(message.locations);

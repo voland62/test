@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.components.dialogs
 {
+	import alternativa.gui.container.Container;
 	import flash.events.MouseEvent;
 	import alternativa.gui.alternativagui;
 	import alternativa.gui.base.GUIobject;
@@ -25,17 +26,24 @@ package com.onlyplay.slotmatch3.components.dialogs
 		private var _frame : StretchBitmap;
 		private var _bg : StretchRepeatBitmap;
 		private var _closeButton : DisplayObject;
-		protected var _minWidth : Number = 400;
+		protected var _minWidth : Number = 350;
 		protected var _minHeight : Number = 100;
 		private var _titleBg : Bitmap;
 		private var _titleTf : TextField;
+		
+		protected var _container:Container;
 
 		// private var _title:String;
 		// "D:\reps\slogmatch3_2\trunk\client\ios\puzzleslots\SlotMatch3\Resources\Dialogs\Common\bg_border1.png"
 		public function Dialog()
 		{
 			_bg = new StretchRepeatBitmap(DialogClasses.bgBitmapData, 1, 1, 1, 1);
+			
+			
 			addChild(_bg);
+			
+			_container = new Container();
+			addChild(_container);
 
 			_frame = new StretchBitmap(DialogClasses.cornerBitmapData, DialogClasses.cornerLengthLeft, DialogClasses.cornerLengthRight, DialogClasses.cornerLengthRight, DialogClasses.cornerLengthLeft);
 			addChild(_frame);
@@ -51,6 +59,8 @@ package com.onlyplay.slotmatch3.components.dialogs
 			_titleTf = createLabel(20, 0xfee5b8, true);
 			addChild(_titleTf);
 			applyFilter(_titleTf);
+			
+			
 
 			alternativagui::_width = calculateWidth(alternativagui::_width);
 			alternativagui::_height = calculateHeight(alternativagui::_height);
@@ -97,6 +107,10 @@ package com.onlyplay.slotmatch3.components.dialogs
 			use namespace alternativagui;
 
 			super.draw();
+			
+			//_container.width = _width;
+			//_container.height = _height;
+			
 			_frame.x = -DialogClasses.cornerShifts.x;
 			_frame.y = -DialogClasses.cornerShifts.y;
 			_frame.width = _width + DialogClasses.cornerShifts.x + DialogClasses.cornerShifts.width ;

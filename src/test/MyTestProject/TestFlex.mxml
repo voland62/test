@@ -1,11 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-               xmlns:s="library://ns.adobe.com/flex/spark"
-               xmlns:mx="library://ns.adobe.com/flex/mx">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+	xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
+	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			private var dp : ArrayCollection = new ArrayCollection(["пушка", "конфеты", "Звезда", "пушка", "конфеты", "Звезда", "пушка", "конфеты", "Звезда"]);
+
+			private function onClick(event : MouseEvent) : void
+			{
+				// timeOverDialog.currentState = "maxResult";
+			}
+		]]>
+	</fx:Script>
 
 
-	<s:NumericStepper skinClass="com.onlyplay.slotmatch3.components.games.elements.ns.NumericStepperSlotSkin"/>
+	<!--<fx:Style>
+	@namespace s "library://ns.adobe.com/flex/spark";
+	@namespace ns "http://flex.apache.org/experimental/ns";
+	ns|Navigator s|SkinnableContainer s|Label 
+	{
+	color:#FF0000;          
+	}     
+		
+	</fx:Style>-->
 
-	<!--<s:Button skinClass="com.onlyplay.slotmatch3.components.games.elements.ns.IncButtonSkin"/>-->
+
+	<!--<s:ToggleSwitch left="100" top="20" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.ToggleSwitchSking"/>-->
+
+
+	<s:Button label="close" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin"
+		click="onClick(event)"/>
+
+
+
+	<!--<s:Scroller width="200" horizontalCenter="0" verticalCenter="0" >
+	</s:Scroller>-->
+	<!--<s:Group id="listGroup" width="200" horizontalCenter="0" verticalCenter="0">
+	<s:List
+	dataProvider="{dp}">
+	<s:layout>
+	<s:HorizontalLayout/>
+	</s:layout>
+	</s:List >
+	</s:Group>-->
+
+
+	<!--<s:DataGroup id="listGroup" width="200" horizontalCenter="0"
+	itemRenderer="spark.skins.spark.DefaultItemRenderer"
+	verticalCenter="0" dataProvider="{dp}">
+	<s:layout>
+	<s:HorizontalLayout/>
+	</s:layout>
+	</s:DataGroup>-->
+
+
+
+
+	<!--<s:HScrollBar id="bar" viewport="{listGroup}" bottom="100"
+	horizontalCenter="0" width="300" minimum="0" maximum="{this.width - 20}"
+	stepSize="1" pageSize="2"/>-->
+
+
+	<!--<flex:TimeOverPopup id="timeOverDialog" verticalCenter="0" horizontalCenter="0" />-->
+
+	<!--<flex:PaymentsTablePopUp verticalCenter="0" horizontalCenter="0" />-->
+
+
+	<s:Label text="hello" left="40" top="20"/>
+
+	<!--<scrollEl:ScrollablePanel verticalCenter="0" horizontalCenter="0" width="300" 
+	title="Достижения" dataProvider="{dp}" itemRenderer="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.ScrollPanelItemRenderer"/>-->
+
+
+
+	<flex:Profile verticalCenter="0" horizontalCenter="0"/>
+
+	
+
+
+	<!--<mx:ProgressBar verticalCenter="20" horizontalCenter="0"/>-->
+
+
 
 </s:Application>

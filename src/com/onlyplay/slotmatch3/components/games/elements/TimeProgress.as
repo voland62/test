@@ -1,5 +1,8 @@
 package com.onlyplay.slotmatch3.components.games.elements
 {
+	import flash.geom.ColorTransform;
+	import flash.display.Bitmap;
+
 	import alternativa.gui.alternativagui;
 
 	import com.onlyplay.slotmatch3.components.games.Util;
@@ -16,11 +19,15 @@ package com.onlyplay.slotmatch3.components.games.elements
 	 */
 	public class TimeProgress extends ProgressBarBase
 	{
-		// [Embed(source="assets/facebook/facebook/id_6/id_6/timer/pb-full.png", mimeType="image/png")]
-		// protected static var StripClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/timer/icon.png", mimeType="image/png")]
+		// "D:\reps\slogmatch3_2\trunk\client\ios\puzzleslots\SlotMatch3\Resources\SceneResources\ipad\ProgressBars\big_time_progress.png"
+		[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/SceneResources/ipad/ProgressBars/big_time_progress.png")]
+		protected static var StripClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/timer/icon.png"
+		,scaleGridTop='19', scaleGridBottom='20',
+		scaleGridLeft='52', scaleGridRight='200')]
 		protected static var DecorClass : Class;
-		protected var _progressStrip : Shape;
+		
+		protected var _progressStrip : Bitmap;
 		// protected var _mask : Shape;
 		private var _decor : DisplayObject;
 		private var _timeTf : TextField;
@@ -31,14 +38,17 @@ package com.onlyplay.slotmatch3.components.games.elements
 
 		public function TimeProgress()
 		{
-			_progressStrip = new Shape();
-			// new StripClass();
-			var g : Graphics = _progressStrip.graphics;
-			g.beginGradientFill(GradientType.LINEAR, [0x0000ff, 0x00ff00], [1, 1], [230, 255]);
-			g.drawRect(0, 0, 100, 100);
+			_progressStrip = new StripClass();
+			// new Shape();
+
+			// var g : Graphics = _progressStrip.graphics;
+			// g.beginGradientFill(GradientType.LINEAR, [0x0000ff, 0x00ff00], [1, 1], [230, 255]);
+			// g.drawRect(0, 0, 100, 100);
 			addChild(_progressStrip);
 
 			_decor = new DecorClass();
+			var _w:Number = 312; 
+			_decor.width = _w;
 			// _decor.alpha= 0.3;
 			_pauseButton = new PauseButton();
 
@@ -90,20 +100,58 @@ package com.onlyplay.slotmatch3.components.games.elements
 			// _tf.y = -1;
 			// setText();
 
-			_pauseButton.x = _decor.width + _gap;
+			_pauseButton.x = _decor.width + 4;
 			_pauseButton.y = (_decor.height - _pauseButton.height) >> 1;
 
-			_timeTf.x = 230;
+			_timeTf.x = 236;
 			_timeTf.y = 9;
 
-			var progressLength : Number = 192;
+			var progressLength : Number = 195;
 
 			_progressStrip.height = 13;
 			_progressStrip.width = Math.min(progressLength * _percent, progressLength);
 			_progressStrip.x = 30;
 			_progressStrip.y = 12;
+//			var colorTransform : ColorTransform = new ColorTransform(1, 1, 1, 1, -255,
+//											 _progressStrip.transform.colorTransform.greenOffset, 
+//											 _progressStrip.transform.colorTransform.blueOffset, 
+//											 _progressStrip.transform.colorTransform.alphaOffset);
+			var koef:Number = getKoef();
+			
+			var colorTransform : ColorTransform = new ColorTransform();
+			colorTransform.redMultiplier = 1 * (1 - koef);
+			colorTransform.blueMultiplier = 0;
+			colorTransform.greenMultiplier = 0;
+			
+			var colorTransform2:ColorTransform = new ColorTransform();
+			colorTransform2.redMultiplier = 85/255 * koef;
+			colorTransform2.greenMultiplier= 129/255 * koef;
+			colorTransform2.blueMultiplier = 1 * koef;
+			
+			//colorTransform2.concat( colorTransform );			
+			var mix:ColorTransform = new ColorTransform();
+			mix.redMultiplier = colorTransform.redMultiplier + colorTransform2.redMultiplier;
+			mix.greenMultiplier = colorTransform.greenMultiplier + colorTransform2.greenMultiplier;
+			mix.blueMultiplier = colorTransform.blueMultiplier + colorTransform2.blueMultiplier;
+			
+			_progressStrip.transform.colorTransform = mix;
 
 			setTime();
+		}
+
+		private function getKoef() : Number
+		{
+			if ( _percent > 0.4 )
+			{
+				return 1;
+			}else if ( _percent < 0.2 )
+			{
+				return 0;
+			}else
+			{
+				return 5 * _percent - 1;
+			}
+			return 0;
 		}
 
 		private function setTime() : void

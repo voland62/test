@@ -19,8 +19,10 @@ package com.onlyplay.slotmatch3.components.games
 				for (var j : int = 0; j < 5; j++)
 				{
 					var index : int = j * 5 + i;
+					trace('index: ' + (index));
 					//var item : IconInfoProtobuf = stack[index] as IconInfoProtobuf;
 					var item : int = stack[index] as int;
+					trace('item: ' + (item));
 					arr.push(item);
 				}
 				targetArr.push(arr);

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<library name="MyFonts" output="src\assets" format="0" static="false" fontClassName="assets.MyFonts">
+	<font id="srcassetsfontFranklinGothicDemiC" family="Franklin Gothic Medium" style="0" cs="1,2,3,22" type="1" path="../src/assets/font/FranklinGothicDemiC.otf" ascff="false" autoId="true"/>
+</library>

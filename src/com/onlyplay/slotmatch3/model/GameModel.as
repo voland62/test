@@ -1,12 +1,13 @@
 package com.onlyplay.slotmatch3.model
 {
-	import com.netease.protobuf.Message;
+	import com.onlyplay.slotmatch3.components.games.slot.LinesData;
+	import com.onlyplay.slotmatch3.components.games.slot.LineVO;
 	/**
 	 * @author Design3d
 	 */
 	public class GameModel
 	{
-		// spin
+		// spin 
 		public var icons : Array;
 		public var winLines : Array;
 		
@@ -31,6 +32,7 @@ package com.onlyplay.slotmatch3.model
 		public var islands:IslandsProtobuf;
 		public var userInfo : PlayerProtobuf;
 		public var achievements : AchievementsProtobuf;
+		public var multipliers : Array;
 		
 		
 		
@@ -72,6 +74,22 @@ package com.onlyplay.slotmatch3.model
 		public function set gameId(newGameId : int) : void 
 		{
 			_gameId = newGameId;
+		}
+
+		public function getLines(maxLinesAmount : int) : Array
+		{
+			// TODO: потом, возможно вынести это во что-то утильное
+			var lines :Array = [];
+			for (var i : int = 0; i < maxLinesAmount; i++) 
+			{
+					var line :LineVO = new LineVO();
+					line.lineId = i;
+					line.color = LinesData.getColorById(i);
+					line.points = LinesData.getLinePointsById(i);
+					
+					lines.push(line);
+			}
+			return lines;
 		}
 	}
 }

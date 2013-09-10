@@ -9,6 +9,9 @@ package com.onlyplay.slotmatch3.components.games.match
 	import com.greensock.easing.Quad;
 	import com.greensock.easing.Sine;
 	import com.onlyplay.slotmatch3.components.games.Util;
+	import com.onlyplay.util.SparklerFire;
+
+	import org.flintparticles.common.renderers.Renderer;
 
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -25,14 +28,13 @@ package com.onlyplay.slotmatch3.components.games.match
 	 */
 	public class Animations
 	{
-		//public static var gameAnimBase : DisplayObjectContainer;
-
+		// public static var gameAnimBase : DisplayObjectContainer;
 		// public static var gamegameAnimBase:DisplayObjectContainer;
-		public static function spiralVideo( animBase:DisplayObjectContainer, centerGlobal:Point) : void
+		public static function spiralVideo(animBase : DisplayObjectContainer, centerGlobal : Point) : void
 		{
-			if ( animBase ) 
+			if ( animBase )
 			{
-				var centerGameAnimBase : Point = centerGlobal;//animBase.globalToLocal(centerGlobal);
+				var centerGameAnimBase : Point = centerGlobal;
 
 				var spir : Sprite = new spiral_();
 
@@ -43,31 +45,26 @@ package com.onlyplay.slotmatch3.components.games.match
 				spir.height = 570;
 
 				spir.x = centerGameAnimBase.x;
-				// centerGlobal.x;
+
 				spir.y = centerGameAnimBase.y;
-				// centerGlobal.y;
+
 				animBase.addChild(spir);
+				animBase.addEventListener("animComplete", function(e : Event = null) : void
+				{
+					animBase.removeChild(spir);
+					animBase.removeEventListener("animComplete", arguments.callee, true);
+				}, true);
 			}
-			
-			// if (gameAnimBase) gameAnimBase.removeChild(spir); 
-			
 		}
 
+		//
 		public static function  spiralField(map : Dictionary, centerGlobal : Point, cellSize : Number, iconBase : DisplayObject, onComplete : Function = null) : void
 		{
 			// center - это координаты центра в коордитатах matchComponent'a.
-			
+
 			// spiralVideo(animBase, centerGlobal);
 
 			var centerIconsParent : Point = iconBase.globalToLocal(centerGlobal);
-			//
-			// for each (var icon : DisplayObject in map) {
-			// var iconBase:DisplayObjectContainer = icon.parent; 
-
-			// centerIconsParent = icon 
-
-			// }
-			//
 
 			iconBase.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 
@@ -92,23 +89,18 @@ package com.onlyplay.slotmatch3.components.games.match
 				var t : Number = getTimer() - spiralStartTime;
 				// ага
 
-
 				if (t >= endTime )
 				{
 					// reset state
 					(e.target as IEventDispatcher).removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 
-					
-
-					if (onComplete) 
+					if (onComplete)
 					{
 						TweenLite.delayedCall(0.4, onComplete);
 					}
 
 					// removing icons???
 				}
-
-				// var t:int = timer.currentCount;
 
 				var newScate : Number = 1 - 0.8 * t / endTime;
 				var newRotation : Number = 2 * Math.PI * t / endTime;
@@ -122,7 +114,6 @@ package com.onlyplay.slotmatch3.components.games.match
 
 				for (var starpPoint : * in startPositionsMap)
 				{
-					// icon.transform.matrix = matrix;
 					var icon : DisplayObject = startPositionsMap[starpPoint];
 					var newPiont : Point = matrix.transformPoint(starpPoint);
 					icon.x = newPiont.x;
@@ -132,9 +123,7 @@ package com.onlyplay.slotmatch3.components.games.match
 			}
 		}
 
-
-
-
+		//
 		public static function bangFromCenter(map : Dictionary, field : Array, cellSize : Number, center : Point) : void
 		{
 			var duration : Number = 0.25;
@@ -206,55 +195,21 @@ package com.onlyplay.slotmatch3.components.games.match
 
 					var timeLine : TimelineLite = new TimelineLite();
 					timeLine.delay = delay;
-					timeLine.append(TweenLite.to(icon_, 0.25, {y:endPosition, ease:Linear.easeIn}));
+					timeLine.append(TweenLite.to(icon_, 0.15, {y:endPosition, ease:Linear.easeIn}));
 					timeLine.append(TweenLite.to(icon_, 0.1, {y:endPosition - bounceHeight, ease:Sine.easeOut}));
 					timeLine.append(TweenLite.to(icon_, 0.25, {y:endPosition, ease:Bounce.easeOut}));
 					// TweenLite.from(icon_, 0.25, {y:icon_.y - delta, delay: delay });
-					delay += 0.05;
+					delay += 0.02;
 				}
 			}
 
 			log(partition.length);
-
-			// for (var i : int = 0; i < w; i++)
-			// {
-			// delay = i * 0.15;
-			// for (var j : int = h - 1; j >= 0; j--)
-			// {
-			// var item : ItemModel = Matcher_v2.getItemByCoords(field, i, j) as ItemModel;
-			// if (item)
-			// {
-			// var icon : DisplayObject = map[item.id];
-			// var endPosition : Number = icon.y;
-			// icon.y -= delta;
-			// var timeLine : TimelineLite = new TimelineLite();
-			// timeLine.delay = delay;
-			// timeLine.append(TweenLite.to(icon, 0.25, {y:endPosition, ease:Linear.easeIn}));
-			// timeLine.append(TweenLite.to(icon, 0.1, {y:endPosition - bounceHeight, ease:Sine.easeOut}));
-			// timeLine.append(TweenLite.to(icon, 0.25, {y:endPosition, ease:Bounce.easeOut}));
-			//						//  TweenLite.from(icon, 0.25, {y:icon.y - delta, delay: delay });
-			// delay += 0.05;
-			// }
-			// }
-			// }
-
-
-			// -------------------------------------------------
-
-			// for each (var item : ItemModel in sortedItems) 
-			// {
-			// var icon :DisplayObject = _map[item.id];
-			// if (icon)
-			// {
-			// TweenLite.from(icon, 0.5, {y:icon.y - delta, delay: delay});
-			// delay += 0.1;
-			// }
-			// }
 		}
 
-		public static function drop( field:Array, map:Dictionary,  h:int, w:int, cellSize:Number) : void
+		public static function drop(field : Array, map : Dictionary, h : int, w : int, cellSize : Number) : void
 		{
-						var delay : Number = 0;
+			// log("Animations.drop(field, map, h, w, cellSize)");
+			var delay : Number = 0;
 			// var delayShift:Number = 0.1;
 			var delta : Number = h * cellSize;
 			// TODO: вынести в переменную
@@ -264,27 +219,125 @@ package com.onlyplay.slotmatch3.components.games.match
 				delay = i * 0.05;
 				for (var j : int = h - 1; j >= 0; j--)
 				{
-					var item : ItemModel = Matcher_v2.getItemByCoords( field, i, j) as ItemModel;
+					var item : ItemModel = Matcher_v2.getItemByCoords(field, i, j) as ItemModel;
 					if (item)
 					{
 						var icon : DisplayObject = map[item.id];
 						if (icon)
 						{
-							// var endPosition : Number = icon.y;
 							TweenLite.to(icon, 0.4, {y:icon.y + delta, ease:Quad.easeIn, delay:delay});
-
-							// icon.y -= delta;
-							// var timeLine:TimelineLite = new TimelineLite();
-							// timeLine.delay = delay;
-							// timeLine.append(TweenLite.to (icon, 0.25, {y:endPosition, ease:Linear.easeIn}));
-							// timeLine.append(TweenLite.to(icon, 0.1, {y:endPosition - bounceHeight, ease:Sine.easeOut}));
-							// timeLine.append( TweenLite.to(icon, 0.25, {y:endPosition, ease:Bounce.easeOut}));
-							//						//  TweenLite.from(icon, 0.25, {y:icon.y - delta, delay: delay });
 							delay += 0.03;
 						}
 					}
 				}
 			}
+		}
+
+		public static function hammer(animBase : DisplayObjectContainer, center : Point, onComplete : Function) : void
+		{
+			var hammer : Sprite = new hammer_anim();
+
+			hammer.x = center.x;
+			hammer.y = center.y;
+
+			animBase.addChild(hammer);
+			animBase.addEventListener("animComplete_", function(e : Event = null) : void
+			{
+				animBase.removeChild(hammer);
+				animBase.removeEventListener("animComplete_", arguments.callee, true);
+
+				onComplete();
+			}, true);
+		}
+
+		public static function hammerBlast(animBaseForSpiral : DisplayObjectContainer, renderer : Renderer, matchComponent : DisplayObject, area : Array, onComplete : Function) : void
+		{
+			var hammerBlast : Sprite = new hammer_blast_();
+
+			hammerBlast.width = 760;
+			hammerBlast.height = 570;
+
+			hammerBlast.x = hammerBlast.width >> 1;
+			hammerBlast.y = hammerBlast.height >> 1;
+
+			animBaseForSpiral.addChild(hammerBlast);
+			animBaseForSpiral.addEventListener("animComplete_", function(e : Event = null) : void
+			{
+				// log("--- aga");
+				animBaseForSpiral.removeChild(hammerBlast);
+				animBaseForSpiral.removeEventListener("animComplete_", arguments.callee, true);
+				onComplete();
+			}, true);
+
+			// matchComponent shaking
+			TweenLite.from(matchComponent, 1.5, {y:matchComponent.y + 10, ease:Elastic.easeOut, easeParams:[1, 0.125]});
+			commetsToDeleted(area, renderer);
+		}
+
+		public static function commetsToDeleted(area : Array, renderer : Renderer) : void
+		{
+			var p1 : Point = new Point(195, 195);
+			var cellSize : Number = 65;
+
+			for each (var item : ItemModel  in area)
+			{
+				var p3 : Point = new Point(item.x * cellSize, item.y * cellSize);
+				new SparklerFire(renderer, p1, p3, 0.6);
+			}
+		}
+
+		public static function playWaveAfterTheBomb(area : Array, newState : Array, map : Dictionary, centeItem : ItemModel, onComplete : Function) : void
+		{
+			for each (var item : ItemModel in newState)
+			{
+				var icon : DisplayObject = map[ item.id ];
+				if ( icon )
+				{
+					var deltaX : int = item.x - centeItem.x;
+					var deltaY : int = item.y - centeItem.y;
+					var range : int = Math.max(Math.abs(deltaX), Math.abs(deltaY)) - 1;
+
+					var shift : Point = new Point(deltaX, deltaY);
+					shift.normalize(5);
+
+					var timeLine : TimelineLite = new TimelineLite();
+					// timeLine.delay = range * 0.03;
+					timeLine.append(TweenLite.to(icon, 0.05, {x:icon.x + shift.x, y:icon.y + shift.y}));
+					timeLine.append(TweenLite.to(icon, 3, {x:icon.x, y:icon.y, ease:Elastic.easeOut, easeParams:[1, 0.125]}));
+				}
+			}
+
+			// TweenLite.delayedCall(5, onComplete);
+			
+			
+			// onComplete();
+		}
+
+		public static function playTimeBoosterAnimation(animBase : DisplayObjectContainer, centerGameAnimBase :Point) : void
+		{
+			// var centerGameAnimBase : Point = centerGlobal;
+
+			var time : Sprite = new time_booster();
+			time.mouseChildren = false;
+			time.mouseEnabled = false;
+
+			//spir.width = animBase.stage.stageWidth;
+			//spir.height = animBase.stage.stageHeight;
+
+			//spir.width = 760;
+			//spir.height = 570;
+
+			time.x = centerGameAnimBase.x;
+
+			time.y = centerGameAnimBase.y;
+
+			animBase.addChild(time);
+			animBase.addEventListener("animComplete", function(e : Event = null) : void
+			{
+				animBase.removeChild(time);
+				animBase.removeEventListener("animComplete", arguments.callee, true);
+			}, true);
+			
 		}
 	}
 }

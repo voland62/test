@@ -1,5 +1,7 @@
 package com.onlyplay.slotmatch3.controller.match
 {
+	import com.onlyplay.slotmatch3.services.MatchEnergyFallingService;
+
 	import robotlegs.bender.bundles.mvcs.Command;
 
 	import com.onlyplay.slotmatch3.components.games.match.ItemModel;
@@ -39,10 +41,15 @@ package com.onlyplay.slotmatch3.controller.match
 					break;
 				case ItemModel.HOURGLASS:
 					model.startTime = model.currentTime + 10;
-					//model.maxTime = 30;
+					// model.maxTime = 30;
 					timerService.start();
 					break;
 				case ItemModel.FLASH:
+					//processFlashEnergyBonus();
+					var ev:DynamicEvent = new DynamicEvent("onFlashEnergyIncrease");
+					ev.val =  model.matchModelProto.mbEnergy; //event.val;
+					eventDispatcher.dispatchEvent( ev );
+					
 					break;
 				default:
 					log("OnBonusCommand.execute()", "Strange thing: no case for bonusType:" + event.bonusType);

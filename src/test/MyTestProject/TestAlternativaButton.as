@@ -1,8 +1,10 @@
 package test.MyTestProject
 {
-	import com.onlyplay.slotmatch3.components.dialogs.TimeIsOverDialog;
-	import com.onlyplay.slotmatch3.components.dialogs.Dialog;
-	import flash.events.MouseEvent;
+	import com.onlyplay.slotmatch3.components.games.elements.InfoButton;
+	import alternativa.gui.event.ResizableObjectEvent;
+	import alternativa.gui.container.SimpleContainer;
+	import alternativa.gui.container.Container;
+	import alternativa.gui.mouse.resizableObject.ResizableObject;
 	import alternativa.gui.container.linear.VBox;
 	import alternativa.gui.container.scrollArea.ScrollArea;
 	import alternativa.gui.container.scrollPane.ScrollPane;
@@ -12,8 +14,17 @@ package test.MyTestProject
 	import alternativa.gui.controls.text.LabelTF;
 	import alternativa.gui.data.DataProvider;
 	import alternativa.gui.layout.LayoutManager;
+	import alternativa.gui.primitives.stretch.StretchBitmap;
 	import alternativa.init.GUI;
 
+	import assets.DialogClasses;
+
+	import com.onlyplay.slotmatch3.components.dialogs.Dialog;
+	import com.onlyplay.slotmatch3.components.dialogs.TimeIsOverDialog;
+	import com.onlyplay.slotmatch3.components.dialogs.panels.RoundPanel1;
+	import com.onlyplay.slotmatch3.components.dialogs.panels.RoundPanel2;
+	import com.onlyplay.slotmatch3.components.dialogs.panels.RoundPanel3;
+	import com.onlyplay.slotmatch3.components.dialogs.panels.RoundPanelBase;
 	import com.onlyplay.slotmatch3.components.games.elements.BetButtonLeft;
 	import com.onlyplay.slotmatch3.components.games.elements.BetButtonRight;
 	import com.onlyplay.slotmatch3.components.games.elements.BetStepper;
@@ -47,37 +58,37 @@ package test.MyTestProject
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
-	import flash.text.Font;
+	import flash.events.MouseEvent;
 	import flash.text.TextFormat;
 
 	/**
 	 * @author Design3d
 	 */
-	[SWF(backgroundColor="#dddddd", frameRate="31", width="900", height="600")]
+	[SWF(backgroundColor="#dddddd", frameRate="31", width="900", height="700")]
 	public class TestAlternativaButton extends Sprite
 	{
-		[Embed( source="assets/font/FranklinGothicDemiC.otf", 
-		fontName="franklin",
-		embedAsCFF="false",
-		mimeType="application/x-font"
-		, unicodeRange = "U+0030-U+0039"
-		)]
-		private var franklin : Class;
-		[Embed( source="assets/font/FranklinGothicDemiCondC.otf", 
-		fontName="franklin2",
-		mimeType="application/x-font",
-		embedAsCFF="false"
-		,unicodeRange = "U+0030-U+0039"
-		)]
-		private var franklin2 : Class;
-		[Embed(source="assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/pay.png", mimeType="image/png")]
+//		[Embed( source="/assets/font/FranklinGothicDemiC.otf", 
+//		fontName="franklin",
+//		embedAsCFF="false",
+//		mimeType="application/x-font"
+//		, unicodeRange = "U+0030-U+0039"
+//		)]
+//		private var franklin : Class;
+//		[Embed( source="/assets/font/FranklinGothicDemiCondC.otf", 
+//		fontName="franklin2",
+//		mimeType="application/x-font",
+//		embedAsCFF="false"
+//		,unicodeRange = "U+0030-U+0039"
+//		)]
+//		private var franklin2 : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/pay.png", mimeType="image/png")]
 		private static var ScrollContent : Class;
 
 		//
 		public function TestAlternativaButton()
 		{
-			Font.registerFont(franklin);
-			Font.registerFont(franklin2);
+			//Font.registerFont(franklin);
+			//Font.registerFont(franklin2);
 
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -112,6 +123,11 @@ package test.MyTestProject
 			label.x = 50;
 			addChild(label);
 			label.text = "good evening";
+			
+			var iButton:BaseButton = new InfoButton();
+			addChild( iButton);
+			iButton.x = 50;
+			iButton.y = 10;
 
 			var playButton : BaseButton = new PlayButton();
 			addChild(playButton);
@@ -315,6 +331,8 @@ package test.MyTestProject
 			var booster : Booster = new Booster();
 			booster.skin = [Booster.BombaAClass, Booster.BombaNClass];
 			addChild(booster);
+			booster.persent = 0.95;
+			booster.persent = 0.01;
 			booster.x = 500;
 			booster.y = 400;
 
@@ -327,7 +345,7 @@ package test.MyTestProject
 			addChild(freezeProgress);
 			freezeProgress.percent = 0.5;
 			
-			freezeProgress.x = 100;
+			freezeProgress.x = 0;
 			freezeProgress.y = 550;
 			
 			var starProgress : StarProgress = new StarProgress();
@@ -342,11 +360,80 @@ package test.MyTestProject
 			starProgress.x = 100;
 			starProgress.y = 490;
 			
+			var vBox:VBox = new VBox(5);
+			addChild(vBox);
+			vBox.x = 450;
+			vBox.y = 450;
+			
+//			var roundPanel:RoundPanelBase = new RoundPanel1();
+//			vBox.addChild( roundPanel );
+//			roundPanel.width = 300;
+//			roundPanel.x = 450;
+//			roundPanel.y = 450;
+//			
+//			var roundPanel2:RoundPanelBase = new RoundPanel2();
+//			vBox.addChild( roundPanel2 );
+//			roundPanel2.width = 300;
+//			roundPanel2.x = 450;
+//			roundPanel2.y = 490;
+//			
+//			var roundPanel3:RoundPanelBase = new RoundPanel3();
+//			vBox.addChild( roundPanel3 );
+//			roundPanel3.width = 300;
+//			roundPanel3.x = 450;
+//			roundPanel3.y = 550;
+			
+			vBox.width = 300;
+			vBox.height = 200;
+			
+//			var roundPanel4:RoundPanelBase = new RoundPanel4();
+//			addChild( roundPanel4 );
+//			roundPanel4.width = 300;
+//			roundPanel4.x = 450;
+//			roundPanel4.y = 600;
+//			
+//			var roundPanel5:RoundPanelBase = new RoundPanel5();
+//			addChild( roundPanel5 );
+//			roundPanel5.width = 350;
+//			roundPanel5.x = 450;
+//			roundPanel5.y = 620;
+			
+			
+//			var cont:SimpleContainer = new SimpleContainer();
+//			cont.x = cont.y = 40;
+//			addChild(cont);
+			//cont.mouseChildren = true;
+			//cont.mouseEnabled = true;
+			
+//			var _squareTable :StretchBitmap = new StretchBitmap(
+//								DialogClasses.tableBitmapData, 
+//								DialogClasses.tableCorner , 
+//								DialogClasses.tableCorner , 
+//								DialogClasses.tableCorner , 
+//								DialogClasses.tableCorner );
+//								
+//			//cont.addChild(_squareTable);
+//			addChild(_squareTable);
+//			//_squareTable.mouseChildren = true;
+//			//_squareTable.mouseEnabled = true;
+//			
+//			
+//			var resizableObject:ResizableObject = new ResizableObject();
+//			resizableObject.border = 20;
+//			_squareTable.addChild(resizableObject);
+//			resizableObject.resizableContainer = _squareTable;
+//			resizableObject.addEventListener(ResizableObjectEvent.START, function (e:*):void {trace ( "---resize start---");});
+//			resizableObject.addEventListener(ResizableObjectEvent.CHANGE, function (e:*):void {trace ( "---resize change---");});
+//			_squareTable.width = _squareTable.height = 100;
+//			resizableObject.resize(100, 100);
+			//resizableObject.height = resizableObject.width = 100;
+			//resizableObject.drawGraphics();
+			//cont.width  = cont.height  = 100;
 		}
 
 		private function onPhotoClick( e : MouseEvent) : void
 		{
-			var timeOverDialog: Dialog = new TimeIsOverDialog();
+			var timeOverDialog: Dialog = new TimeIsOverDialog(); 
 			//timeOverDialog.width = 400;
 			//timeOverDialog.height = 200;
 			timeOverDialog.title = "Закончилось время";

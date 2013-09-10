@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:rl2="http://ns.robotlegs.org/flex/rl2"
+	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*" xmlns:config="com.onlyplay.slotmatch3.config.*"
+	xmlns:components="com.onlyplay.slotmatch3.components.*" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+	width="760" applicationComplete="onComplete(event)" height="670">
+	<fx:Script>
+		<![CDATA[
+			import com.onlyplay.slotmatch3.components.dialogs.flex.Profile;
+			import com.onlyplay.slotmatch3.components.dialogs.flex.Options;
+			import mx.resources.ResourceBundle;
+			import mx.rpc.events.ResultEvent;
+			import mx.events.FlexEvent;
+
+			import spark.events.IndexChangeEvent;
+
+			import com.onlyplay.slotmatch3.components.dialogs.flex.PaymentsTablePopUp;
+			import com.onlyplay.slotmatch3.components.dialogs.flex.TimeOverPopup;
+
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.PopUpManager;
+
+			[Bindable]
+			private var localeUrlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/";
+
+			// private var loader:URLLoader = new URLLoader();
+			private function onChage(e : IndexChangeEvent) : void
+			{
+				var PopupClass : Class;
+
+				switch( dialogList.selectedItem.label )
+				{
+					case "Таблица выплат":
+						PopupClass = PaymentsTablePopUp;
+						break;
+					case "Время закончилось":
+						PopupClass = TimeOverPopup;
+						break;
+					case "Опции":
+						PopupClass = Options;
+						break;
+					case "Профиль":
+						PopupClass = Profile;
+						break;
+					default:
+						log("Нема такого диалога:" + dialogList.selectedItem.label);
+				}
+
+				if ( PopupClass )
+				{
+					var popup : IFlexDisplayObject = new PopupClass();
+					conf.viewManager.addContainer(popup as DisplayObjectContainer);
+
+					popup.addEventListener("close", onClose);
+					PopUpManager.addPopUp(popup, this, true);
+					PopUpManager.centerPopUp(popup);
+				}
+			}
+
+			private function onClose(e : Event) : void
+			{
+				PopUpManager.removePopUp(e.currentTarget as IFlexDisplayObject);
+			}
+
+			private function onComplete(e : FlexEvent) : void
+			{
+				localeLoader.send();
+			}
+
+			private function onLocationXML(e : ResultEvent) : void
+			{
+				log("---TestFlexGuiWithServer.onLocationXML(e)");
+				// log(e.result);
+				
+				var rb:ResourceBundle = makeResourceBundle(e.result as XML);
+				resourceManager.addResourceBundle( rb );
+				resourceManager.update();
+			}
+
+			private function makeResourceBundle(localeFile : XML) : ResourceBundle
+			{
+				// log( localeFile.dict.key.length() );
+				var rb:ResourceBundle = new ResourceBundle("en_US", "ruLocale");
+				for (var i : int = 0; i < localeFile.dict.key.length(); i++) 
+				{
+					var key:XML = localeFile.dict.key[i];
+					//trace('key: ' + (key)); 
+					var val:XML = localeFile.dict.string[i];
+					//trace('val: ' + (val));
+					
+					rb.content[key] = val;
+					
+				}
+					return rb;
+			}
+		]]>
+	</fx:Script>
+
+
+	<fx:Declarations>
+
+		<rl2:ContextBuilder>
+			<mvcs:MVCSBundle/>
+			<config:FlexConfig id="conf"/>
+		</rl2:ContextBuilder>
+
+		<s:HTTPService id="localeLoader" url="{localeUrlBase + 'Localization_ru.plist'}"
+			result="onLocationXML(event)" resultFormat="e4x">
+		</s:HTTPService>
+
+		<!--<fx:XML source="{localeUrlBase + 'Localization_ru.plist'}">
+		</fx:XML>-->
+
+	</fx:Declarations>
+
+
+
+	<!--<components:FlexGameView width="100%" height="100%">
+
+	</components:FlexGameView>-->
+
+
+	<s:List id="dialogList" left="10" top="10" change="onChage(event)">
+		<mx:ArrayList>
+			<fx:Object label="Таблица выплат"/>
+			<fx:Object label="Время закончилось"/>
+			<fx:Object label="Опции"/>
+			<fx:Object label="Профиль"/>
+		</mx:ArrayList>
+
+	</s:List>
+
+
+
+
+</s:Application>

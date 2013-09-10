@@ -1,29 +1,36 @@
 package com.onlyplay.slotmatch3.components.games.elements
 {
-	import flash.geom.Point;
-
+	import flash.display.Sprite;
+	import flash.display.DisplayObjectContainer;
 	import alternativa.gui.alternativagui;
+
+	import com.greensock.TweenLite;
 
 	import flash.display.Bitmap;
 	import flash.display.Graphics;
 	import flash.display.Shape;
+	import flash.geom.Point;
 
 	/**
 	 * @author Design3d
 	 */
 	public class FreezeProgress extends ProgressBarBase
 	{
-		[Embed(source="assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_normal/pr_empty.png", mimeType="image/png")]
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_normal/pr_empty.png", mimeType="image/png")]
 		protected static var BgClass : Class;
-		[Embed(source="assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_frozen/pr_full.png", mimeType="image/png")]
-		protected static var StripClass : Class;
-		[Embed(source="assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_normal/light.png", mimeType="image/png")]
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_lock/Untitled-8.png", mimeType="image/png")]
+		protected static var LockedStripClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_normal/pr_full.png", mimeType="image/png")]
+		protected static var NormalStripClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_frozen/pr_full.png", mimeType="image/png")]
+		protected static var FrozenStripClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_normal/light.png", mimeType="image/png")]
 		protected static var LightClass : Class;
-		[Embed(source="assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_frozen/ornament.png", mimeType="image/png")]
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/multiplayer/multi_player_frozen/ornament.png", mimeType="image/png")]
 		protected static var DecorClass : Class;
-		[Embed(source="assets/facebook/facebook/id_6/id_6/multiplayer/cb.png", mimeType="image/png")]
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/multiplayer/cb.png", mimeType="image/png")]
 		protected static var CbClass : Class;
-		[Embed(source="assets/facebook/facebook/id_6/id_6/microbonus/microbonus_hod.png", mimeType="image/png")]
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/microbonus_hod.png", mimeType="image/png")]
 		protected static var FlashIconClass : Class;
 		
 		protected var _progressStrip : Bitmap;
@@ -34,14 +41,41 @@ package com.onlyplay.slotmatch3.components.games.elements
 		private var _decorLeft : Bitmap;
 		private var _cb : Bitmap;
 		private var _flashIcon : Bitmap;
+		
+		
+		private var _label : String;
+		private var _withAnim : Boolean;
+		private var targetPercent : Number;
+		
+		public static const NORMAL :int = 0;
+		public static const FROZEN :int = 1;
+		public static const LOCKED :int = 2;
+		private var _visualState : int = NORMAL;
+		public var stripsBase:DisplayObjectContainer = new Sprite();
+		private var _frozenStrip : Bitmap;
+		private var _normalStrip : Bitmap;
+		private var _lockedStrip : Bitmap;
 
 		public function FreezeProgress()
 		{
 			_bg = new BgClass();
 			addChild(_bg);
+			
+			_frozenStrip  = new FrozenStripClass();
+			_frozenStrip.visible = false;
+			stripsBase.addChild( _frozenStrip );
+			
+			_normalStrip = new NormalStripClass();
+			_normalStrip.visible = false;
+			stripsBase.addChild(_normalStrip);
+			
+			_lockedStrip = new LockedStripClass();
+			_lockedStrip.visible = false;
+			stripsBase.addChild(_lockedStrip);
+			
+			addChild(stripsBase);
 
-			_progressStrip = new StripClass();
-			addChild(_progressStrip);
+			
 
 			_light = new LightClass();
 			addChild(_light);
@@ -67,7 +101,7 @@ package com.onlyplay.slotmatch3.components.games.elements
 			g.drawRect(0, y, 100, 100);
 			g.endFill();
 
-			_progressStrip.mask = _mask;
+			stripsBase.mask = _mask;
 
 			_decor = new DecorClass();
 			addChild(_decor);
@@ -87,10 +121,46 @@ package com.onlyplay.slotmatch3.components.games.elements
 			
 			draw();
 		}
+		
+				
+		public function setProgress ( newPercent :Number, anim:Boolean):void
+		{
+			
+			_withAnim = anim;
+			TweenLite.killTweensOf(this);
+			
+			if (anim && newPercent > _percent)
+			{
+				targetPercent = newPercent;
+				TweenLite.to(this, 0.5, {percent:targetPercent});
+			}
+			else
+			{
+				percent = targetPercent = newPercent;
+			}
+		}
+		
 
 		override protected function draw() : void
 		{
 			super.draw();
+			
+			_frozenStrip.visible = _normalStrip.visible = _lockedStrip.visible = false;
+			
+			switch( _visualState ){
+				case NORMAL:
+					_progressStrip = _normalStrip;
+					break;
+				case FROZEN:
+					_progressStrip = _frozenStrip;
+					break;
+				case LOCKED:
+					_progressStrip = _lockedStrip;
+					break;
+				default:
+			}
+			
+			_progressStrip.visible = true;
 			
 			_flashIcon.x = 7;
 			
@@ -120,16 +190,39 @@ package com.onlyplay.slotmatch3.components.games.elements
 			_tf.width = 30;
 			_tf.height = 20;
 
+			setText();
 			_tf.x = alternativagui::_width - _tf.width - 5;
 			// int((alternativagui::_width - _tf.width) >> 1);
 			_tf.y = 8;
-			setText();
 		}
 
 		override protected function setText() : void
 		{
 			// super.setText();
-			_tf.text = "x2";
+			//_tf.text = "x2";
+			_tf.text = String(_label);
+		}
+
+		public function get label() : String
+		{
+			return _label;
+		}
+
+		public function set label(label : String) : void
+		{
+			_label = label;
+			draw();
+		}
+
+		public function get visualState() : int
+		{
+			return _visualState;
+		}
+
+		public function set visualState(visualState : int) : void
+		{
+			_visualState = visualState;
+			draw();
 		}
 	}
 }

@@ -59,7 +59,7 @@ package com.onlyplay.slotmatch3.components.games.match
 					// как альтернатива, мы можем строить гистограмму
 					var excludeTypes : Array = excludeGroups.map(function(excludeGroup : Array, ..._) : *
 					{
-						return excludeGroup[0].type
+						return excludeGroup[0].type;
 					});
 					var types : Array = Util.range(type_num);
 					var variants : Array = substruct(types, excludeTypes);
@@ -96,6 +96,7 @@ package com.onlyplay.slotmatch3.components.games.match
 				var dY : int = a.y - b.y;
 				return a.type == b.type && ((dX <= 2 && dY == 0) || (dY <= 2 && dX == 0)) && !(dX == 0 && dY == 0);
 			}
+			
 
 			// function getRandomFromField(neighboursTypes : Array, container : Array) : ItemModel
 			// {
@@ -113,6 +114,9 @@ package com.onlyplay.slotmatch3.components.games.match
 		public static function genField3(fieldShape : int, ...options) : Array
 		{
 			initFieldShape(fieldShape, options);
+			
+			var price:int = options[2];
+			log('price: ' + (price));
 
 			var _container : Array = [];
 			for each (var currentPlace : Object  in _fildPattern)
@@ -121,7 +125,7 @@ package com.onlyplay.slotmatch3.components.games.match
 				// log(farNeighbours.length);
 				var possibleType : int = getMostPossibleType(farNeighbours);
 
-				_container.push(new ItemModel(currentPlace.x, currentPlace.y, possibleType, (++idCounter).toString()));
+				_container.push(new ItemModel(currentPlace.x, currentPlace.y, possibleType, (++idCounter).toString(), price));
 
 				function farNeigbourFilter(place : Object, ..._) : Boolean
 				{
@@ -641,7 +645,38 @@ package com.onlyplay.slotmatch3.components.games.match
 
 			// log('vBonuses.length: ' + (vBonuses.length));
 			// log('crosses.length: ' + (crosses.length));
-
+			
+			/*
+			 * Здесь внимание, финт ушами:
+			 * мы оцениваем каждую иконку из крупп по тому в какой по длине группе или кроссе она учавствует
+			 */
+			
+			for each (var vGroup : Array in vGroups) 
+			{
+				for each (var item : ItemModel in vGroup) 
+				{
+					item.price = vGroup.length;
+				}				
+			}
+			
+			for each (var hGroup : Array in hGroups) 
+			{
+				for each (var item : ItemModel in hGroup) 
+				{
+					item.price = hGroup.length;
+				}				
+			}
+			
+			for each (var cross : Array in crosses) 
+			{
+				var crossRaw:Array = cross[0].concat( cross[1]);
+				for each (var item : ItemModel in crossRaw) 
+				{
+					item.price = crossRaw.length;				
+				}
+			}
+			//--- end the hell -------------------------
+			
 			return {crosses:crosses, vBonuses:vBonuses, hBonuses:hBonuses};
 		}
 
@@ -660,7 +695,7 @@ package com.onlyplay.slotmatch3.components.games.match
 		}
 
 		// ----------------------------------------
-		public static function getNewStateAfterDeletionAndPopulation(groups : Array, newSwapedState : Array, bonuses : Object) : Object
+		public static function getNewStateAfterDeletionAndPopulation(groups : Array, newSwapedState : Array, bonuses : Object, iconEnergy:int) : Object
 		{
 			// TODO: consider bring calling getBonusGroups() here instead of inside resolve()...
 			// this may encrease effictiveness a very little bit.
@@ -687,7 +722,7 @@ package com.onlyplay.slotmatch3.components.games.match
 			});
 			var allBlastedItems : Array = getBlastedItems(newField, charged_);
 			newField = substruct(newField, allBlastedItems);
-			log("allBlastedItems.length:" + allBlastedItems.length);
+			//log("allBlastedItems.length:" + allBlastedItems.length);
 
 			// bonuses
 			var bons : Array = [];
@@ -746,7 +781,7 @@ package com.onlyplay.slotmatch3.components.games.match
 					while ( col.length + newItemsInColomn.length < patternCol.length)
 					{
 						// var newItem : Object = {x:i, y:-(newItemsInColomn.length + 1), type:getRandInt(type_num), id:(++idCounter).toString()};
-						var newItem : ItemModel = new ItemModel(i, -(newItemsInColomn.length + 1), getRandInt(type_num), (++idCounter).toString());
+						var newItem : ItemModel = new ItemModel(i, -(newItemsInColomn.length + 1), getRandInt(type_num), (++idCounter).toString(), 1);
 						// --- microbonuses ----
 						if (Math.random() < 0.5)// XXX: magic number bring to conf
 						{
@@ -859,20 +894,22 @@ package com.onlyplay.slotmatch3.components.games.match
 
 		private static function validateGroup(group : Array) : Boolean
 		{
-			if (group.length < matchNum) return false;
-
-			var raws : Array = [];
-			var cols : Array = [];
-
-			partition(raws, group, _rawNeibour);
-			partition(cols, group, _colNeibour);
-
-			var lines : Array = raws.concat(cols);
-			var validLines : Array = lines.filter(function(line : Array, ..._) : Boolean
-			{
-				return line.length >= matchNum;
-			});
-			return validLines.length > 0;
+			return group.length >= matchNum;
+			
+//			if (group.length < matchNum) return false;
+//
+//			var raws : Array = [];
+//			var cols : Array = [];
+//
+//			partition(raws, group, _rawNeibour);
+//			partition(cols, group, _colNeibour);
+//
+//			var lines : Array = raws.concat(cols);
+//			var validLines : Array = lines.filter(function(line : Array, ..._) : Boolean
+//			{
+//				return line.length >= matchNum;
+//			});
+//			return validLines.length > 0;
 		}
 
 		// --- algorithm ----------------------------
@@ -990,5 +1027,41 @@ package com.onlyplay.slotmatch3.components.games.match
 			var result : Object = buffer.readObject();
 			return result;
 		}
+
+		public static function getNewStateAfterBomb(field : Array) : Array
+		{
+			var canditates : Array = field.filter(function(item : ItemModel, ..._) : Boolean
+			{
+				return item.x > 0 && item.x < _w - 1 && item.y > 0 && item.y < _h - 1;
+			});
+
+			var center : ItemModel = canditates[ Util.randInt(canditates.length) ];
+			var area : Array = field.filter(function(item : ItemModel, ..._) : Boolean
+			{
+				var dX : int = Math.abs(center.x - item.x);
+				var dY : int = Math.abs(center.y - item.y);
+				return dX < 2 && dY < 2 ;//&& dX != dY && !(dX == 0 && dY == 0);
+			});
+
+			return [substruct(field, area), area, center] ;
+		}
+
+		public static function getNewStateAfterHammer(field : Array) : Array
+		{
+			var groups:Array = Util.partition(field, function (a:ItemModel, b:ItemModel):Boolean{ return a.type == b.type;});
+			groups.sortOn("length", [Array.NUMERIC]);
+			var targetGroup:Array = groups[groups.length - 1];
+			return [substruct(field, targetGroup), targetGroup];
+		}
+
+//		public static function estimateItemsInGroups(groups : Array) : void
+//		{
+//			for each (var group : Array in groups) 
+//			{
+//				for each (var item : ItemModel in group) {
+//					item.price = group.length;
+//				}
+//			}
+//		}
 	}
 }

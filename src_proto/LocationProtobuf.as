@@ -8,7 +8,7 @@ package  {
 	import flash.utils.IExternalizable;
 	import flash.errors.IOError;
 	import QuestProtobuf;
-	import LeaderInfoProtobuf;
+	import PlayerShortProtobuf;
 	// @@protoc_insertion_point(imports)
 
 	// @@protoc_insertion_point(class_metadata)
@@ -87,9 +87,9 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const LEADERS:RepeatedFieldDescriptor$TYPE_MESSAGE = new RepeatedFieldDescriptor$TYPE_MESSAGE("LocationProtobuf.leaders", "leaders", (11 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return LeaderInfoProtobuf; });
+		public static const LEADERS:RepeatedFieldDescriptor$TYPE_MESSAGE = new RepeatedFieldDescriptor$TYPE_MESSAGE("LocationProtobuf.leaders", "leaders", (11 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerShortProtobuf; });
 
-		[ArrayElementType("LeaderInfoProtobuf")]
+		[ArrayElementType("PlayerShortProtobuf")]
 		public var leaders:Array = [];
 
 		/**
@@ -369,7 +369,7 @@ package  {
 					this.betEnlarger.push(com.netease.protobuf.ReadUtils.read$TYPE_INT32(input));
 					break;
 				case 11:
-					this.leaders.push(com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, new LeaderInfoProtobuf()));
+					this.leaders.push(com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, new PlayerShortProtobuf()));
 					break;
 				case 12:
 					if (opened$count != 0) {

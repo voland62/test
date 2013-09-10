@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:core="mx.core.*">
+
+
+	<fx:Metadata>
+		[HostComponent("spark.components.SkinnableContainer")]
+	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/panel1_base_glowed.png",  mimeType="image/png"
+			,scaleGridTop="30", scaleGridBottom="60", 
+			scaleGridLeft="30", scaleGridRight="36"
+			)]
+			private static const TableClass : Class;
+
+			// public var frame : Sprite = new Sprite();
+			override protected function createChildren() : void
+			{
+				/*
+				 *  TODO: подумать как сделать более элегантно
+				 */
+
+				// var corners : Bitmap = new DialogClasses.TableClass();
+				// frame.addChild(corners);
+				// frame.scale9Grid = new Rectangle(DialogClasses.tableCorner, DialogClasses.tableCorner, 2, 2);
+				super.createChildren();
+			}
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+	<!--<s:Group top="0" bottom="0" left="0" right="0" 
+	scaleGridLeft="10"
+	scaleGridRight="12"
+	scaleGridTop="10"
+	scaleGridBottom="12"
+	>
+	</s:Group >-->
+
+	<s:BitmapImage top="-12" bottom="-12" left="-14" right="-14"
+		source="{TableClass}"/>
+
+	<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0"
+		minWidth="0" minHeight="0">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+	</s:Group>
+
+
+</s:Skin>

@@ -1,10 +1,11 @@
 package com.onlyplay.slotmatch3.controller
 {
-	import mx.events.DynamicEvent;
+	import flash.geom.Point;
+	import com.onlyplay.slotmatch3.components.games.slot.LinesData;
+	import com.onlyplay.slotmatch3.components.games.slot.LineVO;
 	import robotlegs.bender.bundles.mvcs.Command;
 
 	import com.onlyplay.slotmatch3.components.games.Parser;
-	import com.onlyplay.slotmatch3.components.games.slot.LinesData;
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.services.ISlotService;
 	import com.onlyplay.slotmatch3.services.ServiceEvent;
@@ -35,7 +36,10 @@ package com.onlyplay.slotmatch3.controller
 
 			// lines
 			var message : SpinResponseProtobuf = event.message as SpinResponseProtobuf;
-			gameModel.icons = Parser.parseSpinData( message.icons);
+			var newState:Array = Parser.parseSpinData( message.icons);
+			trace('message.icons: ' + (message.icons));
+			gameModel.icons = newState;
+			//trace('gameModel.icons: ' + (gameModel.icons));
 //
 			//var lines : Array = Parser.parseByteArray(message.winLines);
 //			var linesPoints : Array = [];
@@ -44,8 +48,18 @@ package com.onlyplay.slotmatch3.controller
 //				linesPoints.push(LinesData.lines[i]);
 //			}
 //
-			gameModel.winLines = message.winLines.lines;//linesPoints;
+			gameModel.winLines = convertProtoLinesToVoLines(message.winLines.lines,gameModel.icons);//message.winLines.lines;
+			//line1.winIconsTypes = LineVO.calcWinTypes(line1.points, nnn);
 			gameModel.win = message.winMoney;
+			
+			if ( gameModel.winLines && gameModel.winLines.length > 0 )
+			{
+				if (! (gameModel.winLines[0] as LineVO).points)
+				{
+					log( gameModel.winLines  );
+					
+				}
+			}
 			
 			if (message.winMoney)
 			{
@@ -53,6 +67,8 @@ package com.onlyplay.slotmatch3.controller
 				//eventDispatcher.dispatchEvent(new DynamicEvent(""));
 			}
 			
+			//message.winLines
+			//gameModel
 			
 //
 //			// total win
@@ -77,5 +93,30 @@ package com.onlyplay.slotmatch3.controller
 //			// populating model
 			eventDispatcher.dispatchEvent(new Event("showSpin"));
 		}
+		
+		// TODO: вынести либо в GameModel либо в SlotModel дибо в утиль
+		private function convertProtoLinesToVoLines( protoLines:Array, icons:Array ):Array
+		{
+			
+			var lines:Array = [];
+			for each (var protoLine : WinLineProtobuf in protoLines) {
+				lines.push( pritoLineToVoLine( protoLine, icons) );
+			}
+			return lines;
+		}
+
+		private function pritoLineToVoLine(protoLine : WinLineProtobuf, icons:Array) : LineVO
+		{
+			var lineVO:LineVO = new LineVO();
+			lineVO.lineId = protoLine.lineNumber;
+			lineVO.multiplyer = protoLine.multiplier;
+			lineVO.color = LinesData.getColorById(protoLine.lineNumber);
+			lineVO.points = LinesData.getLinePointsById(protoLine.lineNumber);
+			lineVO.iconsCount = protoLine.iconsCount;
+			lineVO.winIconsTypes = LineVO.calcWinTypes( lineVO.points, icons);
+			return lineVO;
+		}
+
+
 	}
 }

@@ -36,7 +36,7 @@ package com.onlyplay.slotmatch3.controller
 				gameModel.win = 0;
 				eventDispatcher.dispatchEvent(new Event("currentMoneyChanged"));
 
-				service.spin(gameModel.currentBet.linesNum, gameModel.currentBet.betPerLine);
+				service.spin(gameModel.currentBet.lines.length, gameModel.currentBet.betPerLine);
 			}
 		}
 	}

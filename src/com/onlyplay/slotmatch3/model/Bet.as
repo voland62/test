@@ -5,12 +5,13 @@ package com.onlyplay.slotmatch3.model
 	 */
 	public class Bet
 	{
-		public var linesNum:uint = 0;
+		//public var linesNum:uint = 0;
+		public var lines:Array = [];
 		public var betPerLine:Number = 0;
 		
 		public function getWholeBet():Number
 		{
-			return linesNum * betPerLine;
+			return lines.length * betPerLine;
 		}
 	}
 }

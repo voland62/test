@@ -7,14 +7,18 @@ package  {
 	import flash.utils.IDataOutput;
 	import flash.utils.IExternalizable;
 	import flash.errors.IOError;
+	import DailyBonusesProtobuf;
 	import BoostersProtobuf;
+	import PlayerGiftsProtobuf;
 	import PlayerProtobuf;
+	import RatingProtobuf;
 	import AchievementsProtobuf;
 	import BoosterProtobuf;
 	import IslandsProtobuf;
 	import AmuletProtobuf;
 	import PlayerStatisticProtobuf;
 	import LocationProtobuf;
+	import TopProtobuf;
 	import AchievementProtobuf;
 	import IslandProtobuf;
 	// @@protoc_insertion_point(imports)
@@ -283,7 +287,107 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const PLAYER:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.player", "player", (12 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerProtobuf; });
+		public static const GIFTSCHANGED:FieldDescriptor$TYPE_BOOL = new FieldDescriptor$TYPE_BOOL("DataChangesProtobuf.giftsChanged", "giftsChanged", (12 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var giftsChanged$field:Boolean;
+
+		public function clearGiftsChanged():void {
+			hasField$0 &= 0xfffffbff;
+			giftsChanged$field = new Boolean();
+		}
+
+		public function get hasGiftsChanged():Boolean {
+			return (hasField$0 & 0x400) != 0;
+		}
+
+		public function set giftsChanged(value:Boolean):void {
+			hasField$0 |= 0x400;
+			giftsChanged$field = value;
+		}
+
+		public function get giftsChanged():Boolean {
+			return giftsChanged$field;
+		}
+
+		/**
+		 *  @private
+		 */
+		public static const RATINGCHANGED:FieldDescriptor$TYPE_BOOL = new FieldDescriptor$TYPE_BOOL("DataChangesProtobuf.ratingChanged", "ratingChanged", (13 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var ratingChanged$field:Boolean;
+
+		public function clearRatingChanged():void {
+			hasField$0 &= 0xfffff7ff;
+			ratingChanged$field = new Boolean();
+		}
+
+		public function get hasRatingChanged():Boolean {
+			return (hasField$0 & 0x800) != 0;
+		}
+
+		public function set ratingChanged(value:Boolean):void {
+			hasField$0 |= 0x800;
+			ratingChanged$field = value;
+		}
+
+		public function get ratingChanged():Boolean {
+			return ratingChanged$field;
+		}
+
+		/**
+		 *  @private
+		 */
+		public static const FRIENDSTOPCHANGED:FieldDescriptor$TYPE_BOOL = new FieldDescriptor$TYPE_BOOL("DataChangesProtobuf.friendsTopChanged", "friendsTopChanged", (14 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var friendsTopChanged$field:Boolean;
+
+		public function clearFriendsTopChanged():void {
+			hasField$0 &= 0xffffefff;
+			friendsTopChanged$field = new Boolean();
+		}
+
+		public function get hasFriendsTopChanged():Boolean {
+			return (hasField$0 & 0x1000) != 0;
+		}
+
+		public function set friendsTopChanged(value:Boolean):void {
+			hasField$0 |= 0x1000;
+			friendsTopChanged$field = value;
+		}
+
+		public function get friendsTopChanged():Boolean {
+			return friendsTopChanged$field;
+		}
+
+		/**
+		 *  @private
+		 */
+		public static const DAILYBONUSESCHANGED:FieldDescriptor$TYPE_BOOL = new FieldDescriptor$TYPE_BOOL("DataChangesProtobuf.dailyBonusesChanged", "dailyBonusesChanged", (15 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var dailyBonusesChanged$field:Boolean;
+
+		public function clearDailyBonusesChanged():void {
+			hasField$0 &= 0xffffdfff;
+			dailyBonusesChanged$field = new Boolean();
+		}
+
+		public function get hasDailyBonusesChanged():Boolean {
+			return (hasField$0 & 0x2000) != 0;
+		}
+
+		public function set dailyBonusesChanged(value:Boolean):void {
+			hasField$0 |= 0x2000;
+			dailyBonusesChanged$field = value;
+		}
+
+		public function get dailyBonusesChanged():Boolean {
+			return dailyBonusesChanged$field;
+		}
+
+		/**
+		 *  @private
+		 */
+		public static const PLAYER:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.player", "player", (16 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerProtobuf; });
 
 		private var player$field:PlayerProtobuf;
 
@@ -306,7 +410,7 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const ISLANDS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.islands", "islands", (13 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return IslandsProtobuf; });
+		public static const ISLANDS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.islands", "islands", (17 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return IslandsProtobuf; });
 
 		private var islands$field:IslandsProtobuf;
 
@@ -329,7 +433,7 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const ISLAND:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.island", "island", (14 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return IslandProtobuf; });
+		public static const ISLAND:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.island", "island", (18 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return IslandProtobuf; });
 
 		private var island$field:IslandProtobuf;
 
@@ -352,7 +456,7 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const LOCATION:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.location", "location", (15 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return LocationProtobuf; });
+		public static const LOCATION:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.location", "location", (19 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return LocationProtobuf; });
 
 		private var location$field:LocationProtobuf;
 
@@ -375,7 +479,7 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const AMULET:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.amulet", "amulet", (16 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return AmuletProtobuf; });
+		public static const AMULET:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.amulet", "amulet", (20 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return AmuletProtobuf; });
 
 		private var amulet$field:AmuletProtobuf;
 
@@ -398,7 +502,7 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const BOOSTERS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.boosters", "boosters", (17 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return BoostersProtobuf; });
+		public static const BOOSTERS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.boosters", "boosters", (21 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return BoostersProtobuf; });
 
 		private var boosters$field:BoostersProtobuf;
 
@@ -421,7 +525,7 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const BOOSTER:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.booster", "booster", (18 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return BoosterProtobuf; });
+		public static const BOOSTER:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.booster", "booster", (22 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return BoosterProtobuf; });
 
 		private var booster$field:BoosterProtobuf;
 
@@ -444,7 +548,7 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const STATISTIC:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.statistic", "statistic", (19 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerStatisticProtobuf; });
+		public static const STATISTIC:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.statistic", "statistic", (23 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerStatisticProtobuf; });
 
 		private var statistic$field:PlayerStatisticProtobuf;
 
@@ -467,7 +571,7 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const ACHIEVEMENTS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.achievements", "achievements", (20 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return AchievementsProtobuf; });
+		public static const ACHIEVEMENTS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.achievements", "achievements", (24 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return AchievementsProtobuf; });
 
 		private var achievements$field:AchievementsProtobuf;
 
@@ -490,7 +594,7 @@ package  {
 		/**
 		 *  @private
 		 */
-		public static const ACHIEVEMENT:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.achievement", "achievement", (21 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return AchievementProtobuf; });
+		public static const ACHIEVEMENT:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.achievement", "achievement", (25 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return AchievementProtobuf; });
 
 		private var achievement$field:AchievementProtobuf;
 
@@ -508,6 +612,98 @@ package  {
 
 		public function get achievement():AchievementProtobuf {
 			return achievement$field;
+		}
+
+		/**
+		 *  @private
+		 */
+		public static const GIFTS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.gifts", "gifts", (26 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerGiftsProtobuf; });
+
+		private var gifts$field:PlayerGiftsProtobuf;
+
+		public function clearGifts():void {
+			gifts$field = null;
+		}
+
+		public function get hasGifts():Boolean {
+			return gifts$field != null;
+		}
+
+		public function set gifts(value:PlayerGiftsProtobuf):void {
+			gifts$field = value;
+		}
+
+		public function get gifts():PlayerGiftsProtobuf {
+			return gifts$field;
+		}
+
+		/**
+		 *  @private
+		 */
+		public static const RATING:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.rating", "rating", (27 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return RatingProtobuf; });
+
+		private var rating$field:RatingProtobuf;
+
+		public function clearRating():void {
+			rating$field = null;
+		}
+
+		public function get hasRating():Boolean {
+			return rating$field != null;
+		}
+
+		public function set rating(value:RatingProtobuf):void {
+			rating$field = value;
+		}
+
+		public function get rating():RatingProtobuf {
+			return rating$field;
+		}
+
+		/**
+		 *  @private
+		 */
+		public static const FRIENDSTOP:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.friendsTop", "friendsTop", (28 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return TopProtobuf; });
+
+		private var friendsTop$field:TopProtobuf;
+
+		public function clearFriendsTop():void {
+			friendsTop$field = null;
+		}
+
+		public function get hasFriendsTop():Boolean {
+			return friendsTop$field != null;
+		}
+
+		public function set friendsTop(value:TopProtobuf):void {
+			friendsTop$field = value;
+		}
+
+		public function get friendsTop():TopProtobuf {
+			return friendsTop$field;
+		}
+
+		/**
+		 *  @private
+		 */
+		public static const DAILYBONUSES:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("DataChangesProtobuf.dailyBonuses", "dailyBonuses", (29 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return DailyBonusesProtobuf; });
+
+		private var dailyBonuses$field:DailyBonusesProtobuf;
+
+		public function clearDailyBonuses():void {
+			dailyBonuses$field = null;
+		}
+
+		public function get hasDailyBonuses():Boolean {
+			return dailyBonuses$field != null;
+		}
+
+		public function set dailyBonuses(value:DailyBonusesProtobuf):void {
+			dailyBonuses$field = value;
+		}
+
+		public function get dailyBonuses():DailyBonusesProtobuf {
+			return dailyBonuses$field;
 		}
 
 		/**
@@ -556,45 +752,77 @@ package  {
 				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 11);
 				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, achievementChanged$field);
 			}
+			if (hasGiftsChanged) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 12);
+				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, giftsChanged$field);
+			}
+			if (hasRatingChanged) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 13);
+				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, ratingChanged$field);
+			}
+			if (hasFriendsTopChanged) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 14);
+				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, friendsTopChanged$field);
+			}
+			if (hasDailyBonusesChanged) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 15);
+				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, dailyBonusesChanged$field);
+			}
 			if (hasPlayer) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 12);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 16);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, player$field);
 			}
 			if (hasIslands) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 13);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 17);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, islands$field);
 			}
 			if (hasIsland) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 14);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 18);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, island$field);
 			}
 			if (hasLocation) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 15);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 19);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, location$field);
 			}
 			if (hasAmulet) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 16);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 20);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, amulet$field);
 			}
 			if (hasBoosters) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 17);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 21);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, boosters$field);
 			}
 			if (hasBooster) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 18);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 22);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, booster$field);
 			}
 			if (hasStatistic) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 19);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 23);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, statistic$field);
 			}
 			if (hasAchievements) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 20);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 24);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, achievements$field);
 			}
 			if (hasAchievement) {
-				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 21);
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 25);
 				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, achievement$field);
+			}
+			if (hasGifts) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 26);
+				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, gifts$field);
+			}
+			if (hasRating) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 27);
+				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, rating$field);
+			}
+			if (hasFriendsTop) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 28);
+				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, friendsTop$field);
+			}
+			if (hasDailyBonuses) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 29);
+				com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, dailyBonuses$field);
 			}
 			for (var fieldKey:* in this) {
 				super.writeUnknown(output, fieldKey);
@@ -616,6 +844,10 @@ package  {
 			var statisticChanged$count:uint = 0;
 			var achievementsChanged$count:uint = 0;
 			var achievementChanged$count:uint = 0;
+			var giftsChanged$count:uint = 0;
+			var ratingChanged$count:uint = 0;
+			var friendsTopChanged$count:uint = 0;
+			var dailyBonusesChanged$count:uint = 0;
 			var player$count:uint = 0;
 			var islands$count:uint = 0;
 			var island$count:uint = 0;
@@ -626,6 +858,10 @@ package  {
 			var statistic$count:uint = 0;
 			var achievements$count:uint = 0;
 			var achievement$count:uint = 0;
+			var gifts$count:uint = 0;
+			var rating$count:uint = 0;
+			var friendsTop$count:uint = 0;
+			var dailyBonuses$count:uint = 0;
 			while (input.bytesAvailable > bytesAfterSlice) {
 				var tag:uint = com.netease.protobuf.ReadUtils.read$TYPE_UINT32(input);
 				switch (tag >> 3) {
@@ -707,6 +943,34 @@ package  {
 					this.achievementChanged = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
 					break;
 				case 12:
+					if (giftsChanged$count != 0) {
+						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.giftsChanged cannot be set twice.');
+					}
+					++giftsChanged$count;
+					this.giftsChanged = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
+					break;
+				case 13:
+					if (ratingChanged$count != 0) {
+						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.ratingChanged cannot be set twice.');
+					}
+					++ratingChanged$count;
+					this.ratingChanged = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
+					break;
+				case 14:
+					if (friendsTopChanged$count != 0) {
+						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.friendsTopChanged cannot be set twice.');
+					}
+					++friendsTopChanged$count;
+					this.friendsTopChanged = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
+					break;
+				case 15:
+					if (dailyBonusesChanged$count != 0) {
+						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.dailyBonusesChanged cannot be set twice.');
+					}
+					++dailyBonusesChanged$count;
+					this.dailyBonusesChanged = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
+					break;
+				case 16:
 					if (player$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.player cannot be set twice.');
 					}
@@ -714,7 +978,7 @@ package  {
 					this.player = new PlayerProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.player);
 					break;
-				case 13:
+				case 17:
 					if (islands$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.islands cannot be set twice.');
 					}
@@ -722,7 +986,7 @@ package  {
 					this.islands = new IslandsProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.islands);
 					break;
-				case 14:
+				case 18:
 					if (island$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.island cannot be set twice.');
 					}
@@ -730,7 +994,7 @@ package  {
 					this.island = new IslandProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.island);
 					break;
-				case 15:
+				case 19:
 					if (location$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.location cannot be set twice.');
 					}
@@ -738,7 +1002,7 @@ package  {
 					this.location = new LocationProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.location);
 					break;
-				case 16:
+				case 20:
 					if (amulet$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.amulet cannot be set twice.');
 					}
@@ -746,7 +1010,7 @@ package  {
 					this.amulet = new AmuletProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.amulet);
 					break;
-				case 17:
+				case 21:
 					if (boosters$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.boosters cannot be set twice.');
 					}
@@ -754,7 +1018,7 @@ package  {
 					this.boosters = new BoostersProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.boosters);
 					break;
-				case 18:
+				case 22:
 					if (booster$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.booster cannot be set twice.');
 					}
@@ -762,7 +1026,7 @@ package  {
 					this.booster = new BoosterProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.booster);
 					break;
-				case 19:
+				case 23:
 					if (statistic$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.statistic cannot be set twice.');
 					}
@@ -770,7 +1034,7 @@ package  {
 					this.statistic = new PlayerStatisticProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.statistic);
 					break;
-				case 20:
+				case 24:
 					if (achievements$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.achievements cannot be set twice.');
 					}
@@ -778,13 +1042,45 @@ package  {
 					this.achievements = new AchievementsProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.achievements);
 					break;
-				case 21:
+				case 25:
 					if (achievement$count != 0) {
 						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.achievement cannot be set twice.');
 					}
 					++achievement$count;
 					this.achievement = new AchievementProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.achievement);
+					break;
+				case 26:
+					if (gifts$count != 0) {
+						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.gifts cannot be set twice.');
+					}
+					++gifts$count;
+					this.gifts = new PlayerGiftsProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.gifts);
+					break;
+				case 27:
+					if (rating$count != 0) {
+						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.rating cannot be set twice.');
+					}
+					++rating$count;
+					this.rating = new RatingProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.rating);
+					break;
+				case 28:
+					if (friendsTop$count != 0) {
+						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.friendsTop cannot be set twice.');
+					}
+					++friendsTop$count;
+					this.friendsTop = new TopProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.friendsTop);
+					break;
+				case 29:
+					if (dailyBonuses$count != 0) {
+						throw new flash.errors.IOError('Bad data format: DataChangesProtobuf.dailyBonuses cannot be set twice.');
+					}
+					++dailyBonuses$count;
+					this.dailyBonuses = new DailyBonusesProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.dailyBonuses);
 					break;
 				default:
 					super.readUnknown(input, tag);

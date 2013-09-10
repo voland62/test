@@ -29,11 +29,14 @@ package com.onlyplay.slotmatch3.controller.currentBetChanging
 			var maxVal : Number = gameModel.currentLocation.maxLinesAmount;//currentIsland.maxLines;
 			var minVal : Number = gameModel.currentLocation.minLinesAmount;//currentIsland.minLines;
 			var interval:Number = maxVal - minVal + 1;
-			var val :Number = gameModel.currentBet.linesNum + delta;
+			var val :Number = gameModel.currentBet.lines.length + delta;
 
-			gameModel.currentBet.linesNum = Util.mod_( val - minVal, interval) + minVal;
-
-			eventDispatcher.dispatchEvent(new Event("currenBetUpdated"));
+			var lineNum:int = Util.mod_( val - minVal, interval) + minVal;
+			gameModel.currentBet.lines = gameModel.getLines( lineNum ); 
+			
+			var ev:DynamicEvent = new DynamicEvent("currenBetUpdated");
+			ev.showLines = true;
+			eventDispatcher.dispatchEvent(ev);
 		}
 	}
 }

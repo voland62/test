@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" height="40" minWidth="100">
+
+	<!-- states -->
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over" stateGroups="overStates"/>
+		<s:State name="down" stateGroups="downStates"/>
+		<s:State name="disabled" stateGroups="disabledStates"/>
+		<s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates"/>
+		<s:State name="overAndSelected" stateGroups="overStates, selectedStates"/>
+		<s:State name="downAndSelected" stateGroups="downStates, selectedStates"/>
+		<s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates"/>
+	</s:states>
+
+	<fx:Declarations>
+		<s:DropShadowFilter id="whiteShedow" color="0xd6b488"
+			strength="1" blurX="1" blurY="1" distance="1" angle="75"/>
+	</fx:Declarations>
+
+
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/tab_inactive.png",  mimeType="image/png"
+			,scaleGridTop="39", scaleGridBottom="40", 
+			scaleGridLeft="24", scaleGridRight="32"
+			)]
+			private static const InactiveBgClass : Class;
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/tab_active.png",  mimeType="image/png"
+			,scaleGridTop="9", scaleGridBottom="10", 
+			scaleGridLeft="10", scaleGridRight="14"
+			)]
+			private static const BorderClass : Class;
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/tab_active_mask.png",  mimeType="image/png"
+			,scaleGridTop="29", scaleGridBottom="30", 
+			scaleGridLeft="9", scaleGridRight="15"
+			)]
+			private static const MaskClass : Class;
+
+		]]>
+	</fx:Script>
+
+	<!--<s:Rect left="0" right="0" top="0" bottom="0">
+	<s:stroke>
+	<s:SolidColorStroke color="0"/>
+
+	</s:stroke>
+	</s:Rect>-->
+
+	<s:BitmapImage source="{GamePopup._BgClassLight}" width="{this.width}"
+		includeIn="selectedStates" top="0" bottom="-5" fillMode="repeat"
+		scaleMode="zoom" maskType="alpha" mask="{maskImage}"/>
+	<s:Group id="maskImage" left="-1" right="0" bottom="-5" includeIn="selectedStates">
+		<s:BitmapImage source="{MaskClass}" left="0" right="0"/>
+	</s:Group>
+
+	<s:BitmapImage source="{BorderClass}" left="-1" right="0" bottom="-6"
+		includeIn="selectedStates"/>
+
+	<s:BitmapImage source="{InactiveBgClass}" left="-15" right="-16"
+		bottom="0" excludeFrom="selectedStates"/>
+
+
+
+	<s:Label id="labelDisplay" textAlign="center" verticalAlign="middle" filters="{[whiteShedow]}"
+		fontWeight="bold" maxDisplayedLines="1" verticalCenter="1"
+		left="20" right="20"/>
+
+
+</s:Skin>

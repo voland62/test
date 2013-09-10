@@ -7,10 +7,16 @@ package  {
 	import flash.utils.IDataOutput;
 	import flash.utils.IExternalizable;
 	import flash.errors.IOError;
+	import AmuletsProtobuf;
 	import LoginResponseProtobuf.LoginStatus;
+	import PlayerInventoryProtobuf;
+	import PlayerGiftsProtobuf;
 	import PlayerProtobuf;
+	import PurchasesProtobuf;
+	import RatingProtobuf;
 	import AchievementsProtobuf;
 	import IslandsProtobuf;
+	import EmotionsProtobuf;
 	// @@protoc_insertion_point(imports)
 
 	// @@protoc_insertion_point(class_metadata)
@@ -53,6 +59,75 @@ package  {
 		/**
 		 *  @private
 		 */
+		public static const PURCHASES:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("LoginResponseProtobuf.purchases", "purchases", (6 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PurchasesProtobuf; });
+
+		public var purchases:PurchasesProtobuf;
+
+		/**
+		 *  @private
+		 */
+		public static const GIFTS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("LoginResponseProtobuf.gifts", "gifts", (7 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerGiftsProtobuf; });
+
+		public var gifts:PlayerGiftsProtobuf;
+
+		/**
+		 *  @private
+		 */
+		public static const RATING:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("LoginResponseProtobuf.rating", "rating", (8 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return RatingProtobuf; });
+
+		public var rating:RatingProtobuf;
+
+		/**
+		 *  @private
+		 */
+		public static const AMULETS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("LoginResponseProtobuf.amulets", "amulets", (9 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return AmuletsProtobuf; });
+
+		public var amulets:AmuletsProtobuf;
+
+		/**
+		 *  @private
+		 */
+		public static const EMOTIONS:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("LoginResponseProtobuf.emotions", "emotions", (10 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return EmotionsProtobuf; });
+
+		public var emotions:EmotionsProtobuf;
+
+		/**
+		 *  @private
+		 */
+		public static const INVENTORY:FieldDescriptor$TYPE_MESSAGE = new FieldDescriptor$TYPE_MESSAGE("LoginResponseProtobuf.inventory", "inventory", (11 << 3) | com.netease.protobuf.WireType.LENGTH_DELIMITED, function():Class { return PlayerInventoryProtobuf; });
+
+		public var inventory:PlayerInventoryProtobuf;
+
+		/**
+		 *  @private
+		 */
+		public static const TUTORIAL:FieldDescriptor$TYPE_BOOL = new FieldDescriptor$TYPE_BOOL("LoginResponseProtobuf.tutorial", "tutorial", (12 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var tutorial$field:Boolean;
+
+		private var hasField$0:uint = 0;
+
+		public function clearTutorial():void {
+			hasField$0 &= 0xfffffffe;
+			tutorial$field = new Boolean();
+		}
+
+		public function get hasTutorial():Boolean {
+			return (hasField$0 & 0x1) != 0;
+		}
+
+		public function set tutorial(value:Boolean):void {
+			hasField$0 |= 0x1;
+			tutorial$field = value;
+		}
+
+		public function get tutorial():Boolean {
+			return tutorial$field;
+		}
+
+		/**
+		 *  @private
+		 */
 		override used_by_generated_code final function writeToBuffer(output:com.netease.protobuf.WritingBuffer):void {
 			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 1);
 			com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, this.gameId);
@@ -64,6 +139,22 @@ package  {
 			com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, this.islands);
 			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 5);
 			com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, this.achievements);
+			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 6);
+			com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, this.purchases);
+			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 7);
+			com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, this.gifts);
+			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 8);
+			com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, this.rating);
+			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 9);
+			com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, this.amulets);
+			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 10);
+			com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, this.emotions);
+			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.LENGTH_DELIMITED, 11);
+			com.netease.protobuf.WriteUtils.write$TYPE_MESSAGE(output, this.inventory);
+			if (hasTutorial) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 12);
+				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, tutorial$field);
+			}
 			for (var fieldKey:* in this) {
 				super.writeUnknown(output, fieldKey);
 			}
@@ -78,6 +169,13 @@ package  {
 			var player$count:uint = 0;
 			var islands$count:uint = 0;
 			var achievements$count:uint = 0;
+			var purchases$count:uint = 0;
+			var gifts$count:uint = 0;
+			var rating$count:uint = 0;
+			var amulets$count:uint = 0;
+			var emotions$count:uint = 0;
+			var inventory$count:uint = 0;
+			var tutorial$count:uint = 0;
 			while (input.bytesAvailable > bytesAfterSlice) {
 				var tag:uint = com.netease.protobuf.ReadUtils.read$TYPE_UINT32(input);
 				switch (tag >> 3) {
@@ -118,6 +216,61 @@ package  {
 					++achievements$count;
 					this.achievements = new AchievementsProtobuf();
 					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.achievements);
+					break;
+				case 6:
+					if (purchases$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LoginResponseProtobuf.purchases cannot be set twice.');
+					}
+					++purchases$count;
+					this.purchases = new PurchasesProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.purchases);
+					break;
+				case 7:
+					if (gifts$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LoginResponseProtobuf.gifts cannot be set twice.');
+					}
+					++gifts$count;
+					this.gifts = new PlayerGiftsProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.gifts);
+					break;
+				case 8:
+					if (rating$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LoginResponseProtobuf.rating cannot be set twice.');
+					}
+					++rating$count;
+					this.rating = new RatingProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.rating);
+					break;
+				case 9:
+					if (amulets$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LoginResponseProtobuf.amulets cannot be set twice.');
+					}
+					++amulets$count;
+					this.amulets = new AmuletsProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.amulets);
+					break;
+				case 10:
+					if (emotions$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LoginResponseProtobuf.emotions cannot be set twice.');
+					}
+					++emotions$count;
+					this.emotions = new EmotionsProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.emotions);
+					break;
+				case 11:
+					if (inventory$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LoginResponseProtobuf.inventory cannot be set twice.');
+					}
+					++inventory$count;
+					this.inventory = new PlayerInventoryProtobuf();
+					com.netease.protobuf.ReadUtils.read$TYPE_MESSAGE(input, this.inventory);
+					break;
+				case 12:
+					if (tutorial$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LoginResponseProtobuf.tutorial cannot be set twice.');
+					}
+					++tutorial$count;
+					this.tutorial = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
 					break;
 				default:
 					super.readUnknown(input, tag);

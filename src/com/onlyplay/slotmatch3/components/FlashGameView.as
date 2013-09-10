@@ -1,8 +1,6 @@
 package com.onlyplay.slotmatch3.components
 {
-	import com.onlyplay.slotmatch3.components.games.WinBubble;
-	import com.greensock.TimelineLite;
-
+	import com.onlyplay.slotmatch3.components.games.match.Animations;
 	import alternativa.gui.container.linear.VBox;
 	import alternativa.gui.container.tabPanel.TabData;
 	import alternativa.gui.controls.button.BaseButton;
@@ -10,11 +8,16 @@ package com.onlyplay.slotmatch3.components
 
 	import assets.BgClass;
 
+	import com.greensock.TimelineLite;
 	import com.greensock.TweenLite;
-	import com.greensock.easing.Quad;
+	import com.greensock.TweenMax;
+	import com.greensock.easing.Linear;
+	import com.onlyplay.slotmatch3.components.games.Util;
+	import com.onlyplay.slotmatch3.components.games.WinBubble;
 	import com.onlyplay.slotmatch3.components.games.elements.BetButtonLeft;
 	import com.onlyplay.slotmatch3.components.games.elements.BetButtonRight;
 	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
+	import com.onlyplay.slotmatch3.components.games.elements.InfoButton;
 	import com.onlyplay.slotmatch3.components.games.elements.LineButtonLeft;
 	import com.onlyplay.slotmatch3.components.games.elements.LineButtonRight;
 	import com.onlyplay.slotmatch3.components.games.elements.MapButton;
@@ -30,6 +33,7 @@ package com.onlyplay.slotmatch3.components
 	import com.onlyplay.slotmatch3.components.games.elements.TimeProgress;
 	import com.onlyplay.slotmatch3.components.games.elements.ToMach3Button;
 	import com.onlyplay.slotmatch3.components.games.elements.ToSlotButton;
+	import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
 	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
 	import com.onlyplay.slotmatch3.components.games.elements.list.RoomList;
 	import com.onlyplay.slotmatch3.components.games.elements.ns.ExperienceProgressBar;
@@ -39,6 +43,13 @@ package com.onlyplay.slotmatch3.components
 	import com.onlyplay.slotmatch3.components.games.match.MatchComponent;
 	import com.onlyplay.slotmatch3.components.games.slot.SlotMashine;
 	import com.onlyplay.slotmatch3.view.IGameView;
+	import com.onlyplay.util.Sparkler2;
+
+	import org.flintparticles.common.counters.Steady;
+	import org.flintparticles.common.emitters.Emitter;
+	import org.flintparticles.common.events.EmitterEvent;
+	import org.flintparticles.twoD.emitters.Emitter2D;
+	import org.flintparticles.twoD.renderers.BitmapRenderer;
 
 	import mx.events.DynamicEvent;
 
@@ -53,6 +64,7 @@ package com.onlyplay.slotmatch3.components
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
+	import flash.utils.Dictionary;
 
 	/**
 	 * @author Design3d
@@ -127,9 +139,20 @@ package com.onlyplay.slotmatch3.components
 		private var _coins1 : Bitmap;
 		private var _plashkaTop : Bitmap;
 		private var _starProgress : StarProgress;
+		private var _infoStarButton : BaseButton;
+		private var _infoRoomProgressButton : BaseButton;
+		private var _renderer : BitmapRenderer;
 
-		public function FlashGameView()
+		public function FlashGameView(rend : BitmapRenderer)
 		{
+			/*
+			 *  Вынужден перевавать рендерер сюда - так как почему-то созданный рендерер здесь - 
+			 *  перектывает маузэвенты для кнопок
+			 *  небыло времени разбиаться почему - но чертовские хотелось бы - ибо 
+			 *  в упор не вижу причины
+			 */
+			_renderer = rend;
+
 			_islandBg = new IslandBgClass();
 			addChild(_islandBg);
 
@@ -159,6 +182,12 @@ package com.onlyplay.slotmatch3.components
 			_starProgress.width = 235;
 			_starProgress.height = 21;
 			_starProgress.setProgress(0.75, false);
+
+			_infoStarButton = new InfoButton();
+			addChild(_infoStarButton);
+
+			_infoRoomProgressButton = new InfoButton();
+			addChild(_infoRoomProgressButton);
 
 			_paymentsFake = new PaymentsFakeClass();
 			addChild(_paymentsFake);
@@ -326,15 +355,24 @@ package com.onlyplay.slotmatch3.components
 			tabPanel.selectTab = 1;
 			tabPanel.selectTab = 0;
 
+			// _renderer = new BitmapRenderer(new Rectangle(0, 0, 300, 300));
+			// _renderer.mouseChildren = false;
+			// _renderer.mouseEnabled = false;
+			//
+			// addChild(_renderer);
+
 			_animBase = new Sprite();
 			_animBase.mouseChildren = false;
-			_animBase.addEventListener("animComplete", onAnimComplete, true);
+			_animBase.mouseEnabled = false;
+
 			addChild(_animBase);
 		}
 
 		private function onAnimComplete(e : Event) : void
 		{
 			(e.currentTarget as DisplayObjectContainer).removeChild(e.target.parent as DisplayObject);
+			log("----FlashGameView.onAnimComplete(e)");
+			// System.gc();
 		}
 
 		private function createSlotMashine() : void
@@ -416,6 +454,8 @@ package com.onlyplay.slotmatch3.components
 			_starProgress.x = 252;
 			_starProgress.y = 25;
 
+			// if ( !isNaN(_w) && !isNaN(_h) )  _renderer.canvas = new Rectangle(0,0,_w, _h);
+
 			_plashka.x = (_w - _plashka.width) >> 1;
 			_plashka.y = 460;
 
@@ -426,6 +466,12 @@ package com.onlyplay.slotmatch3.components
 				_energyProgress.x = (_w - _energyProgress.width) >> 1;
 				_energyProgress.y = 40;
 			}
+
+			_infoRoomProgressButton.x = 505;
+			_infoRoomProgressButton.y = 0;
+
+			_infoStarButton.x = 490;
+			_infoStarButton.y = 23;
 
 			if (_boosterPanel)
 			{
@@ -583,11 +629,10 @@ package com.onlyplay.slotmatch3.components
 			disableButtons(true);
 		}
 
-		public function drawLines(winLines : Array) : void
-		{
-			if (_slotMashine) _slotMashine.drawLines(winLines);
-		}
-
+		// public function drawLines(winLines : Array) : void
+		// {
+		// if (_slotMashine) _slotMashine.drawLines(winLines);
+		// }
 		public function setReady() : void
 		{
 			disableButtons(false);
@@ -611,14 +656,14 @@ package com.onlyplay.slotmatch3.components
 			_moneyTf.text = money.toString();
 		}
 
-//		public function updateConfig(serverConfig : IslandProtobuf) : void
-//		{
-//			_maxBetButton.text = (serverConfig.maxBet * serverConfig.maxLines).toString();
-//		}
-		
-		public function setMaxBet(maxBet:Number):void
+		// public function updateConfig(serverConfig : IslandProtobuf) : void
+		// {
+		// _maxBetButton.text = (serverConfig.maxBet * serverConfig.maxLines).toString();
+		// }
+		public function setMaxBet(maxBet : Number) : void
 		{
-			_maxBetButton.text = maxBet.toString();// (serverConfig.maxBet * serverConfig.maxLines).toString();
+			_maxBetButton.text = maxBet.toString();
+			// (serverConfig.maxBet * serverConfig.maxLines).toString();
 		}
 
 		public function setUpperBet(wholeBet : Number) : void
@@ -631,9 +676,10 @@ package com.onlyplay.slotmatch3.components
 			_betAmountTf.text = betPerLine.toString();
 		}
 
-		public function setLines(linesNum : uint) : void
+		public function setLines(lines : Array, showLines : Boolean) : void
 		{
-			_lineAmountTf.text = linesNum.toString();
+			_lineAmountTf.text = lines.length.toString();
+			if (showLines) _slotMashine.drawLines(lines);
 		}
 
 		public function setWin(win : Number) : void
@@ -667,9 +713,15 @@ package com.onlyplay.slotmatch3.components
 			if (!_matchComponent)
 			{
 				_matchComponent = new MatchComponent();
-				_matchComponentBase.addChild(_matchComponent)
+				_matchComponentBase.addChild(_matchComponent);
 				_matchComponent.addEventListener("animMicrobonus", onAnimMicrobonus);
+				_matchComponent.addEventListener("flashEnergy", onFlashEnergy);
 			}
+		}
+
+		private function onFlashEnergy(e : DynamicEvent) : void
+		{
+			dispatchEvent(e);
 		}
 
 		private function onAnimMicrobonus(e : DynamicEvent) : void
@@ -700,18 +752,50 @@ package com.onlyplay.slotmatch3.components
 
 			if (target)
 			{
-				var newPos : Point = target.localToGlobal(new Point());
-				TweenLite.to(microbonusIcon, 1, {x:newPos.x, y:newPos.y, onComplete:onEnd, ease:Quad.easeIn});
+				var newPos : Point = target.localToGlobal(new Point(16, 16));
+				// TweenLite.to(microbonusIcon, 1, {x:newPos.x, y:newPos.y, onComplete:onEnd, ease:Quad.easeIn});
+				var p0 : Point = new Point(microbonusIcon.x, microbonusIcon.y);
+				var p1 : Point = new Point(p0.x, (newPos.y + p0.y ) >> 1);
+				var p2 : Point = new Point(( newPos.x + p0.x ) >> 1, newPos.y);
+
+				// --- particles ----------------------
+				var emitter : Emitter2D = new Sparkler2();
+				_renderer.addEmitter(emitter);
+
+				emitter.x = p0.x;
+				emitter.y = p0.y;
+				emitter.start();
+
+				// TweenMax.to(emitter, t, {bezier:[{x:p2.x, y:p2.y}, {x:p3.x, y:p3.y}], ease:Linear.easeOut, onComplete:foo});
+				// emitter.start();
+				// function  foo() : void
+				// {
+				// emitter.stop();
+				// emitter.killAllParticles();
+				// }
+				// ;
+
+				TweenMax.allTo([microbonusIcon, emitter], 1, {bezier:[{x:p1.x, y:p1.y}, {x:p2.x, y:p2.y}, {x:newPos.x, y:newPos.y}], ease:Linear.easeOut}, 0, onEnd);
 			}
 
 			function onEnd() : void
 			{
 				_animBase.removeChild(microbonusIcon);
+				emitter.counter = new Steady(0);
+				emitter.addEventListener(EmitterEvent.EMITTER_EMPTY, onEmitterEmpty);
+
 				var event : DynamicEvent = new DynamicEvent("onBonus");
-				event.
-				bonusType = bonusType;
+				event.bonusType = bonusType;
 				dispatchEvent(event);
 			}
+		}
+
+		private function onEmitterEmpty(e : EmitterEvent) : void
+		{
+			var emitter : Emitter = e.target as Emitter;
+			emitter.removeEventListener(EmitterEvent.EMITTER_EMPTY, onEmitterEmpty);
+			emitter.stop();
+			_renderer.removeEmitter(emitter);
 		}
 
 		// --- states switchers ---------
@@ -771,7 +855,7 @@ package com.onlyplay.slotmatch3.components
 			{
 				_timeProgress = new TimeProgress();
 				_timeProgress.maxTime = 30;
-				_timeProgress.currentTime = 60;
+				// _timeProgress.currentTime = 60;
 				addChild(_timeProgress)
 			}
 			_timeProgress.visible = true;
@@ -807,16 +891,18 @@ package com.onlyplay.slotmatch3.components
 			_timeProgress.maxTime = maxTime;
 		}
 
-		public function matchReinit() : void
+		public function matchReinit(iconEnergy : Number) : void
 		{
 			// Здесь мы говоим матч компоненту - сделать новый филд и
 			// проиграть reinit анимацию
-
+			// log("FlashGameView.matchReinit(iconEnergy)");
+			// log('iconEnergy: ' + (iconEnergy));
+			_matchComponent.iconEnergy = iconEnergy;
 			_matchComponent.reinit();
 			_matchComponent.playFall();
 		}
 
-		public function playWinAnimation(win : Number, onWinAnimComeplete : Function) : void
+		public function playWinAnimation(win : Number, winLines : Array, onWinAnimComeplete : Function) : void
 		{
 			// var tf :TextField = new TextField();
 			// _animBase.addChild(tf);
@@ -837,17 +923,78 @@ package com.onlyplay.slotmatch3.components
 				_animBase.removeChild(winBubble);
 				onWinAnimComeplete();
 			}
-			
+
 			winBubble.scaleX = winBubble.scaleY = 0.5;
-			
+
 			var timeLine : TimelineLite = new TimelineLite({onComplete:foo});
 			timeLine.append(TweenLite.to(winBubble, 1, {scaleX:1, scaleY:1}));
 			timeLine.append(TweenLite.to(winBubble, 1, {scaleX:0.1, scaleY:0.1, y:10}));
+
+			if ( winLines && winLines.length > 0)
+			{
+				_slotMashine.playWinLinesAnim(winLines);
+			}
 		}
 
 		public function setStarsProgress(commonPercentage : Number) : void
 		{
 			_starProgress.setProgress(commonPercentage, true);
+		}
+
+		public function initSlot(islandId : int, locationId : int) : void
+		{
+			var dict : Dictionary = new Dictionary();
+			var itemsTypesNum : int = 12;
+
+			for (var i : int = 0; i < itemsTypesNum; i++)
+			{
+				dict[i] = Util.getIconUrl(islandId, locationId, i);
+			}
+			_slotMashine.init(dict);
+		}
+
+		public function hideLines() : void
+		{
+			_slotMashine.hideLines();
+		}
+
+		public function playBooster(boosterType : int) : void
+		{
+			switch( boosterType )
+			{
+				case Booster.BOMB:
+					_matchComponent.playBombBooster();
+					break;
+				case Booster.CUBE:
+					_matchComponent.playCubeBooster();
+					break;
+				case Booster.HAMMER:
+					_matchComponent.playHammerBooster();
+					break;
+				case Booster.TIME:
+					
+					var pivotPoint:Point = new Point( _timeProgress.x, _timeProgress.y );
+					
+					Animations.playTimeBoosterAnimation( _animBase, pivotPoint );
+					break;
+				default:
+			}
+		}
+
+		public function setMatchCurrentFlashEnergy(currentFlashEnergy : Number, maxFlashEnergy : Number, multiplier : Number, state : int) : void
+		{
+			// _energyProgress.maxValue = maxFlashEnergy;
+			// _energyProgress.value = currentFlashEnergy;
+			_energyProgress.visualState = state;
+			_energyProgress.setProgress(currentFlashEnergy / maxFlashEnergy, true);
+			// _energyProgress.label = multiplier.toFixed(1) + "x";
+			initFlashEnergy(multiplier);
+		}
+
+		public function initFlashEnergy(multiplier : Number) : void
+		{
+			var levelText : String = (multiplier == int(multiplier)) ? multiplier.toString() : multiplier.toFixed(1);
+			_energyProgress.label = levelText + "x";
 		}
 	}
 }

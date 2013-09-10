@@ -54,6 +54,8 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 		private var _activeSkin : DisplayObject;
 		private var _disactiveSkin : DisplayObject;
 		
+		public var maxVal:Number;
+		
 		public static const BOMB:int = 1;
 		public static const CUBE:int = 2;
 		public static const HAMMER:int = 3;
@@ -140,6 +142,7 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 		{
 			// _mask.alpha = 0.5;
 			var g : Graphics = _mask.graphics;
+			g.clear();
 			var base : Number = Math.PI * 0.5;
 			var phy : Number = Math.PI * 0.25 - 0.1;
 			var start : Number = base + phy;
@@ -147,18 +150,24 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 			var p : Number = Math.min(_persent, 1);
 			var current : Number = (end - start) * p + start;
 			g.beginFill(0);
-			Util.drawCircleSegment(g, _center, start, current, 38);
+			Util.drawCircleSegment(g, _center, start, current, 38 );
 			g.endFill();
+			
+			_state = ( _persent >= 1 )? ACTIVE_STATE: DISACTIVE_STATE;
 
 			// state stuff
 			if (_skin)
 			{
 				if (_state == ACTIVE_STATE)
 				{
+					activeSkin.visible = true;
+					disactiveSkin.visible = false;
 					_icon = activeSkin;
 				}
 				if (_state == DISACTIVE_STATE)
 				{
+					activeSkin.visible = false;
+					disactiveSkin.visible = true;
 					_icon = disactiveSkin;
 				}
 			}
@@ -214,7 +223,7 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 			if (!_disactiveSkin)
 			{
 				_disactiveSkin = new _skin[1]();
-				addChild(_activeSkin);
+				addChild(_disactiveSkin);
 			}
 			return _disactiveSkin;
 		}

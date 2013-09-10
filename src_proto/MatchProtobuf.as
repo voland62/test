@@ -99,6 +99,31 @@ package  {
 		/**
 		 *  @private
 		 */
+		public static const BOMBCHANCE:FieldDescriptor$TYPE_INT32 = new FieldDescriptor$TYPE_INT32("MatchProtobuf.bombChance", "bombChance", (10 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var bombChance$field:int;
+
+		public function clearBombChance():void {
+			hasField$0 &= 0xfffffffd;
+			bombChance$field = new int();
+		}
+
+		public function get hasBombChance():Boolean {
+			return (hasField$0 & 0x2) != 0;
+		}
+
+		public function set bombChance(value:int):void {
+			hasField$0 |= 0x2;
+			bombChance$field = value;
+		}
+
+		public function get bombChance():int {
+			return bombChance$field;
+		}
+
+		/**
+		 *  @private
+		 */
 		override used_by_generated_code final function writeToBuffer(output:com.netease.protobuf.WritingBuffer):void {
 			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 1);
 			com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, this.time);
@@ -122,6 +147,10 @@ package  {
 				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 9);
 				com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, startLevel$field);
 			}
+			if (hasBombChance) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 10);
+				com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, bombChance$field);
+			}
 			for (var fieldKey:* in this) {
 				super.writeUnknown(output, fieldKey);
 			}
@@ -139,6 +168,7 @@ package  {
 			var boosterEnergy$count:uint = 0;
 			var boosterEnergyGrowthPerSecond$count:uint = 0;
 			var startLevel$count:uint = 0;
+			var bombChance$count:uint = 0;
 			while (input.bytesAvailable > bytesAfterSlice) {
 				var tag:uint = com.netease.protobuf.ReadUtils.read$TYPE_UINT32(input);
 				switch (tag >> 3) {
@@ -200,6 +230,13 @@ package  {
 					}
 					++startLevel$count;
 					this.startLevel = com.netease.protobuf.ReadUtils.read$TYPE_INT32(input);
+					break;
+				case 10:
+					if (bombChance$count != 0) {
+						throw new flash.errors.IOError('Bad data format: MatchProtobuf.bombChance cannot be set twice.');
+					}
+					++bombChance$count;
+					this.bombChance = com.netease.protobuf.ReadUtils.read$TYPE_INT32(input);
 					break;
 				default:
 					super.readUnknown(input, tag);

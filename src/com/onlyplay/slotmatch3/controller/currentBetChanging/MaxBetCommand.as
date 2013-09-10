@@ -24,9 +24,9 @@ package com.onlyplay.slotmatch3.controller.currentBetChanging
 		override public function execute() : void
 		{
 			gameModel.currentBet.betPerLine = gameModel.currentLocation.maxBet;//currentIsland.maxBet;
-			gameModel.currentBet.linesNum = gameModel.currentLocation.maxLinesAmount;//currentIsland.maxLines;
+			gameModel.currentBet.lines =  gameModel.getLines( gameModel.currentLocation.maxLinesAmount);//currentIsland.maxLines;
 			
-			eventDispatcher.dispatchEvent(new Event("currenBetUpdated"));
+			eventDispatcher.dispatchEvent(new DynamicEvent("currenBetUpdated"));
 			eventDispatcher.dispatchEvent(new Event("spin"));
 		}
 	}

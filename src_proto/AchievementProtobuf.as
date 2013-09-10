@@ -115,6 +115,31 @@ package  {
 		/**
 		 *  @private
 		 */
+		public static const SPECIAL:FieldDescriptor$TYPE_BOOL = new FieldDescriptor$TYPE_BOOL("AchievementProtobuf.special", "special", (10 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var special$field:Boolean;
+
+		public function clearSpecial():void {
+			hasField$0 &= 0xfffffffb;
+			special$field = new Boolean();
+		}
+
+		public function get hasSpecial():Boolean {
+			return (hasField$0 & 0x4) != 0;
+		}
+
+		public function set special(value:Boolean):void {
+			hasField$0 |= 0x4;
+			special$field = value;
+		}
+
+		public function get special():Boolean {
+			return special$field;
+		}
+
+		/**
+		 *  @private
+		 */
 		override used_by_generated_code final function writeToBuffer(output:com.netease.protobuf.WritingBuffer):void {
 			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 1);
 			com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, this.achievementId);
@@ -138,6 +163,10 @@ package  {
 				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 9);
 				com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, experience$field);
 			}
+			if (hasSpecial) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 10);
+				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, special$field);
+			}
 			for (var fieldKey:* in this) {
 				super.writeUnknown(output, fieldKey);
 			}
@@ -156,6 +185,7 @@ package  {
 			var nextStageValue$count:uint = 0;
 			var money$count:uint = 0;
 			var experience$count:uint = 0;
+			var special$count:uint = 0;
 			while (input.bytesAvailable > bytesAfterSlice) {
 				var tag:uint = com.netease.protobuf.ReadUtils.read$TYPE_UINT32(input);
 				switch (tag >> 3) {
@@ -221,6 +251,13 @@ package  {
 					}
 					++experience$count;
 					this.experience = com.netease.protobuf.ReadUtils.read$TYPE_INT32(input);
+					break;
+				case 10:
+					if (special$count != 0) {
+						throw new flash.errors.IOError('Bad data format: AchievementProtobuf.special cannot be set twice.');
+					}
+					++special$count;
+					this.special = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
 					break;
 				default:
 					super.readUnknown(input, tag);

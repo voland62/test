@@ -15,7 +15,7 @@ package com.onlyplay.slotmatch3.view
 
 		function showSping(newState : Array) : void;
 
-		function drawLines(winLines : Array) : void;
+		//function drawLines(winLines : Array) : void;
 
 		function setReady() : void;
 
@@ -33,7 +33,7 @@ package com.onlyplay.slotmatch3.view
 
 		function setBetPerLine(betPerLine : Number) : void;
 
-		function setLines(linesNum : uint) : void;
+		function setLines(lines : Array, showLines:Boolean) : void;
 
 		function setWin(win : Number) : void;
 
@@ -51,15 +51,25 @@ package com.onlyplay.slotmatch3.view
 		
 		function setMatchState() : void
 		
-		function matchReinit():void
+		function matchReinit( iconEnergy:Number ):void
 
 		function setMatchCurrentTime(matchCurrentTime : Number) : void;
 
 		function setMatchMaxTime(maxTime : Number) : void
 
-		function playWinAnimation(win : Number, onWinAnimComeplete : Function) : void;
+		function playWinAnimation(win : Number, winLines:Array, onWinAnimComeplete : Function) : void;
 
 		function setStarsProgress(commonPercentage : Number) : void;
+
+		function initSlot(islandId : int, locationId : int) : void;
+
+		function hideLines() : void;
+
+		function playBooster(boosterType : int) : void;
+
+		function setMatchCurrentFlashEnergy(currentFlashEnergy : Number, maxFlashEnergy : Number, multiplier:Number, state:int) : void;
+
+		function initFlashEnergy(multiplier : Number) : void;
 		
 	}
 }

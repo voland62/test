@@ -1,12 +1,15 @@
 package com.onlyplay.slotmatch3.components.games.match
 {
+	import com.greensock.easing.Elastic;
+	import flash.text.TextFieldAutoSize;
+	import com.greensock.easing.Quad;
 	import com.greensock.TimelineLite;
 	import com.greensock.TweenLite;
-	import com.greensock.easing.Bounce;
 	import com.greensock.easing.Linear;
-	import com.greensock.easing.Quad;
 	import com.greensock.easing.Sine;
 	import com.onlyplay.slotmatch3.components.games.Util;
+
+	import org.flintparticles.twoD.renderers.BitmapRenderer;
 
 	import mx.events.DynamicEvent;
 
@@ -19,10 +22,14 @@ package com.onlyplay.slotmatch3.components.games.match
 	import flash.events.TimerEvent;
 	import flash.filters.GlowFilter;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.net.registerClassAlias;
-	import flash.system.MessageChannel;
-	import flash.system.Worker;
-	import flash.system.WorkerDomain;
+	//import flash.system.MessageChannel;
+//	import flash.system.Worker;
+//	import flash.system.WorkerDomain;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
 
@@ -52,7 +59,7 @@ package com.onlyplay.slotmatch3.components.games.match
 		// microbonuses assets
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/baks.png", mimeType="image/png")]
 		private static var Backs_Class : Class;
-		//[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/fire.png", mimeType="image/png")]
+		// [Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/fire.png", mimeType="image/png")]
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/microbonus_hod.png", mimeType="image/png")]
 		private static var FireClass : Class;
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/microbonus/time.png", mimeType="image/png")]
@@ -77,9 +84,9 @@ package com.onlyplay.slotmatch3.components.games.match
 		private var _iconsBase : DisplayObjectContainer;
 		private var _animBase : DisplayObjectContainer;
 		// worker stuff
-		private var myWorker : Worker;
-		private var bm : MessageChannel;
-		private var mb : MessageChannel;
+		//private var myWorker : Worker;
+		//private var bm : MessageChannel;
+		//private var mb : MessageChannel;
 		private var _currentSwaps : Array;
 		private var _showSwapsTimer : Timer = new Timer(3000);
 		private var _blastBackBase : DisplayObjectContainer;
@@ -89,28 +96,30 @@ package com.onlyplay.slotmatch3.components.games.match
 		private var _h : uint = 6;
 		// костыль
 		public var animBaseForSpiral : DisplayObjectContainer;
+		private var _renderer : BitmapRenderer;
+		public var iconEnergy : Number = 0;
 
 		public function MatchComponent()
 		{
 			registerClassAlias("ItemModel_", ItemModel);
 			_showSwapsTimer.addEventListener(TimerEvent.TIMER, onShowSwapsTick);
-
+			//
 			// --- worker stuff --------------
-			if ( Worker.isSupported)
-			{
-				myWorker = WorkerDomain.current.createWorker(new MyWorkerClass());
-				// myWorker = WorkerDomain.current.createWorker( WorkerManager.test_MyTestProject_MyWorker);
-
-				bm = myWorker.createMessageChannel(Worker.current);
-				mb = Worker.current.createMessageChannel(myWorker);
-
-				myWorker.setSharedProperty("btm", bm);
-				myWorker.setSharedProperty("mtb", mb);
-
-				bm.addEventListener(Event.CHANNEL_MESSAGE, onBackToMain);
-
-				myWorker.start();
-			}
+//			if ( Worker.isSupported)
+//			{
+//				myWorker = WorkerDomain.current.createWorker(new MyWorkerClass());
+//				// myWorker = WorkerDomain.current.createWorker( WorkerManager.test_MyTestProject_MyWorker);
+//
+//				bm = myWorker.createMessageChannel(Worker.current);
+//				mb = Worker.current.createMessageChannel(myWorker);
+//
+//				myWorker.setSharedProperty("btm", bm);
+//				myWorker.setSharedProperty("mtb", mb);
+//
+//				bm.addEventListener(Event.CHANNEL_MESSAGE, onBackToMain);
+//
+//				myWorker.start();
+//			}
 
 			// -------------------------------
 			_bg = getBg(_w, _h, 1);
@@ -131,7 +140,11 @@ package com.onlyplay.slotmatch3.components.games.match
 			_animBase.addEventListener("animComplete", onAnimCompleteFromTimeLine, true);
 			addChild(_animBase);
 
-			reinit();
+			_renderer = new BitmapRenderer(new Rectangle(0, 0, width, height));
+			_renderer.filters = [new GlowFilter(0xffffff, 1, 20, 20, 10, 2)];
+			addChild(_renderer);
+
+			//reinit();
 
 			// fall();
 
@@ -169,75 +182,75 @@ package com.onlyplay.slotmatch3.components.games.match
 
 				// debug
 
-				var swapsItemsRaw : Array = [].concat.apply(null, _currentSwaps);
-				swapsItemsRaw = [].concat.apply(null, swapsItemsRaw);
+//				var swapsItemsRaw : Array = [].concat.apply(null, _currentSwaps);
+//				swapsItemsRaw = [].concat.apply(null, swapsItemsRaw);
+//
+//				var filter : GlowFilter = new GlowFilter(0x00ffff);
+//
+//				var swapedIcons : Array = [];
+//				for each (var item : ItemModel in swapsItemsRaw)
+//				{
+//					var icon : DisplayObjectContainer = _map[item.id];
+//					if (icon)
+//					{
+//						icon.filters = [filter];
+//						swapedIcons.push(icon);
+//					}
+//				}
+//				TweenLite.delayedCall(1.5, function() : void
+//				{
+//					for each (var icon : DisplayObject in swapedIcons)
+//					{
+//						icon.filters = [];
+//					}
+//				});
 
-				var filter : GlowFilter = new GlowFilter(0x00ffff);
-
-				var swapedIcons : Array = [];
-				for each (var item : ItemModel in swapsItemsRaw)
+				var swapGroups : Array = _currentSwaps[Util.randInt(_currentSwaps.length)];
+				// var swapGroup : Array = swapGroups[Util.randInt(swapGroups.length)];
+				for each (var item : ItemModel in swapGroups)
 				{
 					var icon : DisplayObjectContainer = _map[item.id];
 					if (icon)
 					{
-						icon.filters = [filter];
-						swapedIcons.push(icon);
+						var graphicBase : DisplayObject = icon.getChildByName("graphicBase");
+						var timeLine : TimelineLite = new TimelineLite();
+						timeLine.append(TweenLite.to(graphicBase, 0.125, {scaleX:1.1, scaleY:1.1, ease:Sine.easeIn}));
+						timeLine.append(TweenLite.to(graphicBase, 0.125, {scaleX:1, scaleY:1, ease:Sine.easeOut}));
+						timeLine.append(TweenLite.to(graphicBase, 0.125, {scaleX:1.1, scaleY:1.1, ease:Sine.easeIn}));
+						timeLine.append(TweenLite.to(graphicBase, 0.125, {scaleX:1, scaleY:1, ease:Sine.easeOut}));
 					}
 				}
-				TweenLite.delayedCall(1.5, function() : void
-				{
-					for each (var icon : DisplayObject in swapedIcons)
-					{
-						icon.filters = [];
-					}
-				});
-
-				// var swapGroups : Array = _currentSwaps[Util.randInt(_currentSwaps.length)];
-				// var swapGroup : Array = swapGroups[Util.randInt(swapGroups.length)];
-				// for each (var item : ItemModel in swapGroup)
-				// {
-				// var icon : DisplayObjectContainer = _map[item.id];
-				// if (icon)
-				// {
-				// var graphicBase : DisplayObject = icon.getChildByName("graphicBase");
-				// var timeLine : TimelineLite = new TimelineLite();
-				// timeLine.append(TweenLite.to(graphicBase, 0.125, {scaleX:1.1, scaleY:1.1, ease:Sine.easeIn}));
-				// timeLine.append(TweenLite.to(graphicBase, 0.125, {scaleX:1, scaleY:1, ease:Sine.easeOut}));
-				// timeLine.append(TweenLite.to(graphicBase, 0.125, {scaleX:1.1, scaleY:1.1, ease:Sine.easeIn}));
-				// timeLine.append(TweenLite.to(graphicBase, 0.125, {scaleX:1, scaleY:1, ease:Sine.easeOut}));
-				// }
-				// }
 			}
 		}
 
-		private function onBackToMain(event : Event) : void
-		{
-			log("-------MatchComponent.onBackToMain(event)");
-			if (bm.messageAvailable)
-			{
-				var header : String = bm.receive();
-				log("header:" + header);
-				if ( header == "echo")
-				{
-					log("---> echo");
-				}
-				if ( header == "onGetPossibleSwaps")
-				{
-					var swaps : Array = bm.receive();
-					_currentSwaps = swaps;
-					if ( swaps.length == 0)
-					{
-						startReinitAnimation();
-					}
-					else
-					{
-						_showSwapsTimer.start();
-					}
-
-					log("---> From worker!!", "swaps.length:" + swaps.length);
-				}
-			}
-		}
+//		private function onBackToMain(event : Event) : void
+//		{
+//			log("-------MatchComponent.onBackToMain(event)");
+//			if (bm.messageAvailable)
+//			{
+//				var header : String = bm.receive();
+//				log("header:" + header);
+//				if ( header == "echo")
+//				{
+//					log("---> echo");
+//				}
+//				if ( header == "onGetPossibleSwaps")
+//				{
+//					var swaps : Array = bm.receive();
+//					_currentSwaps = swaps;
+//					if ( swaps.length == 0)
+//					{
+//						startReinitAnimation();
+//					}
+//					else
+//					{
+//						_showSwapsTimer.start();
+//					}
+//
+//					log("---> From worker!!", "swaps.length:" + swaps.length);
+//				}
+//			}
+//		}
 
 		override public function get height() : Number
 		{
@@ -252,7 +265,10 @@ package com.onlyplay.slotmatch3.components.games.match
 				// _w = 14;
 				// _field = Matcher_v2.genField(FieldShapes.RECTANGULAR, _w, _h);
 				// _field = Matcher_v2.genField2(FieldShapes.RECTANGULAR, _w, _h);
-				_field = Matcher_v2.genField3(FieldShapes.RECTANGULAR, _w, _h);
+				var defoultItemRange:int = 1;
+				_field = Matcher_v2.genField3(FieldShapes.RECTANGULAR, _w, _h, 1);
+				//log("MatchComponent.reinit()");
+				//trace('iconEnergy: ' + (iconEnergy));
 				var swaps : Array = Matcher_v2.getPossibleSwaps(_field);
 				// _field = Matcher_v2.genField( FieldShapes.SMILE ); _w = 7;_h = 7;
 				// _field = Matcher_v2.genField3( FieldShapes.SMILE ); _w = 7;_h = 7;
@@ -260,9 +276,9 @@ package com.onlyplay.slotmatch3.components.games.match
 			}
 			while (swaps.length == 0);
 			_currentSwaps = swaps;
-			
+
 			_showSwapsTimer.start();
-			
+
 			// --------------------
 			if (_map)
 			{
@@ -363,8 +379,17 @@ package com.onlyplay.slotmatch3.components.games.match
 				var item1 : ItemModel = Matcher_v2.getItemById(_selected1, field) as ItemModel;
 				var item2 : ItemModel = Matcher_v2.getItemById(_selected2, field) as ItemModel;
 
+				var chargedGroup : Array = [];
+				if ( item1.charge && item2.charge )
+				{
+					chargedGroup.push(item1, item2);
+				}
+
 				var res : Object = Matcher_v2.resolve(Matcher_v2.swap(item1, item2, field));
 				var groups : Array = res.groups;
+
+				if (chargedGroup.length > 0 ) groups.push(chargedGroup);
+
 				var bonuses : Object = res.bonuses;
 				var newSwapedState : Array = res.newState;
 
@@ -384,6 +409,10 @@ package com.onlyplay.slotmatch3.components.games.match
 					{
 						_animPlaying = false;
 						processDeleteAndPopulate(groups, newSwapedState, bonuses);
+						//_field = newSwapedState;
+						playStandartFalling();
+						
+						
 					}
 
 					// old variant 
@@ -396,6 +425,26 @@ package com.onlyplay.slotmatch3.components.games.match
 				resetSelection();
 			}
 		}
+		
+		
+		private function playStandartFalling( delayForFalling:Number = 0.25):void
+		{
+			//var delayForFalling : Number = 0.25;
+			TweenLite.delayedCall(delayForFalling, foo);
+
+			function foo() : void
+			{
+				//startFieldAnimation(newDensityFieldState, function() : void
+				startFieldAnimation(_field, function() : void
+				{
+					_animPlaying = false;
+					processGame();
+				});
+
+				//_field = newDensityFieldState;
+			}
+		}
+		
 
 		private function processGame() : void
 		{
@@ -406,6 +455,7 @@ package com.onlyplay.slotmatch3.components.games.match
 			if ( groups.length > 0)
 			{
 				processDeleteAndPopulate(groups, newSwapedState, bonuses);
+				playStandartFalling();
 			}
 			else
 			{
@@ -417,10 +467,10 @@ package com.onlyplay.slotmatch3.components.games.match
 
 				function checkPossibleSwap() : void
 				{
-					if ( false && Worker.isSupported )//
+					if ( false /*&& Worker.isSupported */ )//
 					{
-						mb.send("getPossibleSwaps");
-						mb.send(newSwapedState);
+//						mb.send("getPossibleSwaps");
+//						mb.send(newSwapedState);
 					}
 					else
 					{
@@ -467,6 +517,13 @@ package com.onlyplay.slotmatch3.components.games.match
 
 		public function startReinitAnimation(onComplete : Function = null) : void
 		{
+			// Animations.drop(_field, _map, _h, _w, cellSize);
+			playDrop();
+			TweenLite.delayedCall(1, function()
+			{
+				reinit();
+				playFall();
+			});
 			// this is drop
 
 			// Animations.fall(_h, _cellSize, _map);
@@ -498,18 +555,18 @@ package com.onlyplay.slotmatch3.components.games.match
 
 			function foo() : void
 			{
-				
 				// TODO: вынести этот общий функционал с reinit() в отдельную функцию
-				do {
+				do
+				{
 					var newShuffledState : Array = Matcher_v2.shuffle3(_field);
-					var swaps:Array = Matcher_v2.getPossibleSwaps(newShuffledState);
-					
-				} while (swaps.length == 0);
-				
+					var swaps : Array = Matcher_v2.getPossibleSwaps(newShuffledState);
+				}
+				while (swaps.length == 0);
+
 				_currentSwaps = swaps;
 				_showSwapsTimer.start();
-				
-				//------------------------------------
+
+				// ------------------------------------
 
 				_field = newShuffledState;
 				playBangAnimation();
@@ -565,34 +622,44 @@ package com.onlyplay.slotmatch3.components.games.match
 			timeLine.appendMultiple([TweenLite.to(icon1, 0.3, {x:icon1.x, y:icon1.y}), TweenLite.to(icon2, 0.3, {x:icon2.x, y:icon2.y})]);
 		}
 
-		private function processDeleteAndPopulate(groups : Array, newSwapedState : Array, bonuses : Object) : void
+		private function processDeleteAndPopulate( 	groups : Array, 
+													newSwapedState : Array, 
+													bonuses : Object,
+													 
+													delayForFalling : Number = 0.25) : void
 		{
 			// return {newField:newField, forAnim:forAnim};
-			var res : Object = Matcher_v2.getNewStateAfterDeletionAndPopulation(groups, newSwapedState, bonuses);
+			var res : Object = Matcher_v2.getNewStateAfterDeletionAndPopulation(groups, newSwapedState, bonuses, iconEnergy);
+			//Matcher_v2.estimateItemsInGroups( groups );
 			var newFieldState : Array = res.newField;
-			manageTilesAndStartBlustAnimation(newFieldState, res.forAnim);
+			manageTilesAndStartBlustAnimation(newFieldState, res.forAnim, groups);
 
 			var newDensityFieldState : Array = Matcher_v2.getNewDensityState(newFieldState);
+			_field = newDensityFieldState;
+			
+//			TweenLite.delayedCall(delayForFalling, foo);
 
-			TweenLite.delayedCall(0.25, foo);
-
-			function foo() : void
-			{
-				startFieldAnimation(newDensityFieldState, function() : void
-				{
-					_animPlaying = false;
-					processGame();
-				});
-
-				_field = newDensityFieldState;
-			}
+//			function foo() : void
+//			{
+//				startFieldAnimation(newDensityFieldState, function() : void
+//				{
+//					_animPlaying = false;
+//					processGame();
+//				});
+//
+//				_field = newDensityFieldState;
+//			}
 		}
+		
+		
+		
+		
 
 		private function startFieldAnimation(newDensityFieldState : Array, continuationClosure : Function = null) : void
 		{
 			_animPlaying = true;
 
-			var dur : Number = 0.5;
+			var dur : Number = 0.3;
 
 			for each (var icon : Sprite in _map)
 			{
@@ -603,7 +670,15 @@ package com.onlyplay.slotmatch3.components.games.match
 					var newY : Number = item.y * _cellSize + (_cellSize >> 1);
 					if ( newX != icon.x || newY != icon.y)
 					{
-						TweenLite.to(icon, dur, {x:newX, y:newY});
+//						var timeLine:TimelineLite = new TimelineLite();
+//						timeLine.append( TweenLite.to(icon, dur, {x:newX + 10, y:newY + 10}));
+//						timeLine.append( TweenLite.to(icon, 0.5, {y:newY, ease:Elastic.easeOut, onStart:function(){ icon.y += 10 ;}}));
+
+						var timeLine : TimelineLite = new TimelineLite();
+						// timeLine.delay = range * 0.03;
+						timeLine.append(TweenLite.to(icon, dur, { y:newY + 5}));
+						// timeLine.append(TweenLite.to(icon, 0.5, { y:newY, ease:Elastic.easeOut, easeParams:[1, 0.125]}));
+						
 					}
 				}
 				else
@@ -614,9 +689,13 @@ package com.onlyplay.slotmatch3.components.games.match
 			if (continuationClosure) TweenLite.delayedCall(dur, continuationClosure);
 		}
 
-		private function manageTilesAndStartBlustAnimation(newFieldState : Array, forAnim : Array) : void
+		private function manageTilesAndStartBlustAnimation(newFieldState : Array, forAnim : Array, groups:Array) : void
 		{
 			var iconsOnDelete : Array = [];
+			var groupsRaw: Array = [].concat.apply(null, groups);
+			
+			var totalFlashEnergy:Number = 0;
+			
 			// delete visuals
 			for (var itemId : String in _map)
 			{
@@ -632,23 +711,26 @@ package com.onlyplay.slotmatch3.components.games.match
 					if (micorbonusAnimItem && micorbonusAnimItem.microbonus)
 					{
 						// animation here
-						var microbonusIcon : DisplayObject = (icon.getChildByName("graphicBase") as DisplayObjectContainer).getChildByName("microbonus");
-						if (microbonusIcon)
-						{
-							var event : DynamicEvent = new DynamicEvent("animMicrobonus");
-							event.pos = microbonusIcon.localToGlobal(new Point());
-							event.bonusType = micorbonusAnimItem.microbonus;
-							event.icon = microbonusIcon;
-							dispatchEvent(event);
-						}
+						dispatchMicrobonusEvent( icon , micorbonusAnimItem.microbonus);
 					}
 					// charged
 					if (micorbonusAnimItem && micorbonusAnimItem.charge)
 					{
 						playChargeAnimation(micorbonusAnimItem.charge, micorbonusAnimItem.x, micorbonusAnimItem.y);
 					}
+					
+					var itemOnDelete:ItemModel = Matcher_v2.getItemById(itemId, groupsRaw) as ItemModel;
+					if (itemOnDelete)
+					{
+						var energyPerIcon : Number =  int (iconEnergy * Util.getK( itemOnDelete.price ) / itemOnDelete.price ); //10;
+						totalFlashEnergy += energyPerIcon;
+					}
+					
+					
+					
+					
 
-					addBlustMoveieClip(icon.x, icon.y);
+					addBlustMoveieClip(icon.x, icon.y, energyPerIcon);
 					// attention
 					// _iconsBase.removeChild(icon);
 					iconsOnDelete.push(icon);
@@ -661,9 +743,17 @@ package com.onlyplay.slotmatch3.components.games.match
 				// we modify appearence of existing icon here, according to the "charge" field - to show bomb,vert or hor, modifers
 				else if (item.charge)
 				{
+					
 					var icon : Sprite = _map[itemId];
+					if ( item.microbonus )
+					{
+						dispatchMicrobonusEvent(icon, item.microbonus);
+					}
+					
 					var chargeBase : DisplayObjectContainer = (icon.getChildByName("graphicBase") as DisplayObjectContainer).getChildByName("chargeBase") as DisplayObjectContainer;
-
+					chargeBase.removeChildren();
+					
+					
 					if (item.charge == ItemModel.BOMB)
 					{
 						if (!chargeBase.getChildByName("bomb"))
@@ -722,6 +812,10 @@ package com.onlyplay.slotmatch3.components.games.match
 					_map[item.id] = icon_;
 				}
 			}
+			
+			var ev:DynamicEvent = new DynamicEvent( "flashEnergy" );
+			ev.val = totalFlashEnergy;
+			dispatchEvent(ev);
 
 			// TweenLite.delayedCall(0.5, placeNewVisuals);
 			//			
@@ -730,7 +824,20 @@ package com.onlyplay.slotmatch3.components.games.match
 			// }
 		}
 
-		private function addBlustMoveieClip(x : Number, y : Number) : void
+		private function dispatchMicrobonusEvent(icon : Sprite, bonusType:int) : void
+		{
+									var microbonusIcon : DisplayObject = (icon.getChildByName("graphicBase") as DisplayObjectContainer).getChildByName("microbonus");
+						if (microbonusIcon)
+						{
+							var event : DynamicEvent = new DynamicEvent("animMicrobonus");
+							event.pos = microbonusIcon.localToGlobal(new Point());
+							event.bonusType = bonusType;//micorbonusAnimItem.microbonus;
+							event.icon = microbonusIcon;
+							dispatchEvent(event);
+						}
+		}
+
+		private function addBlustMoveieClip(x : Number, y : Number, energyPerIcon : Number) : void
 		{
 			var blastBack : DisplayObject = new blast_ordinary_back();
 			_blastBackBase.addChild(blastBack);
@@ -756,6 +863,38 @@ package com.onlyplay.slotmatch3.components.games.match
 			{
 				star.parent.removeChild(star);
 			}});
+
+			if ( energyPerIcon )
+			{
+				var tf : TextField = createTf(18, 0xFFFFFF, true);
+				tf.text = energyPerIcon.toString();
+				_blastFrontBase.addChild(tf);
+				tf.x = x - (tf.width >> 1);
+				tf.y = y - (tf.height >> 1);
+				tf.cacheAsBitmap = true;
+				TweenLite.to( tf, 1, {y:tf.y - 50, ease:Quad.easeIn , alpha:0, onComplete:function ():void{tf.parent.removeChild(tf);}});
+			}
+		}
+
+		private function createTf(size : Number, color : int, bold : Boolean) : TextField
+		{
+			var tf : TextField = new TextField();
+			tf.multiline = false;
+			// tf.border = true;
+			tf.textColor = color;
+			tf.selectable = false;
+			tf.mouseEnabled = false;
+			tf.height = size + 4;
+			tf.autoSize = TextFieldAutoSize.LEFT;
+
+			var format : TextFormat = new TextFormat();
+			format.align = TextFormatAlign.CENTER;
+			format.font = "_sans";
+			format.size = size;
+			format.bold = bold;
+			tf.defaultTextFormat = format;
+
+			return tf;
 		}
 
 		private function playChargeAnimation(charge : int, x : Number, y : Number) : void
@@ -825,6 +964,7 @@ package com.onlyplay.slotmatch3.components.games.match
 			var iconsMap : Array = [Icon_1_Class, Icon_2_Class, Icon_3_Class, Icon_4_Class, Icon_5_Class, Icon_6_Class];
 			iconsMap["super"] = Icon_Bonus_Class;
 			var icon : Bitmap = new iconsMap[item.type]();
+			icon.smoothing = true;
 
 			var s : Sprite = new Sprite();
 
@@ -845,12 +985,19 @@ package com.onlyplay.slotmatch3.components.games.match
 
 			if (item.microbonus)
 			{
+				var microbonusPlaceHolder:DisplayObjectContainer = new Sprite();
+				microbonusPlaceHolder.mouseChildren = false;
+				microbonusPlaceHolder.mouseEnabled = false;
+				microbonusPlaceHolder.name = "microbonus";
+				graphicBase.addChild(microbonusPlaceHolder);
+				
 				var microLabel : Bitmap = new _micrbonuces[item.microbonus]();
-				microLabel.name = "microbonus";
-				graphicBase.addChild(microLabel);
-
-				microLabel.x = (_cellSize >> 1) - microLabel.width;
-				microLabel.y = (_cellSize >> 1) - microLabel.height;
+				microbonusPlaceHolder.addChild(microLabel);
+				microbonusPlaceHolder.x = (_cellSize - microLabel.width) >> 1 ;
+				microbonusPlaceHolder.y = (_cellSize - microLabel.height)>> 1;
+				
+				microLabel.x -= microLabel.width >> 1;
+				microLabel.y -= microLabel.height >> 1;
 			}
 
 			icon.width = icon.height = _cellSize;
@@ -862,6 +1009,57 @@ package com.onlyplay.slotmatch3.components.games.match
 		public function get animBase() : DisplayObjectContainer
 		{
 			return _animBase;
+		}
+
+		public function playBombBooster() : void
+		{
+			var res : Array = Matcher_v2.getNewStateAfterBomb(_field);
+			var newState : Array = res[0];
+			var area : Array = res[1];
+			var centerItem : ItemModel = res[2];
+
+			Animations.playWaveAfterTheBomb(area, newState, _map, centerItem, function() : void
+			{
+				// processDeleteAndPopulate([area], newState, [], 1);
+			});
+			processDeleteAndPopulate([area], newState, [], 1);
+			playStandartFalling( 1 );
+		}
+
+		public function playHammerBooster() : void
+		{
+			var res : Array = Matcher_v2.getNewStateAfterHammer(_field);
+			var newState : Array = res[0];
+			var area : Array = res[1];
+
+			var center : Point = new Point(width >> 1, height >> 1);
+
+			var comp : DisplayObject = this;
+
+			if (_animBase)
+			{
+				Animations.hammer(_animBase, center, function(e : Event = null) : void
+				{
+					Animations.hammerBlast(animBaseForSpiral, _renderer, comp, area, function(e : Event = null) : void
+					{
+						processDeleteAndPopulate([area], newState, []);
+						playStandartFalling();
+					});
+				});
+			}
+		}
+
+		public function playCubeBooster() : void
+		{
+			processDeleteAndPopulate([_field], _field, [], 2);
+			
+			TweenLite.delayedCall(1, function ():void
+			{
+				resetVisuals();
+				playFall();
+			});
+			
+			
 		}
 	}
 }

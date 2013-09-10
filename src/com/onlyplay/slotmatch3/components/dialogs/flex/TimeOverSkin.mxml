@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SparkSkinning\mySkins\MyAlphaButtonSkin.mxml -->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	minWidth="21" minHeight="21" >
+
+	<fx:Metadata>
+		[HostComponent("com.onlyplay.slotmatch3.components.dialogs.flex.TimeOverPopUp1")]
+	</fx:Metadata>
+
+	<!-- Specify one state for each SkinState metadata in the host component's 213.160.129.246 class -->
+
+	<fx:Script>
+		<![CDATA[
+			import assets.DialogClasses;
+			public var frame:Sprite = new Sprite();
+			
+			
+			override protected function createChildren() : void
+			{
+				var corners:Bitmap = new DialogClasses.CornerClass();
+				frame.addChild(corners);
+				frame.scale9Grid = new Rectangle( 24, 45, 2, 2 );
+				super.createChildren();
+			}
+			
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+	<!--<s:Image/>-->
+
+	<!--<s:Rect left="0" right="0" top="0" bottom="0" radiusX="2" radiusY="2">
+		<s:stroke>
+			<s:SolidColorStroke color="0x000000" weight="1"/>
+		</s:stroke>
+		<s:fill>
+			<s:BitmapFill >
+			</s:BitmapFill>
+		</s:fill>
+	</s:Rect>-->
+	
+	<s:BitmapImage left="0" right="0" top="0" bottom="0" source="{DialogClasses.BgClass}" fillMode="repeat"/>
+	<s:BitmapImage left="0" right="-12" top="-12" bottom="-3" source="{frame}"/>
+	
+
+</s:Skin>

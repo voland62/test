@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" implements="com.onlyplay.slotmatch3.view.IGameView">
-
-<mx:Script>
-	<![CDATA[
-			private var _w : Number;
-			private var _h : Number;
-
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" implements="com.onlyplay.slotmatch3.view.IGameView">
+	<fx:Script>
+		<![CDATA[
 			public function get w() : Number
 			{
-				return _w;
+				return 0;
 			}
 
-			public function set w(w : Number) : void
+			public function set w(val : Number) : void
 			{
-				_w = w;
 			}
 
 			public function get h() : Number
 			{
-				return _h;
+				return 0;
 			}
 
-			public function set h(h : Number) : void
+			public function set h(val : Number) : void
 			{
-				_h = h;
 			}
 
 			public function showSping(newState : Array) : void
@@ -42,7 +38,7 @@
 			{
 			}
 
-			public function setExperinece(experience : int, level:int, leftVal:int, rightVal:int) : void
+			public function setExperinece(experience : int, level : int, leftVal : int, rightVal : int) : void
 			{
 			}
 
@@ -50,9 +46,9 @@
 			{
 			}
 
-//			public function updateConfig(serverConfig : ServerLocationConfigProtobuf) : void
-//			{
-//			}
+			public function setMaxBet(maxBet : Number) : void
+			{
+			}
 
 			public function setUpperBet(getWholeBet : Number) : void
 			{
@@ -62,11 +58,11 @@
 			{
 			}
 
-			public function setLines(linesNum : uint) : void
+			public function setLines(lines : Array, showLines:Boolean) : void
 			{
 			}
 
-			public function setWin( win:Number ) : void
+			public function setWin(win : Number) : void
 			{
 			}
 
@@ -94,6 +90,10 @@
 			{
 			}
 
+			public function matchReinit( iconEnergy:Number) : void
+			{
+			}
+
 			public function setMatchCurrentTime(matchCurrentTime : Number) : void
 			{
 			}
@@ -102,11 +102,7 @@
 			{
 			}
 
-			public function matchReinit() : void
-			{
-			}
-
-			public function playWinAnimation(win : Number, onWinAnimComeplete : Function) : void
+			public function playWinAnimation(win : Number, winLines:Array, onWinAnimComeplete : Function) : void
 			{
 			}
 
@@ -114,10 +110,26 @@
 			{
 			}
 
-			public function setMaxBet(maxBet : Number) : void
+			public function initSlot(islandId : int, locationId : int) : void
 			{
 			}
-	]]>
-</mx:Script>
 
-</mx:Panel>
+			public function hideLines() : void
+			{
+			}
+
+			public function playBooster(boosterType : int) : void
+			{
+			}
+
+			public function setMatchCurrentFlashEnergy(currentFlashEnergy : Number, maxFlashEnergy:Number, multiplier:Number, state:int) : void
+			{
+			}
+
+			public function initFlashEnergy(multiplier : Number) : void
+			{
+			}
+		]]>
+	</fx:Script>
+
+</s:Panel>

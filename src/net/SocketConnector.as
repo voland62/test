@@ -52,7 +52,8 @@ package net
 			var envelope : ByteArray = new ByteArray();
 			envelope.endian = Endian.LITTLE_ENDIAN;
 			envelope.writeShort(0);
-			envelope.writeShort(messageLength);
+			//envelope.writeShort(messageLength);
+			envelope.writeInt(messageLength);
 			envelope.writeShort(0);
 			return envelope;
 		}
@@ -101,11 +102,11 @@ package net
 			}
 			else
 			{
-				if ( socket.bytesAvailable >= 6 )
+				if ( socket.bytesAvailable >= 8 )
 				{
 					currentEnvelope = new ByteArray();
 					currentEnvelope.endian = Endian.LITTLE_ENDIAN;
-					socket.readBytes(currentEnvelope, 0, 6);
+					socket.readBytes(currentEnvelope, 0, 8);
 
 					parseData();
 				}
@@ -117,7 +118,8 @@ package net
 			currentEnvelope.position = 0;
 			currentEnvelope.readShort();
 
-			var packageLength : int = currentEnvelope.readShort();
+			//var packageLength : int = currentEnvelope.readShort();
+			var packageLength : int = currentEnvelope.readInt();
 
 			return packageLength;
 		}

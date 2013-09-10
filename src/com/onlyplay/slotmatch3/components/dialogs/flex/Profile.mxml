@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+	titleBgSource="{ GamePopup._TitleBgBigClass}" minHeight="600"
+	implements="com.onlyplay.slotmatch3.view.dialogs.IProfilePopup"
+	bgSource="{GamePopup._BgClassDark}" title="Профиль игрока" xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
+	xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*">
+
+
+
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+		
+         .sss {
+               color:#444444;
+               fontWeight:"bold";        
+          }     
+		
+	</fx:Style>
+
+	<my:states>
+		<s:State name="normal"/>
+		<s:State name="gifted"/>
+	</my:states>
+
+
+	<fx:Script>
+		<![CDATA[
+			import spark.events.IndexChangeEvent;
+
+			// "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_player_my_base.png"
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_player_my_base.png", mimeType="image/png")]
+			private var _FaceFrame : Class;
+			// [Embed(source="/assets/facebook/facebook/Id_1/ava_user.png", mimeType="image/png")]
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/FakePhotos/photo5.png", mimeType="image/png")]
+			private var FaceClass : Class;
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/buttons_base_green_green_red.png", mimeType="image/png")]
+			private var ButtonsBgClass : Class;
+
+			public function setName(name : String) : void
+			{
+				nameLabel.text = name;
+			}
+
+			public function setMoney(money : int) : void
+			{
+				moneyLabel.text = money.toString();
+			}
+
+			public function setLevel(level : int) : void
+			{
+				expProgress.level = level;
+			}
+
+			public function setExperience(experience : int, experienceBound : int) : void
+			{
+				expProgress.currentProgress = experience;
+				expProgress.totalProgress = experienceBound;
+			}
+
+			public function setStatistics(maxWin : int, boostersUsed : int, friendsAmount : int, giftsReceived : int, giftsSended : int) : void
+			{
+				this.maxWin.text = maxWin.toString();
+				this.bustersUsed.text = boostersUsed.toString();
+				this.frendsAmount.text = friendsAmount.toString();
+				this.giftsReceived.text = giftsReceived.toString();
+				this.giftsSended.text = giftsSended.toString();
+			}
+
+			private function onTabChanged(e : IndexChangeEvent) : void
+			{
+				// var nav:Navigator = e.target as Navigator;
+				// (nav.selectedItem as DisplayObject).name;
+				if (nav.selectedItem == giftss)
+				{
+					// log("Profile.onTabChanged(e)");
+					currentState = "gifted";
+				}
+				else
+				{
+					currentState = "normal";
+				}
+			}
+
+			private function tabsLabelFunction(item : Object) : String
+			{
+				return item.name;
+			}
+		]]>
+	</fx:Script>
+
+	<my:layout>
+		<s:VerticalLayout paddingTop="0" paddingBottom="30"
+			horizontalAlign="center" paddingLeft="30" paddingRight="30"/>
+	</my:layout>
+
+	<s:Group>
+		<s:BitmapImage source="{_FaceFrame}"/>
+		<s:BitmapImage source="{FaceClass}" x="50" y="50"/>
+		<s:Label id="nameLabel" text="Александра Петровна" x="140" y="27"
+			fontSize="17" fontWeight="bold" textAlign="center" width="210"/>
+
+		<s:Button x="357" y="52" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.PlusButtonSkin"/>
+		<s:Label id="moneyLabel" text="1234567" x="215" y="68"
+			fontSize="20" fontWeight="bold" textAlign="center" width="130"/>
+
+		<progress:GameProgress id="expProgress" x="124" y="104"
+			displayPercents="false" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.progress.ProgressSkin1"/>
+
+	</s:Group>
+
+	<fx:Declarations>
+		<s:ArrayList id="dp">
+			<fx:Object label="Статистика"/>
+			<fx:Object label="Подарить подарок"/>
+		</s:ArrayList>
+
+		<s:ArrayList id="dp2">
+			<fx:String>Пушка</fx:String>
+			<fx:String>Канфеты</fx:String>
+			<fx:String>Звезда</fx:String>
+			<fx:String>Мыло</fx:String>
+			<fx:String>Пушка</fx:String>
+			<fx:String>Канфеты</fx:String>
+			<fx:String>Звезда</fx:String>
+			<fx:String>Мыло</fx:String>
+			<fx:String>Пушка</fx:String>
+			<fx:String>Канфеты</fx:String>
+			<fx:String>Звезда</fx:String>
+			<fx:String>Мыло</fx:String>
+		</s:ArrayList>
+	</fx:Declarations>
+
+	<s:Group width="100%" height="100%">
+		<s:TabBar dataProvider="{nav}" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.TabBarSkin"
+			labelFunction="{tabsLabelFunction}" top="0" left="10"
+			depth="1" change="onTabChanged(event)"/>
+
+		<ns:Navigator id="nav" left="0" right="0" bottom="0" top="38"
+			skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NavSkin">
+			<s:Group name="Статистика">
+				<s:VGroup top="20" left="20" bottom="20" right="20"
+					gap="30">
+					<!--<s:Rect width="100%" height="100%">
+					<s:stroke>
+					<s:SolidColorStroke color="0xFF0000"/>
+					</s:stroke>
+					</s:Rect>-->
+
+					<s:SkinnableContainer width="100%" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin">
+						<s:layout>
+							<s:TileLayout paddingBottom="20"
+								paddingLeft="50" paddingRight="30"
+								horizontalGap="60" paddingTop="20"
+								requestedColumnCount="2"/>
+							<!--<s:VerticalLayout paddingBottom="20"
+							paddingLeft="20" paddingRight="20"
+							paddingTop="20"/>-->
+						</s:layout>
+
+						<s:Label text="Максимальный выйгрыш:"
+							styleName="sss"/>
+						<s:Label id="maxWin" text="123456789"
+							styleName="sss"/>
+						<s:Label text="Бустеров использованно:"
+							styleName="sss"/>
+						<s:Label id="bustersUsed" text="1122"
+							styleName="sss"/>
+						<s:Label text="Количество друзей:" styleName="sss"/>
+						<s:Label id="frendsAmount" text="125"
+							styleName="sss"/>
+						<s:Label text="Подарков получено:" styleName="sss"/>
+						<s:Label id="giftsReceived" text="10"
+							styleName="sss"/>
+						<s:Label text="Подарков подарено:" styleName="sss"/>
+						<s:Label id="giftsSended" text="10" styleName="sss"/>
+
+					</s:SkinnableContainer>
+
+					<scrollEl:ScrollablePanel verticalCenter="0"
+						horizontalCenter="0" width="100%" title="Достижения"
+						height="100%" dataProvider="{dp2}"
+						itemRenderer="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.ScrollPanelItemRenderer">
+
+
+						<scrollEl:bottomBar>
+							<s:Label text="Получено:   22 из 100"
+								horizontalCenter="0" fontWeight="bold"
+								bottom="3"/>
+						</scrollEl:bottomBar>
+
+
+					</scrollEl:ScrollablePanel>
+
+
+				</s:VGroup>
+			</s:Group>
+
+			<s:Group id="giftss" top="20" bottom="20" left="20" right="20"
+				name="Подарить подарок">
+				<!--<s:Rect top="0" bottom="0" left="0" right="0">
+				<s:stroke>
+				<s:SolidColorStroke color="0x00ffff"/>
+				</s:stroke>
+				</s:Rect>-->
+			</s:Group>
+
+		</ns:Navigator>
+	</s:Group>
+
+
+
+	<my:controlBarContent>
+		<!--<s:Group bottom="-45" horizontalCenter="0" excludeFrom="gifted">
+		</s:Group>-->
+		<s:Button label="Зактыть" bottom="-45" horizontalCenter="0"
+			excludeFrom="gifted" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
+			click="{dispatchEvent(new Event(Event.CLOSE));}"/>
+
+		<s:Group bottom="-45" horizontalCenter="0" includeIn="gifted">
+			<s:BitmapImage source="{ButtonsBgClass}"/>
+			<s:Button x="24" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+				label="Подарить" fontSize="16"/>
+			<s:Button fontSize="16" x="180" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+				label="Подарить всем"/>
+			<s:Button x="337" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
+				fontSize="16"
+				label="Закрыть" click="{dispatchEvent(new Event(Event.CLOSE));}"/>
+
+			<!--<s:Button label="Зактыть" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
+			click="{dispatchEvent(new Event(Event.CLOSE));}"/>-->
+		</s:Group>
+
+
+	</my:controlBarContent>
+
+</my:GamePopup>

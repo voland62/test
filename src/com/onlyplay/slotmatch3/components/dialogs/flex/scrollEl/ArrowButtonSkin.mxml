@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+
+	<fx:Metadata>
+		/** 
+		 * @copy spark.skins.spark.ApplicationSkin#hostComponent
+		 */
+		[HostComponent("spark.components.Button")]
+	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_bn_scroll_left_norm.png")]
+			private static const UpClass : Class;
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_bn_scroll_left_press.png")]
+			private static const DownClass : Class;
+//			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_common1_pass.png", mimeType="image/png")]
+//			private static const DisableClass : Class;
+			
+			// "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_green1_wide_norm.png"
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+	<s:BitmapImage source.over="{UpClass}" source.up="{UpClass}" 
+		source.down="{DownClass}"/>
+
+</s:Skin>
+
+

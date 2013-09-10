@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" >
+	<fx:Metadata>
+		[HostComponent("com.onlyplay.slotmatch3.components.dialogs.flex.progress.GameProgress")]
+	</fx:Metadata>
+
+
+
+	<fx:Declarations>
+		<s:GlowFilter id="outlineFilter" color="0" strength="3" blurX="4"
+			blurY="4"/>
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			// "D:\reps\slogmatch3_2\trunk\client\ios\puzzleslots\SlotMatch3\Resources\Dialogs\ProfileDialog\profile_pb_experiance.png"
+			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_pb_experiance.png"
+			,scaleGridTop="11", scaleGridBottom="12", 
+			scaleGridLeft="10", scaleGridRight="180")]
+			private var ProgressStrip : Class;
+
+		]]>
+	</fx:Script>
+
+	<!--<s:Rect left="0" top="0" bottom="0" right="0">
+		<s:stroke>
+			<s:SolidColorStroke color="0"/>
+		</s:stroke>
+	</s:Rect>-->
+
+	<s:Group id="pGroup" left="39" right="0">
+
+		<s:BitmapImage source="{ProgressStrip}" left="0" right="0"
+			mask="{progressGroup}"/>
+
+		<s:Group id="progressGroup" top="0" bottom="0" left="0"
+			right="0">
+			<s:Rect left="0" top="0" bottom="0" right="0">
+				<s:fill>
+					<s:SolidColor color="#FF0000"/>
+				</s:fill>
+			</s:Rect>
+		</s:Group>
+		<s:Label id="percentDisplay" left="2" right="2" top="8" color="0xFFFFFF"
+			fontWeight="bold" filters="{[outlineFilter]}"
+			verticalAlign="middle" textAlign="center"/>
+	</s:Group>
+
+	<s:Label id="levelDisplay" left="0" width="42"  top="5"
+		color="0xFFFFFF" fontWeight="bold" filters="{[outlineFilter]}"
+		fontSize="20" textAlign="center"/>
+
+</s:Skin>

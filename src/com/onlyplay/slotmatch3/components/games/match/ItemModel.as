@@ -24,21 +24,24 @@ package com.onlyplay.slotmatch3.components.games.match
 		public var microbonus:int;
 		public var charge:int;
 		public var chain : Boolean ;
+		public var price:int;
 
-		public function ItemModel(x:int = 0, y:int = 0, type:int = 0, id:String = "")
+		public function ItemModel(x:int = 0, y:int = 0, type:int = 0, id:String = "", price:int = 0)
 		{
 			this.x = x;
 			this.y = y;
 			this.type = type;
 			this.id = id;
+			this.price = price;
 		}
 		
 		public function clone():ItemModel
 		{
-			var i:ItemModel = new ItemModel(x, y, type, id);
+			var i:ItemModel = new ItemModel(x, y, type, id, price);
 			i.microbonus = microbonus;
 			i.charge = charge;
 			i.chain = chain;
+			i.price = price;
 			return i;
 		}
 

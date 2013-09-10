@@ -1,8 +1,10 @@
 package com.onlyplay.slotmatch3.components.games
 {
 	import com.onlyplay.slotmatch3.components.games.match.Matcher_v2;
+
 	import flash.display.Graphics;
 	import flash.geom.Point;
+
 	/**
 	 * @author Design3d
 	 */
@@ -12,15 +14,15 @@ package com.onlyplay.slotmatch3.components.games
 		{
 			return int(Math.random() * n);
 		}
-		
-		public static function randBool():Boolean
+
+		public static function randBool() : Boolean
 		{
 			return Math.random() > 0.5;
 		}
-		
+
 		public static function sign(v : Number) : int
 		{
-			//return (v == 0) ? 0 : (v > 0) ? 1 : -1;
+			// return (v == 0) ? 0 : (v > 0) ? 1 : -1;
 			return (v > 0) ? 1 : -1;
 		}
 
@@ -28,10 +30,10 @@ package com.onlyplay.slotmatch3.components.games
 		{
 			return (a < 0) ? b + a % b : a % b;
 		}
-		
-		public static function range (n:int):Array
+
+		public static function range(n : int) : Array
 		{
-			var res:Array = [];			
+			var res : Array = [];
 			for (var i : int = 0; i < n; i++) res.push(i);
 			return res;
 		}
@@ -48,7 +50,7 @@ package com.onlyplay.slotmatch3.components.games
 				return uint((n % Math.pow(10, p + 1)) / Math.pow(10, p));
 			}
 		}
-		
+
 		public static function drawCircleSegment(graphics : Graphics, center : Point, start : Number, end : Number, r : Number, h_ratio : Number = 1, v_ratio : Number = 1, new_drawing : Boolean = true) : void
 		{
 			var x : Number = center.x;
@@ -84,18 +86,49 @@ package com.onlyplay.slotmatch3.components.games
 				graphics.curveTo(cx, cy, px, py);
 			}
 		}
-		
-		public static function partition (container:Array, foo:Function):Array
+
+		public static function partition(container : Array, foo : Function) : Array
 		{
 			if (container.length == 0) return [];
-			
-			var el:Object = container[0];
-			var group:Array = container.filter(function (item:Object, ..._):Boolean {return foo(el, item);});
-			var rest:Array = Matcher_v2.substruct(container, group);
+
+			var el : Object = container[0];
+			var group : Array = container.filter(function(item : Object, ..._) : Boolean
+			{
+				return foo(el, item);
+			});
+			var rest : Array = Matcher_v2.substruct(container, group);
 			return partition(rest, foo).concat([group]);
 		}
-		
-		
-		
+
+		public static function getIconUrl(islandId : int, locationId : int, iconId : int) : String
+		{
+			var islands : Array = [null, "hawaii", "underwater", "amazonka", "pirate"];
+			// TODO: Взять из конфига
+			//var urlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Slot/slot_icons/";
+			var urlBase:String = "slot_icons/";
+			var island : String = islands[ islandId ];
+			// var location:String = locationId.toString();
+
+			var name : String = "island" + islandId + "_location" + locationId + "_icon" + ++iconId + ".png";
+			var folder : String = "icons_" + island + "_level_0" + locationId + "/";
+			return urlBase + folder + name;
+		}
+
+		public static function getLocaleKey(islandId : int, locationId : int, iconId : int) : String
+		{
+			return "slot_icon_" + islandId + "_" + locationId + "_" + ++iconId + "_name";
+		}
+
+		public static function getK(n : int) : Number
+		{
+			if (n < 4)
+			{
+				return n;
+			}
+			else
+			{
+				return (((n - 1) * n) / 2) - (n - 3);
+			}
+		}
 	}
 }
