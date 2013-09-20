@@ -12,13 +12,29 @@
 			import mx.collections.ArrayCollection;
 			import mx.events.FlexEvent;
 			
+			[Embed(source="/Map/Islands/Hawaii/Background/hawaii_island.png")]
+			private static const HawaiiIsland : Class;
+			[Embed(source="/Map/Islands/Pirate/Background/pirate_island_inactive.png")]
+			private static const PirateIsland : Class;
+			[Embed(source="/Map/Islands/Amazone/Background/amazone_island_inactive.png")]
+			private static const AmazoneIsland : Class;
+			[Embed(source="/Map/Islands/Archipelago/Background/archipelago_island_inactive.png")]
+			private static const ArchipelagoIsland : Class;
+			
+			
 			[Bindable]
 			private var dp:ArrayCollection = new ArrayCollection( [ 
-				{url:"D:/reps/slotmatch3_3/Resources/Map/Islands/Hawaii/Background/hawaii_island.png", label:"", clas:hawaii_island, avalible:true},
-				{url:"D:/reps/slotmatch3_3/Resources/Map/Islands/Pirate/Background/pirate_island_inactive.png", label:"", clas:pirate_island_mc, avalible:true},
-				{url:"D:/reps/slotmatch3_3/Resources/Map/Islands/Amazone/Background/amazone_island_inactive.png", label:"", avalible:false},
-				{url:"D:/reps/slotmatch3_3/Resources/Map/Islands/Archipelago/Background/archipelago_island_inactive.png", label:"", avalible:false}
+				{url:HawaiiIsland, label:"", clas:hawaii_island, avalible:true},
+				{url:PirateIsland, label:"", clas:pirate_island_mc, avalible:true},
+				{url:AmazoneIsland, label:"", avalible:false},
+				{url:ArchipelagoIsland, label:"", avalible:false}
 				 ] );
+//			private var dp:ArrayCollection = new ArrayCollection( [ 
+//				{url:"/Map/Islands/Hawaii/Background/hawaii_island.png", label:"", clas:hawaii_island, avalible:true},
+//				{url:"/Map/Islands/Pirate/Background/pirate_island_inactive.png", label:"", clas:pirate_island_mc, avalible:true},
+//				{url:"/Map/Islands/Amazone/Background/amazone_island_inactive.png", label:"", avalible:false},
+//				{url:"/Map/Islands/Archipelago/Background/archipelago_island_inactive.png", label:"", avalible:false}
+//				 ] );
 
 			
 			private function onCreationComplete(e : FlexEvent) : void

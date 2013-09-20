@@ -21,8 +21,10 @@
 			import mx.managers.PopUpManager;
 
 			[Bindable]
-			private var localeUrlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/";
-
+			private var localeUrlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
+			//private var localeUrlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/";
+			
+			// onlyplay.game-insight.com
 			// private var loader:URLLoader = new URLLoader();
 			private function onChage(e : IndexChangeEvent) : void
 			{

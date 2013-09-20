@@ -21,7 +21,7 @@
 	<fx:Script>
 		<![CDATA[
 			//
-			[Embed(source="D:/reps/slotmatch3_3/Resources/Lobby/Map/map_island_bg.png")]
+			[Embed(source="/Lobby/Map/map_island_bg.png")]
 			private static const BgClass : Class;
 
 		]]>

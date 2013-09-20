@@ -15,8 +15,8 @@
         <s:State name="disabled" />
     </s:states>
 
-	<s:BitmapImage source.over="@Embed(source='D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_close_red_norm.png')"
-			source.up="@Embed(source='D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_close_red_norm.png')"
-			source.down="@Embed(source='D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_close_red_press.png')"
+	<s:BitmapImage source.over="@Embed(source='/Dialogs/Common/bn_close_red_norm.png')"
+			source.up="@Embed(source='/Dialogs/Common/bn_close_red_norm.png')"
+			source.down="@Embed(source='/Dialogs/Common/bn_close_red_press.png')"
 		/>
 </s:Skin>

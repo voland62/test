@@ -20,10 +20,10 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slotmatch3_3/Resources/Lobby/Map/map_arrow_norm.png")]
+			[Embed(source="/Lobby/Map/map_arrow_norm.png")]
 			private static const NormClass : Class;
 			
-			[Embed(source="D:/reps/slotmatch3_3/Resources/Lobby/Map/map_arrow_press.png")]
+			[Embed(source="/Lobby/Map/map_arrow_press.png")]
 			private static const PressedClass : Class;
 
 		]]>

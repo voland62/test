@@ -20,10 +20,10 @@
 			 */
 			override public function get focusSkinExclusions():Array {return ["labelDisplay"]}; 
 			
-			[Embed(source="D:/reps/slotmatch3_3/Resources/Map/MapUI/page_on.png")]
+			[Embed(source="/Map/MapUI/page_on.png")]
 			private static const OnClass : Class;
 			
-			[Embed(source="D:/reps/slotmatch3_3/Resources/Map/MapUI/page_off.png")]
+			[Embed(source="/Map/MapUI/page_off.png")]
 			private static const OffClass : Class;
 			       
 		]]>

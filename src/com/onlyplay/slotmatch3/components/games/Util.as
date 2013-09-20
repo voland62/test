@@ -104,7 +104,8 @@ package com.onlyplay.slotmatch3.components.games
 		{
 			var islands : Array = [null, "hawaii", "underwater", "amazonka", "pirate"];
 			// TODO: Взять из конфига
-			var urlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Slot/slot_icons/";
+			//var urlBase : String = "D:/reps/slogmatch3_3/Resources/Slot/slot_icons/";
+			var urlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/slot_icons/";
 			//var urlBase:String = "slot_icons/";
 			var island : String = islands[ islandId ];
 			// var location:String = locationId.toString();

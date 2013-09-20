@@ -16,6 +16,8 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 		public static var _BgClassLight : Class;
 		[Embed(source="/Dialogs/Common/title1_base.png", mimeType="image/png")]
 		protected static var _TitleBgBigClass : Class;
+		[Embed(source="/Dialogs/Common/title2_base.png")]
+		protected static var _TitleBgBigClass2 : Class;
 		[SkinPart(required="true")]
 		public var titleBg : BitmapImage;
 		[SkinPart(required="true")]
@@ -25,13 +27,14 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 		{
 			setStyle("skinClass", DialogType1BasePopupSkin);
 
-			var souceBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/";
+			//var souceBase : String = "D:/reps/slotmatch3_3/Resources/Dialogs/Common/";
 
-			var defaultTitleImage : String = souceBase + "title2_base.png";
-			setStyle("titleBgSource", defaultTitleImage);
+			//var defaultTitleImage : String = souceBase + "title2_base.png";
+			//setStyle("titleBgSource", defaultTitleImage);
+			setStyle("titleBgSource", _TitleBgBigClass2);
 
 			// var defaultBg : String = souceBase + "tile_paper.png";
-			// var defaultBg :String = souceBase + "tile_skin.png";
+			// var defaultBg : String = souceBase + "tile_skin.png";
 
 			setStyle("bgSource", _BgClassLight);
 		}
@@ -51,7 +54,7 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 			if (instance == bgImage)
 			{
 				var s : Object = getStyle("bgSource");
-				trace('s: ' + (s));
+				//trace('s: ' + (s));
 
 				if (s)
 				{

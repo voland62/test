@@ -1,15 +1,12 @@
 package com.onlyplay.slotmatch3.components.lobby.elements.flex2
 {
-	import spark.skins.spark.RadioButtonSkin;
 	import spark.components.Button;
 	import spark.components.ButtonBar;
 	import spark.components.DataNavigator;
-	import spark.components.RadioButton;
 	import spark.events.IndexChangeEvent;
 
 	import mx.core.ClassFactory;
 
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 
 	/**
