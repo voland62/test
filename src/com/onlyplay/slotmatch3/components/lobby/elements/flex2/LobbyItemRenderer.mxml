@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:s="library://ns.adobe.com/flex/spark"
+                xmlns:mx="library://ns.adobe.com/flex/mx"
+                height="100%"
+                width="600"
+                autoDrawBackground="false"
+                >
+
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="enabled"/>
+	</s:states>
+        
+        
+        <fx:Script>
+        	<![CDATA[
+        		// "D:\reps\slotmatch3_3\Resources\Map\Islands\Amazone\Background\amazone_island.png "
+        	// actual size of the image is: 457x567
+        	//[Embed(source="D:/reps/slotmatch3_3/Resources/Map/Islands/Amazone/Background/amazone_island.png")]
+			// private static const IslandClass: Class;
+			override public function set data(value : Object) : void
+			{
+				super.data = value;
+				if (data.clas)
+				{
+					if (base.numChildren == 0)
+					{
+						var island:Sprite = new data.clas(); 
+						//island.x = (width - island.width)>>1;
+						base.addChild( island );
+					}
+				}
+				
+				if ( data.avalible )
+				{
+					log(data.url);
+					currentState = 'enabled';
+					//setCurrentState('enabled');
+					//invalidateRendererState();
+					 disabledImage.visible = false;
+					 base.visible = true;
+				}
+				else
+				{
+					currentState = 'normal';
+					disabledImage.visible = true;
+					base.visible = false;
+					//invalidateRendererState();
+				}
+			}
+        	]]>
+        </fx:Script>
+       
+     
+     
+     
+     
+	<!--<s:Image source="{data.clas}"  left="20" right="20" top="20" bottom="20" fillMode="scale" scaleMode="letterbox" smooth="true"/>-->
+     
+	<!--<s:BitmapImage source="{data.clas}" left="20" right="20" top="20" bottom="20" fillMode="scale" scaleMode="letterbox" smooth="true"/>-->
+
+	<s:Group horizontalCenter="0" verticalCenter="0">
+	
+		<s:SpriteVisualElement id="base" visible="false" />
+		<s:BitmapImage source="{data.url}" id="disabledImage"  />
+	</s:Group>
+	
+      
+	<!--<s:Rect left="0" right="0" bottom="0" top="0">
+		<s:stroke>
+			<s:SolidColorStroke color="0xff0000"/>
+			
+		</s:stroke>
+	</s:Rect>-->
+        
+
+</s:ItemRenderer>
+

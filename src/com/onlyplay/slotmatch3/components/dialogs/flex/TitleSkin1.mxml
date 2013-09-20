@@ -17,7 +17,7 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/panel_header1.png"
+			[Embed(source="/Dialogs/Common/panel_header1.png"
 			,scaleGridTop="15", scaleGridBottom="16", 
 			scaleGridLeft="23", scaleGridRight="35"
 			)]

@@ -313,6 +313,8 @@ package test.MyTestProject
 
 			scrollPane.x = 440;
 			scrollPane.y = 300;
+			
+			// ----------------------------------
 
 			var timeProgress : TimeProgress = new TimeProgress();
 			addChild(timeProgress);

@@ -9,7 +9,7 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/panel1_base_glowed.png",  mimeType="image/png"
+			[Embed(source="/Dialogs/Common/panel1_base_glowed.png",  mimeType="image/png"
 			,scaleGridTop="30", scaleGridBottom="60", 
 			scaleGridLeft="30", scaleGridRight="36"
 			)]

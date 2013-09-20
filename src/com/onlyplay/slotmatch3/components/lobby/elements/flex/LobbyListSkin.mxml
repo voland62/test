@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minWidth="112"
+	minHeight="112" alpha.disabled="0.5" blendMode="normal">
+
+	<fx:Metadata>
+		<![CDATA[ 
+			/** 
+			 * @copy spark.skins.spark.ApplicationSkin#hostComponent
+			 */
+			[HostComponent("spark.components.List")]
+		]]>
+	</fx:Metadata>
+
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+
+	<fx:Script>
+		<![CDATA[
+			//
+			[Embed(source="D:/reps/slotmatch3_3/Resources/Lobby/Map/map_island_bg.png")]
+			private static const BgClass : Class;
+
+		]]>
+	</fx:Script>
+
+
+	<s:BitmapImage source="{BgClass}" smooth="true" left="0" right="0" top="0" bottom="0"/>
+
+	<!--<s:Rect id="background" left="0" right="0" top="0" bottom="0">
+		<s:stroke>
+			<s:SolidColorStroke id="borderStroke" color="0xff8000"
+				weight="1"/>
+		</s:stroke>
+	</s:Rect>-->
+
+
+
+	
+	<s:Scroller left="0" top="0" right="0" bottom="0" id="scroller" verticalScrollPolicy="off"
+		minViewportInset="1" hasFocusableChildren="false" skinClass="com.onlyplay.slotmatch3.components.lobby.elements.flex.LobbyScrollerSkin">
+		
+		<s:DataGroup id="dataGroup" itemRenderer="com.onlyplay.slotmatch3.components.lobby.elements.flex2.LobbyItemRenderer">
+			<s:layout>
+				<s:VerticalLayout gap="0" horizontalAlign="contentJustify"/>
+			</s:layout>
+		</s:DataGroup>
+	</s:Scroller>
+</s:Skin>

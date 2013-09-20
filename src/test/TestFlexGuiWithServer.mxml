@@ -80,7 +80,7 @@
 			private function makeResourceBundle(localeFile : XML) : ResourceBundle
 			{
 				// log( localeFile.dict.key.length() );
-				var rb:ResourceBundle = new ResourceBundle("en_US", "ruLocale");
+				var rb:ResourceBundle = new ResourceBundle("ru_RU", "ruLocale");
 				for (var i : int = 0; i < localeFile.dict.key.length(); i++) 
 				{
 					var key:XML = localeFile.dict.key[i];

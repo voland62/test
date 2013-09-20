@@ -20,7 +20,7 @@
 
 	<fx:Script >
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bg_border1.png", mimeType="image/png"
+			[Embed(source="/Dialogs/Common/bg_border1.png", mimeType="image/png"
 			,scaleGridTop="45", scaleGridBottom="120", 
 			scaleGridLeft="24", scaleGridRight="30"
 			)]

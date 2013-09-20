@@ -8,7 +8,7 @@
 	<fx:Script>
 		<![CDATA[
 			// private var bgUrl:String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/tile_skin.png";
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/buttons_base_red_v2.png")]
+			[Embed(source="/Dialogs/Common/buttons_base_red_v2.png")]
 			protected const ButtonsBg : Class;
 
 		]]>

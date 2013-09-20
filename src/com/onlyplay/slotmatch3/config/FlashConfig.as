@@ -85,23 +85,12 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map(ServiceEvent.CHANGES).toCommand(OnChageCommand);
 			commandMap.map("requestRoomProgress").toCommand(RequestRoomProgressCommand);
 			commandMap.map("onFlashEnergyIncrease").toCommand(OnFlashEnergyEncreaseCommand);
-			
-			//commandMap.map(ServiceEvent.MAKE_HANDSHAKE).toCommand(MakeHandShakeCommand);
-			
-//			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerHandShakeProtobuf)).toCommand(OnHandShakeCommand);
-//			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerConfigProtobuf)).toCommand(OnConfigCommand);
-//			//commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerRoomConfigProtobuf)).toCommand(OnEnterLocationCommand);
-//			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerRoomStateProtobuf)).toCommand(OnRoomEnterCommand);
-//			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerRoomPlayerStateProtobuf)).toCommand(OnRoomPlayerStateCommand);
-//			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerPlayerStateProtobuf)).toCommand(OnPlayerStateCommand);
 			commandMap.map("spin").toCommand(SpinCommand);
-//			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(ServerSpinProtobuf)).toCommand(OnSpinCommand);
-//			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(PlayerDataLoadResponseProtobuf)).toCommand(OnUserDataCommand);
 			
 			commandMap.map("betPerLineChanged").toCommand(BetPerLineChangingCommand);
 			commandMap.map("lineNumChanged").toCommand(LineNumChangingCommand);
 			commandMap.map("max_bet").toCommand(MaxBetCommand);
-			//commandMap.map("playMatch").toCommand(PlayMatchCommand);
+			
 			// toMatch
 			commandMap.map("toMatch").toCommand(MakeMatchEnterRequestCommand);
 			commandMap.map("onBonus").toCommand(OnBonusCommand);

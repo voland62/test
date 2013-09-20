@@ -34,8 +34,9 @@ package com.onlyplay.slotmatch3.controller.currentBetChanging
 			
 
 			gameModel.currentBet.betPerLine = Util.mod_( val - minVal, interval) + minVal;
-			
-			eventDispatcher.dispatchEvent(new Event("currenBetUpdated"));
+			var ev:DynamicEvent = new DynamicEvent( "currenBetUpdated" );
+			ev.showLines = false;
+			eventDispatcher.dispatchEvent( ev );
 		}
 	}
 }

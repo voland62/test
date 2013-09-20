@@ -1,6 +1,8 @@
 package com.onlyplay.slotmatch3.view
 {
+	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
 	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
+
 	import robotlegs.bender.bundles.mvcs.Mediator;
 
 	import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
@@ -38,6 +40,7 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("onBonus", onBonus);
 			addViewListener("onPhoto", onPhoto);
 			addViewListener("flashEnergy", onFlashEnergy);
+			addViewListener("showPaymentsDialog", onShowPaymentsDialog);
 
 			addContextListener("ready", onReady);
 			addContextListener("showSpin", showSpin);
@@ -47,8 +50,8 @@ package com.onlyplay.slotmatch3.view
 			addContextListener("experienceChaged", onExperienceChaged);
 			addContextListener("playersListUpdated", onPlayersListUpdated);
 			addContextListener("boosterAmountChanged", onBoosterClick);
-			//experienceChaged
-			
+			// experienceChaged
+
 			addContextListener("userDataUpdated", onUserData);
 			addContextListener("currenBetUpdated", onCurrentBetUpdated);
 			// addContextListener("serverConfigUpdated", onServerConfigUpdate);
@@ -56,25 +59,31 @@ package com.onlyplay.slotmatch3.view
 			addContextListener("currentFlashEnergyChanged", onCurrentFlashEnergyChanged);
 			addContextListener("onPlayerUpdated", onPlayerUpdated);
 			// locationChaged
-			//addContextListener("updateMyProgress", onUpdateMyProgress);
-			//addContextListener("currentExperienceChanged", onExperienceChanged);
+			// addContextListener("updateMyProgress", onUpdateMyProgress);
+			// addContextListener("currentExperienceChanged", onExperienceChanged);
 			addContextListener("matchTimerTick", onMatchCurrenTimeTick);
 			addContextListener("currentFlashEnergyChanged", onCurrentFlashEnergyChanged);
 		}
 
-		private function onFlashEnergy( e:DynamicEvent ) : void
+		private function onShowPaymentsDialog(e : Event) : void
 		{
-			var event:DynamicEvent = new DynamicEvent( "onFlashEnergyIncrease" );
+			var event:DynamicEvent = new DynamicEvent( e.type );
+			event.interface_ = IPaymentsPopup;
+			dispatch(event);
+		}
+
+		private function onFlashEnergy(e : DynamicEvent) : void
+		{
+			var event : DynamicEvent = new DynamicEvent("onFlashEnergyIncrease");
 			event.val = e.val;
 			dispatch(event);
 		}
 
-
-
-		private function onCurrentFlashEnergyChanged(e:Event) : void
+		private function onCurrentFlashEnergyChanged(e : Event) : void
 		{
-			var state:int;
-			switch(matchGameModel.flashEnergyState){
+			var state : int;
+			switch(matchGameModel.flashEnergyState)
+			{
 				case MatchGameModel.FLASH_ENERGY_NORM:
 					state = FreezeProgress.NORMAL;
 					break;
@@ -86,49 +95,40 @@ package com.onlyplay.slotmatch3.view
 					break;
 				default:
 			}
-			view.setMatchCurrentFlashEnergy( 
-					matchGameModel.currentFlashEnergy , 
-					matchGameModel.currentLevel.energy , 
-					matchGameModel.currentLevel.multiplier,
-					state);
+			view.setMatchCurrentFlashEnergy(matchGameModel.currentFlashEnergy, matchGameModel.currentLevel.energy, matchGameModel.currentLevel.multiplier, state);
 		}
 
-		private function onBoosterClick(e:DynamicEvent) : void
+		private function onBoosterClick(e : DynamicEvent) : void
 		{
-			view.playBooster( e.boosterType );
+			view.playBooster(e.boosterType);
 		}
 
-		private function onExperienceChaged( e:Event ) : void
+		private function onExperienceChaged(e : Event) : void
 		{
-			view.setExperinece( gameModel.currentExperience.experience, 
-								gameModel.currentExperience.level, 
-								gameModel.currentExperience.leftVal, 
-								gameModel.currentExperience.rightVal);
+			view.setExperinece(gameModel.currentExperience.experience, gameModel.currentExperience.level, gameModel.currentExperience.leftVal, gameModel.currentExperience.rightVal);
 		}
 
-		private function onRoomProgressChanged(e:Event) : void
+		private function onRoomProgressChanged(e : Event) : void
 		{
 			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
 		}
 
-		private function onLocationChaged( e:Event) : void
+		private function onLocationChaged(e : Event) : void
 		{
 			// stars
-						
-			var q1:QuestProtobuf = gameModel.currentLocation.star1quest;
-			var q2:QuestProtobuf = gameModel.currentLocation.star2quest;
-			var q3:QuestProtobuf = gameModel.currentLocation.star3quest;
-			
-			var commonMax: Number = q1.completeValue + q2.completeValue;
-			var commonCurrent : Number  = q1.currentValue + q2.currentValue;
-			
-			var commonPercentage:Number = commonCurrent / commonMax;
+
+			var q1 : QuestProtobuf = gameModel.currentLocation.star1quest;
+			var q2 : QuestProtobuf = gameModel.currentLocation.star2quest;
+			var q3 : QuestProtobuf = gameModel.currentLocation.star3quest;
+
+			var commonMax : Number = q1.completeValue + q2.completeValue;
+			var commonCurrent : Number = q1.currentValue + q2.currentValue;
+
+			var commonPercentage : Number = commonCurrent / commonMax;
 			log('---commonPercentage: ' + (commonPercentage));
-			view.setStarsProgress( commonPercentage );
-			
-			view.initSlot( gameModel.currentIsland.islandId, gameModel.currentLocation.locationId);
-			
-			
+			view.setStarsProgress(commonPercentage);
+
+			view.initSlot(gameModel.currentIsland.islandId, gameModel.currentLocation.locationId);
 		}
 
 		private function onPhoto(e : Event) : void
@@ -148,7 +148,7 @@ package com.onlyplay.slotmatch3.view
 		private function onToMatch(e : Event) : void
 		{
 			dispatch(e);
-			//showMatch( null );
+			// showMatch( null );
 			// dispatch(new Event("playMatch"));
 		}
 
@@ -157,25 +157,24 @@ package com.onlyplay.slotmatch3.view
 			view.setSlotState();
 		}
 
-//
-//		private function onUpdateMyProgress(e : Event) : void
-//		{
-//			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
-//		}
-
+		//
+		// private function onUpdateMyProgress(e : Event) : void
+		// {
+		// view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
+		// }
 		// TODO: звести на модели соответствующий массив и заполнять только его по приходу плеердата
 		private function makeCorrections(players : Array) : void
 		{
 			for each (var player : PlayerShortProtobuf in players)
 			{
 				player.targetProgress = gameModel.targetProgress;
-			//player.currentLevel = gameModel.getExperienceStuff(player.playerInfo.experience).level;
+				// player.currentLevel = gameModel.getExperienceStuff(player.playerInfo.experience).level;
 			}
 		}
 
 		private function onPlayersListUpdated(e : Event) : void
 		{
-			//log("GameViewMediator.onPlayersListUpdated(e)");
+			// log("GameViewMediator.onPlayersListUpdated(e)");
 			// corrections
 			makeCorrections(gameModel.players);
 			view.setPlayers(gameModel.players);
@@ -231,7 +230,7 @@ package com.onlyplay.slotmatch3.view
 		{
 			view.setUpperBet(gameModel.currentBet.getWholeBet());
 			view.setBetPerLine(gameModel.currentBet.betPerLine);
-			//var showLines:Boolean = e.hasOwnProperty("showLines") && e.showLines;
+			// var showLines:Boolean = e.hasOwnProperty("showLines") && e.showLines;
 			view.setLines(gameModel.currentBet.lines, e.showLines);
 		}
 
@@ -252,18 +251,18 @@ package com.onlyplay.slotmatch3.view
 		private function onAnimEnded(e : Event) : void
 		{
 			view.setReady();
-			
-			var wasWin:Boolean = true;
-			var win :Number = gameModel.win;//10;
+
+			var wasWin : Boolean = true;
+			var win : Number = gameModel.win;
+			// 10;
 			if ( win > 0 )
 			{
-				view.playWinAnimation (win , gameModel.winLines, onWinAnimComeplete);// или подписаться
+				view.playWinAnimation(win, gameModel.winLines, onWinAnimComeplete);
+				// или подписаться
 			}
-			
 		}
-		
-		
-		private function onWinAnimComeplete():void
+
+		private function onWinAnimComeplete() : void
 		{
 			dispatch(new Event("requestRoomProgress"));
 		}
@@ -272,8 +271,8 @@ package com.onlyplay.slotmatch3.view
 		{
 			view.setProgress(gameModel.lastProgress, gameModel.targetProgress);
 			view.setMoney(gameModel.currentMoney);
-			
-			view.setMaxBet( gameModel.currentLocation.maxBet * gameModel.currentLocation.maxLinesAmount);
+
+			view.setMaxBet(gameModel.currentLocation.maxBet * gameModel.currentLocation.maxLinesAmount);
 
 			// makeCorrections(gameModel.players);
 			// view.setPlayers(gameModel.players);
@@ -297,8 +296,8 @@ package com.onlyplay.slotmatch3.view
 		private function showMatch(e : Event) : void
 		{
 			view.setMatchState();
-			view.matchReinit( matchGameModel.matchModelProto.iconEnergy );
-			view.initFlashEnergy( matchGameModel.currentLevel.multiplier );
+			view.matchReinit(matchGameModel.matchModelProto.iconEnergy);
+			view.initFlashEnergy(matchGameModel.currentLevel.multiplier);
 		}
 	}
 }

@@ -12,15 +12,15 @@
 		<![CDATA[
 			import mx.collections.ArrayCollection;
 
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/PaytableDialog/paytable_decoration.png", mimeType="image/png")]
+			[Embed(source="/Dialogs/PaytableDialog/paytable_decoration.png")]
 			private var DecorClass : Class;
 			
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/buttons_base_red_v2.png")]
+			[Embed(source="/Dialogs/Common/buttons_base_red_v2.png")]
 			private const ButtonsBg : Class;
 			
 			[Bindable]
 			private var dp : ArrayCollection = new ArrayCollection([]);
-			;
+			
 			public function setList(multiplayersList : Array) : void
 			{
 				// dp.source = multiplayersList;

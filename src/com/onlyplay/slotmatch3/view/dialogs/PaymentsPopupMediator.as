@@ -17,7 +17,7 @@ package com.onlyplay.slotmatch3.view.dialogs
 		
 		override public function initialize() : void
 		{
-			log("---<>--PaymentsPopupMediator.initialize()");
+			//log("---<>--PaymentsPopupMediator.initialize()");
 			
 			view.setList( gameModel.multipliers );
 			

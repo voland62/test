@@ -10,13 +10,13 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_red1_norm.png", mimeType="image/png")]
+			[Embed(source="/Dialogs/Common/bn_red1_norm.png", mimeType="image/png")]
 			private static const UpClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_red1_press.png", mimeType="image/png")]
+			[Embed(source="/Dialogs/Common/bn_red1_press.png", mimeType="image/png")]
 			private static const DownClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_common1_pass.png", mimeType="image/png")]
+			[Embed(source="/Dialogs/Common/bn_common1_pass.png", mimeType="image/png")]
 			private static const DisableClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/buttons_base_red_v2.png")]
+			[Embed(source="/Dialogs/Common/buttons_base_red_v2.png")]
 			private const ButtonsBg : Class;
 			
 			// "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_green1_wide_norm.png"

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+
+	<fx:Metadata>
+		<![CDATA[ 
+			/** 
+			 * @copy spark.skins.spark.ApplicationSkin#hostComponent
+			 */
+			[HostComponent("spark.components.SkinnableDataContainer")]
+		]]>
+	</fx:Metadata>
+
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+	<fx:Script>
+		<![CDATA[
+			//
+			[Embed(source="D:/reps/slotmatch3_3/Resources/Lobby/Map/map_island_bg.png")]
+			private static const BgClass : Class;
+		]]>
+	</fx:Script>
+
+
+	<s:BitmapImage source="{BgClass}" smooth="true" left="0" right="0"
+		top="0" bottom="0"/>
+
+
+	<s:DataGroup id="dataGroup" left="0" right="0" top="0" bottom="0"
+		minWidth="0" minHeight="0">
+		<s:layout>
+			<s:HorizontalLayout/>
+			<!--<s:VerticalLayout horizontalAlign="contentJustify" />-->
+		</s:layout>
+	</s:DataGroup>
+
+
+	<s:ButtonBar id="upperButtons" top="20" horizontalCenter="0" />
+
+</s:Skin>

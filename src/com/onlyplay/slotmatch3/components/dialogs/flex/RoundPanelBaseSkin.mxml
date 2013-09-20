@@ -20,17 +20,17 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/round_border_38.png", mimeType="image/png"
+			[Embed(source="/Dialogs/Common/round_border_38.png", mimeType="image/png"
 			,scaleGridTop='18', scaleGridBottom='20',
 			scaleGridLeft='29', scaleGridRight='50'
 			)]
 			private  const _BorderClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/round_border_38_mask.png", mimeType="image/png"
+			[Embed(source="/Dialogs/Common/round_border_38_mask.png", mimeType="image/png"
 			,scaleGridTop='18', scaleGridBottom='20',
 			scaleGridLeft='29', scaleGridRight='50'
 			)]
 			private  const _MaskClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/tile_blue.png", mimeType="image/png")]
+			[Embed(source="/Dialogs/Common/tile_blue.png", mimeType="image/png")]
 			private  const _BgClass : Class;
 
 			protected function get borderClass() : Class

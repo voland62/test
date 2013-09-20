@@ -128,6 +128,56 @@ package  {
 		/**
 		 *  @private
 		 */
+		public static const FACEBOOKREWARD:FieldDescriptor$TYPE_INT32 = new FieldDescriptor$TYPE_INT32("LoginResponseProtobuf.facebookReward", "facebookReward", (13 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var facebookReward$field:int;
+
+		public function clearFacebookReward():void {
+			hasField$0 &= 0xfffffffd;
+			facebookReward$field = new int();
+		}
+
+		public function get hasFacebookReward():Boolean {
+			return (hasField$0 & 0x2) != 0;
+		}
+
+		public function set facebookReward(value:int):void {
+			hasField$0 |= 0x2;
+			facebookReward$field = value;
+		}
+
+		public function get facebookReward():int {
+			return facebookReward$field;
+		}
+
+		/**
+		 *  @private
+		 */
+		public static const TWITTERREWARD:FieldDescriptor$TYPE_INT32 = new FieldDescriptor$TYPE_INT32("LoginResponseProtobuf.twitterReward", "twitterReward", (14 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var twitterReward$field:int;
+
+		public function clearTwitterReward():void {
+			hasField$0 &= 0xfffffffb;
+			twitterReward$field = new int();
+		}
+
+		public function get hasTwitterReward():Boolean {
+			return (hasField$0 & 0x4) != 0;
+		}
+
+		public function set twitterReward(value:int):void {
+			hasField$0 |= 0x4;
+			twitterReward$field = value;
+		}
+
+		public function get twitterReward():int {
+			return twitterReward$field;
+		}
+
+		/**
+		 *  @private
+		 */
 		override used_by_generated_code final function writeToBuffer(output:com.netease.protobuf.WritingBuffer):void {
 			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 1);
 			com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, this.gameId);
@@ -155,6 +205,14 @@ package  {
 				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 12);
 				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, tutorial$field);
 			}
+			if (hasFacebookReward) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 13);
+				com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, facebookReward$field);
+			}
+			if (hasTwitterReward) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 14);
+				com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, twitterReward$field);
+			}
 			for (var fieldKey:* in this) {
 				super.writeUnknown(output, fieldKey);
 			}
@@ -176,6 +234,8 @@ package  {
 			var emotions$count:uint = 0;
 			var inventory$count:uint = 0;
 			var tutorial$count:uint = 0;
+			var facebookReward$count:uint = 0;
+			var twitterReward$count:uint = 0;
 			while (input.bytesAvailable > bytesAfterSlice) {
 				var tag:uint = com.netease.protobuf.ReadUtils.read$TYPE_UINT32(input);
 				switch (tag >> 3) {
@@ -271,6 +331,20 @@ package  {
 					}
 					++tutorial$count;
 					this.tutorial = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
+					break;
+				case 13:
+					if (facebookReward$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LoginResponseProtobuf.facebookReward cannot be set twice.');
+					}
+					++facebookReward$count;
+					this.facebookReward = com.netease.protobuf.ReadUtils.read$TYPE_INT32(input);
+					break;
+				case 14:
+					if (twitterReward$count != 0) {
+						throw new flash.errors.IOError('Bad data format: LoginResponseProtobuf.twitterReward cannot be set twice.');
+					}
+					++twitterReward$count;
+					this.twitterReward = com.netease.protobuf.ReadUtils.read$TYPE_INT32(input);
 					break;
 				default:
 					super.readUnknown(input, tag);

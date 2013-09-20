@@ -162,6 +162,31 @@ package  {
 		/**
 		 *  @private
 		 */
+		public static const BOT:FieldDescriptor$TYPE_BOOL = new FieldDescriptor$TYPE_BOOL("PlayerProtobuf.bot", "bot", (17 << 3) | com.netease.protobuf.WireType.VARINT);
+
+		private var bot$field:Boolean;
+
+		public function clearBot():void {
+			hasField$0 &= 0xfffffffb;
+			bot$field = new Boolean();
+		}
+
+		public function get hasBot():Boolean {
+			return (hasField$0 & 0x4) != 0;
+		}
+
+		public function set bot(value:Boolean):void {
+			hasField$0 |= 0x4;
+			bot$field = value;
+		}
+
+		public function get bot():Boolean {
+			return bot$field;
+		}
+
+		/**
+		 *  @private
+		 */
 		override used_by_generated_code final function writeToBuffer(output:com.netease.protobuf.WritingBuffer):void {
 			com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 1);
 			com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, this.gameId);
@@ -199,6 +224,10 @@ package  {
 				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 16);
 				com.netease.protobuf.WriteUtils.write$TYPE_INT32(output, currentLocationId$field);
 			}
+			if (hasBot) {
+				com.netease.protobuf.WriteUtils.writeTag(output, com.netease.protobuf.WireType.VARINT, 17);
+				com.netease.protobuf.WriteUtils.write$TYPE_BOOL(output, bot$field);
+			}
 			for (var fieldKey:* in this) {
 				super.writeUnknown(output, fieldKey);
 			}
@@ -222,6 +251,7 @@ package  {
 			var statistic$count:uint = 0;
 			var currentIslandId$count:uint = 0;
 			var currentLocationId$count:uint = 0;
+			var bot$count:uint = 0;
 			while (input.bytesAvailable > bytesAfterSlice) {
 				var tag:uint = com.netease.protobuf.ReadUtils.read$TYPE_UINT32(input);
 				switch (tag >> 3) {
@@ -333,6 +363,13 @@ package  {
 					}
 					++currentLocationId$count;
 					this.currentLocationId = com.netease.protobuf.ReadUtils.read$TYPE_INT32(input);
+					break;
+				case 17:
+					if (bot$count != 0) {
+						throw new flash.errors.IOError('Bad data format: PlayerProtobuf.bot cannot be set twice.');
+					}
+					++bot$count;
+					this.bot = com.netease.protobuf.ReadUtils.read$TYPE_BOOL(input);
 					break;
 				default:
 					super.readUnknown(input, tag);

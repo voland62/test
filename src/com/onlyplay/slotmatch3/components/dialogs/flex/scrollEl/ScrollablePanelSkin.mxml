@@ -15,7 +15,7 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_achievements_base.png"
+			[Embed(source="/Dialogs/ProfileDialog/profile_achievements_base.png"
 			,scaleGridTop="19", scaleGridBottom="42", 
 			scaleGridLeft="41", scaleGridRight="56"
 			)]

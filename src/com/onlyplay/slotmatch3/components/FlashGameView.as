@@ -1,5 +1,8 @@
 package com.onlyplay.slotmatch3.components
 {
+	import flash.display.InteractiveObject;
+	import flash.geom.Rectangle;
+	import org.flintparticles.common.renderers.Renderer;
 	import com.onlyplay.slotmatch3.components.games.match.Animations;
 	import alternativa.gui.container.linear.VBox;
 	import alternativa.gui.container.tabPanel.TabData;
@@ -141,9 +144,9 @@ package com.onlyplay.slotmatch3.components
 		private var _starProgress : StarProgress;
 		private var _infoStarButton : BaseButton;
 		private var _infoRoomProgressButton : BaseButton;
-		private var _renderer : BitmapRenderer;
+		private var _renderer : Renderer;
 
-		public function FlashGameView(rend : BitmapRenderer)
+		public function FlashGameView(rend : Renderer = null)
 		{
 			/*
 			 *  Вынужден перевавать рендерер сюда - так как почему-то созданный рендерер здесь - 
@@ -152,6 +155,7 @@ package com.onlyplay.slotmatch3.components
 			 *  в упор не вижу причины
 			 */
 			_renderer = rend;
+			_renderer ||= new BitmapRenderer(new Rectangle( 0, 0, 760, 570));
 
 			_islandBg = new IslandBgClass();
 			addChild(_islandBg);
@@ -282,6 +286,7 @@ package com.onlyplay.slotmatch3.components
 
 			_payButton = new PayButton();
 			addChild(_payButton);
+			_payButton.addEventListener( MouseEvent.CLICK , function( e:Event ):void{ dispatchEvent(new Event("showPaymentsDialog")) ;});
 
 			_maxBetButton = new MaxBetButton();
 			_maxBetButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
@@ -357,9 +362,13 @@ package com.onlyplay.slotmatch3.components
 
 			// _renderer = new BitmapRenderer(new Rectangle(0, 0, 300, 300));
 			// _renderer.mouseChildren = false;
-			// _renderer.mouseEnabled = false;
-			//
-			// addChild(_renderer);
+//			 (_renderer as InteractiveObject).mouseEnabled = false;
+//			//
+//			var rendererBase:DisplayObjectContainer = new Sprite();
+//			rendererBase.mouseChildren = false;
+//			rendererBase.mouseEnabled = false;
+//			addChild( rendererBase );
+//			rendererBase.addChild(_renderer as DisplayObject);
 
 			_animBase = new Sprite();
 			_animBase.mouseChildren = false;
@@ -491,7 +500,7 @@ package com.onlyplay.slotmatch3.components
 				_fakeProgressBg.y = _h - _fakeProgressBg.height;
 			}
 
-			_islandBg.x = (stage.stageWidth - _islandBg.width) >> 1;
+			_islandBg.x = (_w - _islandBg.width) >> 1;
 			_islandBg.y = 50;
 
 			if (_slotMashine)

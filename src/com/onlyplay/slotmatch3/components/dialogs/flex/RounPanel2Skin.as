@@ -7,12 +7,12 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 	 */
 	public class RounPanel2Skin extends RoundPanelBaseSkin
 	{
-		[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/round_border_75.png", mimeType="image/png"
+		[Embed(source="/Dialogs/Common/round_border_75.png", mimeType="image/png"
 		,scaleGridTop='26', scaleGridBottom='27',
 		scaleGridLeft='45', scaleGridRight='60'
 		)]
 		private static const _BorderClass : Class;
-		[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/round_border_75_mask.png", mimeType="image/png"
+		[Embed(source="/Dialogs/Common/round_border_75_mask.png", mimeType="image/png"
 		,scaleGridTop='36', scaleGridBottom='37',
 		scaleGridLeft='40', scaleGridRight='60'
 		)]

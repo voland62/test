@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+			 xmlns:fb="http://ns.adobe.com/flashbuilder/2009" xmlns:mx="library://ns.adobe.com/flex/mx"
+			 minWidth="35" minHeight="1" 
+			 alpha.disabled="0.5" alpha.inactive="0.5">
+	
+	<fx:Metadata>
+		<![CDATA[ 
+		/** 
+		* @copy spark.skins.spark.ApplicationSkin#hostComponent
+		*/
+		[HostComponent("spark.components.HScrollBar")]
+		]]>
+	</fx:Metadata> 
+    
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="disabled" />
+		<s:State name="inactive" />
+	</s:states><!--
+    
+    <s:Button id="track" left="16" right="15" width="54"
+              focusEnabled="false"
+              skinClass="zen.skins.HScrollBarTrackSkin" />
+
+    <s:Button id="thumb" 
+              focusEnabled="false"
+              skinClass="zen.skins.HScrollBarThumbSkin"  />-->
+
+
+    <s:Button id="decrementButton" left="40" top="-80" scaleX="-1" 
+              focusEnabled="false"
+              skinClass="com.onlyplay.slotmatch3.components.lobby.elements.flex2.LobbyScrollButtonSkin"  />
+              
+    <s:Button id="incrementButton" right="40" top="-80"
+              focusEnabled="false"
+              skinClass="com.onlyplay.slotmatch3.components.lobby.elements.flex2.LobbyScrollButtonSkin" />
+
+</s:Skin>

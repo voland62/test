@@ -10,9 +10,9 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_bn_scroll_left_norm.png")]
+			[Embed(source="/Dialogs/ProfileDialog/profile_bn_scroll_left_norm.png")]
 			private static const UpClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_bn_scroll_left_press.png")]
+			[Embed(source="/Dialogs/ProfileDialog/profile_bn_scroll_left_press.png")]
 			private static const DownClass : Class;
 //			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_common1_pass.png", mimeType="image/png")]
 //			private static const DisableClass : Class;

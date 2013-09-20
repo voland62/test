@@ -20,7 +20,7 @@ package com.onlyplay.slotmatch3.components.games.elements
 	public class TimeProgress extends ProgressBarBase
 	{
 		// "D:\reps\slogmatch3_2\trunk\client\ios\puzzleslots\SlotMatch3\Resources\SceneResources\ipad\ProgressBars\big_time_progress.png"
-		[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/SceneResources/ipad/ProgressBars/big_time_progress.png")]
+		[Embed(source="/SceneResources/ipad/ProgressBars/big_time_progress.png")]
 		protected static var StripClass : Class;
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/timer/icon.png"
 		,scaleGridTop='19', scaleGridBottom='20',

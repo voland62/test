@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:ns="http://flex.apache.org/experimental/ns"
+	xmlns:flex2="com.onlyplay.slotmatch3.components.lobby.elements.flex2.*"
+	frameRate="60"
+	xmlns:supportClasses="spark.layouts.supportClasses.*" xmlns:flex3="com.onlyplay.slotmatch3.components.lobby.elements.flex3.*"
+             creationComplete="onCreationComplete(event)"  width="760" height="570">
+               
+               
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var dp:ArrayCollection = new ArrayCollection( [ 
+				{url:"D:/reps/slotmatch3_3/Resources/Map/Islands/Hawaii/Background/hawaii_island.png", label:"", clas:hawaii_island, avalible:true},
+				{url:"D:/reps/slotmatch3_3/Resources/Map/Islands/Pirate/Background/pirate_island_inactive.png", label:"", clas:pirate_island_mc, avalible:true},
+				{url:"D:/reps/slotmatch3_3/Resources/Map/Islands/Amazone/Background/amazone_island_inactive.png", label:"", avalible:false},
+				{url:"D:/reps/slotmatch3_3/Resources/Map/Islands/Archipelago/Background/archipelago_island_inactive.png", label:"", avalible:false}
+				 ] );
+
+			
+			private function onCreationComplete(e : FlexEvent) : void
+			{
+				//log("TestLobby.onCreationComplete(e)");
+				//dataNav.selectedIndex = 1;
+				
+			}
+		]]>
+	</fx:Script>
+	
+	
+
+	<flex2:LobbyDataNavigator id="dataNav" dataProvider="{dp}" width="600" 
+		height="570" right="0" />
+
+
+
+	
+
+</s:Application>

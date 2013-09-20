@@ -15,11 +15,11 @@ package com.onlyplay.slotmatch3.components.games.elements
 	 */
 	public class InfoButton extends BaseButton
 	{
-		[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/SceneResources/ipad/Buttons/button_i_norm.png")]
+		[Embed(source="/SceneResources/ipad/Buttons/button_i_norm.png")]
 		private static var NormalClass : Class;
 //		[Embed(source="/assets/facebook/facebook/id_6/id_6/button_spin_hover.png", mimeType="image/png")]
 //		private static var HoverClass : Class;
-		[Embed(source="/D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/SceneResources/ipad/Buttons/button_i_pass.png", mimeType="image/png")]
+		[Embed(source="/SceneResources/ipad/Buttons/button_i_pass.png", mimeType="image/png")]
 		private static var DownClass : Class;
 //		[Embed(source="/assets/facebook/facebook/id_6/id_6/button_spin_passive.png", mimeType="image/png")]
 //		private static var OffClass : Class;

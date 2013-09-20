@@ -10,13 +10,13 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/paper_border2.png", mimeType="image/png"
+			[Embed(source="/Dialogs/Common/paper_border2.png", mimeType="image/png"
 			,scaleGridTop='19', scaleGridBottom='30',
 			scaleGridLeft='20', scaleGridRight='26'
 			)]
 			private static const _BorderClass : Class;
 			
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/paper_border2-piece.png", mimeType="image/png" )]
+			[Embed(source="/Dialogs/Common/paper_border2-piece.png", mimeType="image/png" )]
 			private static const DecorClass : Class;
 			
 			// "D:\reps\slogmatch3_2\trunk\client\ios\puzzleslots\SlotMatch3\Resources\Dialogs\Common\paper_border2-piece.png"

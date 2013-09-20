@@ -28,8 +28,8 @@ package com.onlyplay.slotmatch3.services
 		public function init() : void
 		{
 			// TODO: вынести в конфиг
-			//var serverUrl : String = "10.0.1.100";
-			var serverUrl : String = "onlyplay.game-insight.com";
+			var serverUrl : String = "10.0.1.100";
+			//var serverUrl : String = "onlyplay.game-insight.com";
 			// var serverUrl : String = "213.160.129.246";
 			var port : int = 12801;
 

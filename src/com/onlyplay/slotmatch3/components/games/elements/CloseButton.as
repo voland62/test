@@ -8,11 +8,11 @@ package com.onlyplay.slotmatch3.components.games.elements
 	 */
 	public class CloseButton extends BaseButton
 	{
-		[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_close_red_norm.png", mimeType="image/png")]
+		[Embed(source="/Dialogs/Common/bn_close_red_norm.png", mimeType="image/png")]
 		private static var NormalClass : Class;
-		[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_close_red_norm.png", mimeType="image/png")]
+		[Embed(source="/Dialogs/Common/bn_close_red_norm.png", mimeType="image/png")]
 		private static var HoverClass : Class;
-		[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/bn_close_red_press.png", mimeType="image/png")]
+		[Embed(source="/Dialogs/Common/bn_close_red_press.png", mimeType="image/png")]
 		private static var DownClass : Class;
 		
 		

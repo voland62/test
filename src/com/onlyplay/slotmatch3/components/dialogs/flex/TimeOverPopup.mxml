@@ -32,11 +32,11 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/NoTimeDialog/no_time_normal_frame.png")]
+			[Embed(source="/Dialogs/NoTimeDialog/no_time_normal_frame.png")]
 			private const GlassSnowClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/NoTimeDialog/no_time_max_frame.png")]
+			[Embed(source="/Dialogs/NoTimeDialog/no_time_max_frame.png")]
 			private const MaxBgClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/buttons_base_w_green_orange.png")]
+			[Embed(source="/Dialogs/Common/buttons_base_w_green_orange.png")]
 			private const ButtonsBg : Class;
 //			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/title2_base.png", mimeType="image/png")]
 //			private var _TitleBgClass : Class;

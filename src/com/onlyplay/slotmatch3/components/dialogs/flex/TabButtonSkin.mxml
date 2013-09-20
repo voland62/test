@@ -22,17 +22,17 @@
 
 	<fx:Script>
 		<![CDATA[
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/tab_inactive.png",  mimeType="image/png"
+			[Embed(source="/Dialogs/Common/tab_inactive.png",  mimeType="image/png"
 			,scaleGridTop="39", scaleGridBottom="40", 
 			scaleGridLeft="24", scaleGridRight="32"
 			)]
 			private static const InactiveBgClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/tab_active.png",  mimeType="image/png"
+			[Embed(source="/Dialogs/Common/tab_active.png",  mimeType="image/png"
 			,scaleGridTop="9", scaleGridBottom="10", 
 			scaleGridLeft="10", scaleGridRight="14"
 			)]
 			private static const BorderClass : Class;
-			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/tab_active_mask.png",  mimeType="image/png"
+			[Embed(source="/Dialogs/Common/tab_active_mask.png",  mimeType="image/png"
 			,scaleGridTop="29", scaleGridBottom="30", 
 			scaleGridLeft="9", scaleGridRight="15"
 			)]
