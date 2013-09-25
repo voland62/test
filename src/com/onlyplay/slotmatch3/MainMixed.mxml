@@ -27,6 +27,7 @@
 			private var _flashGameView : FlashGameView;
 			private var lobbyView:LobbyView;
 			private var locatInfoView:LocationInfoDlg;
+			private var menu4:Menu4View
 			private var hintWnd:Sprite;
 			[Bindable]
 			private var localeUrlBase:String = "http://onlyplay.game-insight.com/puzzleslots/flash/"
@@ -60,13 +61,15 @@
 				_flashGameView.w = 760;
 				_flashGameView.h = 570;
 				
-				
 				lobbyView = new LobbyView();
 				lobbyPlaceHolder.addChild(lobbyView);
 				
 				locatInfoView = new LocationInfoDlg();
 				locatInfoViewHolder.addChild(locatInfoView);
 				locatInfoView.visible = false;
+				
+				menu4 = new Menu4View();
+				lobbyMenuHolder.addChild(menu4)
 				
 				onResize();
 			}
@@ -106,7 +109,7 @@
 			}
 			
 			//--------------------- hint ------------------------------
-			private function getUnderConstrWnd(e:MouseEvent):void{
+			public function getUnderConstrWnd(e:MouseEvent):void{
 				for (var i:uint = 0; i < FlexGlobals.topLevelApplication.numElements; i++ ) {
 					var aObj:IVisualElement = FlexGlobals.topLevelApplication.getElementAt(i);
 					if (aObj["id"] == "fon") {
@@ -145,12 +148,18 @@
 	
 	<s:Image id="lobby_avatar" source="../src/assets/Mock_user.png" click = "getUnderConstrWnd(event)"></s:Image>
 	<s:Image id="lobby_top" source="../src/assets/Mock_top.png"  click = "getUnderConstrWnd(event)" y ="95"></s:Image>
+	
+	<s:SpriteVisualElement  id="lobbyMenuHolder" y="475"/>
+	
 	<s:Image source="../src/assets/Mock_friends.png" click = "getUnderConstrWnd(event)" y ="552"></s:Image>
 	
 	<!-- s:VideoDisplay id = "video" source="../src/video/PS_Intro_Ipad.mp4" 
 						width="760" height="658" scaleMode = "stretch" 
 						complete="onInit(event)"></s:VideoDisplay -->
 						
-	<s:SpriteVisualElement id="locatInfoViewHolder" width="760" height="658"/>					
+	<s:SpriteVisualElement id="locatInfoViewHolder" width="760" height="658"/>	
+	
+	<s:Image id="fon" source="../src/assets/hintWnd2.png" click = "fon.visible=false" visible = "false" ></s:Image>
+	
 	
 </s:Application>
