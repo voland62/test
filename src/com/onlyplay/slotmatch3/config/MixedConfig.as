@@ -1,12 +1,5 @@
 package com.onlyplay.slotmatch3.config
 {
-	import com.onlyplay.slotmatch3.view.dialogs.IProfilePopup;
-	import com.onlyplay.slotmatch3.view.dialogs.ProfilePopupMediator;
-	import com.onlyplay.slotmatch3.controller.OnMatchLeaveComand;
-	import com.onlyplay.slotmatch3.controller.match.PlaySlotCommand;
-	import com.onlyplay.slotmatch3.view.dialogs.TimeOverPopupMediator;
-	import com.onlyplay.slotmatch3.components.dialogs.flex.TimeOverPopup;
-	import com.onlyplay.slotmatch3.view.dialogs.ITimeOverPopup;
 	import net.IConnector;
 	import net.MessagesMap;
 	import net.SocketConnector;
@@ -51,6 +44,9 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.view.IGameView;
 	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
 	import com.onlyplay.slotmatch3.view.dialogs.PaymentsPopupMediator;
+	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
+	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyViewMediator
+	import com.onlyplay.slotmatch3.controller.lobby.StateChangesCommand
 
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -108,6 +104,7 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("lineNumChanged").toCommand(LineNumChangingCommand);
 			commandMap.map("max_bet").toCommand(MaxBetCommand);
 			
+			// toMatch
 			commandMap.map("toMatch").toCommand(MakeMatchEnterRequestCommand);
 			commandMap.map("onBonus").toCommand(OnBonusCommand);
 			commandMap.map("onBoosterClick").toCommand(OnBoosterCommand);
@@ -118,12 +115,16 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("toSlot").toCommand(PlaySlotCommand);
 			
 			
+	//lobby commands
+			commandMap.map("state_changes_request").toCommand(StateChangesCommand)
+
 			// view ServerRoomPlayerStateProtobuf
 			mediatorMap.map(IGameView).toMediator(GameViewMediator);
 			mediatorMap.map(IPaymentsPopup).toMediator(PaymentsPopupMediator);
 			mediatorMap.map(ITimeOverPopup).toMediator(TimeOverPopupMediator);
 			mediatorMap.map(IProfilePopup).toMediator(ProfilePopupMediator);
 			mediatorMap.map(BoosterPanel).toMediator(BoosterPanelMediator);
+			mediatorMap.map(LobbyView).toMediator(LobbyViewMediator)
 			
 
 			

@@ -26,7 +26,5 @@ package com.onlyplay.slotmatch3.services
 		function enterMatch(lastWinFromSpin : Number) : void;
 
 		function getRoomProgress() : void;
-
-		function leaveMatch(levelIndex : int, coinsAmount : int) : void;
 	}
 }

@@ -1,6 +1,4 @@
 bin/
 .project/
-.project
 .settings/
-*.orig
 *~

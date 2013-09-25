@@ -116,7 +116,7 @@ package com.onlyplay.slotmatch3.components
 		private var _lineTf : TextField;
 		private var _lineAmountTf : TextField;
 		private var _betAmountTf : TextField;
-		private var _userFace : Sprite;
+		private var _userFace : Bitmap;
 		private var _userName : TextField;
 		private var _settingsButton : BaseButton;
 		private var _photoButton : BaseButton;
@@ -165,10 +165,8 @@ package com.onlyplay.slotmatch3.components
 
 			// createSlotMashine();
 
-			_userFace = new Sprite(); 
+			_userFace = new FaceClass();
 			addChild(_userFace);
-			_userFace.addChild(new FaceClass());
-			_userFace.addEventListener(MouseEvent.CLICK, function (e:Event):void {    dispatchEvent(new Event("onFace"));});
 
 			_plashka = new PlashkaBottomClass();
 			addChild(_plashka);
@@ -296,12 +294,19 @@ package com.onlyplay.slotmatch3.components
 				dispatchEvent(new DynamicEvent("max_bet"));
 			});
 			addChild(_maxBetButton);
-
+			
+			
+			
 			_mapButton = new MapButton();
 			addChild(_mapButton);
+			_mapButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
+			{
+				dispatchEvent(new DynamicEvent("game_view:to_map"));
+			});
 
+			
+			
 			_toMach3Button = new ToMach3Button();
-			_toMach3Button.locked = true;
 			_toMach3Button.addEventListener(MouseEvent.CLICK, function(e : Event) : void
 			{
 				dispatchEvent(new Event("toMatch"));
@@ -829,8 +834,6 @@ package com.onlyplay.slotmatch3.components
 
 			if (_boosterPanel) _boosterPanel.visible = false;
 			if ( _energyProgress ) _energyProgress.visible = false;
-			
-			_toMach3Button.locked = true;
 
 			addChildAt(_animBase, numChildren - 1);
 
@@ -948,9 +951,6 @@ package com.onlyplay.slotmatch3.components
 			{
 				_slotMashine.playWinLinesAnim(winLines);
 			}
-			
-			_toMach3Button.locked = false;
-			
 		}
 
 		public function setStarsProgress(commonPercentage : Number) : void
@@ -1010,7 +1010,7 @@ package com.onlyplay.slotmatch3.components
 
 		public function initFlashEnergy(multiplier : Number) : void
 		{
-			var levelText : String = Util.formLevelMultiplyerString(multiplier);//(multiplier == int(multiplier)) ? multiplier.toString() : multiplier.toFixed(1);
+			var levelText : String = (multiplier == int(multiplier)) ? multiplier.toString() : multiplier.toFixed(1);
 			_energyProgress.label = levelText + "x";
 		}
 	}

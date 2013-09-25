@@ -1,7 +1,5 @@
 package com.onlyplay.slotmatch3.components.games
 {
-	import flash.display.BitmapData;
-	import assets.AssetsStorage;
 	import com.onlyplay.slotmatch3.components.games.match.Matcher_v2;
 
 	import flash.display.Graphics;
@@ -121,11 +119,6 @@ package com.onlyplay.slotmatch3.components.games
 		{
 			return "slot_icon_" + islandId + "_" + locationId + "_" + ++iconId + "_name";
 		}
-		
-		public static function formLevelMultiplyerString ( multiplier :Number ):String
-		{
-			return (multiplier == int(multiplier)) ? multiplier.toString() : multiplier.toFixed(1);
-		}
 
 		public static function getK(n : int) : Number
 		{
@@ -137,25 +130,6 @@ package com.onlyplay.slotmatch3.components.games
 			{
 				return (((n - 1) * n) / 2) - (n - 3);
 			}
-		}
-
-		public static function getAmuletUrl(type : int) : *
-		{
-			var urlBase:String = "D:/reps/slotmatch3_3/Resources/Amulets/";
-			
-			var res:String = urlBase + "amulet_" + type + ".png"; 
-			//log( "----",  res );
-			return res;
-			
-//			var bm:BitmapData;
-//			
-//			function foo( b:BitmapData ):void
-//			{
-//				bm = b;
-//			}
-//			
-//			AssetsStorage.instance.getAsset( 'ach_3', foo);
-//			return bm;
 		}
 	}
 }

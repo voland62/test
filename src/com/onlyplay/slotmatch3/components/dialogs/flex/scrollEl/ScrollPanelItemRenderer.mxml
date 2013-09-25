@@ -6,31 +6,15 @@
 	>
 	<fx:Script>
 		<![CDATA[
-			import assets.AssetsStorage;
 			import mx.graphics.BitmapScaleMode;
-			
-			private function getUrl ( name:String  ):BitmapData
-			{
-				var bm : BitmapData;
-
-				function foo(b : BitmapData) : void
-				{
-					bm = b;
-				}
-
-				AssetsStorage.instance.getAsset(name, foo);
-				return bm;
-			}
-			
 		]]>
 	</fx:Script>
-	
-	
+
 
 	<s:BitmapImage top="5" left="0" right="0" smooth="true" scaleMode="{BitmapScaleMode.LETTERBOX}"
-		source="{getUrl(data.url)}"/>
+		source="D:\reps\slogmatch3_2\trunk\client\ios\puzzleslots\SlotMatch3\Resources\Achievements\achievement_3x5_in_the_row.png"/>
 
-	<s:Label bottom="0" horizontalCenter="0" text="{data.label}" fontWeight="bold"/>
+	<s:Label bottom="0" horizontalCenter="0" text="{data}" fontWeight="bold"/>
 	
 
 

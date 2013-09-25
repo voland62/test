@@ -17,19 +17,6 @@ package assets
                 private var storage : Dictionary = new Dictionary( false );
 
 
-                [Embed (source="/Achievements/achievement_3_in_the_row.png" ) ]
-                private var Ach_3 : Class;
-                [Embed (source="/Achievements/achievement_3x5_in_the_row.png" ) ]
-                private var Ach_3x5 : Class;
-                [Embed (source="/Achievements/achievement_4_in_the_row.png" ) ]
-                private var Ach_4 : Class;
-                [Embed (source="/Achievements/achievement_4x5_in_the_row.png" ) ]
-                private var Ach_4x5 : Class;
-                [Embed (source="/Achievements/achievement_5_in_the_row.png" ) ]
-                private var Ach_5 : Class;
-                [Embed (source="/Achievements/achievement_5x5_in_the_row.png" ) ]
-                private var Ach_5x5 : Class;
-				
 //                [Embed (source="assets/lib.swf", symbol="arrow") ]
 //                private var ArrowClass : Class;
 //                
@@ -59,9 +46,7 @@ package assets
 //                      assetLoader.setupBitmapData( a, 0, 0 );
 //                      storage[url] = assetLoader;
                         
-                        init( 'ach_3' , Ach_3);
-						init( 'ach_3x5' , Ach_3x5);
-						init( 'ach_4' , Ach_4);
+                        
                         
                         function init( url : String, Clazz : Class ) : void {
                                 

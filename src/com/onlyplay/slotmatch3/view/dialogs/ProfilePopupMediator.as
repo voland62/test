@@ -21,9 +21,6 @@ package com.onlyplay.slotmatch3.view.dialogs
 			view.setMoney ( gameModel.userInfo.money);
 			view.setLevel( gameModel.userInfo.level );
 			view.setExperience ( gameModel.userInfo.experience, gameModel.userInfo.experienceBound);
-			view.setDp( gameModel.amulets.amulets );
-			
-			//view.setState( 'inventar' );
 			
 			view.setStatistics (   
 									gameModel.userInfo.statistic.maxWin,

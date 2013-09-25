@@ -3,6 +3,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	import com.smith.gallery.engine.ISmtGalleryItem;
 	import flash.display.*;
 	import flash.utils.*;
+	import LocationProtobuf;
 	/**
 	 * ...
 	 * @author smt
@@ -78,8 +79,8 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			var correctObj:Object = correctDict[mapName];
 			
 			pic.scaleX = pic.scaleY =correctObj["scale"];
-			pic.x = (bgLayer.width - pic.width) / 2 + 240 + correctObj["dX"];
-			pic.y = (bgLayer.height - pic.height) / 2 + 220 + correctObj["dY"];
+			pic.x = int((bgLayer.width - pic.width) / 2 + 240 + correctObj["dX"]);
+			pic.y = int((bgLayer.height - pic.height) / 2 + 220 + correctObj["dY"]);
 			
 			contentLayer.addChild(pic);
 		}
@@ -91,22 +92,21 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 			var pic:MovieClip = _data.locationMov
 			
-			if (!_data.locationActive){
-				// эскиз
+			if (_data.info.hasOpened){
+				// анимированный мувик - остров открыт
+				pic.gotoAndStop(1);
+				for (var i:uint = 0; i < pic.numChildren; i++ ) {
+					dObj = pic.getChildAt(i);
+					if (dObj is MovieClip) MovieClip(dObj).play();
+				}
+			}else {
+				// эскиз - остров закрыт
 				for (var i:uint = 0; i < pic.numChildren; i++ ) {
 					var dObj:DisplayObject = pic.getChildAt(i);
 					if (dObj is MovieClip) MovieClip(dObj).stop();
 					
 				}
 				pic.gotoAndStop(2);
-				
-			}else {
-				// анимированный мувик
-				pic.gotoAndStop(1);
-				for (var i:uint = 0; i < pic.numChildren; i++ ) {
-					dObj = pic.getChildAt(i);
-					if (dObj is MovieClip) MovieClip(dObj).play();
-				}
 			}
 			
 			// определяем состояние кнопок
@@ -115,6 +115,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		
 		
 		private function SetLocationBtnState():void {
+			
 			var pic:MovieClip = _data.locationMov
 			
 			for (var i:uint = 0; i < pic.numChildren; i++ ) {
@@ -124,11 +125,26 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 					var btn:LocationBtnMock = pic.getChildAt(i) as LocationBtnMock;
 					btn.numTxt.mouseEnabled = btn.starsBar.mouseEnabled = false;
 					
-					var sText:String = btn.name.substr(4)
-					var sColor:String = mapColors[getQualifiedClassName(_data.locationMov)];
-					var strs:uint = _data.stars;
+					//определяем индекс кнопки исходя из её номера
+					var ind:uint = uint(btn.name.substr(4))%7
+					var locInfo:LocationProtobuf = _data.info.locations[ind];
 					
-					SetOneBtnState(btn, sColor, strs, sText)
+					//определяем цвет из открытости и острова
+					var sColor:String
+					if  (locInfo.hasOpened){
+						sColor = mapColors[getQualifiedClassName(_data.locationMov)];
+					}else {
+						sColor = "grey";
+					}
+					
+					//определяем число открытых звёздочек 
+					var strs:uint = 0;
+					for (var j:uint = 1; j <= 3; j++) {
+						strs += Number(locInfo["star" + String(j) + "quest"].complete);
+					}
+					
+					//устанавливаем вид кнопки
+					SetOneBtnState(btn, sColor, strs, String(ind+1))
 					
 				}
 			}
@@ -141,33 +157,33 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			//цвет кнопки
 			if (["red", "blue", "green", "yellow"].indexOf(color) == -1) {
 				//если это не один из разрешённых - нах
-				return;
+				
 			}else {
 				//если у этой кнопы цвет уже меняли - нах
-				if (!(btn.loc_btn is btn_deaktiv)) return;
+				if (btn.loc_btn is btn_deaktiv){
 				
-				
-				btn.removeChildAt(0);
-				var newBtn:SimpleButton
-				
-				switch (color) {
-					case "red":
-								newBtn = new btn_red();
-								break;
-					case "blue":
-								newBtn = new btn_blue();
-								break;
-					case "green":
-								newBtn = new btn_green();
-								break;
-					case "yellow":
-								newBtn = new btn_yell();
-								break;
-					default:
-								
+					btn.removeChildAt(0);
+					var newBtn:SimpleButton
+						
+					switch (color) {
+						case "red":
+									newBtn = new btn_red();
+									break;
+						case "blue":
+									newBtn = new btn_blue();
+									break;
+						case "green":
+									newBtn = new btn_green();
+									break;
+						case "yellow":
+									newBtn = new btn_yell();
+									break;
+						default:
+										
+					}
+						
+					btn.addChildAt(newBtn, 0);
 				}
-				
-				btn.addChildAt(newBtn, 0);
 			}
 			
 			

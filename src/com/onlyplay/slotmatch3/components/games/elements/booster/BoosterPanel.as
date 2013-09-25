@@ -36,7 +36,7 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 			_bombBooster.label = "Мега-бомба";
 			_bombBooster.num = 25;
 			_bombBooster.persent = 0.5;
-			_bombBooster.maxVal = 150;//75;
+			_bombBooster.maxVal = 75;
 			
 			_bombBooster.x = 13;
 			_bombBooster.y = 10;
@@ -47,7 +47,7 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 			_cubeBooster.label = "Перемешать";
 			_cubeBooster.num = 25;
 			_cubeBooster.persent = 0.5;
-			_cubeBooster.maxVal = 150;//100;
+			_cubeBooster.maxVal = 100;
 			
 			_cubeBooster.x = 13;
 			_cubeBooster.y = 95;
@@ -58,7 +58,7 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 			_hammerBooster.label = "Молоток";
 			_hammerBooster.num = 25;
 			_hammerBooster.persent = 0.5;
-			_hammerBooster.maxVal = 150;//125;
+			_hammerBooster.maxVal = 125;
 			
 			_hammerBooster.x = 13;
 			_hammerBooster.y = 183;
@@ -69,7 +69,7 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 			_timeBooster.label = "Время";
 			_timeBooster.num = 25;
 			_timeBooster.persent = 0.5;
-			_timeBooster.maxVal = 150;
+			//_timeBooster.maxVal = 150;
 			
 			_timeBooster.x = 13;
 			_timeBooster.y = 270;

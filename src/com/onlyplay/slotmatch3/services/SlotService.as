@@ -30,7 +30,7 @@ package com.onlyplay.slotmatch3.services
 			// TODO: вынести в конфиг
 			var serverUrl : String = "10.0.1.100";
 			//var serverUrl : String = "onlyplay.game-insight.com";
-			//var serverUrl : String = "213.160.129.246";
+			// var serverUrl : String = "213.160.129.246";
 			var port : int = 12801;
 
 			connector.addEventListener("onConnect", onConnect);
@@ -199,15 +199,6 @@ package com.onlyplay.slotmatch3.services
 			var packageId:int = MessagesMap.getIdByClass(RoomProgressRequestProtobuf);
 			var message:RoomProgressRequestProtobuf = new RoomProgressRequestProtobuf();
 			message.type = RoomProgressType.RP_SPIN;
-			send(message, packageId);
-		}
-
-		public function leaveMatch(levelIndex : int, coinsAmount : int) : void
-		{
-			var packageId : int = MessagesMap.getIdByClass(MatchLeaveRequestProtobuf);
-			var message : MatchLeaveRequestProtobuf = new MatchLeaveRequestProtobuf();
-			message.coinsAmount = coinsAmount;
-			message.level = levelIndex;
 			send(message, packageId);
 		}
 	}

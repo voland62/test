@@ -19,11 +19,13 @@ package com.onlyplay.slotmatch3.components.lobby.elements.flex2
 		private var _selectedElement:IVisualElement;
 		public function get selectedElement() : IVisualElement
 		{
+			// TODO: Auto-generated method stub
 			return  _selectedElement;
 		}
 
 		public function get selectedIndex() : int
 		{
+			// TODO: Auto-generated method stub
 			return target.getElementIndex(_selectedElement);
 		}
 
@@ -31,6 +33,9 @@ package com.onlyplay.slotmatch3.components.lobby.elements.flex2
 		
 		public function set selectedIndex(value : int) : void
 		{
+			//log("LobbyNavigatorLayout3.selectedIndex(value)");
+			// 
+			
 			if (!target) return;
 			var firstEl:IVisualElement = target.getElementAt(0);
 			if (!firstEl) return;
@@ -57,5 +62,6 @@ package com.onlyplay.slotmatch3.components.lobby.elements.flex2
 				el.setLayoutBoundsPosition(el.x - ttt, 0);
 			}
 		}
+
 	}
 }

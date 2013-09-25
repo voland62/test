@@ -115,17 +115,6 @@ package com.onlyplay.slotmatch3.controller.match
 					var reminder : Number = newEnergyValue - model.currentLevel.energy ;
 					model.currentLevel = model.matchModelProto.levels[ index + 1];
 					model.currentFlashEnergy = reminder;
-					
-					// здесь мы должны высавить нормальное состояние 
-					if (  model.currentLevel.energyFallPerSecond != 0 )
-					{
-						model.flashEnergyState = MatchGameModel.FLASH_ENERGY_NORM;
-					}
-					else
-					{
-						model.flashEnergyState = MatchGameModel.FLASH_ENERGY_FREEZE;	
-					}
-					
 				}
 			}
 			else
@@ -138,7 +127,7 @@ package com.onlyplay.slotmatch3.controller.match
 			if (model.flashEnergyState != MatchGameModel.FLASH_ENERGY_FULL)
 			{
 				//log ('model.currentLevel.energyFallPerSecond: ' + (model.currentLevel.energyFallPerSecond));
-				if (  model.currentLevel.energyFallPerSecond == 0 || model.flashEnergyState == MatchGameModel.FLASH_ENERGY_FREEZE)
+				if (  model.currentLevel.energyFallPerSecond == 0 )
 				{
 					model.flashEnergyState = MatchGameModel.FLASH_ENERGY_FREEZE;
 				}

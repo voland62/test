@@ -31,8 +31,8 @@
 	<!--<s:ToggleSwitch left="100" top="20" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.ToggleSwitchSking"/>-->
 
 
-	<!--<s:Button label="close" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin"
-	click="onClick(event)"/>-->
+	<s:Button label="close" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin"
+		click="onClick(event)"/>
 
 
 
@@ -69,7 +69,6 @@
 	<!--<flex:PaymentsTablePopUp verticalCenter="0" horizontalCenter="0" />-->
 
 
-
 	<s:Label text="hello" left="40" top="20"/>
 
 	<!--<scrollEl:ScrollablePanel verticalCenter="0" horizontalCenter="0" width="300" 
@@ -77,11 +76,13 @@
 
 
 
-	<!--<flex:Profile verticalCenter="0" horizontalCenter="0"/>-->
+	<flex:Profile verticalCenter="0" horizontalCenter="0"/>
+
+	
+
+
 	<!--<mx:ProgressBar verticalCenter="20" horizontalCenter="0"/>-->
 
-	<s:VScrollBar height="300" verticalCenter="0" horizontalCenter="0" fixedThumbSize="true"
-		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.vscrollbarSkin.VScrollBarSkin"/>
 
 
 </s:Application>

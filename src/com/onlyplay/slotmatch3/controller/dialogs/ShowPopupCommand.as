@@ -1,10 +1,7 @@
 package com.onlyplay.slotmatch3.controller.dialogs
 {
-	import com.onlyplay.slotmatch3.components.dialogs.flex.Profile;
-	import com.onlyplay.slotmatch3.components.dialogs.flex.TimeOverPopup;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.PaymentsTablePopUp;
 	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
-
 	import robotlegs.bender.bundles.mvcs.Command;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
 	import robotlegs.bender.extensions.viewManager.api.IViewManager;
@@ -35,58 +32,34 @@ package com.onlyplay.slotmatch3.controller.dialogs
 
 		override public function execute() : void
 		{
-			// log("ShowPopupCommand.execute()");
-			var clas : Class;
+			//log("ShowPopupCommand.execute()");
+			// var PopupClass : Class = e.clas;
 
-			switch(e.type)
+			if ( e.interface_ )
 			{
-				case "showPaymentsDialog":
-					clas = PaymentsTablePopUp;
-					break;
-				case "showProfile":
-					clas = Profile;
-					break;
-				case "timerFinish":
-					clas = TimeOverPopup;
-					break;
-				default:
-					log("There ins't popup for event:" + e.type);
-			}
+				var interface_ : Class = e.interface_;
+				var clas :Class;
+				
+				switch(interface_){
+					case IPaymentsPopup:
+						clas = PaymentsTablePopUp;
+						break;
+					default:
+				}
+				
+				
+				
+				var popup : IFlexDisplayObject = new clas();//injector.getOrCreateNewInstance(interface_);//injector.getInstance(interface_);
+				
+				// new PopupClass();
+				//log(popup);
+				//mediatorMap.mediate(popup);
+				viewManager.addContainer(popup as DisplayObjectContainer);
 
-			if (clas)
-			{
-				var popup : IFlexDisplayObject = new clas();
-				viewManager.addContainer(popup as DisplayObjectContainer); // mediation
 				popup.addEventListener("close", onClose);
 				PopUpManager.addPopUp(popup, FlexGlobals.topLevelApplication as DisplayObject, true);
 				PopUpManager.centerPopUp(popup);
 			}
-
-			// if ( e.interface_ )
-			// {
-			// var interface_ : Class = e.interface_;
-			// var clas : Class;
-			//
-			// switch(interface_)
-			// {
-			// case IPaymentsPopup:
-			// clas = PaymentsTablePopUp;
-			// break;
-			// default:
-			// }
-			//
-			// var popup : IFlexDisplayObject = new clas();
-			//				//  injector.getOrCreateNewInstance(interface_);//injector.getInstance(interface_);
-			//
-			//				//  new PopupClass();
-			//				//  log(popup);
-			//				//  mediatorMap.mediate(popup);
-			// viewManager.addContainer(popup as DisplayObjectContainer);
-			//
-			// popup.addEventListener("close", onClose);
-			// PopUpManager.addPopUp(popup, FlexGlobals.topLevelApplication as DisplayObject, true);
-			// PopUpManager.centerPopUp(popup);
-			// }
 		}
 
 		private function onClose(e : Event) : void

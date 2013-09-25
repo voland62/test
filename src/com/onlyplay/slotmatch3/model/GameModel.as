@@ -32,7 +32,6 @@ package com.onlyplay.slotmatch3.model
 		public var islands:IslandsProtobuf;
 		public var userInfo : PlayerProtobuf;
 		public var achievements : AchievementsProtobuf;
-		public var amulets : AmuletsProtobuf;
 		public var multipliers : Array;
 		
 		

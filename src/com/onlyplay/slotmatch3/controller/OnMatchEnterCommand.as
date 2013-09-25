@@ -68,8 +68,6 @@ package com.onlyplay.slotmatch3.controller
 				model.flashEnergyState = MatchGameModel.FLASH_ENERGY_NORM;
 			}
 			
-			model.currentCoinsAmount = 0;
-			
 			//model.currentTime = ;
 			timerService.start();
 			eventDispatcher.dispatchEvent(new Event( "showMatch" ));
