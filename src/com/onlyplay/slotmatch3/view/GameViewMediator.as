@@ -41,6 +41,7 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("onPhoto", onPhoto);
 			addViewListener("flashEnergy", onFlashEnergy);
 			addViewListener("showPaymentsDialog", onShowPaymentsDialog);
+			addViewListener("game_view:to_map", toMap)
 
 			addContextListener("ready", onReady);
 			addContextListener("showSpin", showSpin);
@@ -298,6 +299,12 @@ package com.onlyplay.slotmatch3.view
 			view.setMatchState();
 			view.matchReinit(matchGameModel.matchModelProto.iconEnergy);
 			view.initFlashEnergy(matchGameModel.currentLevel.multiplier);
+		}
+		
+		private function toMap(e:DynamicEvent) {
+			var event : DynamicEvent = new DynamicEvent("state_changes_request");
+			event.state = "lobby";
+			dispatch(event);
 		}
 	}
 }

@@ -4,14 +4,24 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	import com.smith.gallery.SmtHrzGallery;
 	import com.smith.gallery.engine.GalleryEvent;
 	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyCellItem;
-	
+	import flash.events.MouseEvent;
+	import com.onlyplay.slotmatch3.model.GameModel;
+	import mx.events.DynamicEvent;
+	import IslandsProtobuf;
 
 	public class LobbyView extends Sprite {
 		
 		private var bg:lobby_sborka_cls;
-		private var fakeServerData:Vector.<Object>;
+		//private var fakeServerData:Vector.<Object>;
 		private var gallery:SmtHrzGallery;
 		private var posInd:Sprite;
+		private var islandsData:IslandsProtobuf;
+		private var lastCursor:uint = 0;
+		private var locatInfoDlg:LocationInfoDlg;
+		
+		[Inject]
+		public var gameModel : GameModel;
+		
 		
 		public function LobbyView() {
 			init ();
@@ -20,13 +30,12 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		private function init():void {
 			BuildBg();
 			BuildPositIndicator();
-			GetLocationData();
-			
 		}
 		
 		private function BuildBg():void {
 			bg = new lobby_sborka_cls();
 			bg.x = 1;
+			bg.play_btn.addEventListener(MouseEvent.CLICK, onPlayClick)
 			addChild(bg);
 		}
 		
@@ -45,6 +54,11 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 				
 			}
 			
+			/*locatInfoDlg = new LocationInfoDlg();
+			locatInfoDlg.x = -posInd.x;
+			locatInfoDlg.y = -posInd.y;
+			addChild(locatInfoDlg);*/
+			
 			SetPositIndicator(0);
 		}
 		
@@ -59,30 +73,49 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		
 		private function BuildLocations(data:Vector.<Object> ):void {
 			
-			var cellBg:Sprite = new Sprite();
-			cellBg.graphics.beginFill(0xff0000);
-			cellBg.graphics.drawRect(0,0,560, 460)
+			if (gallery == null){
+				var cellBg:Sprite = new Sprite();
+				cellBg.graphics.beginFill(0xff0000);
+				cellBg.graphics.drawRect(0,0,560, 460)
+				
+				gallery = new SmtHrzGallery(560, 460, 1, 1, LobbyCellItem, cellBg, bg.lobby_btn_right, bg.lobby_btn_left);
+				gallery.x = 50;
+				gallery.y = 60;
+				
+				bg.addChild(gallery);
+				addEventListener(GalleryEvent.CURSOR_CHANGES, GalleryCursorChanges);
+			}
 			
-			gallery = new SmtHrzGallery(560, 460, 1, 1, LobbyCellItem, cellBg, bg.lobby_btn_right, bg.lobby_btn_left);
 			gallery.dataProvider = data;
 
-			gallery.x = 50;
-			gallery.y = 60;
-			bg.addChild(gallery);
-			
-			//выносим кнопки листания выше галереи
+			//выносим кнопки  выше галереи
 			bg.addChild(bg.lobby_btn_left);
 			bg.addChild(bg.lobby_btn_right);
 			
-			addEventListener(GalleryEvent.CURSOR_CHANGES, GalleryCursorChanges);
+			bg.addChild(bg.play_btn);
+			bg.play_btn.txt.mouseEnabled = false;
 			
 			GalleryCursorChanges(null);
+			
+			
+			
 		}
 		
+		private function onPlayClick(e:MouseEvent):void {
+			trace ("")
+			//dispatchEvent(new MouseEvent("lobby_view:lobby_exit"))
+		}
 		
 		public function GalleryCursorChanges(e:GalleryEvent = null):void {
+			
 			var ind:uint;
-			e == null ? ind = 0 : ind = e.data.newCursor;
+			
+			if (e == null) {
+				ind = lastCursor; 
+			}else {
+				ind = e.data.newCursor;
+				lastCursor = ind;
+			}
 			
 			SetPositIndicator(ind);
 			
@@ -92,55 +125,36 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		
 		
 		
-		//------------------типа эмулируем сервер------------------
-		private function GetLocationData():void {
-			
-			//типа запрашиваем данные с сервака 
-			onDataLoaded();
-			
-		}
 		
-		private function onDataLoaded(data:* = null):void{
+		
+		internal function onDataArrive(evt:DynamicEvent):void{
+			
+			islandsData = evt.data;
 			
 			//типа пришли данные с сервака 
-			fakeServerData = new Vector.<Object>();
+			var realIslandsData = new Vector.<Object>();
 			
 			var moveClasses:Vector.<Class> = Vector.<Class>([hawaii_island, amazone_island, archipelago_island, pirate_island]);
-			
-			//------------------наполнение обьектов фейковыми данными --------------------------
 			var locatNames:Vector.<String> = Vector.<String>(["Гавайский остров", "Амазонка", "Подводный архипелаг", "Пиратский остров"])
-			for (var i:uint = 0; i < moveClasses.length; i++) {
+			
+			for (var i:uint = 0; i < islandsData.islands.length; i++) {
 				var locat:* = {};
 				locat.locationMov = new moveClasses[i]();
-				//locat.locationMov.scaleX = locat.locationMov.scaleY = 0.7
 				locat.sName = locatNames[i];
+				locat.info = islandsData.islands[i]
 				
-				(!i) ? locat.stars = 1 : locat.stars = i;
-				
-				locat.locationActive = i < 3 ? true : false;
-				
-				fakeServerData.push(locat as Object);
+				realIslandsData.push(locat as Object);
 			}
 			//--------------------------------------------------------------------------------
 			
-			BuildLocations(fakeServerData);
+			BuildLocations(realIslandsData);
 		}
 		
 	}
 
 }
 
-class LocationData {
-	import flash.display.MovieClip;
-	
-	public var locationMov:MovieClip;
-	public var sName:String;
-	public var stars:uint;
-	public var locationActive:Boolean;
-	
-	
-	public function LocationData(){}
-}
+
 
 
 

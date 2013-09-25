@@ -294,10 +294,18 @@ package com.onlyplay.slotmatch3.components
 				dispatchEvent(new DynamicEvent("max_bet"));
 			});
 			addChild(_maxBetButton);
-
+			
+			
+			
 			_mapButton = new MapButton();
 			addChild(_mapButton);
+			_mapButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
+			{
+				dispatchEvent(new DynamicEvent("game_view:to_map"));
+			});
 
+			
+			
 			_toMach3Button = new ToMach3Button();
 			_toMach3Button.addEventListener(MouseEvent.CLICK, function(e : Event) : void
 			{

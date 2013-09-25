@@ -44,9 +44,6 @@ package com.onlyplay.slotmatch3.controller
 			gameModel.achievements = message.achievements;
 			
 			
-			
-			
-
 			gameModel.currentIsland = getCurrentIsland(message.islands, message.player.currentIslandId);
 			gameModel.currentLocation = getCurrentLocation(gameModel.currentIsland.locations, message.player.currentLocationId);
 
@@ -83,7 +80,12 @@ package com.onlyplay.slotmatch3.controller
 			ev.showLines = false;
 			eventDispatcher.dispatchEvent(ev);
 			eventDispatcher.dispatchEvent(new Event("userDataUpdated"));
-
+			
+			var lobbyEvt:DynamicEvent = new DynamicEvent("islandsDataReady");
+			lobbyEvt.data = gameModel.islands;
+			eventDispatcher.dispatchEvent (lobbyEvt)
+			
+			
 			// gameModel.serverConfig = getFirstLocation(message.locations);
 
 			// TODO: consider doing this via models method? like GameModel.setCurrenBet(linesNum, betBerLine);

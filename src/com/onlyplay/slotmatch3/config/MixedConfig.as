@@ -44,6 +44,9 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.view.IGameView;
 	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
 	import com.onlyplay.slotmatch3.view.dialogs.PaymentsPopupMediator;
+	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
+	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyViewMediator
+	import com.onlyplay.slotmatch3.controller.lobby.StateChangesCommand
 
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -106,11 +109,14 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("onBoosterClick").toCommand(OnBoosterCommand);
 			commandMap.map("showPaymentsDialog").toCommand(ShowPopupCommand);
 			//
+			//lobby commands
+			commandMap.map("state_changes_request").toCommand(StateChangesCommand)
 			
 			// view ServerRoomPlayerStateProtobuf
 			mediatorMap.map(IGameView).toMediator(GameViewMediator);
 			mediatorMap.map(IPaymentsPopup).toMediator(PaymentsPopupMediator);
 			mediatorMap.map(BoosterPanel).toMediator(BoosterPanelMediator);
+			mediatorMap.map(LobbyView).toMediator(LobbyViewMediator)
 
 			
 			// startup
