@@ -31,6 +31,8 @@ package net
 			map[2310] = MatchLeaveRequestProtobuf;
 			map[1310] = MatchLeaveResponseProtobuf;
 			
+			map[1113] = RoomWinnerEventProtobuf;
+			
 //			map[ 2001 ] = ClientHandShakeProtobuf;
 //			map[ 1001 ] = ServerHandShakeProtobuf;
 //			map[ 1003 ] = ServerConfigProtobuf;
