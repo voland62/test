@@ -46,15 +46,15 @@ package com.smith.gallery {
 					var cell:* = new _cellClass();
 					cell.name = "cell_" + i;
 					//даём ячейке фон	
-					var bgClass:Class =  Object(_cellBg).constructor
-					cell.bgrnd =  new bgClass()
+					var bgClass:Class =  Object(_cellBg).constructor as Class;
+					cell.bgrnd =  new bgClass();
 					
 					//располагаем ячейки
 					cell.x = int(gapX);
 					cell.y = int(gapY / 2 + i * step)
 					
 					//крепим ячейки на платформы	
-					cell.clear()
+					cell.clear();
 					j ==0 ? platform.addChild(cell) : platform2.addChild(cell)
 				}
 			}
