@@ -3,24 +3,35 @@
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:rl2="http://ns.robotlegs.org/flex/rl2"
 	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*" xmlns:config="com.onlyplay.slotmatch3.config.*"
 	xmlns:components="com.onlyplay.slotmatch3.components.*" xmlns:flint2d="http://flintparticles.org/2009/flint2d"
-	width="760" height="658" applicationComplete="onInit(event)"
-	frameRate="60">
+	width="760" height="658" frameRate="60" applicationComplete="onInit(event)">
+	
+	<!--  applicationComplete="onInit(event)" -->
+	
 	<fx:Script>
 		<![CDATA[
 			import alternativa.init.GUI;
 
 			import com.onlyplay.slotmatch3.components.FlashGameView;
+			import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
 
+			import org.osmf.events.TimeEvent
 			import mx.events.FlexEvent;
 			import mx.resources.ResourceBundle;
 			import mx.rpc.events.ResultEvent;
+			import mx.core.*;
+			
+			import flash.events.MouseEvent;
+			import flash.display.Sprite;
+			
 
 			private var _flashGameView : FlashGameView;
+			private var lobbyView:LobbyView;
+			private var hintWnd:Sprite;
 			[Bindable]
-			private var localeUrlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
-			//private var localeUrlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/";
+			private var localeUrlBase:String = "http://onlyplay.game-insight.com/puzzleslots/flash/"
 
-			private function onInit(e : FlexEvent) : void
+			private function onInit(e : FlexEvent) : void //при неподключённом видео
+			//private function onInit(e:TimeEvent):void //при подключённом видеo
 			{
 				
 				//resourceManager.localeChain = ["ru_RU"];
@@ -28,8 +39,15 @@
 				
 				log("MainMixed.onInit(e)");
 				
-				//log(resourceManager.localeChain);
-				//log(resourceManager.getLocales());
+				//при подключённом видеo удаляем видео, нужно ещё в свойствах приложения убрать applicationComplete="onInit(event)"
+				/*for (var i:uint = 0; i < FlexGlobals.topLevelApplication.numElements; i++ ) {
+					var obj:IVisualElement = FlexGlobals.topLevelApplication.getElementAt(i);
+					if (aObj["id"] == "video") {
+						FlexGlobals.topLevelApplication.removeElement(obj);
+						obj = null;
+						break;
+					}
+				}*/
 
 				GUI.init(stage);
 				GUI.hideLogo();
@@ -41,6 +59,11 @@
 				_flashGameView.w = 760;
 				_flashGameView.h = 570;
 
+				
+				lobbyView = new LobbyView();
+				lobbyPlaceHolder.addChild(lobbyView);
+				
+				
 				onResize();
 			}
 
@@ -77,6 +100,18 @@
 				}
 				return rb;
 			}
+			
+			//--------------------- hint ------------------------------
+			private function getHint(e:MouseEvent):void{
+				for (var i:uint = 0; i < FlexGlobals.topLevelApplication.numElements; i++ ) {
+					var aObj:IVisualElement = FlexGlobals.topLevelApplication.getElementAt(i);
+					if (aObj["id"] == "fon") {
+						aObj.visible = true;
+						break;
+					}
+				}
+			}
+			
 		]]>
 	</fx:Script>
 
@@ -94,15 +129,25 @@
 
 	</fx:Declarations>
 
-	<s:SpriteVisualElement id="gameViewPlaceHolder" width="760"
-		height="570"/>
+	
+	
+	
+	
+	<s:SpriteVisualElement id="gameViewPlaceHolder" width="760" height="570"/>
+		
+	<s:SpriteVisualElement id="lobbyPlaceHolder" x="170" width="760" height="570"/>
+	
 	<!--<flint2d:BitmapRenderer id="bitmapRenderer" width="760" height="570" />-->
 
-	<s:Group id="frendsPlaceholder" left="0" right="0" height="88"
-		bottom="0">
-		<s:Label text="Плашка друзей" color="0xc0c0c0" fontWeight="bold"
-			fontSize="40" verticalCenter="0" horizontalCenter="0"/>
-	</s:Group>
 
+	<s:Image source="../src/assets/Mock_user.png" click = "getHint(event)"></s:Image>
+	<s:Image source="../src/assets/Mock_top.png"  click = "getHint(event)" y ="95"></s:Image>
+	<s:Image source="../src/assets/Mock_friends.png" click = "getHint(event)" y ="552"></s:Image>
+	
+	<!-- s:VideoDisplay id = "video" source="../src/video/PS_Intro_Ipad.mp4" 
+						width="760" height="658" scaleMode = "stretch" 
+						complete="onInit(event)"></s:VideoDisplay -->
+						
+	<s:Image id ="fon" source="../src/assets/hintWnd2.png" visible = "false" click = "fon.visible = false"></s:Image>					
 
 </s:Application>

@@ -39,8 +39,8 @@ package com.onlyplay.slotmatch3.components.games.match
 	public class MatchComponent extends Sprite
 	{
 		// worker
-		[Embed(source="D:/work/workspaces/fdt_ws/slotmatch3/bin/MyWorker.swf", mimeType="application/octet-stream")]
-		private static var MyWorkerClass : Class;
+		//[Embed(source="D:/work/workspaces/fdt_ws/slotmatch3/bin/MyWorker.swf", mimeType="application/octet-stream")]
+		//private static var MyWorkerClass : Class;
 		// icons
 		[Embed(source="/assets/Match3/1.png", mimeType="image/png")]
 		private var Icon_1_Class : Class;

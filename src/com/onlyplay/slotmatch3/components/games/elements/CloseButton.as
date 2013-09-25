@@ -22,6 +22,7 @@ package com.onlyplay.slotmatch3.components.games.elements
 			stateUP = new NormalClass();
 			stateOVER = new HoverClass();
 			stateDOWN = new DownClass();
+			locked
 
 			alternativagui::_height = _stateUP.height;
 			alternativagui::_width = _stateUP.width;
