@@ -46,7 +46,7 @@ package com.smith.gallery {
 					var cell:* = new _cellClass();
 					cell.name = "cell_" + i;
 					//даём ячейке фон	
-					var bgClass:Class =  Object(_cellBg).constructor as Class;
+					var bgClass:Class =  Object(_cellBg).constructor
 					cell.bgrnd =  new bgClass()
 					
 					//располагаем ячейки
