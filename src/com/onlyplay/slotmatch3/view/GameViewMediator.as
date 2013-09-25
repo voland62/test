@@ -42,7 +42,9 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("flashEnergy", onFlashEnergy);
 			addViewListener("showPaymentsDialog", onShowPaymentsDialog);
 			addViewListener("game_view:to_map", toMap)
-
+                        addViewListener("onFace", onFace);
+			//addContextListener("toSlot", onToSlot);
+			addContextListener( "showSlot" , showSlot);
 			addContextListener("ready", onReady);
 			addContextListener("showSpin", showSpin);
 			addContextListener("showMatch", showMatch);
@@ -64,6 +66,18 @@ package com.onlyplay.slotmatch3.view
 			// addContextListener("currentExperienceChanged", onExperienceChanged);
 			addContextListener("matchTimerTick", onMatchCurrenTimeTick);
 			addContextListener("currentFlashEnergyChanged", onCurrentFlashEnergyChanged);
+		}
+
+		private function onFace( e:Event) : void
+		{
+			log("GameViewMediator.onFace(e)");
+			var event:DynamicEvent = new DynamicEvent( "showProfile" );
+			dispatch( event );
+		}
+
+		private function showSlot( e:Event ) : void
+		{
+			view.setSlotState();
 		}
 
 		private function onShowPaymentsDialog(e : Event) : void
@@ -155,7 +169,8 @@ package com.onlyplay.slotmatch3.view
 
 		private function onToSlot(e : Event) : void
 		{
-			view.setSlotState();
+			dispatch(e);
+			//view.setSlotState();
 		}
 
 		//

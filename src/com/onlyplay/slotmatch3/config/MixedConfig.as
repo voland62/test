@@ -94,6 +94,7 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(SpinResponseProtobuf)).toCommand(OnSpinCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchEnterResponseProtobuf)).toCommand(OnMatchEnterCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(RoomChangedEventProtobuf)).toCommand(OnRoomChangeedCommand);
+			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchLeaveResponseProtobuf)).toCommand(OnMatchLeaveComand);
 			commandMap.map(ServiceEvent.CHANGES).toCommand(OnChageCommand);
 			commandMap.map("requestRoomProgress").toCommand(RequestRoomProgressCommand);
 			commandMap.map("onFlashEnergyIncrease").toCommand(OnFlashEnergyEncreaseCommand);
@@ -108,15 +109,23 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("onBonus").toCommand(OnBonusCommand);
 			commandMap.map("onBoosterClick").toCommand(OnBoosterCommand);
 			commandMap.map("showPaymentsDialog").toCommand(ShowPopupCommand);
-			//
-			//lobby commands
-			commandMap.map("state_changes_request").toCommand(StateChangesCommand)
+			commandMap.map("timerFinish").toCommand(ShowPopupCommand);
+			commandMap.map("showProfile").toCommand(ShowPopupCommand);
 			
+			commandMap.map("toSlot").toCommand(PlaySlotCommand);
+			
+			
+	//lobby commands
+			commandMap.map("state_changes_request").toCommand(StateChangesCommand)
+
 			// view ServerRoomPlayerStateProtobuf
 			mediatorMap.map(IGameView).toMediator(GameViewMediator);
 			mediatorMap.map(IPaymentsPopup).toMediator(PaymentsPopupMediator);
+			mediatorMap.map(ITimeOverPopup).toMediator(TimeOverPopupMediator);
+			mediatorMap.map(IProfilePopup).toMediator(ProfilePopupMediator);
 			mediatorMap.map(BoosterPanel).toMediator(BoosterPanelMediator);
 			mediatorMap.map(LobbyView).toMediator(LobbyViewMediator)
+			
 
 			
 			// startup

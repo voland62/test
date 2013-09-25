@@ -13,7 +13,7 @@
 
 			import com.onlyplay.slotmatch3.components.FlashGameView;
 			import com.onlyplay.slotmatch3.components.lobby_smith.*;
-			
+
 			import org.osmf.events.TimeEvent
 			import mx.events.FlexEvent;
 			import mx.resources.ResourceBundle;
@@ -23,7 +23,7 @@
 			import flash.events.MouseEvent;
 			import flash.display.Sprite;
 			
-			
+
 			private var _flashGameView : FlashGameView;
 			private var lobbyView:LobbyView;
 			private var locatInfoView:LocationInfoDlg;
@@ -31,7 +31,7 @@
 			private var hintWnd:Sprite;
 			[Bindable]
 			private var localeUrlBase:String = "http://onlyplay.game-insight.com/puzzleslots/flash/"
-			
+
 			private function onInit(e : FlexEvent) : void //при неподключённом видео
 			//private function onInit(e:TimeEvent):void //при подключённом видеo
 			{
@@ -50,7 +50,7 @@
 						break;
 					}
 				}*/
-				
+
 				GUI.init(stage);
 				GUI.hideLogo();
 
@@ -60,7 +60,7 @@
 				_flashGameView.setSlotState();
 				_flashGameView.w = 760;
 				_flashGameView.h = 570;
-				
+
 				lobbyView = new LobbyView();
 				lobbyPlaceHolder.addChild(lobbyView);
 				
@@ -84,8 +84,8 @@
 
 			private function onLocationXML(e : ResultEvent) : void
 			{
-				log("---TestFlexGuiWithServer.onLocationXML(e)");
-				log(e.result);
+				//log("---TestFlexGuiWithServer.onLocationXML(e)");
+				//log(e.result);
 
 				var rb : ResourceBundle = makeResourceBundle(e.result as XML);
 				resourceManager.addResourceBundle(rb);
@@ -135,17 +135,17 @@
 		</s:HTTPService>
 
 	</fx:Declarations>
-	
-	
-	
 
+	
+	
+	
 	<s:SpriteVisualElement id="gameViewPlaceHolder" width="760" height="570"/>
 		
 	<s:SpriteVisualElement id="lobbyPlaceHolder" x="170" width="760" height="570"/>
 	
 	<!--<flint2d:BitmapRenderer id="bitmapRenderer" width="760" height="570" />-->
 
-	
+
 	<s:Image id="lobby_avatar" source="../src/assets/Mock_user.png" click = "getUnderConstrWnd(event)"></s:Image>
 	<s:Image id="lobby_top" source="../src/assets/Mock_top.png"  click = "getUnderConstrWnd(event)" y ="95"></s:Image>
 	
@@ -161,5 +161,5 @@
 	
 	<s:Image id="fon" source="../src/assets/hintWnd2.png" click = "fon.visible=false" visible = "false" ></s:Image>
 	
-	
+
 </s:Application>

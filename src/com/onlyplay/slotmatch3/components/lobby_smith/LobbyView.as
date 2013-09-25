@@ -35,9 +35,12 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		private function BuildBg():void {
 			bg = new lobby_sborka_cls();
 			bg.x = 1;
-			bg.play_btn.addEventListener(MouseEvent.CLICK, onPlayClick)
+			bg.red_rect.addEventListener(MouseEvent.CLICK, onCloseClick);
+			bg.play_btn.addEventListener(MouseEvent.CLICK, onPlayClick);
 			addChild(bg);
 		}
+		
+		
 		
 		//--------------------методы индикатора "4 Точки" -------------------
 		private function BuildPositIndicator():void {
@@ -97,14 +100,20 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 			GalleryCursorChanges(null);
 			
+		}
+		
+		
+		
+		private function onCloseClick(e:MouseEvent):void {
 			
-			
+			dispatchEvent(new MouseEvent("lobby_view:lobby_exit"))
 		}
 		
 		private function onPlayClick(e:MouseEvent):void {
-			trace ("")
-			//dispatchEvent(new MouseEvent("lobby_view:lobby_exit"))
+			
 		}
+		
+		
 		
 		public function GalleryCursorChanges(e:GalleryEvent = null):void {
 			
@@ -120,7 +129,6 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			SetPositIndicator(ind);
 			
 			bg.lobby_header_txt.text =  gallery.dataProvider[ind].sName;
-			
 		}
 		
 		
