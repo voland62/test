@@ -20,7 +20,8 @@ package com.onlyplay.slotmatch3.model
 		public var currentBoostersCharge:Number = 0;
 		public var currentFlashEnergy : Number = 0;
 		public var currentLevel : MatchLevelProtobuf;
-		public var flashEnergyState:int;
+		public var flashEnergyState : int;
+		public var currentCoinsAmount : int;
 		
 		
 	}

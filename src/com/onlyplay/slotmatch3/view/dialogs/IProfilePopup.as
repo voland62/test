@@ -17,6 +17,10 @@ package com.onlyplay.slotmatch3.view.dialogs
 
 		function setStatistics(maxWin : int, boostersUsed : int, friendsAmount : int, giftsReceived : int, giftsSended : int) : void;
 		
+		function setDp(dp : Array) : void
+
+		function setState(state : String) : void;
+		
 		
 		
 	}

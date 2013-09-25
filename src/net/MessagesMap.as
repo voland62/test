@@ -28,6 +28,9 @@ package net
 			map[2110] = RoomProgressRequestProtobuf; 
 			map[1110] = RoomChangedEventProtobuf;
 			
+			map[2310] = MatchLeaveRequestProtobuf;
+			map[1310] = MatchLeaveResponseProtobuf;
+			
 //			map[ 2001 ] = ClientHandShakeProtobuf;
 //			map[ 1001 ] = ServerHandShakeProtobuf;
 //			map[ 1003 ] = ServerConfigProtobuf;

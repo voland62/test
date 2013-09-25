@@ -1,5 +1,12 @@
 package com.onlyplay.slotmatch3.config
 {
+	import com.onlyplay.slotmatch3.view.dialogs.IProfilePopup;
+	import com.onlyplay.slotmatch3.view.dialogs.ProfilePopupMediator;
+	import com.onlyplay.slotmatch3.controller.OnMatchLeaveComand;
+	import com.onlyplay.slotmatch3.controller.match.PlaySlotCommand;
+	import com.onlyplay.slotmatch3.view.dialogs.TimeOverPopupMediator;
+	import com.onlyplay.slotmatch3.components.dialogs.flex.TimeOverPopup;
+	import com.onlyplay.slotmatch3.view.dialogs.ITimeOverPopup;
 	import net.IConnector;
 	import net.MessagesMap;
 	import net.SocketConnector;
@@ -91,6 +98,7 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(SpinResponseProtobuf)).toCommand(OnSpinCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchEnterResponseProtobuf)).toCommand(OnMatchEnterCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(RoomChangedEventProtobuf)).toCommand(OnRoomChangeedCommand);
+			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchLeaveResponseProtobuf)).toCommand(OnMatchLeaveComand);
 			commandMap.map(ServiceEvent.CHANGES).toCommand(OnChageCommand);
 			commandMap.map("requestRoomProgress").toCommand(RequestRoomProgressCommand);
 			commandMap.map("onFlashEnergyIncrease").toCommand(OnFlashEnergyEncreaseCommand);
@@ -100,17 +108,23 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("lineNumChanged").toCommand(LineNumChangingCommand);
 			commandMap.map("max_bet").toCommand(MaxBetCommand);
 			
-			// toMatch
 			commandMap.map("toMatch").toCommand(MakeMatchEnterRequestCommand);
 			commandMap.map("onBonus").toCommand(OnBonusCommand);
 			commandMap.map("onBoosterClick").toCommand(OnBoosterCommand);
 			commandMap.map("showPaymentsDialog").toCommand(ShowPopupCommand);
-			//
+			commandMap.map("timerFinish").toCommand(ShowPopupCommand);
+			commandMap.map("showProfile").toCommand(ShowPopupCommand);
+			
+			commandMap.map("toSlot").toCommand(PlaySlotCommand);
+			
 			
 			// view ServerRoomPlayerStateProtobuf
 			mediatorMap.map(IGameView).toMediator(GameViewMediator);
 			mediatorMap.map(IPaymentsPopup).toMediator(PaymentsPopupMediator);
+			mediatorMap.map(ITimeOverPopup).toMediator(TimeOverPopupMediator);
+			mediatorMap.map(IProfilePopup).toMediator(ProfilePopupMediator);
 			mediatorMap.map(BoosterPanel).toMediator(BoosterPanelMediator);
+			
 
 			
 			// startup

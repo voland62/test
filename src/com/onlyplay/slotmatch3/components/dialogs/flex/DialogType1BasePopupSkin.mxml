@@ -61,7 +61,7 @@
 			<s:Group id="moveArea" left="0" right="0" top="0" bottom="0"/>
 
 			<s:Button id="closeButton" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin"
-				right="-9" top="-9"/>
+				right="-17" top="-18"/>
 		</s:Group>
 
 

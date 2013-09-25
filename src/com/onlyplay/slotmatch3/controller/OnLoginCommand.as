@@ -42,7 +42,7 @@ package com.onlyplay.slotmatch3.controller
 			gameModel.userInfo = message.player;
 			gameModel.islands = message.islands;
 			gameModel.achievements = message.achievements;
-			
+			gameModel.amulets = message.amulets;
 			
 			
 			
@@ -60,7 +60,7 @@ package com.onlyplay.slotmatch3.controller
 			gameModel.currentExperience.level = message.player.level;
 			
 			// boosters
-			var maxes:Array = [null, 15, 30, 45, 75];
+			var maxes:Array = [null, 150, 150, 150, 150];
 			for each (var boost : BoosterProtobuf in message.player.boosters.boosters) 
 			{
 				

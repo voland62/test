@@ -17,7 +17,8 @@
 
 			private var _flashGameView : FlashGameView;
 			[Bindable]
-			private var localeUrlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/";
+			private var localeUrlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
+			//private var localeUrlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/";
 
 			private function onInit(e : FlexEvent) : void
 			{
@@ -53,8 +54,8 @@
 
 			private function onLocationXML(e : ResultEvent) : void
 			{
-				log("---TestFlexGuiWithServer.onLocationXML(e)");
-				 log(e.result);
+				//log("---TestFlexGuiWithServer.onLocationXML(e)");
+				//log(e.result);
 
 				var rb : ResourceBundle = makeResourceBundle(e.result as XML);
 				resourceManager.addResourceBundle(rb);

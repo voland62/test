@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.services
 {
+	import mx.events.DynamicEvent;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	import flash.utils.getTimer;
@@ -37,7 +38,8 @@ package com.onlyplay.slotmatch3.services
 				newTime = 0;
 				//model.currentTime = newTime;
 				_timer.stop();
-				eventDispatcher.dispatchEvent(new Event("timerFinish"));
+				var event:DynamicEvent = new DynamicEvent("timerFinish");
+				eventDispatcher.dispatchEvent( event );
 			}
 			model.currentTime = newTime;
 			eventDispatcher.dispatchEvent(new Event("matchTimerTick"));

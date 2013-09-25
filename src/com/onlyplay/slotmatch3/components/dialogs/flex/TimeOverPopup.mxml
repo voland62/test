@@ -32,16 +32,45 @@
 
 	<fx:Script>
 		<![CDATA[
+			import com.onlyplay.slotmatch3.components.games.Util;
 			[Embed(source="/Dialogs/NoTimeDialog/no_time_normal_frame.png")]
 			private const GlassSnowClass : Class;
 			[Embed(source="/Dialogs/NoTimeDialog/no_time_max_frame.png")]
 			private const MaxBgClass : Class;
 			[Embed(source="/Dialogs/Common/buttons_base_w_green_orange.png")]
 			private const ButtonsBg : Class;
-//			[Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/title2_base.png", mimeType="image/png")]
-//			private var _TitleBgClass : Class;
+
+			public function init(win : Number, multiplier : Number,time:Number,  nextLevelMultiplyer : Number) : void
+			{
+				winLabel.text = win.toString();
+				multLabel.text = "x" + Util.formLevelMultiplyerString(multiplier);
+				totalWin.text = (win * multiplier).toFixed();
+				timeLabel.text = time + "секунд!";
+				
+				
+				
+				if (  nextLevelMultiplyer )
+				{
+					koeff.text = "x" + Util.formLevelMultiplyerString(nextLevelMultiplyer); 
+					
+				}else
+				{
+					currentState = 'maxResult';
+				}
+				
+				
+				
+			}
 			
-			// buttons_base_w_green_orange.png
+			private function onByTimeClick(event : MouseEvent) : void
+			{
+				dispatchEvent(new Event("buyTime"));
+			}
+
+			private function onToSlotClick(event : MouseEvent) : void
+			{
+				dispatchEvent(new Event("toSlot"));
+			}
 
 		]]>
 	</fx:Script>
@@ -58,14 +87,14 @@
 			fontSize="24"/>
 		<s:HGroup verticalAlign="bottom">
 			<my:CoinBitmapImage/>
-			<s:Label text="120" fontWeight="bold" color="0xfdefb3"
+			<s:Label id="winLabel" text="120" fontWeight="bold" color="0xfdefb3"
 				fontSize="28"/>
-			<s:Label text="x2.0" fontWeight="bold" color="0x00ff00"
+			<s:Label id="multLabel" text="x2.0" fontWeight="bold" color="0x00ff00"
 				fontSize="20"/>
 			<s:Label text="=" fontWeight="bold" color="0xfdefb3"
 				fontSize="24"/>
 			<my:CoinBitmapImage/>
-			<s:Label text="240" fontWeight="bold" color="0xffe36d"
+			<s:Label id="totalWin" text="240" fontWeight="bold" color="0xffe36d"
 				fontSize="30"/>
 
 
@@ -88,7 +117,7 @@
 			<s:VGroup horizontalAlign="center" x="20">
 				<s:Label text="Бонусное время" fontWeight="bold"
 					fontSize="14"/>
-				<s:Label text="30 секунд!" color="0x860202" fontSize="20"
+				<s:Label id="timeLabel" text="30 секунд!" color="0x860202" fontSize="20"
 					fontWeight="bold"/>
 			</s:VGroup>
 			<s:VGroup x="150" horizontalAlign="center">
@@ -128,8 +157,9 @@
 		<s:Group bottom="-38" horizontalCenter="0">
 			<s:BitmapImage source="{ButtonsBg}"/>
 			<s:Button x="24" y="3" enabled.maxResult="false" label="Купить время"
-				skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.BigGrinButtonSkin"/>
-			<s:Button x="210" y="14" label="В слот" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.YellowButtonSkin"/>
+				click="onByTimeClick(event)" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.BigGrinButtonSkin"/>
+			<s:Button x="210" y="14" label="В слот" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.YellowButtonSkin"
+				click="onToSlotClick(event)"/>
 		</s:Group>
 
 	</my:controlBarContent>

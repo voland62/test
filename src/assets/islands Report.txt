@@ -11,21 +11,17 @@
 
 Символ                    Байты графики    Байты текста    Байты ActionScript
 ----------------------    -------------    ------------    ------------------
-mini_palm_mc                          0               0                     0
-left_waves_mc                         0               0                     0
-jelly_fish_down_mc                    0               0                     0
-jelly fish                            0               0                     0
-fire_one_mc                           0               0                     0
-crystal_top                           0               0                     0
+amazon                                0               0                     0
+archipelago_island_mc                 0               0                     0
+broken_ship_mc                        0               0                     0
+chest_left_shine_mc                   0               0                     0
+chest_right_shine_mc                  0               0                     0
+crestal_center_left                   0               0                     0
 cry_left_mc                           0               0                     0
 crystal_center_left_mc                0               0                     0
-crestal_center_left                   0               0                     0
 crystal_center_mc                     0               0                     0
-chest_right_shine_mc                  0               0                     0
-chest_left_shine_mc                   0               0                     0
-broken_ship_mc                        0               0                     0
-archipelago_island_mc                 0               0                     0
-amazon                                0               0                     0
+crystal_top                           0               0                     0
+fire_one_mc                           0               0                     0
 chest_mc                              0               0                     0
 dollar_mc                             0               0                     0
 dollar2_mc                            0               0                     0
@@ -43,6 +39,10 @@ waterfall_left_mc                     0               0                     0
 monets_mc                             0               0                     0
 waterfall_mc                          0               0                     0
 left_diamond_mc                       0               0                     0
+jelly_fish_down_mc                    0               0                     0
+jelly fish                            0               0                     0
+left_waves_mc                         0               0                     0
+mini_palm_mc                          0               0                     0
 Символ 1                              0               0                     0
 big_fire                              0               0                     0
 big_palm_mc                           0               0                     0
