@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flex:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+<<<<<<< HEAD
+	titleBgSource ="{_TitleBgBigClass}"
+=======
+	
+>>>>>>> origin/master
+	implements="com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup"
+	minHeight="500" minWidth="600" title="Таблица выплат"
+	controlBarVisible="true">
+
+	<!-- titleBgSource ="{ GamePopup._TitleBgBigClass}" -->
+
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Embed(source="/Dialogs/PaytableDialog/paytable_decoration.png")]
+			private var DecorClass : Class;
+			
+			[Embed(source="/Dialogs/Common/buttons_base_red_v2.png")]
+			private const ButtonsBg : Class;
+			
+			[Bindable]
+			private var dp : ArrayCollection = new ArrayCollection([]);
+			
+			public function setList(multiplayersList : Array) : void
+			{
+				// dp.source = multiplayersList;
+				dp = new ArrayCollection(multiplayersList);
+			}
+
+
+			
+			// skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.PaymentsTableSkin"		
+
+		]]>
+	</fx:Script>
+
+
+	<flex:NeildPanel top="0" left="30" right="30" bottom="40">
+
+		<s:DataGroup top="20 left=20" right="20" bottom="20"
+			dataProvider="{dp}">
+			<s:layout>
+				<s:TileLayout horizontalGap="10" verticalGap="10"
+					orientation="rows" requestedColumnCount="3"
+					requestedRowCount="4" rowHeight="87" columnWidth="156"/>
+			</s:layout>
+
+			<s:itemRenderer>
+
+				<fx:Component>
+					<s:ItemRenderer>
+
+						<fx:Script>
+							<![CDATA[
+								import mx.graphics.BitmapSmoothingQuality;
+								// var iconsBasePath : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Slot/slot_icons/";
+
+							]]>
+						</fx:Script>
+
+						<s:Rect top="0" left="0" right="0" bottom="0"
+							radiusX="4" radiusY="4">
+							<s:fill>
+								<s:SolidColor color="0xddc294"/>
+							</s:fill>
+						</s:Rect>
+
+						<fx:Declarations>
+							<s:DropShadowFilter id="whiteShedow"
+								color="0xEEEEEE" strength="1" blurX="1"
+								blurY="1" distance="1"/>
+						</fx:Declarations>
+
+
+
+						<s:VGroup horizontalAlign="center" left="4"
+							right="4" top="3" bottom="1" gap="1">
+							<s:Label text="{resourceManager.getString('ruLocale', data.localeKey)}"
+								fontWeight="bold" filters="{[whiteShedow]}"/>
+							<s:HGroup>
+								<s:BitmapImage width="70" height="70"
+									smooth="true" smoothingQuality="{BitmapSmoothingQuality.DEFAULT}"
+									source="{data.url}"/>
+
+								<s:VGroup>
+									<s:Label fontWeight="bold" text="{'x2=' + data.x2}"
+										color="0x860202"/>
+									<s:Label fontWeight="bold" text="{'x3=' + data.x3}"
+										color="0x860202"/>
+									<s:Label fontWeight="bold" text="{'x4=' + data.x4}"
+										color="0x860202"/>
+									<s:Label fontWeight="bold" text="{'x5=' + data.x5}"
+										color="0x860202"/>
+								</s:VGroup>
+
+							</s:HGroup>
+						</s:VGroup>
+
+					</s:ItemRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+
+		</s:DataGroup>
+
+
+
+	</flex:NeildPanel>
+
+
+	<flex:controlBarContent>
+
+		<s:Group bottom="-45" horizontalCenter="0">
+			<s:Button  label="Зактыть" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
+				click="{dispatchEvent(new Event(Event.CLOSE));}"/>
+		</s:Group>
+
+	</flex:controlBarContent>
+
+</flex:GamePopup>

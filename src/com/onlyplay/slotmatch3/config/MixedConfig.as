@@ -14,6 +14,8 @@ package com.onlyplay.slotmatch3.config
 	import test.MyTestProject.model.UserModel;
 
 	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
+	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
+	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyViewMediator;
 	import com.onlyplay.slotmatch3.controller.InitCommand;
 	import com.onlyplay.slotmatch3.controller.MakeMatchEnterRequestCommand;
 	import com.onlyplay.slotmatch3.controller.OnChageCommand;
@@ -28,6 +30,7 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.LineNumChangingCommand;
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.MaxBetCommand;
 	import com.onlyplay.slotmatch3.controller.dialogs.ShowPopupCommand;
+	import com.onlyplay.slotmatch3.controller.lobby.StateChangesCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnBonusCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnBoosterCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnFlashEnergyEncreaseCommand;
@@ -43,10 +46,11 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.view.GameViewMediator;
 	import com.onlyplay.slotmatch3.view.IGameView;
 	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
+	import com.onlyplay.slotmatch3.view.dialogs.IProfilePopup;
+	import com.onlyplay.slotmatch3.view.dialogs.ITimeOverPopup;
 	import com.onlyplay.slotmatch3.view.dialogs.PaymentsPopupMediator;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyViewMediator
-	import com.onlyplay.slotmatch3.controller.lobby.StateChangesCommand
+	import com.onlyplay.slotmatch3.view.dialogs.ProfilePopupMediator;
+	import com.onlyplay.slotmatch3.view.dialogs.TimeOverPopupMediator;
 
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -94,7 +98,7 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(SpinResponseProtobuf)).toCommand(OnSpinCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchEnterResponseProtobuf)).toCommand(OnMatchEnterCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(RoomChangedEventProtobuf)).toCommand(OnRoomChangeedCommand);
-			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchLeaveResponseProtobuf)).toCommand(OnMatchLeaveComand);
+			// commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchLeaveResponseProtobuf)).toCommand(OnMatchLeaveComand);
 			commandMap.map(ServiceEvent.CHANGES).toCommand(OnChageCommand);
 			commandMap.map("requestRoomProgress").toCommand(RequestRoomProgressCommand);
 			commandMap.map("onFlashEnergyIncrease").toCommand(OnFlashEnergyEncreaseCommand);
@@ -112,7 +116,7 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("timerFinish").toCommand(ShowPopupCommand);
 			commandMap.map("showProfile").toCommand(ShowPopupCommand);
 			
-			commandMap.map("toSlot").toCommand(PlaySlotCommand);
+			// commandMap.map("toSlot").toCommand(PlaySlotCommand);
 			
 			
 	//lobby commands

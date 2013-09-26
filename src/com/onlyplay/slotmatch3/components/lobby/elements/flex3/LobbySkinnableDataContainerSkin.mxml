@@ -18,7 +18,7 @@
 	<fx:Script>
 		<![CDATA[
 			//
-			[Embed(source="/Lobby/Map/map_island_bg.png")]
+			[Embed(source="/Lobby/Map/map_island_bg.jpg")]
 			private static const BgClass : Class;
 		]]>
 	</fx:Script>

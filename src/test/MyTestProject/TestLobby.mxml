@@ -25,7 +25,7 @@
 			[Bindable]
 			private var dp:ArrayCollection = new ArrayCollection( [ 
 				{url:HawaiiIsland, label:"", clas:hawaii_island, avalible:true},
-				{url:PirateIsland, label:"", clas:pirate_island_mc, avalible:true},
+				{url:PirateIsland, label:"", clas:pirate_island, avalible:true},
 				{url:AmazoneIsland, label:"", avalible:false},
 				{url:ArchipelagoIsland, label:"", avalible:false}
 				 ] );

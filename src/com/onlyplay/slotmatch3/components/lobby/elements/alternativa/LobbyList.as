@@ -13,7 +13,7 @@ package com.onlyplay.slotmatch3.components.lobby.elements.alternativa
 	 */
 	public class LobbyList extends List
 	{
-		[Embed(source="/Lobby/Map/map_island_bg.png")]
+		[Embed(source="/Lobby/Map/map_island_bg.jpg")]
 		private static var BGClass : Class;
 		private var _bg : Bitmap;
 
