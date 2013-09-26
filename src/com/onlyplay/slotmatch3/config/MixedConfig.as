@@ -22,6 +22,7 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.controller.OnEnterLocationCommand;
 	import com.onlyplay.slotmatch3.controller.OnLoginCommand;
 	import com.onlyplay.slotmatch3.controller.OnMatchEnterCommand;
+	import com.onlyplay.slotmatch3.controller.OnMatchLeaveComand;
 	import com.onlyplay.slotmatch3.controller.OnRoomChangeedCommand;
 	import com.onlyplay.slotmatch3.controller.OnSpinCommand;
 	import com.onlyplay.slotmatch3.controller.RequestRoomProgressCommand;
@@ -34,6 +35,7 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.controller.match.OnBonusCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnBoosterCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnFlashEnergyEncreaseCommand;
+	import com.onlyplay.slotmatch3.controller.match.PlaySlotCommand;
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.model.MatchGameModel;
 	import com.onlyplay.slotmatch3.services.BoosterTimerService;
@@ -98,7 +100,7 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(SpinResponseProtobuf)).toCommand(OnSpinCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchEnterResponseProtobuf)).toCommand(OnMatchEnterCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(RoomChangedEventProtobuf)).toCommand(OnRoomChangeedCommand);
-			// commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchLeaveResponseProtobuf)).toCommand(OnMatchLeaveComand);
+			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchLeaveResponseProtobuf)).toCommand(OnMatchLeaveComand);
 			commandMap.map(ServiceEvent.CHANGES).toCommand(OnChageCommand);
 			commandMap.map("requestRoomProgress").toCommand(RequestRoomProgressCommand);
 			commandMap.map("onFlashEnergyIncrease").toCommand(OnFlashEnergyEncreaseCommand);
@@ -116,7 +118,7 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("timerFinish").toCommand(ShowPopupCommand);
 			commandMap.map("showProfile").toCommand(ShowPopupCommand);
 			
-			// commandMap.map("toSlot").toCommand(PlaySlotCommand);
+			commandMap.map("toSlot").toCommand(PlaySlotCommand);
 			
 			
 	//lobby commands
