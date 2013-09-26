@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" autoDrawBackground="false"
+	width="100%">
+
+	<fx:Script>
+		<![CDATA[
+			import com.onlyplay.slotmatch3.components.games.Util;
+
+			import mx.graphics.BitmapScaleMode;
+
+			[Embed(source="/Dialogs/ProfileDialog/profile_amulet_base.png"
+			,scaleGridTop="14", scaleGridBottom="99", 
+			scaleGridLeft="14", scaleGridRight="65")]
+			private static const DecorClass : Class;
+			
+			
+			[Embed(source="/Dialogs/ProfileDialog/profile_my_gifts_base.png",  mimeType="image/png"
+			,scaleGridTop="16", scaleGridBottom="65", 
+			scaleGridLeft="90", scaleGridRight="350"
+			)]
+			private static const BgClass : Class;
+			
+			
+			
+			
+			
+			// "D:\reps\slotmatch3_3\Resources\Dialogs\ProfileDialog\profile_my_gifts_base.png" 
+			// ruLocale amulet_2_name
+			// "D:\reps\slotmatch3_3\Resources\Dialogs\ProfileDialog\profile_amulet_base.png"
+		]]>
+	</fx:Script>
+
+	<s:BitmapImage source="{BgClass}" width="100%"/>
+
+	<s:BitmapImage source="{DecorClass}" smooth="true" height="63" width="100"  scaleMode="{BitmapScaleMode.STRETCH}" 
+		left="5" top="9"/>
+
+
+	<s:BitmapImage id="icon" source="{Util.getAmuletUrl(data.type)}"
+		left="10" top="10" height="60" smooth="true" scaleMode="{BitmapScaleMode.LETTERBOX}"/>
+
+
+	<!--<s:SkinnableContainer left="0" right="0" top="0" bottom="0"
+	skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin2">
+	</s:SkinnableContainer>-->
+	<s:Label horizontalCenter="0" verticalCenter="0" text="{resourceManager.getString('ruLocale', 'amulet_' + data.type + '_name')}"/>
+
+
+</s:ItemRenderer>

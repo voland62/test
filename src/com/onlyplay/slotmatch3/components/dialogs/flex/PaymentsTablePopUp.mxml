@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <flex:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
-	
+	titleBgSource ="{_TitleBgBigClass}"
 	implements="com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup"
 	minHeight="500" minWidth="600" title="Таблица выплат"
 	controlBarVisible="true">
 
-	<!-- titleBgSource ="{ GamePopup._TitleBgBigClass}" -->
+
 
 	<fx:Script>
 		<![CDATA[

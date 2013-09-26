@@ -42,8 +42,11 @@ package com.onlyplay.slotmatch3.controller
 			gameModel.userInfo = message.player;
 			gameModel.islands = message.islands;
 			gameModel.achievements = message.achievements;
+			gameModel.amulets = message.amulets;
 			
 			
+			
+
 			gameModel.currentIsland = getCurrentIsland(message.islands, message.player.currentIslandId);
 			gameModel.currentLocation = getCurrentLocation(gameModel.currentIsland.locations, message.player.currentLocationId);
 
@@ -57,7 +60,7 @@ package com.onlyplay.slotmatch3.controller
 			gameModel.currentExperience.level = message.player.level;
 			
 			// boosters
-			var maxes:Array = [null, 15, 30, 45, 75];
+			var maxes:Array = [null, 150, 150, 150, 150];
 			for each (var boost : BoosterProtobuf in message.player.boosters.boosters) 
 			{
 				
@@ -85,7 +88,7 @@ package com.onlyplay.slotmatch3.controller
 			lobbyEvt.data = gameModel.islands;
 			eventDispatcher.dispatchEvent (lobbyEvt)
 			
-			
+
 			// gameModel.serverConfig = getFirstLocation(message.locations);
 
 			// TODO: consider doing this via models method? like GameModel.setCurrenBet(linesNum, betBerLine);

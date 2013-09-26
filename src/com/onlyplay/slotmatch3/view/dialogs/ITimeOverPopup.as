@@ -4,7 +4,13 @@ package com.onlyplay.slotmatch3.view.dialogs
 	/**
 	 * @author Andrew
 	 */
+	 
+	 
 	public interface ITimeOverPopup extends IEventDispatcher 
 	{
+		function init(win : Number, multiplier : Number, time:Number, nextLevelMultiplyer : Number) : void;
+		
+		
+		
 	}
 }

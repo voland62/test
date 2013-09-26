@@ -71,7 +71,5 @@ package com.onlyplay.slotmatch3.view
 
 		function initFlashEnergy(multiplier : Number) : void;
 		
-		
-		
 	}
 }

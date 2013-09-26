@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<my:SkinnableComponent xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:my="library://ns.adobe.com/flex/spark" skinClass="com.onlyplay.slotmatch3.components.other.TopSkin">
+
+
+	
+
+</my:SkinnableComponent>

@@ -36,6 +36,7 @@ package com.onlyplay.slotmatch3.controller.match
 			{
 				case ItemModel.COIN:
 					gameModel.currentMoney += 10;
+					model.currentCoinsAmount++;
 					// TODO: выйгрыш должен прилетель с эвентом
 					eventDispatcher.dispatchEvent(new Event("currentMoneyChanged"));
 					break;

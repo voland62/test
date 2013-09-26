@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5">
+
+    <fx:Metadata>
+    <![CDATA[ 
+        //[HostComponent("spark.components.SkinnableContainer")]
+        [HostComponent("spark.components.supportClasses.SkinnableComponent")]
+    ]]>
+    </fx:Metadata> 
+    
+    <fx:Script fb:purpose="styling">
+        <![CDATA[         
+            /**
+             *  @private
+             */
+             //"D:\reps\slotmatch3_3\Resources\Lobby\Top\top_balk_top.png"
+			[Embed(source="/Lobby/Top/top_balk_top.png")]
+			private const TitleClass : Class;
+			// "D:\reps\slotmatch3_3\Resources\Lobby\Top\top_balk_bottom.png"
+			[Embed(source="/Lobby/Top/top_balk_bottom.png")]
+			private const BottomClass : Class;
+			
+			
+			
+            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number) : void
+            {
+                //bgFill.color = getStyle("backgroundColor");
+                //bgFill.alpha = getStyle("backgroundAlpha");
+                
+                super.updateDisplayList(unscaledWidth, unscaledHeight);
+            }
+        ]]>        
+    </fx:Script>
+    
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+    
+    <s:Rect left="0" right="0" top="0" bottom="0">
+        <s:fill>
+            <s:SolidColor id="bgFill" color="#c0c0c0"/>
+        </s:fill>
+    </s:Rect>
+
+	<s:Group id="titleGroup" top="0" horizontalCenter="0">
+		<s:BitmapImage source="{TitleClass}"/>
+		<s:Label id="titleLabel" text="Top" horizontalCenter="0" color="0xFFFFFF" fontWeight="bold" fontSize="22" top="18"/>
+		
+	</s:Group>
+
+	<s:Group id="bottomGroup" bottom="0" horizontalCenter="0">
+		<s:BitmapImage source="{BottomClass}"/>
+
+		<s:Button label="Найти меня" 
+			skinClass="com.onlyplay.slotmatch3.components.other.supportClasses.GreenButtonSkin" top="13" left="26" />
+		<s:Button label="Пригласить" 
+			skinClass="com.onlyplay.slotmatch3.components.other.supportClasses.OrangeButtonSkin" top="13" right="30" />
+		
+	</s:Group>
+    
+
+    <!--<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0" minWidth="0" minHeight="0">
+        <s:layout>
+        
+        "D:\reps\slotmatch3_3\Resources\Lobby\Top\top_balk_bottom.png"
+            <s:BasicLayout/>
+        </s:layout>
+    </s:Group>-->
+
+</s:Skin>
