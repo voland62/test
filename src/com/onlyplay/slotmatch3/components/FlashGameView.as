@@ -311,7 +311,7 @@ package com.onlyplay.slotmatch3.components
 			_toMach3Button.locked = true;
 			_toMach3Button.addEventListener(MouseEvent.CLICK, function(e : Event) : void
 			{
-				dispatchEvent(new Event("toMatch"));
+				dispatchEvent(new Event("toMatch")); 
 			});
 			addChild(_toMach3Button);
 
