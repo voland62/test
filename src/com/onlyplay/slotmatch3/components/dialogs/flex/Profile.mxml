@@ -32,11 +32,15 @@
 			import spark.events.IndexChangeEvent;
 
 			// "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_player_my_base.png"
+			[Bindable]
 			[Embed(source="/Dialogs/ProfileDialog/profile_player_my_base.png", mimeType="image/png")]
 			private var _FaceFrame : Class;
 			// [Embed(source="/assets/facebook/facebook/Id_1/ava_user.png", mimeType="image/png")]
+			[Bindable]
 			[Embed(source="/FakePhotos/photo5.png", mimeType="image/png")]
 			private var FaceClass : Class;
+			
+			[Bindable]
 			[Embed(source="/Dialogs/Common/buttons_base_green_green_red.png", mimeType="image/png")]
 			private var ButtonsBgClass : Class;
 

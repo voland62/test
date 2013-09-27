@@ -14,6 +14,7 @@
 	<fx:Script>
 		<![CDATA[
 			// "D:\reps\slogmatch3_2\trunk\client\ios\puzzleslots\SlotMatch3\Resources\Dialogs\ProfileDialog\profile_pb_experiance.png"
+			[Bindable]
 			[Embed(source="/Dialogs/ProfileDialog/profile_pb_experiance.png"
 			,scaleGridTop="11", scaleGridBottom="12", 
 			scaleGridLeft="10", scaleGridRight="180")]
