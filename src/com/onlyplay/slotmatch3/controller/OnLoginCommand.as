@@ -86,7 +86,7 @@ package com.onlyplay.slotmatch3.controller
 			
 			var lobbyEvt:DynamicEvent = new DynamicEvent("islandsDataReady");
 			lobbyEvt.data = gameModel.islands;
-			eventDispatcher.dispatchEvent (lobbyEvt)
+			eventDispatcher.dispatchEvent (lobbyEvt);
 			
 
 			// gameModel.serverConfig = getFirstLocation(message.locations);

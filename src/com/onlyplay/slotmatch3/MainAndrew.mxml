@@ -150,13 +150,19 @@
 				{
 					case  "lobby":
 						_lobbyVeiw.visible = true;
-						// if(_flashGameView) _flashGameView.visible = false;
+						if(_flashGameView) _flashGameView.visible = false;
+						lobbyMenu4Holder.visible = true;
+						lobby_top.visible = true;
+						lobby_avatar.visible = true;
 
 						break;
 					case  "game":
 						_lobbyVeiw.visible = false;
 						// if (!_flashGameView) initStotMatchView();
 						_flashGameView.visible = true;
+						lobbyMenu4Holder.visible = false;
+						lobby_top.visible = false;
+						lobby_avatar.visible = false;
 						break;
 					default:
 						log("MainAndrew.setGameState(state)");
@@ -213,11 +219,10 @@
 	
 		
 	
-	<s:Image source="../src/assets/Mock_friends.png" click = "getUnderConstrWnd(event)" y ="552"></s:Image>
+	<s:Image source="@Embed(source='/assets/Mock_friends.png')" click = "getUnderConstrWnd(event)" y ="552"></s:Image>
 
-	<s:Image id="lobby_avatar" source="../src/assets/Mock_user.png" click="getUnderConstrWnd(event)"/>
-	<s:Image id="lobby_top" source="../src/assets/Mock_top.png"  click="getUnderConstrWnd(event)" y ="95"/>
-	
+	<s:Image id="lobby_avatar" source="@Embed(source='/assets/Mock_user.png')" click="getUnderConstrWnd(event)"/>
+	<s:Image id="lobby_top" source="@Embed(source='/assets/Mock_top.png')"  click="getUnderConstrWnd(event)" y ="95"/>
 	<s:SpriteVisualElement id="lobbyMenu4Holder" y="474" />
 	
 	<s:SpriteVisualElement id="prldrHolder" />

@@ -69,7 +69,7 @@
 	<!--<flex:TimeOverPopup id="timeOverDialog" verticalCenter="0" horizontalCenter="0" />-->
 
 	<!--<flex:PaymentsTablePopUp verticalCenter="0" horizontalCenter="0" />-->
-	
+
 	<!--<scrollEl:ScrollablePanel verticalCenter="0" horizontalCenter="0" width="300" 
 	title="Достижения" dataProvider="{dp}" itemRenderer="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.ScrollPanelItemRenderer"/>-->
 
@@ -88,7 +88,12 @@
 
 	<!--<flex:ToMapPopUp verticalCenter="0" horizontalCenter="0"/>-->
 
-	<lobby:LevelInfoPopup verticalCenter="0" horizontalCenter="0"/>
+	<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>
 	
+
+
+	<!--<mx:ProgressBar verticalCenter="20" horizontalCenter="0"/>-->
+
+
 
 </s:Application>
