@@ -29,12 +29,17 @@
 			import mx.events.FlexEvent;
 			import mx.resources.ResourceBundle;
 			import mx.rpc.events.ResultEvent;
-
+			import com.onlyplay.slotmatch3.components.lobby_smith.Menu4View;
+			
 			private var _flashGameView : FlashGameView;
 			private var _lobbyVeiw : LobbyView;
 			[Bindable]
 			private var localeUrlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
-
+			
+			
+			
+			private var menu4:Menu4View;
+			
 			private function onInit(e : FlexEvent) : void // при неподключённом видео
 			// private function onInit(e:TimeEvent):void // при подключённом видеo
 			{
@@ -59,7 +64,10 @@
 				initLobbyView();
 				initStotMatchView();
 				_flashGameView.visible = false;
-
+				
+				menu4 = new Menu4View();
+				lobbyMenu4Holder.addChild(menu4);
+				
 				onResize();
 			}
 
@@ -174,10 +182,13 @@
 
 	<s:SpriteVisualElement id="gameViewPlaceHolder" width="760"
 		height="570"/>
-
+	
+		
+	
+	<s:Image source="../src/assets/Mock_friends.png" click = "getUnderConstrWnd(event)" y ="552"></s:Image>
 
 	<s:Image id="lobby_avatar" source="../src/assets/Mock_user.png" click="getUnderConstrWnd(event)"/>
 	<s:Image id="lobby_top" source="../src/assets/Mock_top.png"  click="getUnderConstrWnd(event)" y ="95"/>
-
+	<s:SpriteVisualElement id="lobbyMenu4Holder" y="474" />
 
 </s:Application>

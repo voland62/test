@@ -3,4 +3,7 @@ bin/
 .project
 .settings/
 *.orig
-*~
+*~ 
+Flash3.as3proj 
+Resources/  
+obj/

@@ -16,7 +16,8 @@ package com.onlyplay.slotmatch3.view
 		{
 			log("ApplicationMediator.initialize()");
 			addContextListener("state_changes", onStateChanges);
-			addViewListener("underConstruction", function (e:Event):void {dispatch(e);});
+			//addViewListener("underConstruction", function (e:Event):void { dispatch(e); } );
+			addViewListener("underConstruction", dispatch);
 		}
 
 		private function onStateChanges(e:DynamicEvent) : void

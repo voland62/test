@@ -27,13 +27,16 @@
 			import flash.display.*;
 			
 			import com.onlyplay.slotmatch3.components.lobby_smith.LevelInfoPopup;
+			//import com.onlyplay.slotmatch3.components.lobby_smith.Menu4View
 			
 			
 			private var _flashGameView : FlashGameView;
 			private var lobbyView:LobbyView;
 			//private var locatInfoView:LevelInfoPopup;
 			//private var hintWnd:Sprite;
+			
 			private var menu4:Menu4View;
+			
 			[Bindable]
 			private var localeUrlBase:String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
 			
