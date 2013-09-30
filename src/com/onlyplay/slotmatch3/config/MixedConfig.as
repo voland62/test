@@ -141,6 +141,9 @@ package com.onlyplay.slotmatch3.config
 			mediatorMap.map(IApp).toMediator(ApplicationMediator);
 			//mediatorMap.map(Preloader).toMediator(PreloaderMediator)
 			
+			//preloader
+			mediatorMap.map(Preloader).toMediator(PreloaderMediator)
+			
 			// startup
 			// contextView.view.addChild(new MainView());
 			eventDispatcher.dispatchEvent(new Event("init"));

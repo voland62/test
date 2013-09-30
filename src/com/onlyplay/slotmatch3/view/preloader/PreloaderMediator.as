@@ -1,23 +1,26 @@
 package com.onlyplay.slotmatch3.view.preloader {
-	import flash.events.Event;
-	import robotlegs.bender.bundles.mvcs.Mediator;
 	
-	/**
-	 * ...
-	 * @author smt
-	 */
+	import robotlegs.bender.bundles.mvcs.Mediator;
+	import flash.events.Event;
+	
+	
+	
+	
 	public class PreloaderMediator extends Mediator {
 		
 		[Inject]
 		public var view : Preloader;
 		
-		public function PreloaderMediator() {
-			addContextListener("lobby:first_map_ready", onReady);
+		override public function initialize() : void{
+			
+			addContextListener("lobby:first_map_ready", PreloaderClose)
 		}
 		
-		private function onReady(e:Event):void {
-			dispatch(e);
+		private function PreloaderClose(e:Event):void {
+			view.ContentReady();
 		}
+		
+		
 		
 		
 	}

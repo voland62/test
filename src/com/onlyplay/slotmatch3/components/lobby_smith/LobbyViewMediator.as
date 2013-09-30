@@ -18,15 +18,14 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		override public function initialize() : void{
 			
 			addViewListener("openInterLevelDlg", OpenInterLevelDlg);
-			addViewListener("lobby:first_map_ready", test);
+			addViewListener("lobby:first_map_ready", dispatch);
 			
 			//addContextListener("state_changes", LobbyChangesState);
-			addContextListener("islandsDataReady", view.onDataArrive)
+			addContextListener("islandsDataReady", view.onDataArrive);
+			
+			
 		}
 		
-		private function test(e:Event):void {
-			trace ("")
-		}
 		
 		
 		

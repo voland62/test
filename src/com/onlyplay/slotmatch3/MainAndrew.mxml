@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:rl2="http://ns.robotlegs.org/flex/rl2"
-	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*" xmlns:config="com.onlyplay.slotmatch3.config.*"
-	xmlns:components="com.onlyplay.slotmatch3.components.*" xmlns:flint2d="http://flintparticles.org/2009/flint2d"
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:rl2="http://ns.robotlegs.org/flex/rl2"
+	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*" 
+	xmlns:config="com.onlyplay.slotmatch3.config.*"
+	xmlns:components="com.onlyplay.slotmatch3.components.*" 
+	xmlns:flint2d="http://flintparticles.org/2009/flint2d"
+	preloader = "com.onlyplay.slotmatch3.view.preloader.PreloaderSWF"
 	implements="com.onlyplay.slotmatch3.view.IApp" width="760" height="658"
 	frameRate="60" applicationComplete="onInit(event)">
+	
+	<!--xmlns:mx="library://ns.adobe.com/flex/mx" -->
 
 	<fx:Style>
         global 
@@ -22,14 +29,16 @@
 		<![CDATA[
 			import mx.events.DynamicEvent;
 			import alternativa.init.GUI;
+			import flash.display.DisplayObject;
 
 			import com.onlyplay.slotmatch3.components.FlashGameView;
 			import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
-
+			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			import mx.resources.ResourceBundle;
 			import mx.rpc.events.ResultEvent;
 			import com.onlyplay.slotmatch3.components.lobby_smith.Menu4View;
+			import com.onlyplay.slotmatch3.view.preloader.Preloader;
 			
 			private var _flashGameView : FlashGameView;
 			private var _lobbyVeiw : LobbyView;
@@ -67,6 +76,9 @@
 				
 				menu4 = new Menu4View();
 				lobbyMenu4Holder.addChild(menu4);
+				
+				var pldr:Preloader=new Preloader()
+				prldrHolder.addChild(pldr);
 				
 				onResize();
 			}
@@ -158,6 +170,22 @@
 				//getObjById("fon").visible=true
 				dispatchEvent(new DynamicEvent ("underConstruction"));
 			}
+			
+			
+			public function getObjById(sId:String):DisplayObject{
+				var result:DisplayObject = null;
+				
+				for (var i:uint = 0; i < FlexGlobals.topLevelApplication.numElements; i++ ) {
+					var aObj:DisplayObject = FlexGlobals.topLevelApplication.getElementAt(i);
+					if (aObj["id"] == sId) {
+						result = aObj
+						break;
+					}
+				}
+				return result
+			}
+			
+			
 		]]>
 	</fx:Script>
 
@@ -190,5 +218,7 @@
 	<s:Image id="lobby_avatar" source="../src/assets/Mock_user.png" click="getUnderConstrWnd(event)"/>
 	<s:Image id="lobby_top" source="../src/assets/Mock_top.png"  click="getUnderConstrWnd(event)" y ="95"/>
 	<s:SpriteVisualElement id="lobbyMenu4Holder" y="474" />
+	
+	<s:SpriteVisualElement id="prldrHolder" />
 
 </s:Application>

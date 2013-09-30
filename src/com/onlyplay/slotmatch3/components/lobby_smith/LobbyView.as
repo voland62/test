@@ -9,6 +9,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	import mx.events.DynamicEvent;
 	import IslandsProtobuf;
 	import flash.filters.GlowFilter;
+	import mx.core.FlexGlobals
 
 	public class LobbyView extends Sprite {
 		
@@ -185,7 +186,10 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 			BuildLocations(realIslandsData);
 			
-			dispatchEvent(new Event("lobby:first_map_ready", true))
+			//событие карта загружена
+			if (FlexGlobals.topLevelApplication.getObjById("prldrHolder")){
+				dispatchEvent(new Event("lobby:first_map_ready", true));
+			}
 		}
 		
 	}
