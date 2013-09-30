@@ -23,7 +23,9 @@ package test.MyTestProject
 		public function TestMatchComponent()
 		{
 			matchComponent = new MatchComponent();
+			
 			addChild(matchComponent);
+			matchComponent.reinit();
 
 			var padding : Number = 10;
 			// matchComponent.startReinitAnimation();

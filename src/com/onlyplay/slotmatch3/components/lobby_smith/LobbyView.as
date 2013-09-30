@@ -4,10 +4,11 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	import com.smith.gallery.SmtHrzGallery;
 	import com.smith.gallery.engine.GalleryEvent;
 	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyCellItem;
-	import flash.events.MouseEvent;
+	import flash.events.*;
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import mx.events.DynamicEvent;
 	import IslandsProtobuf;
+	import flash.filters.GlowFilter;
 
 	public class LobbyView extends Sprite {
 		
@@ -16,11 +17,16 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		private var gallery:SmtHrzGallery;
 		private var posInd:Sprite;
 		private var islandsData:IslandsProtobuf;
-		private var lastCursor:uint = 0;
+		public static var lastCursor:uint = 0;
+		public static var islandName:String;
 		private var locatInfoDlg:LocationInfoDlg;
 		
-		[Inject]
-		public var gameModel : GameModel;
+		private var avatarData:BitmapData;
+		private var avatarLayer:Bitmap;
+		
+		
+//		[Inject]
+//		public var gameModel : GameModel;
 		
 		
 		public function LobbyView() {
@@ -35,9 +41,24 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		private function BuildBg():void {
 			bg = new lobby_sborka_cls();
 			bg.x = 1;
-			bg.red_rect.addEventListener(MouseEvent.CLICK, onCloseClick);
 			bg.play_btn.addEventListener(MouseEvent.CLICK, onPlayClick);
+			bg.play_btn.txt.mouseEnabled = false;
+			bg.mouseEnabled=false
 			addChild(bg);
+			
+			avatarData = new mr_bean_mini()
+			avatarLayer = new Bitmap(avatarData);
+			
+			var kolpakData:BitmapData = new king_bg_up();
+			var kolpakLayer:Bitmap = new Bitmap(kolpakData);
+			kolpakLayer.x = -28;
+			kolpakLayer.y = -40;
+			
+			bg.king_mc.addChild(avatarLayer);
+			bg.king_mc.addChild(kolpakLayer);
+			
+			//bg.king_mc.visible = false;
+			
 		}
 		
 		
@@ -57,10 +78,8 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 				
 			}
 			
-			/*locatInfoDlg = new LocationInfoDlg();
-			locatInfoDlg.x = -posInd.x;
-			locatInfoDlg.y = -posInd.y;
-			addChild(locatInfoDlg);*/
+			
+			bg.lobby_header_txt.filters=[new GlowFilter(0,1,4,4,3)]
 			
 			SetPositIndicator(0);
 		}
@@ -96,21 +115,19 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			bg.addChild(bg.lobby_btn_right);
 			
 			bg.addChild(bg.play_btn);
-			bg.play_btn.txt.mouseEnabled = false;
+			
 			
 			GalleryCursorChanges(null);
 			
 		}
 		
-		
-		
-		private function onCloseClick(e:MouseEvent):void {
-			
-			dispatchEvent(new MouseEvent("lobby_view:lobby_exit"))
-		}
-		
+	
 		private function onPlayClick(e:MouseEvent):void {
-			
+			var evt = new DynamicEvent("openInterLevelDlg");
+			evt._type = "islandInfo";
+			evt._island = lastCursor;
+			evt._location = null;
+			dispatchEvent(evt);
 		}
 		
 		
@@ -128,7 +145,18 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 			SetPositIndicator(ind);
 			
-			bg.lobby_header_txt.text =  gallery.dataProvider[ind].sName;
+			bg.lobby_header_txt.text = gallery.dataProvider[ind].sName;
+			islandName = bg.lobby_header_txt.text;
+			
+			//король
+			bg.king_mc.visible = false;
+			var kingPresent:Boolean = gallery.dataProvider[ind]["info"]["hasKing"]
+			if (kingPresent)SetKing ( gallery.dataProvider[ind]["info"]["king"])
+			
+		}
+		
+		private function SetKing(data:PlayerShortProtobuf):void {
+			bg.king_mc.visible = true;
 		}
 		
 		
@@ -156,6 +184,8 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			//--------------------------------------------------------------------------------
 			
 			BuildLocations(realIslandsData);
+			
+			dispatchEvent(new Event("lobby:first_map_ready", true))
 		}
 		
 	}

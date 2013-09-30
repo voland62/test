@@ -5,7 +5,7 @@
 
 	<fx:Metadata>
 		<![CDATA[ 
-			[HostComponent("com.onlyplay.slotmatch3.components.dialogs.flex.Title")]
+			[HostComponent("com.onlyplay.slotmatch3.components.dialogs.flex.tite.Title")]
 		]]>
 	</fx:Metadata>
 

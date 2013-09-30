@@ -316,10 +316,19 @@ package com.onlyplay.slotmatch3.view
 			view.initFlashEnergy(matchGameModel.currentLevel.multiplier);
 		}
 		
-		private function toMap(e:DynamicEvent) {
-			var event : DynamicEvent = new DynamicEvent("state_changes_request");
-			event.state = "lobby";
+		private function toMap(e:DynamicEvent) :void{			
+			/**
+			 * Так как у нас смена стейта на лобби только после лиалога - то это сообщение буде диспатчить диалог после закрытия
+			 */	
+//			var event : DynamicEvent = new DynamicEvent("state_changes_request");
+//			event.state = "lobby";
+//			dispatch(event);
+			
+			// log("GameViewMediator.toMap(e)");
+			
+			var event:DynamicEvent = new DynamicEvent("showToMapMediator");
 			dispatch(event);
+			
 		}
 	}
 }

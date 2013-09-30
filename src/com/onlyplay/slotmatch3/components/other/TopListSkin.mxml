@@ -12,35 +12,34 @@
 		[HostComponent("spark.components.List")]
 		]]>
 	</fx:Metadata> 
+	
 	<fx:Script fb:purpose="styling">
-	
-	
-		
-		/**
-		 * @private
-		 */
-		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
-		{
-			if (getStyle("borderVisible") == true)
+		<![CDATA[
+			/**
+			 * @private
+			 */
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
 			{
-				border.visible = true;
-				background.left = background.top = background.right = background.bottom = 1;
-				scroller.minViewportInset = 1;
-			}
-			else
-			{
-				border.visible = false;
-				background.left = background.top = background.right = background.bottom = 0;
-				scroller.minViewportInset = 0;
+				if (getStyle("borderVisible") == true)
+				{
+					border.visible = true;
+					background.left = background.top = background.right = background.bottom = 1;
+					scroller.minViewportInset = 1;
+				}
+				else
+				{
+					border.visible = false;
+					background.left = background.top = background.right = background.bottom = 0;
+					scroller.minViewportInset = 0;
+				}
+				
+				borderStroke.color = getStyle("borderColor");
+				borderStroke.alpha = getStyle("borderAlpha");
+				
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
 			}
 			
-			borderStroke.color = getStyle("borderColor");
-			borderStroke.alpha = getStyle("borderAlpha");
-			
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-		}
-	
-	
+		]]>
 	</fx:Script>
     
     <s:states>

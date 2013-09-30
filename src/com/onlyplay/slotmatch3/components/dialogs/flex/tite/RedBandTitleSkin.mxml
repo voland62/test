@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="420">
+
+
+	<fx:Metadata>
+		[HostComponent("com.onlyplay.slotmatch3.components.dialogs.flex.tite.Title")]
+	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="/Dialogs/Common/title_ribbon.png"
+			,scaleGridTop='135', scaleGridBottom='136',
+			scaleGridLeft='240', scaleGridRight='241'
+			)]
+			private static var RedBandClass : Class;
+			[Embed(source="/Dialogs/Common/leaf_5.png")]
+			private static var CenterLeafClass : Class;
+			[Embed(source="/Dialogs/Common/leaf_3.png")]
+			private static var SideLeafClass : Class;
+			[Embed(source="/Dialogs/Common/leaf_1.png")]
+			private static var BorderLeafClass : Class;
+			
+			
+
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<s:GlowFilter id="labelFilter" color="0" strength="3" blurX="4"
+			blurY="4"/>
+	</fx:Declarations>
+
+	<!--<s:Rect top="0" bottom="0" left="0" right="0">
+	<s:stroke>
+	<s:SolidColorStroke color="0xff0000"/>
+	</s:stroke>
+	</s:Rect>-->
+
+	<s:Group left="0" right="0" top="7">
+
+
+
+		<s:Group id="grassGroup" horizontalCenter="0" top="-40" width="150"
+			height="130">
+			<!--<s:Rect top="0" bottom="0" left="0" right="0">
+			<s:stroke>
+			<s:SolidColorStroke color="0xff8000"/>
+			</s:stroke>
+			</s:Rect>-->
+			<s:BitmapImage source="{CenterLeafClass}" top="0"
+				horizontalCenter="0" scaleY="-1"/>
+			<s:BitmapImage source="{CenterLeafClass}" bottom="0"
+				horizontalCenter="0"/>
+
+			<s:BitmapImage source="{SideLeafClass}" top="27" right="0"/>
+			<s:BitmapImage source="{SideLeafClass}" top="27" left="0"
+				scaleX="-1"/>
+			<s:BitmapImage source="{SideLeafClass}" bottom="27" right="0"
+				scaleY="-1"/>
+			<s:BitmapImage source="{SideLeafClass}" bottom="27" left="0"
+				scaleY="-1" scaleX="-1"/>
+
+		</s:Group>
+
+		<s:BitmapImage source="{BorderLeafClass}" right="-23" top="120"/>
+		<s:BitmapImage source="{BorderLeafClass}" left="-23" scaleX="-1"
+			top="120"/>
+
+		<s:BitmapImage source="{SideLeafClass}" top="24" right="16"/>
+		<s:BitmapImage source="{SideLeafClass}" top="24" left="16"
+			scaleX="-1"/>
+
+		<s:BitmapImage source="{SideLeafClass}" top="50" right="50"
+			rotation="145" smooth="true"/>
+		<s:BitmapImage source="{SideLeafClass}" top="50" left="50"
+			scaleX="-1" rotation="-145" smooth="true"/>
+
+		<!-- вообще эту визуалку можно сделать каким-то компонентом и использовать в других тайтл скинах -->
+		<s:HGroup id="band" left="-40" right="-40" gap="0">
+			<s:BitmapImage source="{RedBandClass}" width="100%"/>
+			<s:BitmapImage source="{RedBandClass}" scaleX="-1" width="100%"/>
+		</s:HGroup>
+
+
+
+		<s:Label id="label" maxDisplayedLines="1" top="17" minHeight="23"
+			horizontalCenter="0" fontSize="20" color="0xfee5b8"
+			filters="{[labelFilter]}" fontWeight="bold">
+		</s:Label>
+	</s:Group>
+
+</s:Skin>

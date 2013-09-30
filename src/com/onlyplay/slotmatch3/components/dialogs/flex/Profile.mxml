@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
-	titleBgSource="{ GamePopup._TitleBgBigClass}" minHeight="600"
+	titleBgSkin="{TitleSkin2}"
+	minHeight="600"
 	implements="com.onlyplay.slotmatch3.view.dialogs.IProfilePopup"
-	bgSource="{GamePopup._BgClassDark}" title="Профиль игрока" xmlns:mx="library://ns.adobe.com/flex/mx"
+	bgSource="{_BgClassDark}" title="Профиль игрока" xmlns:mx="library://ns.adobe.com/flex/mx"
 	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
 	xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*">
 
@@ -29,14 +30,19 @@
 
 	<fx:Script>
 		<![CDATA[
+			import com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin2;
+			import com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin0;
 			import spark.events.IndexChangeEvent;
 
 			// "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_player_my_base.png"
+			[Bindable]
 			[Embed(source="/Dialogs/ProfileDialog/profile_player_my_base.png", mimeType="image/png")]
 			private var _FaceFrame : Class;
 			// [Embed(source="/assets/facebook/facebook/Id_1/ava_user.png", mimeType="image/png")]
+			[Bindable]
 			[Embed(source="/FakePhotos/photo5.png", mimeType="image/png")]
 			private var FaceClass : Class;
+			[Bindable]
 			[Embed(source="/Dialogs/Common/buttons_base_green_green_red.png", mimeType="image/png")]
 			private var ButtonsBgClass : Class;
 

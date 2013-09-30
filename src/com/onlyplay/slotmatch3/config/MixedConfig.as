@@ -1,5 +1,7 @@
 package com.onlyplay.slotmatch3.config
 {
+	import com.onlyplay.slotmatch3.view.ApplicationMediator;
+	import com.onlyplay.slotmatch3.view.IApp;
 	import net.IConnector;
 	import net.MessagesMap;
 	import net.SocketConnector;
@@ -14,8 +16,6 @@ package com.onlyplay.slotmatch3.config
 	import test.MyTestProject.model.UserModel;
 
 	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyViewMediator;
 	import com.onlyplay.slotmatch3.controller.InitCommand;
 	import com.onlyplay.slotmatch3.controller.MakeMatchEnterRequestCommand;
 	import com.onlyplay.slotmatch3.controller.OnChageCommand;
@@ -53,6 +53,9 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.view.dialogs.PaymentsPopupMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.ProfilePopupMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.TimeOverPopupMediator;
+	import com.onlyplay.slotmatch3.components.lobby_smith.*;
+	import com.onlyplay.slotmatch3.view.preloader.*;
+	import com.onlyplay.slotmatch3.controller.lobby.StateChangesCommand
 
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -80,7 +83,7 @@ package com.onlyplay.slotmatch3.config
 
 		public function configure() : void
 		{
-			// injection
+			// injection 
 			injector.map(IConnector).toSingleton(SocketConnector);
 			injector.map(ISlotService).toSingleton(SlotService);
 			injector.map(MatchTimerService).asSingleton();
@@ -117,12 +120,15 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("showPaymentsDialog").toCommand(ShowPopupCommand);
 			commandMap.map("timerFinish").toCommand(ShowPopupCommand);
 			commandMap.map("showProfile").toCommand(ShowPopupCommand);
+			commandMap.map("showToMapMediator").toCommand(ShowPopupCommand);
+			commandMap.map("showInterLevelPupup").toCommand(ShowPopupCommand);
+			commandMap.map("underConstruction").toCommand(ShowPopupCommand);
 			
 			commandMap.map("toSlot").toCommand(PlaySlotCommand);
 			
 			
-	//lobby commands
-			commandMap.map("state_changes_request").toCommand(StateChangesCommand)
+			//lobby commands
+			//commandMap.map("state_changes_request").toCommand(StateChangesCommand);
 
 			// view ServerRoomPlayerStateProtobuf
 			mediatorMap.map(IGameView).toMediator(GameViewMediator);
@@ -130,9 +136,10 @@ package com.onlyplay.slotmatch3.config
 			mediatorMap.map(ITimeOverPopup).toMediator(TimeOverPopupMediator);
 			mediatorMap.map(IProfilePopup).toMediator(ProfilePopupMediator);
 			mediatorMap.map(BoosterPanel).toMediator(BoosterPanelMediator);
-			mediatorMap.map(LobbyView).toMediator(LobbyViewMediator)
-			
-
+			mediatorMap.map(LobbyView).toMediator(LobbyViewMediator);
+			mediatorMap.map(IInterLevelDlg).toMediator(LevelInfoMediator);
+			mediatorMap.map(IApp).toMediator(ApplicationMediator);
+			//mediatorMap.map(Preloader).toMediator(PreloaderMediator)
 			
 			// startup
 			// contextView.view.addChild(new MainView());

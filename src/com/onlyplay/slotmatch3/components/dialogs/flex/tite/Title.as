@@ -1,4 +1,4 @@
-package com.onlyplay.slotmatch3.components.dialogs.flex
+package com.onlyplay.slotmatch3.components.dialogs.flex.tite
 {
 	import spark.components.Label;
 	import spark.components.supportClasses.SkinnableComponent;

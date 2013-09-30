@@ -741,14 +741,14 @@ package com.onlyplay.slotmatch3.components.games.match
 			for each (var vGroup : Array in vBonuses)
 			{
 				var vCharge : ItemModel = vGroup[Util.randInt(vGroup.length)];
-				vCharge.charge = ItemModel.VER;
+				vCharge.charge = ItemModel.HOR;
 				bons.push(vCharge);
 			}
 
 			for each (var hGroup : Array in hBonuses)
 			{
 				var hCharge : ItemModel = hGroup[Util.randInt(hGroup.length)];
-				hCharge.charge = ItemModel.HOR;
+				hCharge.charge = ItemModel.VER;
 				bons.push(hCharge);
 			}
 

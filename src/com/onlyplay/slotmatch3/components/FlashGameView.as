@@ -1,9 +1,5 @@
 package com.onlyplay.slotmatch3.components
 {
-	import flash.display.InteractiveObject;
-	import flash.geom.Rectangle;
-	import org.flintparticles.common.renderers.Renderer;
-	import com.onlyplay.slotmatch3.components.games.match.Animations;
 	import alternativa.gui.container.linear.VBox;
 	import alternativa.gui.container.tabPanel.TabData;
 	import alternativa.gui.controls.button.BaseButton;
@@ -42,6 +38,7 @@ package com.onlyplay.slotmatch3.components
 	import com.onlyplay.slotmatch3.components.games.elements.ns.ExperienceProgressBar;
 	import com.onlyplay.slotmatch3.components.games.elements.tab.RoomTabButton;
 	import com.onlyplay.slotmatch3.components.games.elements.tab.RoomTabPanel;
+	import com.onlyplay.slotmatch3.components.games.match.Animations;
 	import com.onlyplay.slotmatch3.components.games.match.ItemModel;
 	import com.onlyplay.slotmatch3.components.games.match.MatchComponent;
 	import com.onlyplay.slotmatch3.components.games.slot.SlotMashine;
@@ -51,6 +48,7 @@ package com.onlyplay.slotmatch3.components
 	import org.flintparticles.common.counters.Steady;
 	import org.flintparticles.common.emitters.Emitter;
 	import org.flintparticles.common.events.EmitterEvent;
+	import org.flintparticles.common.renderers.Renderer;
 	import org.flintparticles.twoD.emitters.Emitter2D;
 	import org.flintparticles.twoD.renderers.BitmapRenderer;
 
@@ -63,6 +61,7 @@ package com.onlyplay.slotmatch3.components
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.text.AntiAliasType;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -91,8 +90,8 @@ package com.onlyplay.slotmatch3.components
 		// private static var BgClass : Class;
 		[Embed(source="/assets/facebook/facebook/backgrounds/amazonka.png", mimeType="image/png")]
 		private static var IslandBgClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/booster_all.png", mimeType="image/png")]
-		private static var PaymentsFakeClass : Class;
+		//[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/booster_all.png", mimeType="image/png")]
+		//private static var PaymentsFakeClass : Class;
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/pl_schet.png", mimeType="image/png")]
 		private static var PlashkaBottomClass : Class;
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/bg/up.png", mimeType="image/png")]
@@ -131,7 +130,7 @@ package com.onlyplay.slotmatch3.components
 		private var _moneyIcon : Bitmap;
 		private var _roomList : RoomList;
 		private var _islandBg : Bitmap;
-		private var _paymentsFake : Bitmap;
+		//private var _paymentsFake : Bitmap;
 		private var _fakeProgressBg : Bitmap;
 		private var _toStotButton : BaseButton;
 		private var _timeProgress : TimeProgress;
@@ -195,8 +194,8 @@ package com.onlyplay.slotmatch3.components
 			_infoRoomProgressButton = new InfoButton();
 			addChild(_infoRoomProgressButton);
 
-			_paymentsFake = new PaymentsFakeClass();
-			addChild(_paymentsFake);
+			/*_paymentsFake = new PaymentsFakeClass();
+			addChild(_paymentsFake);*/
 
 			_userName = createTf(100, 11);
 			_userName.text = "Лада";
@@ -525,8 +524,8 @@ package com.onlyplay.slotmatch3.components
 				_matchComponent.y = 69;
 			}
 
-			_paymentsFake.x = _w - _paymentsFake.width;
-			_paymentsFake.y = 65;
+			//_paymentsFake.x = _w - _paymentsFake.width;
+			//_paymentsFake.y = 65;
 
 			_userFace.x = 3;
 			_userFace.y = 3;
@@ -826,7 +825,7 @@ package com.onlyplay.slotmatch3.components
 			}
 			if (!_slotMashine) createSlotMashine();
 			_slotMashine.visible = true;
-			_paymentsFake.visible = true;
+			//_paymentsFake.visible = true;
 			_toMach3Button.visible = true;
 			if (_fakeProgressBg) _fakeProgressBg.visible = false;
 
@@ -850,7 +849,7 @@ package com.onlyplay.slotmatch3.components
 			if (!_matchComponent) createMatchComponent();
 			_matchComponent.animBaseForSpiral = _animBase;
 			_matchComponent.visible = true;
-			_paymentsFake.visible = false;
+			//_paymentsFake.visible = false;
 			_toMach3Button.visible = false;
 
 			if (!_fakeProgressBg)

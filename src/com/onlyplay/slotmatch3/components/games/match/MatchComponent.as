@@ -316,7 +316,11 @@ package com.onlyplay.slotmatch3.components.games.match
 						break;
 					default:
 				}
+			}else
+			{
+				BgClass = Amazonka_6x6_BGClass;
 			}
+			
 
 			if (BgClass)
 			{
@@ -328,7 +332,7 @@ package com.onlyplay.slotmatch3.components.games.match
 
 		private function onMouseClick(e : MouseEvent) : void
 		{
-			if (_animPlaying) return;
+			//if (_animPlaying) return;
 			// log(e.target);
 			var graphicBase : DisplayObjectContainer = e.target as DisplayObjectContainer;
 			if ( graphicBase && graphicBase.parent )

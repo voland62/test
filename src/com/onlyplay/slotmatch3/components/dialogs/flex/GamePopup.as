@@ -1,56 +1,63 @@
 package com.onlyplay.slotmatch3.components.dialogs.flex
 {
+	import spark.components.Button;
 	import spark.components.TitleWindow;
 	import spark.primitives.BitmapImage;
+
+	import com.onlyplay.slotmatch3.components.dialogs.flex.tite.Title;
 
 	/**
 	 * @author Andrew
 	 */
-	[Style(name="titleBgSource", type="Object", inherit="no")]
+	[Style(name="titleBgSkin", type="Object", inherit="yes")]
+	[Style(name="closeBtSkin", type="Object", inherit="yes")]
 	[Style(name="bgSource", type="Object", inherit="no")]
 	public class GamePopup extends TitleWindow
 	{
+		[Bindable]
 		[Embed(source="/Dialogs/Common/tile_skin.png", mimeType="image/png")]
 		protected static var _BgClassDark : Class;
+		[Bindable]
 		[Embed(source="/Dialogs/Common/tile_paper.png", mimeType="image/png")]
 		public static var _BgClassLight : Class;
+		[Bindable]
 		[Embed(source="/Dialogs/Common/title1_base.png", mimeType="image/png")]
 		protected static var _TitleBgBigClass : Class;
 		[Embed(source="/Dialogs/Common/title2_base.png")]
 		protected static var _TitleBgBigClass2 : Class;
+		
+//		[SkinPart(required="true")]
+//		public var titleBg : BitmapImage;
+
 		[SkinPart(required="true")]
-		public var titleBg : BitmapImage;
+		public var titleComp : Title;
+		
 		[SkinPart(required="true")]
 		public var bgImage : BitmapImage;
+		
+		
 
 		public function GamePopup()
 		{
 			setStyle("skinClass", DialogType1BasePopupSkin);
-
-			//var souceBase : String = "D:/reps/slotmatch3_3/Resources/Dialogs/Common/";
-
-			//var defaultTitleImage : String = souceBase + "title2_base.png";
-			//setStyle("titleBgSource", defaultTitleImage);
-			setStyle("titleBgSource", _TitleBgBigClass2);
-
-			// var defaultBg : String = souceBase + "tile_paper.png";
-			// var defaultBg : String = souceBase + "tile_skin.png";
-
 			setStyle("bgSource", _BgClassLight);
+			
 		}
 
 		override protected function partAdded(partName : String, instance : Object) : void
 		{
 			super.partAdded(partName, instance);
-
-			if (instance == titleBg)
+			
+			if (instance == titleComp)
 			{
-				var s : Object = getStyle("titleBgSource");
+				var s : Object = getStyle("titleBgSkin");
 				if (s)
 				{
-					titleBg.source = s;
+					titleComp.setStyle("skinClass", s);
 				}
+				titleComp.title = title;
 			}
+			
 			if (instance == bgImage)
 			{
 				var s : Object = getStyle("bgSource");
@@ -61,6 +68,18 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 					bgImage.source = s;
 				}
 			}
+			
+			if (instance == closeButton)
+			{
+				var s:Object = getStyle("closeBtSkin");
+				if (s)
+				{
+					closeButton.setStyle("skinClass", s);
+				}
+			}
 		}
+
+		
+
 	}
 }

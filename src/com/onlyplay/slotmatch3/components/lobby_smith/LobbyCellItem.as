@@ -4,6 +4,8 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	import flash.display.*;
 	import flash.utils.*;
 	import LocationProtobuf;
+	import mx.events.DynamicEvent;
+	import flash.events.MouseEvent
 	/**
 	 * ...
 	 * @author smt
@@ -126,12 +128,12 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 					btn.numTxt.mouseEnabled = btn.starsBar.mouseEnabled = false;
 					
 					//определяем индекс кнопки исходя из её номера
-					var ind:uint = uint(btn.name.substr(4))%7
+					var ind:uint = uint(btn.name.substr(4))
 					var locInfo:LocationProtobuf = _data.info.locations[ind];
 					
 					//определяем цвет из открытости и острова
 					var sColor:String
-					if  (locInfo.hasOpened){
+					if  (locInfo.opened){
 						sColor = mapColors[getQualifiedClassName(_data.locationMov)];
 					}else {
 						sColor = "grey";
@@ -146,8 +148,21 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 					//устанавливаем вид кнопки
 					SetOneBtnState(btn, sColor, strs, String(ind+1))
 					
+					if (!btn.hasEventListener(MouseEvent.CLICK)) SetListener(btn);
+					
 				}
 			}
+		}
+		
+		
+		private function SetListener(btn:LocationBtnMock):void {
+			btn.addEventListener(MouseEvent.CLICK, function(){
+													var evt = new DynamicEvent("openInterLevelDlg", true);
+													evt._type = "locationInfo";
+													evt._island = LobbyView.lastCursor;
+													evt._location = uint(btn.name.substr(4));
+													dispatchEvent(evt); }
+													)
 		}
 		
 		
@@ -197,7 +212,6 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	
 		public function clear():void {
 			while (contentLayer.numChildren > 0) {
-				
 				contentLayer.removeChildAt(0);
 			}
 		}

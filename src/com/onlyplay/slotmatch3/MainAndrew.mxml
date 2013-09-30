@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:rl2="http://ns.robotlegs.org/flex/rl2"
+	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*" xmlns:config="com.onlyplay.slotmatch3.config.*"
+	xmlns:components="com.onlyplay.slotmatch3.components.*" xmlns:flint2d="http://flintparticles.org/2009/flint2d"
+	implements="com.onlyplay.slotmatch3.view.IApp" width="760" height="658"
+	frameRate="60" applicationComplete="onInit(event)">
+
+	<fx:Style>
+        global 
+        {
+            /* modal-transparency: 0; */
+             /* modal-transparency-blur: 3; */
+            modal-transparency-color: #000000;
+            /* modal-transparency-duration: 100; */
+        }
+    </fx:Style>
+
+	
+
+	<fx:Script>
+		<![CDATA[
+			import mx.events.DynamicEvent;
+			import alternativa.init.GUI;
+
+			import com.onlyplay.slotmatch3.components.FlashGameView;
+			import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
+
+			import mx.events.FlexEvent;
+			import mx.resources.ResourceBundle;
+			import mx.rpc.events.ResultEvent;
+
+			private var _flashGameView : FlashGameView;
+			private var _lobbyVeiw : LobbyView;
+			[Bindable]
+			private var localeUrlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
+
+			private function onInit(e : FlexEvent) : void // при неподключённом видео
+			// private function onInit(e:TimeEvent):void // при подключённом видеo
+			{
+				// resourceManager.localeChain = ["ru_RU"];
+				localeLoader.send();
+
+				log("MainMixed.onInit(e)");
+
+				// при подключённом видеo удаляем видео, нужно ещё в свойствах приложения убрать applicationComplete="onInit(event)"
+				/*for (var i:uint = 0; i < FlexGlobals.topLevelApplication.numElements; i++ ) {
+				var obj:IVisualElement = FlexGlobals.topLevelApplication.getElementAt(i);
+				if (aObj["id"] == "video") {
+				FlexGlobals.topLevelApplication.removeElement(obj);
+				obj = null;
+				break;
+				}
+				}*/
+
+				GUI.init(stage);
+				GUI.hideLogo();
+
+				initLobbyView();
+				initStotMatchView();
+				_flashGameView.visible = false;
+
+				onResize();
+			}
+
+			private function initStotMatchView() : void
+			{
+				if ( !_flashGameView )
+				{
+					// _renderer = new BitmapRenderer(new Rectangle(0, 0, 760, 570));
+					_flashGameView = new FlashGameView();
+					gameViewPlaceHolder.addChild(_flashGameView);
+					_flashGameView.setSlotState();
+					_flashGameView.w = 760;
+					_flashGameView.h = 570;
+					// _flashGameView.visible = false;
+				}
+			}
+
+			private function initLobbyView() : void
+			{
+				if ( !_lobbyVeiw )
+				{
+					_lobbyVeiw = new LobbyView();
+
+					lobbyBase.addChild(_lobbyVeiw);
+				}
+			}
+
+			private function onResize(e : Event = null) : void
+			{
+				// _flashSlotsView.w = stage.stageWidth;
+				// _flashSlotsView.h = stage.stageHeight;
+				if (_flashGameView)
+				{
+					_flashGameView.x = int((760 - _flashGameView.w) >> 1);
+					_flashGameView.y = int((570 - _flashGameView.h) >> 1);
+				}
+			}
+
+			private function onLocationXML(e : ResultEvent) : void
+			{
+				// log("---TestFlexGuiWithServer.onLocationXML(e)");
+				// log(e.result);
+
+				var rb : ResourceBundle = makeResourceBundle(e.result as XML);
+				resourceManager.addResourceBundle(rb);
+				resourceManager.update();
+			}
+
+			private function makeResourceBundle(localeFile : XML) : ResourceBundle
+			{
+				// log( localeFile.dict.key.length() );
+				var rb : ResourceBundle = new ResourceBundle("ru_RU", "ruLocale");
+				for (var i : int = 0; i < localeFile.dict.key.length(); i++)
+				{
+					var key : XML = localeFile.dict.key[i];
+					// trace('key: ' + (key));
+					var val : XML = localeFile.dict.string[i];
+					// trace('val: ' + (val));
+
+					rb.content[key] = val;
+				}
+				return rb;
+			}
+
+			public function setGameState(state : String) : void
+			{
+				switch(state)
+				{
+					case  "lobby":
+						_lobbyVeiw.visible = true;
+						// if(_flashGameView) _flashGameView.visible = false;
+
+						break;
+					case  "game":
+						_lobbyVeiw.visible = false;
+						// if (!_flashGameView) initStotMatchView();
+						_flashGameView.visible = true;
+						break;
+					default:
+						log("MainAndrew.setGameState(state)");
+						log("This state is not supported:" + state);
+				}
+			}
+			
+			//--------------------- hint ------------------------------
+			public function getUnderConstrWnd(e:MouseEvent):void
+			{
+				//getObjById("fon").visible=true
+				dispatchEvent(new DynamicEvent ("underConstruction"));
+			}
+		]]>
+	</fx:Script>
+
+
+	<fx:Declarations>
+
+		<rl2:ContextBuilder>
+			<mvcs:MVCSBundle/>
+			<config:MixedConfig/>
+		</rl2:ContextBuilder>
+
+		<s:HTTPService id="localeLoader" url="{localeUrlBase + 'Localization_ru.plist'}"
+			result="onLocationXML(event)" resultFormat="e4x">
+		</s:HTTPService>
+
+	</fx:Declarations>
+
+
+	<s:SpriteVisualElement id="lobbyBase" width="760" height="570"
+		left="170"/>
+
+
+	<s:SpriteVisualElement id="gameViewPlaceHolder" width="760"
+		height="570"/>
+
+
+	<s:Image id="lobby_avatar" source="../src/assets/Mock_user.png" click="getUnderConstrWnd(event)"/>
+	<s:Image id="lobby_top" source="../src/assets/Mock_top.png"  click="getUnderConstrWnd(event)" y ="95"/>
+
+
+</s:Application>

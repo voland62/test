@@ -3,7 +3,7 @@ package com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl
 	import spark.components.Group;
 	import spark.components.SkinnableDataContainer;
 
-	import com.onlyplay.slotmatch3.components.dialogs.flex.Title;
+	import com.onlyplay.slotmatch3.components.dialogs.flex.tite.Title;
 
 	import mx.core.IVisualElement;
 

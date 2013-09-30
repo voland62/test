@@ -1,6 +1,6 @@
 package com.onlyplay.slotmatch3.components.lobby_smith {
 	
-	import flash.events.Event;
+	import flash.events.*;
 	import robotlegs.bender.bundles.mvcs.Mediator;
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
@@ -16,36 +16,72 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		
 		
 		override public function initialize() : void{
-			addViewListener("lobby_view:lobby_exit", onLobbyExit);
 			
-			addContextListener("state_changes", LobbyChangesState);
+			addViewListener("openInterLevelDlg", OpenInterLevelDlg);
+			addViewListener("lobby:first_map_ready", test);
+			
+			//addContextListener("state_changes", LobbyChangesState);
 			addContextListener("islandsDataReady", view.onDataArrive)
 		}
 		
-		
-		
-		
-		
-		private function onLobbyExit(e:Event):void {
-			var event : DynamicEvent = new DynamicEvent("state_changes_request");
-			event.state = "game";
-			dispatch(event);
+		private function test(e:Event):void {
+			trace ("")
 		}
+		
+		
+		
+		
+		
+		
+		private function OpenInterLevelDlg(e:DynamicEvent):void {
+			
+			var event :DynamicEvent = new DynamicEvent("showInterLevelPupup");
+			event._type == "islandInfo";
+			event._island = e._island;
+			event._location = e._location;
+			dispatch(event);
+			
+//			var wnd:IInterLevelDlg = IInterLevelDlg(FlexGlobals.topLevelApplication.getObjById("interLevelDlg"));
+//			//wnd.saveParams
+//			
+//			var island:IslandProtobuf = gameModel.islands.islands[e._island]
+//			
+//			if (e._type == "islandInfo") {
+//				
+//				wnd.saveParams(e._island, -1)
+//				wnd.show(island);
+//				trace()
+//			}
+//			
+//			
+//			if (e._type == "locationInfo") {
+//				
+//				wnd.saveParams(e._island, e._location)
+//				wnd.show(island.locations[e._location])
+//				trace()
+//			}
+			
+			
+			
+		}
+		
 		
 		
 		
 		private function LobbyChangesState(e:DynamicEvent):void {
 			
-			var vis:Boolean = e.state == "lobby"
+			dispatch(e);
+			//var vis:Boolean = e.state == "lobby";
 			
-			view.visible = vis;
+			//view.visible = vis;
 			// юсер дата и топ должны убираться своими медиаторами, но пока так
-			for (var i:uint = 0; i < FlexGlobals.topLevelApplication.numElements; i++) {
-				var id:String = FlexGlobals.topLevelApplication.getElementAt(i)["id"];
-				if (id && id.indexOf("lobby") != -1) {
-					 FlexGlobals.topLevelApplication.getElementAt(i).visible = vis;
-				}
-			}
+			
+//			for (var i:uint = 0; i < FlexGlobals.topLevelApplication.numElements; i++) {
+//				var id:String = FlexGlobals.topLevelApplication.getElementAt(i)["id"];
+//				if (id && id.indexOf("lobby") != -1) {
+//					 FlexGlobals.topLevelApplication.getElementAt(i).visible = vis;
+//				}
+//			}
 			
  		}
 		

@@ -1,12 +1,5 @@
 package com.onlyplay.slotmatch3.config
 {
-	import com.onlyplay.slotmatch3.view.dialogs.ProfilePopupMediator;
-	import com.onlyplay.slotmatch3.view.dialogs.IProfilePopup;
-	import robotlegs.bender.extensions.viewManager.api.IViewManager;
-	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
-	import com.onlyplay.slotmatch3.view.dialogs.PaymentsPopupMediator;
-	import com.onlyplay.slotmatch3.components.dialogs.flex.PaymentsTablePopUp;
-	import com.onlyplay.slotmatch3.components.dialogs.flex.TimeOverPopup;
 	import net.IConnector;
 	import net.MessagesMap;
 	import net.SocketConnector;
@@ -14,6 +7,7 @@ package com.onlyplay.slotmatch3.config
 	import robotlegs.bender.extensions.contextView.ContextView;
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+	import robotlegs.bender.extensions.viewManager.api.IViewManager;
 	import robotlegs.bender.framework.api.IConfig;
 	import robotlegs.bender.framework.api.IInjector;
 
@@ -39,8 +33,14 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.services.MatchTimerService;
 	import com.onlyplay.slotmatch3.services.ServiceEvent;
 	import com.onlyplay.slotmatch3.services.SlotService;
+	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
+	import com.onlyplay.slotmatch3.view.dialogs.IProfilePopup;
 	import com.onlyplay.slotmatch3.view.dialogs.ITimeOverPopup;
+	import com.onlyplay.slotmatch3.view.dialogs.IToMap;
+	import com.onlyplay.slotmatch3.view.dialogs.PaymentsPopupMediator;
+	import com.onlyplay.slotmatch3.view.dialogs.ProfilePopupMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.TimeOverPopupMediator;
+	import com.onlyplay.slotmatch3.view.dialogs.ToMapMediator;
 
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -102,6 +102,7 @@ package com.onlyplay.slotmatch3.config
 			mediatorMap.map(ITimeOverPopup).toMediator(TimeOverPopupMediator);
 			mediatorMap.map(IPaymentsPopup).toMediator(PaymentsPopupMediator);
 			mediatorMap.map(IProfilePopup).toMediator(ProfilePopupMediator);
+			mediatorMap.map(IToMap).toMediator(ToMapMediator);
 			
 
 			eventDispatcher.dispatchEvent(new Event("init"));

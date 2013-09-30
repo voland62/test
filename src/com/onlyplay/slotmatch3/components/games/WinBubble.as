@@ -45,7 +45,7 @@ package com.onlyplay.slotmatch3.components.games
 			var numBmFont : BMFont = new BMFont();
 
 			numBmFont.parseFont(numFont);
-			trace("numBmFont.glyphMap.length:" + numBmFont.glyphMap.length);
+			//trace("numBmFont.glyphMap.length:" + numBmFont.glyphMap.length);
 			numBmFont.addSheet(0, new numsSheet().bitmapData);
 
 			var out2 : BitmapData = new BitmapData(numberLength, letterDims.y, true, 0xff00ff);

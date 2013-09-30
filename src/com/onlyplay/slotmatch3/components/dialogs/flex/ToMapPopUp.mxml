@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+	implements="com.onlyplay.slotmatch3.view.dialogs.IToMap"
+	titleBgSkin="{RedBandTitleSkin}" bgSource="{_BgClassDark}" title="Выход в слот"
+	closeBtSkin="{CloseButtonSkin2}" minHeight="360" xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Script>
+		<![CDATA[
+			import com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin2;
+			import com.onlyplay.slotmatch3.components.dialogs.flex.tite.RedBandTitleSkin;
+
+			import mx.graphics.BitmapFillMode;
+
+			// "D:\reps\slotmatch3_3\Resources\Dialogs\Common\tile_paper.png"
+			// "D:\reps\slotmatch3_3\Resources\Dialogs\Common\buttons_base_orange_green.png"
+			[Embed(source="/Dialogs/Common/tile_paper.png")]
+			private static var PaperClass : Class;
+			[Embed(source="/Dialogs/Common/buttons_base_orange_green.png")]
+			private static var ButtonsBgClass : Class;
+
+			public function setWin(win : int, currentMoney : int) : void
+			{
+				winLabel.text = win.toString();
+				monetLabel.text = currentMoney.toString();
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+         .sss {
+               fontSize:17;
+               fontWeight:bold;
+               color:#333333;
+          }     
+		
+	</fx:Style>
+
+	<s:BitmapImage left="30" right="30" top="0" bottom="40" source="{PaperClass}"
+		fillMode="{BitmapFillMode.REPEAT}"/>
+
+	<s:VGroup left="40" right="40" top="60" bottom="50"
+		horizontalAlign="center">
+		<s:Label text="Ваш выйгрыш в слоте составил:" styleName="sss"/>
+
+		<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RounPanel4Skin"
+			width="100%">
+
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="center" gap="1"
+					paddingTop="10"/>
+			</s:layout>
+			<s:Label text="Выйгрыш:" fontWeight="bold" fontSize="16"
+				color="0x00ffff"/>
+			<s:HGroup verticalAlign="middle">
+				<my:CoinBitmapImage/>
+				<s:Label id="winLabel" text="2300" fontWeight="bold" fontSize="30"
+					color="0x00ffff"/>
+			</s:HGroup>
+			<s:Label text="У вас на счету:" fontWeight="bold" fontSize="16"
+				color="0xffff00"/>
+			<s:HGroup verticalAlign="middle">
+				<my:CoinBitmapImage/>
+				<s:Label id="monetLabel" text="35000" fontWeight="bold" fontSize="28" 
+					color="0xffff00"/>
+			</s:HGroup>
+
+		</s:SkinnableContainer>
+
+		<s:Label text="У Вас ещё осталось времяб вы, действительно хотите закончить игру и перейти в слот?"
+			styleName="sss" width="300"/>
+
+	</s:VGroup>
+
+	<my:controlBarContent>
+
+		<s:Group bottom="-32" horizontalCenter="0">
+			<s:BitmapImage source="{ButtonsBgClass}"/>
+			<s:Button x="30" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.YellowButtonSkin"
+				label="В слот" fontSize="16"/>
+			<s:Button fontSize="16" x="197" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+				label="Остаться"/>
+			<!--<s:Button x="337" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
+			fontSize="16" label="Закрыть" click="{dispatchEvent(new Event(Event.CLOSE));}"/>-->
+
+
+		</s:Group>
+
+
+	</my:controlBarContent>
+
+
+</my:GamePopup>

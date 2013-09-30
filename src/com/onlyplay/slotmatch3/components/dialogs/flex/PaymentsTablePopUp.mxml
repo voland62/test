@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <flex:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
-	titleBgSource ="{_TitleBgBigClass}"
+	
 	implements="com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup"
 	minHeight="500" minWidth="600" title="Таблица выплат"
 	controlBarVisible="true">
@@ -35,7 +35,7 @@
 	</fx:Script>
 
 
-	<flex:NeildPanel top="0" left="30" right="30" bottom="40">
+	<flex:NeildPanel top="40" left="30" right="30" bottom="40">
 
 		<s:DataGroup top="20 left=20" right="20" bottom="20"
 			dataProvider="{dp}">

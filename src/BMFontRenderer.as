@@ -19,10 +19,10 @@ package
         [Embed(source="arial_32.png")]
         public var fontSheet:Class;
 		
-        [Embed(source="nums.fnt", mimeType="application/octet-stream")]
+        [Embed(source="/assets/bmfont/nums.fnt", mimeType="application/octet-stream")]
         public var numsFontData:Class;
 		
-        [Embed(source="nums_0.png")]
+        [Embed(source="/assets/bmfont/nums_0.png")]
         public var numsSheet:Class;
 
 

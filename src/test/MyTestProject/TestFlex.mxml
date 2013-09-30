@@ -2,7 +2,8 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
 	xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
-	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*">
+	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*"
+	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*">
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
@@ -31,7 +32,7 @@
 	<!--<s:ToggleSwitch left="100" top="20" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.ToggleSwitchSking"/>-->
 
 
-	<s:Button label="close" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin"
+	<s:Button label="close" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin2"
 		click="onClick(event)"/>
 
 
@@ -76,8 +77,20 @@
 
 
 
-	<flex:Profile verticalCenter="0" horizontalCenter="0"/>
+	<!--<flex:Profile verticalCenter="0" horizontalCenter="0"/>-->
+	<!--
+	
+		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.RedBandTitleSkin"
+	-->
 
+	<!--<tite:Title
+		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1" 
+		title="hello man"
+		verticalCenter="0" horizontalCenter="0"/>-->
+
+	<!--<flex:ToMapPopUp verticalCenter="0" horizontalCenter="0"/>-->
+
+	<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>
 	
 
 
