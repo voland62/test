@@ -32,9 +32,6 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			}
 		}
 		
-		private function test(e:Event):void {
-			trace ("")
-		}
 		
 		
 		
