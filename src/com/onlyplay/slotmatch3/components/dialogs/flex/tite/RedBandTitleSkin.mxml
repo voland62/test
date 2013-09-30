@@ -13,13 +13,14 @@
 			,scaleGridTop='135', scaleGridBottom='136',
 			scaleGridLeft='240', scaleGridRight='241'
 			)]
-			private static var RedBandClass : Class;
+			private static const RedBandClass : Class;
+			
 			[Embed(source="/Dialogs/Common/leaf_5.png")]
-			private static var CenterLeafClass : Class;
+			private static const CenterLeafClass : Class;
 			[Embed(source="/Dialogs/Common/leaf_3.png")]
-			private static var SideLeafClass : Class;
+			private static const SideLeafClass : Class;
 			[Embed(source="/Dialogs/Common/leaf_1.png")]
-			private static var BorderLeafClass : Class;
+			private static const BorderLeafClass : Class;
 			
 			
 

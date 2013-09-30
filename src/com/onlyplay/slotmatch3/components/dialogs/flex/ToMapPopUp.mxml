@@ -13,10 +13,12 @@
 
 			// "D:\reps\slotmatch3_3\Resources\Dialogs\Common\tile_paper.png"
 			// "D:\reps\slotmatch3_3\Resources\Dialogs\Common\buttons_base_orange_green.png"
+			
 			[Embed(source="/Dialogs/Common/tile_paper.png")]
-			private static var PaperClass : Class;
+			private static const PaperClass : Class;
+			
 			[Embed(source="/Dialogs/Common/buttons_base_orange_green.png")]
-			private static var ButtonsBgClass : Class;
+			private static const ButtonsBgClass : Class;
 
 			public function setWin(win : int, currentMoney : int) : void
 			{
