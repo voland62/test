@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.controller.dialogs
 {
+	import com.onlyplay.slotmatch3.components.dialogs.flex.ToMapPopUp;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.UnderConstructuionPupUp;
 	import spark.components.Alert;
 	import com.onlyplay.slotmatch3.components.lobby_smith.LevelInfoPopup;
@@ -54,7 +55,7 @@ package com.onlyplay.slotmatch3.controller.dialogs
 					clas = TimeOverPopup;
 					break;
 				case "showToMapMediator":
-					clas = ToSlotPopUp;
+					clas = ToMapPopUp;
 					break;
 				case "showInterLevelPupup":
 					clas = LevelInfoPopup;

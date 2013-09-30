@@ -83,11 +83,11 @@
 
 		<s:Label text="Поделиться:" styleName="sss"/>
 
-		<s:HGroup>
-			<s:CheckBox/>
-			<s:Button label="Twitter"/>
-			<s:CheckBox/>
-			<s:Button label="Facebook"/>
+		<s:HGroup verticalAlign="middle">
+			<s:CheckBox skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CheckBoxSkin1"/>
+			<s:Button label="Twitter" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.FaceBookButtonSkin"/>
+			<s:CheckBox skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CheckBoxSkin1"/>
+			<s:Button label="Facebook" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.FaceBookButtonSkin"/>
 		</s:HGroup>
 		
 

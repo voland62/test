@@ -1,5 +1,7 @@
 package com.onlyplay.slotmatch3.config
 {
+	import com.onlyplay.slotmatch3.view.dialogs.ToMapMediator;
+	import com.onlyplay.slotmatch3.view.dialogs.IToMap;
 	import com.onlyplay.slotmatch3.view.dialogs.ToSlotMediator;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.ToSlotPopUp;
 	import com.onlyplay.slotmatch3.view.dialogs.IToSlot;
@@ -143,6 +145,7 @@ package com.onlyplay.slotmatch3.config
 			mediatorMap.map(IInterLevelDlg).toMediator(LevelInfoMediator);
 			mediatorMap.map(IApp).toMediator(ApplicationMediator);
 			mediatorMap.map(IToSlot).toMediator(ToSlotMediator);
+			mediatorMap.map(IToMap).toMediator(ToMapMediator);
 			
 			//mediatorMap.map(Preloader).toMediator(PreloaderMediator)
 			
