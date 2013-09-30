@@ -13,11 +13,10 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		[Inject]
 		public var view : IInterLevelDlg;
 		
-		
-		
 		override public function initialize() : void{
 			
 			addViewListener(MouseEvent.CLICK, onViewBtnClick);
+			addViewListener("underConstruction", dispatch)
 			
 			/*addContextListener("state_changes", LobbyChangesState);
 			addContextListener("islandsDataReady", view.onDataArrive);*/

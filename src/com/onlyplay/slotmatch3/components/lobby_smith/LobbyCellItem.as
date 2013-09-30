@@ -94,7 +94,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 			var pic:MovieClip = _data.locationMov
 			
-			if (_data.info.hasOpened){
+			if (_data.info.opened){
 				// анимированный мувик - остров открыт
 				pic.gotoAndStop(1);
 				for (var i:uint = 0; i < pic.numChildren; i++ ) {

@@ -30,7 +30,8 @@ package com.onlyplay.slotmatch3.view.preloader {
 
 		
 		override protected function progressHandler (e:ProgressEvent):void{
-			mov.gotoAndStop(int(e.bytesLoaded / e.bytesTotal * 50));
+			var frame:int = int(e.bytesLoaded / e.bytesTotal * 50);
+			mov.gotoAndStop(Math.max(frame,1));
 			
 		}
 	

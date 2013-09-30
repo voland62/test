@@ -2,7 +2,8 @@
 <my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
-	titleBgSkin="{TitleSkin2}" implements="com.onlyplay.slotmatch3.components.lobby_smith.IInterLevelDlg"
+	titleBgSkin="{TitleSkin2}" 
+	implements="com.onlyplay.slotmatch3.components.lobby_smith.IInterLevelDlg"
 	minHeight="500" minWidth="400" title="Гавайский остров"
 	creationComplete="onInit(event)" controlBarVisible="true">
 	<!--skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.DialogType2BasePopupSkin"-->
@@ -37,6 +38,7 @@
 
 			import flash.events.Event;
 			import flash.events.MouseEvent;
+			import mx.events.DynamicEvent
 
 			import com.onlyplay.slotmatch3.components.games.elements.StarProgress;
 			import com.netease.protobuf.Message;
@@ -95,12 +97,19 @@
 //				shopBtn.y = -15;
 //				shopBtn.useHandCursor = false;
 //				shopPlace.addChild(shopBtn);
+				
+				//to_shop.addEventListener(MouseEvent.CLICK, onShopBtnClick)
 
 				SetItems();
 				// установка видимости покупок
+				
 
 				closeButton.addEventListener(MouseEvent.CLICK, hide);
 			}
+			
+			/*private function onShopBtnClick(e:MouseEvent):void {
+				trace ("")
+			}*/
 
 			public function hide(e : MouseEvent = null) : void
 			{
@@ -298,10 +307,10 @@
 
 		<my:NeildPanel width="100%" height="120">
 			<s:SpriteVisualElement id="shopPlace" x="53" y="33"/>
-			<s:Button label="Магазин" verticalCenter="0" right="20" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.ShopButtonSkin"/>
-			<!--<s:Label text="Магазин" fontWeight="bold" color="0x80FFFF"
-				fontSize="10" x="260" y="45" mouseEnabled="false"/>-->
-		</my:NeildPanel>
+			<s:Button id="to_shop" label="Магазин" verticalCenter="0" right="20" 
+				skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.ShopButtonSkin"
+				click = "{dispatchEvent(new DynamicEvent('underConstruction'))}"/>
+		</my:NeildPanel> 
 	</s:Group>
 
 

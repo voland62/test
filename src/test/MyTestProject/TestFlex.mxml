@@ -3,7 +3,8 @@
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
 	xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
 	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*"
-	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*">
+	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
+	xmlns:lobby="com.onlyplay.slotmatch3.components.lobby_smith.*">
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
@@ -32,9 +33,9 @@
 	<!--<s:ToggleSwitch left="100" top="20" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.ToggleSwitchSking"/>-->
 
 
-	<s:Button label="close" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin2"
+	<!--<s:Button label="close" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin2"
 		click="onClick(event)"/>
-
+-->
 
 
 	<!--<s:Scroller width="200" horizontalCenter="0" verticalCenter="0" >
@@ -68,10 +69,7 @@
 	<!--<flex:TimeOverPopup id="timeOverDialog" verticalCenter="0" horizontalCenter="0" />-->
 
 	<!--<flex:PaymentsTablePopUp verticalCenter="0" horizontalCenter="0" />-->
-
-
-	<s:Label text="hello" left="40" top="20"/>
-
+	
 	<!--<scrollEl:ScrollablePanel verticalCenter="0" horizontalCenter="0" width="300" 
 	title="Достижения" dataProvider="{dp}" itemRenderer="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.ScrollPanelItemRenderer"/>-->
 
@@ -90,12 +88,7 @@
 
 	<!--<flex:ToMapPopUp verticalCenter="0" horizontalCenter="0"/>-->
 
-	<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>
+	<lobby:LevelInfoPopup verticalCenter="0" horizontalCenter="0"/>
 	
-
-
-	<!--<mx:ProgressBar verticalCenter="20" horizontalCenter="0"/>-->
-
-
 
 </s:Application>
