@@ -90,9 +90,12 @@
 
 	<!--<flex:ToMapPopUp verticalCenter="0" horizontalCenter="0"/>-->
 
-	<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>
-	
+	<!--<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>-->
 
+	<!--<flex:ToMapPopUp  verticalCenter="0" horizontalCenter="0"/>-->
+
+	<s:CheckBox/>
+	
 
 	<!--<mx:ProgressBar verticalCenter="20" horizontalCenter="0"/>-->
 

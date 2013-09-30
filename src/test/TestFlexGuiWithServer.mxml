@@ -6,8 +6,9 @@
 	width="760" applicationComplete="onComplete(event)" height="670">
 	<fx:Script>
 		<![CDATA[
-			import com.onlyplay.slotmatch3.components.lobby_smith.LevelInfoPopup;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.ToMapPopUp;
+			import com.onlyplay.slotmatch3.components.lobby_smith.LevelInfoPopup;
+			import com.onlyplay.slotmatch3.components.dialogs.flex.ToSlotPopUp;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.Profile;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.Options;
 			import mx.resources.ResourceBundle;
@@ -47,10 +48,13 @@
 						PopupClass = Profile;
 						break;
 					case "В слот":
-						PopupClass = ToMapPopUp;
+						PopupClass = ToSlotPopUp;
 						break;
 					case "Level Info":
 						PopupClass = LevelInfoPopup;
+						break;
+					case "В карту":
+						PopupClass = ToMapPopUp;
 						break;
 					default:
 						log("Нема такого диалога:" + dialogList.selectedItem.label);
@@ -137,6 +141,7 @@
 			<fx:Object label="Опции"/>
 			<fx:Object label="Профиль"/>
 			<fx:Object label="В слот"/>
+			<fx:Object label="В карту"/>
 			<fx:Object label="Level Info"/>
 		</mx:ArrayList>
 

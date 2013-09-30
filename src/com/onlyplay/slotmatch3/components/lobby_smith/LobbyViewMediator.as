@@ -21,7 +21,15 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			addViewListener("lobby:first_map_ready", test);
 			
 			//addContextListener("state_changes", LobbyChangesState);
-			addContextListener("islandsDataReady", view.onDataArrive)
+			if ( gameModel.islands )
+			{
+				var event:DynamicEvent = new DynamicEvent("");
+				event.data = gameModel.islands;
+				view.onDataArrive(event);
+			}else
+			{
+				addContextListener("islandsDataReady", view.onDataArrive);
+			}
 		}
 		
 		private function test(e:Event):void {

@@ -130,7 +130,7 @@ package com.onlyplay.slotmatch3.components
 		private var _moneyIcon : Bitmap;
 		private var _roomList : RoomList;
 		private var _islandBg : Bitmap;
-		//private var _paymentsFake : Bitmap;
+		private var _paymentsFake : Bitmap;
 		private var _fakeProgressBg : Bitmap;
 		private var _toStotButton : BaseButton;
 		private var _timeProgress : TimeProgress;
@@ -194,8 +194,8 @@ package com.onlyplay.slotmatch3.components
 			_infoRoomProgressButton = new InfoButton();
 			addChild(_infoRoomProgressButton);
 
-			/*_paymentsFake = new PaymentsFakeClass();
-			addChild(_paymentsFake);*/
+//			_paymentsFake = new PaymentsFakeClas();
+//			addChild(_paymentsFake);
 
 			_userName = createTf(100, 11);
 			_userName.text = "Лада";

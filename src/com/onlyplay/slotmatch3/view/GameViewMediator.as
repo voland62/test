@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.view
 {
+	import org.flexunit.internals.builders.NullBuilder;
 	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
 	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
 
@@ -42,10 +43,21 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("flashEnergy", onFlashEnergy);
 			addViewListener("showPaymentsDialog", onShowPaymentsDialog);
 			addViewListener("game_view:to_map", toMap)
-                        addViewListener("onFace", onFace);
+            addViewListener("onFace", onFace);
+			
 			//addContextListener("toSlot", onToSlot);
 			addContextListener( "showSlot" , showSlot);
-			addContextListener("ready", onReady);
+			
+			if ( gameModel._ready )
+			{
+				onReady( null );
+			}else
+			{
+				addContextListener("ready", onReady);
+			}
+			
+			
+			
 			addContextListener("showSpin", showSpin);
 			addContextListener("showMatch", showMatch);
 			addContextListener("locationChaged", onLocationChaged);

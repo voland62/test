@@ -2,12 +2,11 @@
 <my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
 	implements="com.onlyplay.slotmatch3.view.dialogs.IToSlot"
-	titleBgSkin="{RedBandTitleSkin}" bgSource="{_BgClassDark}" title="Выйти из комнаты"
+	titleBgSkin="{RedBandTitleSkin}" bgSource="{_BgClassDark}" title="Выход в слот"
 	closeBtSkin="{CloseButtonSkin2}" minHeight="360" xmlns:mx="library://ns.adobe.com/flex/mx">
 	<fx:Script>
 		<![CDATA[
 			import mx.events.DynamicEvent;
-
 			import com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin2;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.tite.RedBandTitleSkin;
 
@@ -15,8 +14,10 @@
 
 			// "D:\reps\slotmatch3_3\Resources\Dialogs\Common\tile_paper.png"
 			// "D:\reps\slotmatch3_3\Resources\Dialogs\Common\buttons_base_orange_green.png"
+			
 			[Embed(source="/Dialogs/Common/tile_paper.png")]
 			private static const PaperClass : Class;
+			
 			[Embed(source="/Dialogs/Common/buttons_base_orange_green.png")]
 			private static const ButtonsBgClass : Class;
 
@@ -53,43 +54,25 @@
 				<s:VerticalLayout horizontalAlign="center" gap="1"
 					paddingTop="10"/>
 			</s:layout>
-			<s:Label text="Выйгрыш в слоте:" fontWeight="bold"
-				fontSize="16" color="0x00ffff"/>
+			<s:Label text="Выйгрыш:" fontWeight="bold" fontSize="16"
+				color="0x00ffff"/>
 			<s:HGroup verticalAlign="middle">
 				<my:CoinBitmapImage/>
-				<s:Label id="winLabel" text="2300" fontWeight="bold"
-					fontSize="30" color="0x00ffff"/>
+				<s:Label id="winLabel" text="2300" fontWeight="bold" fontSize="30"
+					color="0x00ffff"/>
 			</s:HGroup>
-			<s:Label text="Общий выйгрыш:" fontWeight="bold" fontSize="16"
+			<s:Label text="У вас на счету:" fontWeight="bold" fontSize="16"
 				color="0xffff00"/>
 			<s:HGroup verticalAlign="middle">
 				<my:CoinBitmapImage/>
-				<s:Label id="monetLabel" text="35000" fontWeight="bold"
-					fontSize="28" color="0xffff00"/>
+				<s:Label id="monetLabel" text="35000" fontWeight="bold" fontSize="28" 
+					color="0xffff00"/>
 			</s:HGroup>
 
 		</s:SkinnableContainer>
 
-		<s:Label text="У Вас на счету:" styleName="sss" />
-
-		<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RounPanel2Skin" width="100%">
-			<s:HGroup horizontalCenter="0" verticalCenter="0" verticalAlign="middle">
-				<my:CoinBitmapImage/>
-				<s:Label id="money" text="35000" fontWeight="bold"
-					fontSize="28" color="0xffff00"/>
-			</s:HGroup>
-
-		</s:SkinnableContainer>
-
-		<s:Label text="Поделиться:" styleName="sss"/>
-
-		<s:HGroup>
-			<s:CheckBox/>
-			<s:Button label="Twitter"/>
-			<s:CheckBox/>
-			<s:Button label="Facebook"/>
-		</s:HGroup>
-		
+		<s:Label text="У Вас ещё осталось времяб вы, действительно хотите закончить игру и перейти в слот?"
+			styleName="sss" width="300"/>
 
 	</s:VGroup>
 
@@ -97,12 +80,10 @@
 
 		<s:Group bottom="-32" horizontalCenter="0">
 			<s:BitmapImage source="{ButtonsBgClass}"/>
-			<s:Button x="30" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
-				label="Забрать выйгрыш" click="{dispatchEvent(new DynamicEvent('toMap'));}"
-				fontSize="16"/>
+			<s:Button x="30" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.YellowButtonSkin"
+				label="В слот" click="{dispatchEvent(new DynamicEvent('toMap'));}" fontSize="16"/>
 			<s:Button fontSize="16" x="197" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
 				label="Остаться"/>
-				
 			<!--<s:Button x="337" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
 			fontSize="16" label="Закрыть" click="{dispatchEvent(new Event(Event.CLOSE));}"/>-->
 

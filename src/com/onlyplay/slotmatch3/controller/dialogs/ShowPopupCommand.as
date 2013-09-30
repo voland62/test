@@ -3,7 +3,7 @@ package com.onlyplay.slotmatch3.controller.dialogs
 	import com.onlyplay.slotmatch3.components.dialogs.flex.UnderConstructuionPupUp;
 	import spark.components.Alert;
 	import com.onlyplay.slotmatch3.components.lobby_smith.LevelInfoPopup;
-	import com.onlyplay.slotmatch3.components.dialogs.flex.ToMapPopUp;
+	import com.onlyplay.slotmatch3.components.dialogs.flex.ToSlotPopUp;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.Profile;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.TimeOverPopup;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.PaymentsTablePopUp;
@@ -54,7 +54,7 @@ package com.onlyplay.slotmatch3.controller.dialogs
 					clas = TimeOverPopup;
 					break;
 				case "showToMapMediator":
-					clas = ToMapPopUp;
+					clas = ToSlotPopUp;
 					break;
 				case "showInterLevelPupup":
 					clas = LevelInfoPopup;
