@@ -6,7 +6,7 @@
 	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
 	xmlns:lobby="com.onlyplay.slotmatch3.components.lobby_smith.*">
 	<fx:Script>
-		<![CDATA[
+		<!--<![CDATA[
 			import mx.collections.ArrayCollection;
 
 			private var dp : ArrayCollection = new ArrayCollection(["пушка", "конфеты", "Звезда", "пушка", "конфеты", "Звезда", "пушка", "конфеты", "Звезда"]);
@@ -15,7 +15,7 @@
 			{
 				// timeOverDialog.currentState = "maxResult";
 			}
-		]]>
+		]]>-->
 	</fx:Script>
 
 
@@ -75,7 +75,7 @@
 
 
 
-	<flex:Profile verticalCenter="0" horizontalCenter="0"/>
+	<lobby:LevelInfoPopup verticalCenter="0" horizontalCenter="0"/>
 	<!--
 	
 		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.RedBandTitleSkin"
