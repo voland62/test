@@ -11,8 +11,8 @@
 	<fx:Script>
 		<![CDATA[
 			[Embed(source="/Dialogs/Common/paper_border2.png", mimeType="image/png"
-			,scaleGridTop='19', scaleGridBottom='30',
-			scaleGridLeft='20', scaleGridRight='26'
+			,scaleGridTop='15', scaleGridBottom='23',
+			scaleGridLeft='17', scaleGridRight='20'
 			)]
 			private static const _BorderClass : Class;
 			

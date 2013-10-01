@@ -66,7 +66,7 @@
 	stepSize="1" pageSize="2"/>-->
 
 
-	<!--<flex:TimeOverPopup id="timeOverDialog" verticalCenter="0" horizontalCenter="0" />-->
+	<!--<flex:TimeOverPopup id="timeOverDialog" verticalCenter="0" horizontalCenter="0"  />-->
 
 	<!--<flex:PaymentsTablePopUp verticalCenter="0" horizontalCenter="0" />-->
 
@@ -75,7 +75,7 @@
 
 
 
-	<flex:Profile verticalCenter="0" horizontalCenter="0"/>
+	<!--<flex:Profile verticalCenter="0" horizontalCenter="0"/>-->
 	<!--
 	
 		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.RedBandTitleSkin"
@@ -87,6 +87,8 @@
 		verticalCenter="0" horizontalCenter="0"/>-->
 
 	<!--<flex:ToMapPopUp verticalCenter="0" horizontalCenter="0"/>-->
+	
+	
 
 	
 	<!--<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>-->

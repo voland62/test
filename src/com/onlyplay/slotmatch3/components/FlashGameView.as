@@ -419,6 +419,8 @@ package com.onlyplay.slotmatch3.components
 			_lineButtonLeft.locked = val;
 			_lineButtonRight.locked = val;
 			_payButton.locked = val;
+			_mapButton.locked = val;
+			
 		}
 
 		private function onPlayButtonClick(e : MouseEvent) : void
@@ -645,6 +647,7 @@ package com.onlyplay.slotmatch3.components
 		{
 			if (_slotMashine ) _slotMashine.spin(newState);
 			disableButtons(true);
+			_toMach3Button.locked = true;
 		}
 
 		// public function drawLines(winLines : Array) : void
@@ -837,6 +840,7 @@ package com.onlyplay.slotmatch3.components
 			if ( _energyProgress ) _energyProgress.visible = false;
 			
 			_toMach3Button.locked = true;
+			_mapButton.locked = false;
 
 			addChildAt(_animBase, numChildren - 1);
 
@@ -895,6 +899,8 @@ package com.onlyplay.slotmatch3.components
 			_energyProgress.visible = true;
 
 			addChildAt(_animBase, numChildren - 1);
+			
+			_mapButton.locked = true;
 
 			// _matchComponent.startReinitAnimation();
 

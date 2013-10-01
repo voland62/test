@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-	xmlns:mx="library://ns.adobe.com/flex/mx" height="40" minWidth="100">
+	xmlns:mx="library://ns.adobe.com/flex/mx" height="32" minWidth="100">
 
 	<!-- states -->
 	<s:states>
@@ -23,18 +23,18 @@
 	<fx:Script>
 		<![CDATA[
 			[Embed(source="/Dialogs/Common/tab_inactive.png",  mimeType="image/png"
-			,scaleGridTop="39", scaleGridBottom="40", 
-			scaleGridLeft="24", scaleGridRight="32"
+			,scaleGridTop="10", scaleGridBottom="11", 
+			scaleGridLeft="18", scaleGridRight="25"
 			)]
 			private static const InactiveBgClass : Class;
 			[Embed(source="/Dialogs/Common/tab_active.png",  mimeType="image/png"
-			,scaleGridTop="9", scaleGridBottom="10", 
-			scaleGridLeft="10", scaleGridRight="14"
+			,scaleGridTop="1", scaleGridBottom="2", 
+			scaleGridLeft="8", scaleGridRight="11"
 			)]
 			private static const BorderClass : Class;
 			[Embed(source="/Dialogs/Common/tab_active_mask.png",  mimeType="image/png"
-			,scaleGridTop="29", scaleGridBottom="30", 
-			scaleGridLeft="9", scaleGridRight="15"
+			,scaleGridTop="1", scaleGridBottom="2", 
+			scaleGridLeft="8", scaleGridRight="11"
 			)]
 			private static const MaskClass : Class;
 
@@ -43,7 +43,7 @@
 
 	<!--<s:Rect left="0" right="0" top="0" bottom="0">
 	<s:stroke>
-	<s:SolidColorStroke color="0"/>
+	<s:SolidColorStroke color="0xff0000"/>
 
 	</s:stroke>
 	</s:Rect>-->

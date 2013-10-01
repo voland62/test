@@ -16,8 +16,8 @@
 			// "D:\reps\slogmatch3_2\trunk\client\ios\puzzleslots\SlotMatch3\Resources\Dialogs\ProfileDialog\profile_pb_experiance.png"
 			[Bindable]
 			[Embed(source="/Dialogs/ProfileDialog/profile_pb_experiance.png"
-			,scaleGridTop="11", scaleGridBottom="12", 
-			scaleGridLeft="10", scaleGridRight="180")]
+			,scaleGridTop="10", scaleGridBottom="11", 
+			scaleGridLeft="6", scaleGridRight="148")]
 			private var ProgressStrip : Class;
 
 		]]>
@@ -29,7 +29,7 @@
 		</s:stroke>
 	</s:Rect>-->
 
-	<s:Group id="pGroup" left="39" right="0">
+	<s:Group id="pGroup" left="35" right="0" top="2">
 
 		<s:BitmapImage source="{ProgressStrip}" left="0" right="0"
 			mask="{progressGroup}"/>
@@ -42,13 +42,13 @@
 				</s:fill>
 			</s:Rect>
 		</s:Group>
-		<s:Label id="percentDisplay" left="2" right="2" top="8" color="0xFFFFFF"
+		<s:Label id="percentDisplay" left="2" right="2" top="6" color="0xFFFFFF" fontSize="12"
 			fontWeight="bold" filters="{[outlineFilter]}"
 			verticalAlign="middle" textAlign="center"/>
 	</s:Group>
 
-	<s:Label id="levelDisplay" left="0" width="42"  top="5"
+	<s:Label id="levelDisplay" left="1" width="42"  top="6"
 		color="0xFFFFFF" fontWeight="bold" filters="{[outlineFilter]}"
-		fontSize="20" textAlign="center"/>
+		fontSize="16" textAlign="center"/>
 
 </s:Skin>

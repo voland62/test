@@ -7,5 +7,6 @@ package com.onlyplay.slotmatch3.view.dialogs
 	 */
 	public interface IToMap extends IEventDispatcher
 	{
+		function setWin(win : int, currentMoney : int) : void;
 	}
 }

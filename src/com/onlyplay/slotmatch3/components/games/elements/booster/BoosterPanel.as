@@ -114,7 +114,7 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 				var b:Booster = _boosters[boosterProto.boosterId];
 				b.maxVal = boosterProto.maxEnergy;
 				b.num = boosterProto.amount;
-				b.persent = 0.01;
+				b.persent = 1;
 			}
 		}
 

@@ -10,8 +10,8 @@
 	<fx:Script>
 		<![CDATA[
 			[Embed(source="/Dialogs/Common/panel1_base_glowed.png",  mimeType="image/png"
-			,scaleGridTop="30", scaleGridBottom="60", 
-			scaleGridLeft="30", scaleGridRight="36"
+			,scaleGridTop="23", scaleGridBottom="55", 
+			scaleGridLeft="22", scaleGridRight="29"
 			)]
 			private static const TableClass : Class;
 
@@ -43,8 +43,15 @@
 	>
 	</s:Group >-->
 
-	<s:BitmapImage top="-12" bottom="-12" left="-14" right="-14"
+	<s:BitmapImage top="-10" bottom="-10" left="-10" right="-10"
 		source="{TableClass}"/>
+		
+		
+	<!--<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:stroke>
+			<s:SolidColorStroke color="0xff0000"/>
+		</s:stroke>
+	</s:Rect>-->
 
 	<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0"
 		minWidth="0" minHeight="0">

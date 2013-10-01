@@ -38,7 +38,7 @@ package com.onlyplay.slotmatch3.controller.dialogs
 		[Inject]
 		public var viewManager : IViewManager;
 		[Inject]
-		public var gameModel:GameModel
+		public var gameModel:GameModel;
 		
 
 		override public function execute() : void
@@ -65,6 +65,9 @@ package com.onlyplay.slotmatch3.controller.dialogs
 					break;
 				case "underConstruction":
 					clas = UnderConstructuionPupUp;
+					break;
+				case "showToSlotPopup":
+					clas = ToSlotPopUp;
 					break;
 				default:
 					log("There ins't popup for event:" + e.type);

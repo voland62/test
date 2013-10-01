@@ -39,7 +39,7 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("onPhoto", onPhoto);
 			addViewListener("flashEnergy", onFlashEnergy);
 			addViewListener("showPaymentsDialog", onShowPaymentsDialog);
-			addViewListener("game_view:to_map", toMap)
+			addViewListener("game_view:to_map", toMap);
             addViewListener("onFace", onFace);
 			
 			//addContextListener("toSlot", onToSlot);
@@ -171,6 +171,7 @@ package com.onlyplay.slotmatch3.view
 
 		private function onToMatch(e : Event) : void
 		{
+			view.hideLines();			
 			dispatch(e);
 			// showMatch( null );
 			// dispatch(new Event("playMatch"));
@@ -178,7 +179,9 @@ package com.onlyplay.slotmatch3.view
 
 		private function onToSlot(e : Event) : void
 		{
-			dispatch(e);
+			var event :DynamicEvent = new DynamicEvent("showToSlotPopup");
+			dispatch(event);
+			//dispatch(e);
 			//view.setSlotState();
 		}
 
@@ -282,6 +285,7 @@ package com.onlyplay.slotmatch3.view
 			// 10;
 			if ( win > 0 )
 			{
+				view.setWin(gameModel.win);
 				view.playWinAnimation(win, gameModel.winLines, onWinAnimComeplete);
 				// или подписаться
 			}
@@ -307,7 +311,7 @@ package com.onlyplay.slotmatch3.view
 
 		private function showSpin(e : Event = null) : void
 		{
-			view.setWin(gameModel.win);
+			//view.setWin(gameModel.win);
 			view.showSping(gameModel.icons);
 			// view.drawLines(gameModel.winLines);
 		}

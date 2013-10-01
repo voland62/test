@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:mx="library://ns.adobe.com/flex/mx" autoDrawBackground="false"
-	width="100%">
+	width="100%" height="120">
 
 	<fx:Script>
 		<![CDATA[
@@ -10,14 +10,12 @@
 			import mx.graphics.BitmapScaleMode;
 
 			[Embed(source="/Dialogs/ProfileDialog/profile_amulet_base.png"
-			,scaleGridTop="14", scaleGridBottom="99", 
-			scaleGridLeft="14", scaleGridRight="65")]
+			,scaleGridTop="9", scaleGridBottom="79", 
+			scaleGridLeft="8", scaleGridRight="53")]
 			private static const DecorClass : Class;
-			
-			
-			[Embed(source="/Dialogs/ProfileDialog/profile_my_gifts_base.png",  mimeType="image/png"
-			,scaleGridTop="16", scaleGridBottom="65", 
-			scaleGridLeft="90", scaleGridRight="350"
+			[Embed(source="/Dialogs/ProfileDialog/profile_my_gifts_base.png"
+			,scaleGridTop="12", scaleGridBottom="52", 
+			scaleGridLeft="66", scaleGridRight="280"
 			)]
 			private static const BgClass : Class;
 			
@@ -31,20 +29,27 @@
 		]]>
 	</fx:Script>
 
-	<s:BitmapImage source="{BgClass}" width="100%"/>
+	<s:BitmapImage source="{BgClass}" width="100%" height="100%"/>
 
-	<s:BitmapImage source="{DecorClass}" smooth="true" height="63" width="100"  scaleMode="{BitmapScaleMode.STRETCH}" 
-		left="5" top="9"/>
+	<s:BitmapImage source="{DecorClass}" smooth="true" bottom="6"
+		width="120" scaleMode="{BitmapScaleMode.STRETCH}" left="5"
+		top="6"/>
+
+	<s:Button label="Одеть" bottom="10" left="10" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.YellowButtonSkin"/>
 
 
 	<s:BitmapImage id="icon" source="{Util.getAmuletUrl(data.type)}"
-		left="10" top="10" height="60" smooth="true" scaleMode="{BitmapScaleMode.LETTERBOX}"/>
+		left="20" top="10" height="60" smooth="true" scaleMode="{BitmapScaleMode.LETTERBOX}"/>
 
 
 	<!--<s:SkinnableContainer left="0" right="0" top="0" bottom="0"
 	skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin2">
 	</s:SkinnableContainer>-->
-	<s:Label horizontalCenter="0" verticalCenter="0" text="{resourceManager.getString('ruLocale', 'amulet_' + data.type + '_name')}"/>
+	<s:Label top="7" fontWeight="bold" color="0x800000" fontSize="12" left="140"
+		text="{resourceManager.getString('ruLocale', 'amulet_' + data.type + '_name')}"/>
+		
+	<s:Label top="20" fontWeight="bold" color="0" left="140" width="160" fontSize="11"
+		text="{resourceManager.getString('ruLocale', 'amulet_' + data.type + '_description')}"/>
 
 
 </s:ItemRenderer>
