@@ -7,7 +7,7 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 	 */
 	public class CoinBitmapImage extends BitmapImage
 	{
-		[Embed(source="/Common/coin_with_shadow.png", mimeType="image/png")]
+		[Embed(source="/Dialogs/RatingsDialog/ratings_by_money_norm.png")]
 		private static const CoinClass : Class;
 
 		public function CoinBitmapImage()

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <flex:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
-	
+	titleBgSkin="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin2"
 	implements="com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup"
 	minHeight="500" minWidth="600" title="Таблица выплат"
 	controlBarVisible="true">
@@ -109,7 +109,7 @@
 
 	<flex:controlBarContent>
 
-		<s:Group bottom="-45" horizontalCenter="0">
+		<s:Group bottom="-37" horizontalCenter="0">
 			<s:Button  label="Зактыть" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
 				click="{dispatchEvent(new Event(Event.CLOSE));}"/>
 		</s:Group>
