@@ -1,14 +1,11 @@
 package com.onlyplay.slotmatch3.view
 {
-	import org.flexunit.internals.builders.NullBuilder;
-	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
-	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
-
 	import robotlegs.bender.bundles.mvcs.Mediator;
 
-	import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
+	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.model.MatchGameModel;
+	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
 
 	import mx.events.DynamicEvent;
 

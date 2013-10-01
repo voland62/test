@@ -75,7 +75,7 @@
 
 
 
-	<!--<flex:Profile verticalCenter="0" horizontalCenter="0"/>-->
+	<flex:Profile verticalCenter="0" horizontalCenter="0"/>
 	<!--
 	
 		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.RedBandTitleSkin"
@@ -88,9 +88,14 @@
 
 	<!--<flex:ToMapPopUp verticalCenter="0" horizontalCenter="0"/>-->
 
-	<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>
 	
-
+	<!--<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>-->
+	
+	
+	<!--<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>-->
+	
+	
+	
 
 	<!--<mx:ProgressBar verticalCenter="20" horizontalCenter="0"/>-->
 

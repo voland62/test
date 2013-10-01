@@ -41,7 +41,7 @@
 		source.down="{DownClass}"/>
 
 	<s:Label id="labelDisplay" textAlign="center" maxDisplayedLines="1" 
-		fontSize="16" fontWeight="bold" color="0xf1ddcb" filters="{[outlineFilter]}"
+		fontSize="12" fontWeight="bold" color="0xf1ddcb" filters="{[outlineFilter]}"
 		horizontalCenter="0" verticalCenter="0" verticalAlign="middle"
 		verticalCenter.down="2" horizontalCenter.down="1">
 	</s:Label>

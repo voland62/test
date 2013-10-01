@@ -16,8 +16,8 @@
 //			private static const TableClass : Class;
 			
 			[Embed(source="/Dialogs/Common/panel1_base.png",  mimeType="image/png"
-			,scaleGridTop="20", scaleGridBottom="39", 
-			scaleGridLeft="19", scaleGridRight="22"
+			,scaleGridTop="15", scaleGridBottom="30", 
+			scaleGridLeft="15", scaleGridRight="17"
 			)]
 			private static const TableClass : Class;
 

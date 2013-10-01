@@ -143,6 +143,7 @@
 			<fx:Object label="В слот"/>
 			<fx:Object label="В карту"/>
 			<fx:Object label="Level Info"/>
+			
 		</mx:ArrayList>
 
 	</s:List>
