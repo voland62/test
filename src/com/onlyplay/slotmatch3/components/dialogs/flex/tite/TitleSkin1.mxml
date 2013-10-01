@@ -18,8 +18,8 @@
 	<fx:Script>
 		<![CDATA[
 			[Embed(source="/Dialogs/Common/panel_header1.png"
-			,scaleGridTop="15", scaleGridBottom="16", 
-			scaleGridLeft="23", scaleGridRight="35"
+			,scaleGridTop="13", scaleGridBottom="14", 
+			scaleGridLeft="18", scaleGridRight="27"
 			)]
 			private static const BgClass : Class;
 		]]>
