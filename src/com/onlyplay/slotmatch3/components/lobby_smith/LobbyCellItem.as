@@ -81,8 +81,8 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			var correctObj:Object = correctDict[mapName];
 			
 			pic.scaleX = pic.scaleY =correctObj["scale"];
-			pic.x = int((bgLayer.width - pic.width) / 2 + 240 + correctObj["dX"]);
-			pic.y = int((bgLayer.height - pic.height) / 2 + 220 + correctObj["dY"]);
+			pic.x = Math.ceil((bgLayer.width - pic.width) / 2 + 240 + correctObj["dX"]);
+			pic.y = Math.ceil((bgLayer.height - pic.height) / 2 + 220 + correctObj["dY"]);
 			
 			contentLayer.addChild(pic);
 		}
@@ -157,7 +157,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		
 		private function SetListener(btn:LocationBtnMock):void {
 			btn.addEventListener(MouseEvent.CLICK, function(){
-													var evt = new DynamicEvent("openInterLevelDlg", true);
+													var evt:DynamicEvent = new DynamicEvent("openInterLevelDlg", true);
 													evt._type = "locationInfo";
 													evt._island = LobbyView.lastCursor;
 													evt._location = uint(btn.name.substr(4));

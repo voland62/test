@@ -124,7 +124,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		
 	
 		private function onPlayClick(e:MouseEvent):void {
-			var evt = new DynamicEvent("openInterLevelDlg");
+			var evt:DynamicEvent = new DynamicEvent("openInterLevelDlg");
 			evt._type = "islandInfo";
 			evt._island = lastCursor;
 			evt._location = null;
@@ -169,7 +169,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			islandsData = evt.data;
 			
 			//типа пришли данные с сервака 
-			var realIslandsData = new Vector.<Object>();
+			var realIslandsData:Vector.<Object> = new Vector.<Object>();
 			
 			var moveClasses:Vector.<Class> = Vector.<Class>([hawaii_island, amazone_island, archipelago_island, pirate_island]);
 			var locatNames:Vector.<String> = Vector.<String>(["Гавайский остров", "Амазонка", "Подводный архипелаг", "Пиратский остров"])

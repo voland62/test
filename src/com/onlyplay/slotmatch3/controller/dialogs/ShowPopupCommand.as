@@ -19,7 +19,7 @@ package com.onlyplay.slotmatch3.controller.dialogs
 	import mx.core.IFlexDisplayObject;
 	import mx.events.DynamicEvent;
 	import mx.managers.PopUpManager;
-
+	import com.onlyplay.slotmatch3.model.GameModel;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
@@ -37,6 +37,9 @@ package com.onlyplay.slotmatch3.controller.dialogs
 		public var injector : IInjector;
 		[Inject]
 		public var viewManager : IViewManager;
+		[Inject]
+		public var gameModel:GameModel
+		
 
 		override public function execute() : void
 		{
@@ -75,7 +78,10 @@ package com.onlyplay.slotmatch3.controller.dialogs
 				PopUpManager.addPopUp(popup, FlexGlobals.topLevelApplication as DisplayObject, true );
 				PopUpManager.centerPopUp(popup);
 			}
-
+			
+			
+			if (e.type == "showInterLevelPupup")(popup as LevelInfoPopup).show(e, gameModel.islands.islands)
+			
 			// if ( e.interface_ )
 			// {
 			// var interface_ : Class = e.interface_;
@@ -102,7 +108,9 @@ package com.onlyplay.slotmatch3.controller.dialogs
 			// PopUpManager.centerPopUp(popup);
 			// }
 		}
-
+		
+		
+	
 		private function onClose(e : Event) : void
 		{
 			PopUpManager.removePopUp(e.currentTarget as IFlexDisplayObject);

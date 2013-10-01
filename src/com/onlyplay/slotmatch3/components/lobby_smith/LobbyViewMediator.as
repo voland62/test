@@ -20,6 +20,8 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			addViewListener("openInterLevelDlg", OpenInterLevelDlg);
 			addViewListener("lobby:first_map_ready", dispatch);
 			
+			addContextListener("islandsDataChanges", view.onDataArrive)
+			
 			//addContextListener("state_changes", LobbyChangesState);
 			if ( gameModel.islands )
 			{
@@ -33,15 +35,10 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		}
 		
 		
-		
-		
-		
-		
-		
 		private function OpenInterLevelDlg(e:DynamicEvent):void {
 			
 			var event :DynamicEvent = new DynamicEvent("showInterLevelPupup");
-			event._type == "islandInfo";
+			event._locType = e._type;
 			event._island = e._island;
 			event._location = e._location;
 			dispatch(event);

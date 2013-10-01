@@ -42,6 +42,8 @@
 
 			import com.onlyplay.slotmatch3.components.games.elements.StarProgress;
 			import com.netease.protobuf.Message;
+			
+			
 
 			// [Embed(source="/Dialogs/NoTimeDialog/no_time_normal_frame.png")]
 			// private const GlassSnowClass : Class;
@@ -115,20 +117,42 @@
 			{
 				visible = false
 			};
-
+			
+			
 			// сохраняем выбранные параметры, чтобы было что передать на сервер
 			public function saveParams(isl : int, loc : int) : void
 			{
 				selectedIsland = isl;
 				selectedLocation = loc;
 			}
-
+			
+			
+			public function show(e : DynamicEvent, islands:Array) : void{
+				
+				var island:IslandProtobuf = islands[e._island]			
+				if (e._locType == "islandInfo") {
+					saveParams(e._island, -1)
+					fillData(island);
+				}
+			
+			
+				if (e._locType == "locationInfo") {
+					saveParams(e._island, e._location)
+					fillData(island.locations[e._location])
+				}
+			
+			}
+			
+			
+			
+			
+			
 			// заполняем поля диалога
-			public function show(data : Message) : void
+			private function fillData(data : Message) : void
 			{
 				// шапка
 				this.title = LobbyView.islandName;
-
+				
 				// минимальная ставка
 				if (selectedLocation == -1)
 				{
@@ -168,7 +192,10 @@
 
 				visible = true
 			};
-
+			
+			
+			
+			
 			// предметы из "Возьми с собой в дорогу"
 			public function SetItems() : void
 			{

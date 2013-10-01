@@ -1,7 +1,7 @@
 package com.onlyplay.slotmatch3.controller
 {
 	import robotlegs.bender.bundles.mvcs.Command;
-
+	import mx.events.DynamicEvent;
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.services.ServiceEvent;
 
@@ -47,6 +47,16 @@ package com.onlyplay.slotmatch3.controller
 				//trace('message.players.me.experienceBound: ' + (message.players.me.experienceBound));
 				eventDispatcher.dispatchEvent(new Event("experienceChaged"));
 			}
+			
+			
+			if (message.islandsChanged) {
+				gameModel.islands = message.islands;
+				var lobbyEvt:DynamicEvent = new DynamicEvent("islandsDataChanges");
+				lobbyEvt.data = gameModel.islands;
+				eventDispatcher.dispatchEvent (lobbyEvt);
+			}
+			
+			
 			
 		}
 	}
