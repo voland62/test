@@ -103,7 +103,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 				}
 			}else {
 				// эскиз - остров закрыт
-				for (var i:uint = 0; i < pic.numChildren; i++ ) {
+				for (i = 0; i < pic.numChildren; i++ ) {
 					var dObj:DisplayObject = pic.getChildAt(i);
 					if (dObj is MovieClip) MovieClip(dObj).stop();
 					
@@ -156,7 +156,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		
 		
 		private function SetListener(btn:LocationBtnMock):void {
-			btn.addEventListener(MouseEvent.CLICK, function(){
+			btn.addEventListener(MouseEvent.CLICK, function():void{
 													var evt:DynamicEvent = new DynamicEvent("openInterLevelDlg", true);
 													evt._type = "locationInfo";
 													evt._island = LobbyView.lastCursor;

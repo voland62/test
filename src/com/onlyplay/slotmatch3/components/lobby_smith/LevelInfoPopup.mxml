@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+<my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
-	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
-	titleBgSkin="{TitleSkin2}" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
+	titleBgSkin="{TitleSkin3}" 
 	implements="com.onlyplay.slotmatch3.components.lobby_smith.IInterLevelDlg"
 	minHeight="500" minWidth="400" title="Гавайский остров"
 	creationComplete="onInit(event)" controlBarVisible="true">
-	<!--skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.DialogType2BasePopupSkin"-->
+	
+	
 
 	<my:layout>
 		<s:VerticalLayout paddingBottom="40" paddingLeft="40"
@@ -14,15 +17,20 @@
 	</my:layout>
 
 	<fx:Declarations>
-		<s:GlowFilter id="outlineFilter" color="0" strength="3" blurX="4"
-			blurY="4"/>
+		<s:GlowFilter id="outlineFilter" color="0" strength="3" blurX="4" blurY="4"/>
+		<s:DropShadowFilter id="outlineWhite" color="0xfff7e8" angle="93" distance="1"  />
 	</fx:Declarations>
-
-	<my:states>
+	
+	
+	
+	<!--<my:states>
 		<s:State name="normal"/>
 		<s:State name="maxResult"/>
-	</my:states>
+	</my:states>-->
 
+	<fx:Style>
+		
+	</fx:Style>
 
 	<!--<s:Rect width="100%" height="100%">
 	<s:stroke>
@@ -32,23 +40,15 @@
 
 	<fx:Script>
 		<![CDATA[
+			
+			import com.onlyplay.slotmatch3.components.dialogs.flex.tite.*
 			import spark.layouts.VerticalAlign;
-
-			import com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin2;
-
-			import flash.events.Event;
-			import flash.events.MouseEvent;
-			import mx.events.DynamicEvent
-
-			import com.onlyplay.slotmatch3.components.games.elements.StarProgress;
+			import flash.text.*;
+			import flash.events.*;
+			
+			import mx.events.DynamicEvent;
 			import com.netease.protobuf.Message;
 			
-			
-
-			// [Embed(source="/Dialogs/NoTimeDialog/no_time_normal_frame.png")]
-			// private const GlassSnowClass : Class;
-			// [Embed(source="/Dialogs/NoTimeDialog/no_time_max_frame.png")]
-			// private const MaxBgClass : Class;
 			[Embed(source="/Dialogs/Common/buttons_base_w_green_orange.png")]
 			private const ButtonsBg : Class;
 			// [Embed(source="D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/Common/title2_base.png", mimeType="image/png")]
@@ -76,45 +76,40 @@
 			private static const medal2 : Class
 			[Embed(source = "InterLevelDlgGraph/isc_loc_medal_3.png")]
 			private static const medal3 : Class
-			[Embed(source="InterLevelDlgGraph/isc_loc_location_buttons_base.png")]
+			[Embed(source="InterLevelDlgGraph/buttons_base_w_green.png")]
 			private static const playBtnBg : Class
-			public var starProgressBar : StarProgress;
+			
+			[Embed(source="InterLevelDlgGraph/PB/location_progress_num_base.png",  scaleGridTop="11", scaleGridBottom="15", scaleGridLeft="11", scaleGridRight="20")]
+			private static const prgStarLabelBg : Class
+			
+			[Embed(source="InterLevelDlgGraph/panel2_with_tail_base.png", scaleGridTop="41", scaleGridBottom="63", scaleGridLeft="34", scaleGridRight="47")]
+			private static const wordCloud:Class
+			
+			private var starProgressBar:star_bar_sborka;
 			//public var shopBtn : shop_btn;
 			public var selectedIsland : int = 0;
 			public var selectedLocation : int = -1;
 
 			private function onInit(e : Event) : void
 			{
-				// graphics.beginFill(0x000000, 0.5);
-				// graphics.drawRect(-180, -79, 760, 658);
-				// graphics.endFill();
-
-//				starProgressBar = new StarProgress();
-//				progrBarPlace.addChild(starProgressBar);
-
-//				shopBtn = new shop_btn();
-//				shopBtn.name = "shopBtn"
-//				shopBtn.scaleX = shopBtn.scaleY = 0.6
-//				shopBtn.x = 200;
-//				shopBtn.y = -15;
-//				shopBtn.useHandCursor = false;
-//				shopPlace.addChild(shopBtn);
 				
-				//to_shop.addEventListener(MouseEvent.CLICK, onShopBtnClick)
-
-				SetItems();
-				// установка видимости покупок
 				
 
+				starProgressBar = new star_bar_sborka();
+				progrBarPlace.addChild(starProgressBar);
+				
+				starProgressBar.stop();
+				starProgressBar.scaleX = starProgressBar.scaleY = 0.7;
+				starProgressBar.prg_star_0.visible = starProgressBar.prg_star_1.visible = starProgressBar.prg_star_2.visible = false
+			
 				closeButton.addEventListener(MouseEvent.CLICK, hide);
+				
+				SetItems()
 			}
 			
-			/*private function onShopBtnClick(e:MouseEvent):void {
-				trace ("")
-			}*/
+			
 
-			public function hide(e : MouseEvent = null) : void
-			{
+			public function hide(e : MouseEvent = null) : void{
 				visible = false
 			};
 			
@@ -190,7 +185,9 @@
 					this["star" + String(i) + "3"].visible = numStars >= 3
 				}
 
-				visible = true
+				visible = true;
+				
+				
 			};
 			
 			
@@ -199,175 +196,220 @@
 			// предметы из "Возьми с собой в дорогу"
 			public function SetItems() : void
 			{
+				shopItems.removeChildren()
+				
+				
+				var data:Array = [1,2]
+				var len:uint = data.length;
+				var gap:Number = (240 - len*74)/(len+1)
+				
 				// пока выводим шото абстрактное
-				for (var i : uint = 0; i < 3; i++)
+				for (var i:uint = 0; i < len; i++)
 				{
 					var mov : mcItems = new mcItems();
-					mov.scaleX = mov.scaleY = 0.5
+					mov.scaleX = mov.scaleY = 0.65
 					mov.gotoAndStop(i + 1);
 					mov.y = -15
-					mov.x = i * 60 - 20;
-					shopPlace.addChild(mov)
+					mov.x= gap * (i+1) + i*74 
+					shopItems.addChild(mov);
+					
+					var txt:TextField = new TextField();
+					txt.x=mov.x+12;
+					txt.y=mov.y+66;
+					txt.text="Купить";
+					txt.mouseEnabled=false;
+					shopItems.addChild(txt);
+					
+					var tf:TextFormat=new TextFormat("Arial",13,0xfdefb3,true)
+					txt.setTextFormat(tf);
+					
 				}
 			}
 		]]>
 	</fx:Script>
 
-
-
-
-
 	<!--Коричневый овал-->
 
-	<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RoundPanelBaseSkin"
+	<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RounPanel5Skin"
 		width="100%">
 
-		<s:Label x="20" y="13" text="Минимальная ставка:" fontWeight="bold"
-			fontSize="13" color="0xfdefb3"/>
-		<s:HGroup verticalAlign="{VerticalAlign.MIDDLE}" right="30"
-			verticalCenter="0">
-			<my:CoinBitmapImage scaleX="0.5" scaleY="0.5"/>
-			<s:Label id="minBet" text="2" color="0xffe05c" fontWeight="bold"
-				fontSize="14"/>
-		</s:HGroup>
+		<s:Label x="30" y="10" text="Минимальная ставка:" fontWeight="bold"
+			fontSize="13" color="0xfdefb3" filters="{[outlineFilter]}"/>
+		
+			<my:CoinBitmapImage scaleX="0.8" scaleY="0.8" x="240" y="4" />
+			<s:Label id="minBet" text="25 000" color="0xfdefb3" fontWeight="bold"
+				fontSize="14" x="270" y="10"  filters="{[outlineFilter]}" />
+		
 	</s:SkinnableContainer>
 
 
 	<!--пьедестал-->
-	<s:Group width="100%">
+	<s:Group width="100%" >
 
 
-		<s:BitmapImage source="{brownFon}" width="480" height="120" smooth="true"/>
+		<s:BitmapImage source="{brownFon}" width="360" height="130" x="-3" smooth="true"/>
 
 		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"
-			width="60%" depth="1" top="-12" title="Лучшие ироки"
+			width="60%" depth="1" top="-12" title="Лучшие игроки"
 			horizontalCenter="0"/>
 
-		<!--<s:BitmapImage source="{chapterHeader}" width="70%" x="50"
-		y="-13"/>
-		<s:Label text="Лучшие игроки" fontWeight="bold" color="0x400000"
-		fontSize="13" y="-3" x="110"/>-->
+		
 
-		<s:Group horizontalCenter="0" y="28" id="place0">
-			<s:BitmapImage id="pic0" source="{newsted}" width="45"
-				height="45" x="22" y="3" smooth="true"/>
-			<s:BitmapImage source="{first}" scaleX="0.6" scaleY="0.6"
-				smooth="true"/>
-			<s:BitmapImage source="{starsPlace}" scaleX="0.6" scaleY="0.6"
-				x="46" y="-10" smooth="true"/>
-			<s:BitmapImage id="star01" visible="true" source="{star}"
-				x="46" y="-10" smooth="true"/>
-			<s:BitmapImage id="star02" visible="true" source="{star}"
-				x="55" y="-3" rotation="-35" smooth="true"/>
-			<s:BitmapImage id="star03" visible="true" source="{star}"
-				x="64" y="2" rotation="14" smooth="true"/>
+		<s:Group x="125" y="28" id="place0">
+			<s:BitmapImage id="pic0" source="{newsted}" width="53"
+				height="53" x="26" y="-8" smooth="true"/>
+			<s:BitmapImage source="{first}" scaleX="0.7" scaleY="0.8"
+				smooth="true" y="-10" />
+			
+			<s:Group id="starplace0"  scaleX="1.1" scaleY="1.1" x="5" y="-8">
+				<s:BitmapImage source="{starsPlace}" scaleX="0.6" scaleY="0.6"
+					x="46" y="-10"  smooth="true"/>
+				<s:BitmapImage id="star01" visible="true" source="{star}"
+					x="46" y="-10" smooth="true"/>
+				<s:BitmapImage id="star02" visible="true" source="{star}"
+					x="55" y="-3" rotation="-35" smooth="true"/>
+				<s:BitmapImage id="star03" visible="true" source="{star}"
+					x="64" y="2" rotation="14" smooth="true"/>
+			</s:Group>
+			
 			<s:BitmapImage visible="true" source="{medal1}" scaleX="0.6"
-				scaleY="0.6" x="12" y="-12" smooth="true"/>
-			<s:Label id="_name0" text="Newsted" color="0xffe05c" x="22"
-				y="44" fontSize="9"/>
+				scaleY="0.6" x="17" y="-22" smooth="true"/>
+			<s:Label id="_name0" text="Newsted" color="0xfdefb3"  y="49" fontSize="10" 
+				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="0" />
+			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
 			<s:Label id="_score0" text="1234567" color="0x400000" x="38"
-				y="55" fontSize="8"/>
-		</s:Group>
-
-		<s:Group right="60" y="40" id="place1">
-			<s:BitmapImage id="pic1" source="{newsted}" width="45"
-				height="45" x="22" y="3" smooth="true"/>
-			<s:BitmapImage source="{no_first}" scaleX="0.6" scaleY="0.6"
-				x="15" smooth="true"/>
-			<s:BitmapImage source="{starsPlace}" scaleX="0.6" scaleY="0.6"
-				x="46" y="-10" smooth="true"/>
-			<s:BitmapImage id="star11" visible="true" source="{star}"
-				x="46" y="-10" smooth="true"/>
-			<s:BitmapImage id="star12" visible="true" source="{star}"
-				x="55" y="-3" rotation="-35" smooth="true"/>
-			<s:BitmapImage id="star13" visible="true" source="{star}"
-				x="64" y="2" rotation="14" smooth="true"/>
-			<s:BitmapImage visible="true" source="{medal2}" scaleX="0.6"
-				scaleY="0.6" x="12" y="-12" smooth="true"/>
-			<s:Label id="_name1" text="Newsted" color="0xffe05c" x="22"
-				y="44" fontSize="9"/>
-			<s:Label id="_score1" text="1234567" color="0x400000" x="38"
-				y="55" fontSize="8"/>
-		</s:Group>
-
-		<s:Group left="60" y="45" id="place2">
-			<s:BitmapImage id="pic2" source="{newsted}" width="45"
-				height="45" x="22" y="3" smooth="true"/>
-			<s:BitmapImage source="{no_first}" scaleX="0.6" scaleY="0.6"
-				x="15" smooth="true"/>
-			<s:BitmapImage source="{starsPlace}" scaleX="0.6" scaleY="0.6"
-				x="46" y="-10" smooth="true"/>
-			<s:BitmapImage id="star21" visible="true" source="{star}"
-				x="46" y="-10" smooth="true"/>
-			<s:BitmapImage id="star22" visible="true" source="{star}"
-				x="55" y="-3" rotation="-35" smooth="true"/>
-			<s:BitmapImage id="star23" visible="true" source="{star}"
-				x="64" y="2" rotation="14" smooth="true"/>
-			<s:BitmapImage visible="true" source="{medal3}" scaleX="0.6"
-				scaleY="0.6" x="12" y="-12" smooth="true"/>
-			<s:Label id="_name2" text="Newsted" color="0xffe05c" x="22"
-				y="44" fontSize="9"/>
-			<s:Label id="_score2" text="1234567" color="0x400000" x="38"
-				y="55" fontSize="8"/>
+				y="64" fontSize="10" fontWeight="bold"/>
 		</s:Group>
 		
+		
+		
+		
+		<s:Group x="25" y="42" id="place1">
+			<s:BitmapImage id="pic1" source="{newsted}" width="53"
+				height="53" x="26" y="-8" smooth="true"/>
+			<s:BitmapImage source="{no_first}" scaleX="0.73" scaleY="0.8"
+				smooth="true" x="16" y="-12" />
+			
+			<s:Group id="starplace1"  scaleX="1.1" scaleY="1.1" x="5" y="-8">
+				<s:BitmapImage source="{starsPlace}" scaleX="0.6" scaleY="0.6"
+					x="46" y="-10"  smooth="true"/>
+				<s:BitmapImage id="star11" visible="true" source="{star}"
+					x="46" y="-10" smooth="true"/>
+				<s:BitmapImage id="star12" visible="true" source="{star}"
+					x="55" y="-3" rotation="-35" smooth="true"/>
+				<s:BitmapImage id="star13" visible="true" source="{star}"
+					x="64" y="2" rotation="14" smooth="true"/>
+			</s:Group>
+			
+			<s:BitmapImage visible="true" source="{medal2}" scaleX="0.6"
+				scaleY="0.6" x="17" y="-22" smooth="true"/>
+			<s:Label id="_name1" text="Newsted" color="0xfdefb3"  y="49" fontSize="10" 
+				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="5" />
+			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
+			<s:Label id="_score1" text="1234567" color="0x400000" x="38"
+				y="64" fontSize="10" fontWeight="bold"/>
+		</s:Group>
+		
+		
+		
+		<s:Group x="225" y="48" id="place2">
+			<s:BitmapImage id="pic2" source="{newsted}" width="53"
+				height="53" x="26" y="-8" smooth="true"/>
+			<s:BitmapImage source="{no_first}" scaleX="0.73" scaleY="0.8"
+				smooth="true" x="16" y="-12" />
+			
+			<s:Group id="starplace2"  scaleX="1.1" scaleY="1.1" x="5" y="-8">
+				<s:BitmapImage source="{starsPlace}" scaleX="0.6" scaleY="0.6"
+					x="46" y="-10"  smooth="true"/>
+				<s:BitmapImage id="star21" visible="true" source="{star}"
+					x="46" y="-10" smooth="true"/>
+				<s:BitmapImage id="star22" visible="true" source="{star}"
+					x="55" y="-3" rotation="-35" smooth="true"/>
+				<s:BitmapImage id="star23" visible="true" source="{star}"
+					x="64" y="2" rotation="14" smooth="true"/>
+			</s:Group>
+			
+			<s:BitmapImage visible="true" source="{medal3}" scaleX="0.6"
+				scaleY="0.6" x="17" y="-22" smooth="true"/>
+			<s:Label id="_name2" text="Newsted" color="0xfdefb3"  y="49" fontSize="10" 
+				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="5" />
+			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
+			<s:Label id="_score2" text="1234567" color="0x400000" x="38"
+				y="64" fontSize="10" fontWeight="bold"/>
+		</s:Group>
+		
+
 	</s:Group>
 
-	<s:Group width="100%">
+	
+	
+	
+	<s:Group width="100%" >
 		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"
 			width="60%" depth="1" top="-15" title="Мастерство в комнате"
 			horizontalCenter="0"/>
-		<my:NeildPanel width="100%">
-			<s:BitmapImage source="{progrBarBg}" scaleX="0.6" scaleY="0.6" smooth="true"
-				horizontalCenter="0"  top="20"/>
-			<!--<s:SpriteVisualElement id="progrBarPlace" horizontalCenter="0" y="33"/>-->
-			<s:Label width="300" fontWeight="bold" color="0x400000" 
-				fontSize="10" horizontalCenter="0" y="60" text="Уровень мастерства можно увеличить, если выигрывать деньги в слоте.
-			Зарабатывайте по три звезды в каждом слоте и открывайте серетные локации."/>
+		<my:NeildPanel width="100%" height="140">
+			<s:SpriteVisualElement id="progrBarPlace" horizontalCenter="-149" y="10" />
+			
+			<s:BitmapImage source="{prgStarLabelBg}" scaleX="0.7" scaleY="0.7" width="85" y="40" x="110" smooth="true"/>	
+			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="115" y="42" />
+			<s:Label id="prg_bar_limit_1" x="132" y="45" text="40000" color="0x400000"  fontSize="10" fontWeight="bold"/>
+			
+			
+			<s:BitmapImage source="{prgStarLabelBg}" scaleX="0.7" scaleY="0.7" width="85" y="40" x="197" smooth="true"/>
+			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="203" y="42" />
+			<s:Label id="prg_bar_limit_2" x="220" y="45" text="80000" color="0x400000"  fontSize="10" fontWeight="bold"/>
+			
+			
+			<s:BitmapImage source="{wordCloud}"  width="300" height="100" y="40" horizontalCenter="0" smooth="true"/>
+			
+			
+			<s:Label id="prg_title"  fontSize="13" fontWeight="bold" 
+				
+				x="100" y="68" width="250"  color="0x800000"  
+				filters="{[outlineWhite]}"  
+				text="Заработай третью звезду"/>
+				
+				<s:Label id="prg_info" x="50" y="85" fontSize="11" width="280"  fontWeight="bold"  
+				color="0x400000" filters="{[outlineWhite]}"  
+				text="Тебе нужна победа в слоте, чтобы пройти уровень
+'Непроходимые джунгли' на 3 звезды! Вперёд и пусть удача сопутствует тебе!"/>
 		</my:NeildPanel>
 	</s:Group>
-
+	
+	
 	<s:Group width="100%">
 		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"
 			width="60%" depth="1" top="-15" title="Возьми с собой!"
 			horizontalCenter="0"/>
 
 		<my:NeildPanel width="100%" height="120">
-			<s:SpriteVisualElement id="shopPlace" x="53" y="33"/>
+			
 			<s:Button id="to_shop" label="Магазин" verticalCenter="0" right="20" 
 				skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.ShopButtonSkin"
 				click = "{dispatchEvent(new DynamicEvent('underConstruction'))}"/>
+				
+			<s:SpriteVisualElement id="shopItems" y="30" x="10" />
+			
 		</my:NeildPanel> 
 	</s:Group>
 
 
 
 
-	<!--<s:Group excludeFrom="normal" width="100%">
-	<s:BitmapImage source="{MaxBgClass}" verticalCenter="0"
-	horizontalCenter="0"/>
-
-	<s:Label text="x5" verticalCenter="0" horizontalCenter="0"
-	filters="{[outlineFilter]}" fontSize="100" fontWeight="bold"
-	color="0xfdefb3"/>
-
-	</s:Group>-->
+	
 
 
 
 	<my:controlBarContent>
 
-		<s:Group bottom="-42" horizontalCenter="0">
-			<s:BitmapImage source="{playBtnBg}"/>
-			<s:Button x="51" y="6" name="playBtn" label="Играть"
-				skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"/>
-			<!--<s:Button x="170" y="0" label="В слот" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.YellowButtonSkin"/>-->
+		<s:Group bottom="-33" horizontalCenter="0">
+			<s:BitmapImage source="{playBtnBg}" scaleX="0.8" scaleY="0.8"  />
+			<s:Button x="33" y="4"  name="playBtn" label="Играть"
+				skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.BigGrinButtonSkin"/>
+			
 		</s:Group>
-		<!--<s:Group bottom="-38" horizontalCenter="0">
-		<s:BitmapImage source="{ButtonsBg}"/>
-		<s:Button x="24" y="3" enabled.maxResult="false" label="Купить время" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.BigGrinButtonSkin"/>
-		<s:Button x="210" y="14" label="В слот" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.YellowButtonSkin"/>
-		</s:Group>-->
+		
 
 	</my:controlBarContent>
 

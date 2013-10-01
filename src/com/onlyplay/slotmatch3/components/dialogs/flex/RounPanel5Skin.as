@@ -9,12 +9,12 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 	{
 		[Embed(source="/Dialogs/Common/round_border_38.png", mimeType="image/png"
 		,scaleGridTop='26', scaleGridBottom='27',
-		scaleGridLeft='40', scaleGridRight='60'
+		scaleGridLeft='40', scaleGridRight='41'
 		)]
 		private static const _BorderClass : Class;
 		[Embed(source="/Dialogs/Common/round_border_38_mask.png", mimeType="image/png"
 		,scaleGridTop='26', scaleGridBottom='27',
-		scaleGridLeft='40', scaleGridRight='60'
+		scaleGridLeft='40', scaleGridRight='41'
 		)]
 		private static const _MaskClass : Class;
 
