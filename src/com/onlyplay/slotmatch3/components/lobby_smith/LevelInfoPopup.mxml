@@ -188,7 +188,8 @@
 				for (i = 0; i < data["leaders"]["length"]; i++)
 				{
 					var leader : PlayerShortProtobuf = data["leaders"][i];
-					this["_name" + i].text = leader.name;
+					var nm:Array = leader.name.split(" ")
+					this["_name" + i].text = nm[nm.length-1];
 					this["_score" + i].text = leader.money;
 
 					// звёзды
@@ -213,8 +214,7 @@
 			{
 				shopItems.removeChildren()
 				
-				
-				var data:Array = [1,2]
+				var data:Array = [1, 2, 3];//модель массива с данными о покупках
 				var len:uint = data.length;
 				var gap:Number = (240 - len*74)/(len+1)
 				
@@ -237,7 +237,6 @@
 					
 					var tf:TextFormat=new TextFormat("Arial",13,0xfdefb3,true)
 					txt.setTextFormat(tf);
-					
 				}
 			}
 		]]>
@@ -366,17 +365,17 @@
 		<my:NeildPanel width="100%" height="140">
 			<s:SpriteVisualElement id="progrBarPlace" horizontalCenter="-149" y="10" />
 			
-			<s:BitmapImage source="{prgStarLabelBg}" scaleX="0.7" scaleY="0.7" width="85" y="40" x="110" smooth="true"/>	
-			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="115" y="42" />
-			<s:Label id="prg_bar_limit_1" x="132" y="45" text="40000" color="0x400000"  fontSize="10" fontWeight="bold"/>
+			<s:BitmapImage source="{prgStarLabelBg}" scaleX="0.7" scaleY="0.7" width="85" y="37" x="110" smooth="true"/>	
+			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="115" y="40" />
+			<s:Label id="prg_bar_limit_1" x="131" y="41" text="40000" color="0x400000"  fontSize="12" fontWeight="bold"/>
 			
 			
-			<s:BitmapImage source="{prgStarLabelBg}" scaleX="0.7" scaleY="0.7" width="85" y="40" x="197" smooth="true"/>
-			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="203" y="42" />
-			<s:Label id="prg_bar_limit_2" x="220" y="45" text="80000" color="0x400000"  fontSize="10" fontWeight="bold"/>
+			<s:BitmapImage source="{prgStarLabelBg}" scaleX="0.7" scaleY="0.7" width="85" y="37" x="197" smooth="true"/>
+			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="203" y="40" />
+			<s:Label id="prg_bar_limit_2" x="219" y="41" text="80000" color="0x400000"  fontSize="12" fontWeight="bold"/>
 			
 			
-			<s:BitmapImage source="{wordCloud}"  width="300" height="100" y="40" horizontalCenter="0" smooth="true"/>
+			<s:BitmapImage source="{wordCloud}"  width="300" height="96" y="40" horizontalCenter="0" smooth="true"/>
 			
 			
 			<s:Label id="prg_title"  fontSize="13" fontWeight="bold" 
@@ -385,7 +384,7 @@
 				filters="{[outlineWhite]}"  
 				text="Заработай третью звезду"/>
 				
-				<s:Label id="prg_info" x="40" y="85" fontSize="11" width="280"  fontWeight="bold"  
+				<s:Label id="prg_info" x="55" y="83" fontSize="11" width="250"  fontWeight="bold"  
 				color="0x400000" filters="{[outlineWhite]}"  
 				text="Тебе нужна победа в слоте, чтобы пройти уровень
 'Непроходимые джунгли' на 3 звезды! Вперёд и пусть удача сопутствует тебе!"/>
