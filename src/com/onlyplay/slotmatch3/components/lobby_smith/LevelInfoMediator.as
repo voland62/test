@@ -36,14 +36,9 @@ package com.onlyplay.slotmatch3.components.lobby_smith
 					FlexGlobals.topLevelApplication.getUnderConstrWnd(e)
 					break;
 				case "playBtn":
-					// FlexSprite(view).visible = false;
-					// IInterLevelDlg(view).hide();
 					view.dispatchEvent(new Event("close"));
-					service.enterLocation(gameModel.currentIsland.islandId, gameModel.currentLocation.locationId);
-					// var event : DynamicEvent = new DynamicEvent("state_changes_request");
-					// var event : DynamicEvent = new DynamicEvent("state_changes");
-					// event.state = "game";
-					// dispatch(event);
+					service.enterLocation(LevelInfoPopup(view).selectedIslandId, LevelInfoPopup(view).selectedLocationId);
+					trace ("")
 					break;
 				default:
 			}

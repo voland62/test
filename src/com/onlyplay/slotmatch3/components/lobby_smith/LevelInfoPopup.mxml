@@ -102,8 +102,8 @@
 			
 			private var starProgressBar:star_bar_sborka;
 			
-			public var selectedIsland : int = 0;
-			public var selectedLocation : int = -1;//-1 означает что отображается инфа об острове, а не о локации
+			public var selectedIslandId : int = 0;
+			public var selectedLocationId : int = -1;//-1 означает что отображается инфа об острове, а не о локации
 
 			private function onInit(e : Event) : void
 			{
@@ -120,7 +120,6 @@
 			}
 			
 			
-
 			public function hide(e : MouseEvent = null) : void{
 				visible = false
 			};
@@ -129,22 +128,23 @@
 			// сохраняем выбранные параметры, чтобы было что передать на сервер
 			public function saveParams(isl : int, loc : int) : void
 			{
-				selectedIsland = isl;
-				selectedLocation = loc;
+				selectedIslandId = isl;
+				selectedLocationId = loc;
 			}
 			
 			
 			public function show(e : DynamicEvent, islands:Array) : void{
 				
 				var island:IslandProtobuf = islands[e._island]			
+				
 				if (e._locType == "islandInfo") {
-					saveParams(e._island, -1)
+					saveParams(island.islandId, -1)
 					fillData(island);
 				}
 			
 			
 				if (e._locType == "locationInfo") {
-					saveParams(e._island, e._location)
+					saveParams(island.islandId, island.locations[e._location]["locationId"]);
 					fillData(island.locations[e._location])
 				}
 			
@@ -161,7 +161,7 @@
 				this.title = LobbyView.islandName;
 				
 				// минимальная ставка
-				if (selectedLocation == -1)
+				if (selectedLocationId == -1)
 				{
 					// ставка острова - находим минимальную ставку из всех локаций
 					var minBet : Number = Number.MAX_VALUE;
