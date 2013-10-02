@@ -230,15 +230,17 @@
 
 
 
-	<s:Image source="@Embed(source='/assets/Mock_friends.png')" click="getUnderConstrWnd(event)"
-		y="552">
-	</s:Image>
+	
 
 	<s:Image id="lobby_avatar" source="@Embed(source='/assets/Mock_user.png')"
 		click="getUnderConstrWnd(event)"/>
 	<s:Image id="lobby_top" source="@Embed(source='/assets/Mock_top.png')"
 		click="getUnderConstrWnd(event)" y="95"/>
 	<s:SpriteVisualElement id="lobbyMenu4Holder" y="474"/>
+	
+	<s:Image source="@Embed(source='/assets/Mock_friends.png')" click="getUnderConstrWnd(event)"
+		y="552">
+	</s:Image>
 
 	<s:SpriteVisualElement id="prldrHolder"/>
 

@@ -27,6 +27,6 @@
 
 	<s:BitmapImage id="bg" source="{BgClass}" left="0" right="0"/>
 	<s:Label id="label" verticalCenter="0" left="25" right="25" filters="{[whiteShadow]}"
-		fontWeight="bold" textAlign="center" fontSize="14" />
+		fontWeight="bold" textAlign="center" fontSize="16" />
 
 </s:Skin>

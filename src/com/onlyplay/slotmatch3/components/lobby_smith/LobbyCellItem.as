@@ -35,10 +35,10 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 			//корректировка размеров и расположения мувиков карт
 			correctDict = new Dictionary();
-			correctDict["hawaii_island"] = 		{scale:0.75, dX:0,  dY:30}//75
-			correctDict["amazone_island"] = 	{scale:0.75,  dX:0,  dY:30}//7
-			correctDict["archipelago_island"] = {scale:0.75, dX:10, dY:20}//85
-			correctDict["pirate_island"] = 		{scale:0.75,  dX:0,  dY:0}//8
+			correctDict["hawaii_island"] = 		{scale:0.75, dX:10,  dY:10}//75
+			correctDict["amazone_island"] = 	{scale:0.75,  dX:10,  dY:0}//7
+			correctDict["archipelago_island"] = {scale:0.85, dX:20, dY:0}//85
+			correctDict["pirate_island"] = 		{scale:0.8,  dX:10,  dY:0}//8
 			
 			bgLayer = new Sprite();
 			addChildAt(bgLayer,0);

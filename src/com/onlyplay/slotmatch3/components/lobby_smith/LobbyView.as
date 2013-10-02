@@ -76,13 +76,14 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			for (var i:uint = 0; i < 4; i++) {
 				var cell:positPoint = new positPoint();
 				cell.name = "point_" + i;
-				cell.x = i * 20;
+				cell.x = i * 20 + 30;
 				posInd.addChild(cell);
+				cell.scaleX=cell.scaleY=0.9
 				
 			}
 			
 			
-			bg.lobby_header_txt.filters=[new GlowFilter(0,1,4,4,3)]
+			//bg.lobby_header_txt.filters=[new GlowFilter(0,1,4,4,3)]
 			
 			SetPositIndicator(0);
 		}
@@ -153,6 +154,12 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 			//король
 			bg.king_mc.visible = false;
+			bg.king_mc.scaleX = bg.king_mc.scaleY = 0.75
+			
+			for (var i:uint = 0; i < 2; i++ ) {
+				Bitmap(bg.king_mc.getChildAt(i)).smoothing = true
+			}
+			
 			var kingPresent:Boolean = gallery.dataProvider[ind]["info"]["hasKing"]
 			if (kingPresent)SetKing ( gallery.dataProvider[ind]["info"]["king"])
 			

@@ -71,8 +71,10 @@
 			//
 			[Embed(source="InterLevelDlgGraph/panel_header1.png", scaleGridTop="15", scaleGridBottom="16", scaleGridLeft="23", scaleGridRight="35")]
 			private static const chapterHeader : Class;
-			[Embed(source="InterLevelDlgGraph/isc_loc_players_base.png", scaleGridTop="40", scaleGridBottom="103", scaleGridLeft="26", scaleGridRight="485")]
+			
+			[Embed(source="InterLevelDlgGraph/isc_loc_players_base_2.png")]
 			private static const brownFon : Class;
+			
 			[Embed(source="InterLevelDlgGraph/isc_loc_user_base_first.png")]
 			private static const first : Class
 			[Embed(source="InterLevelDlgGraph/isc_loc_user_base.png")]
@@ -252,13 +254,14 @@
 				fontSize="14" x="270" y="10"  filters="{[outlineFilter]}" />
 		
 	</s:SkinnableContainer>
-
+	
+	
 
 	<!--пьедестал-->
-	<s:Group width="100%" >
+	<s:Group >
 
-
-		<s:BitmapImage source="{brownFon}" width="360" height="130" x="-3" smooth="true"/>
+		<s:BitmapImage source="{brownFon}" />
+		
 
 		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin4"
 			width="60%" depth="1" top="-12" title="Лучшие игроки"
@@ -266,7 +269,7 @@
 
 		
 
-		<s:Group x="125" y="28" id="place0">
+		<s:Group x="148" y="28" id="place0">
 			<s:BitmapImage id="pic0" source="{newsted}" width="53"
 				height="53" x="26" y="-8" smooth="true"/>
 			<s:BitmapImage source="{first}" scaleX="0.7" scaleY="0.8"
@@ -283,8 +286,8 @@
 					x="64" y="2" rotation="14" smooth="true"/>
 			</s:Group>
 			
-			<s:BitmapImage visible="true" source="{medal1}" scaleX="0.6"
-				scaleY="0.6" x="17" y="-22" smooth="true"/>
+			<s:BitmapImage visible="true" source="{medal1}" scaleX="0.65"
+				scaleY="0.6" x="15" y="-22" smooth="true"/>
 			<s:Label id="_name0" text="Newsted" color="0xfdefb3"  y="47" fontSize="12" 
 				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="0" />
 			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
@@ -295,7 +298,7 @@
 		
 		
 		
-		<s:Group x="25" y="42" id="place1">
+		<s:Group x="33" y="42" id="place1">
 			<s:BitmapImage id="pic1" source="{newsted}" width="53"
 				height="53" x="26" y="-8" smooth="true"/>
 			<s:BitmapImage source="{no_first}" scaleX="0.73" scaleY="0.8"
@@ -312,8 +315,8 @@
 					x="64" y="2" rotation="14" smooth="true"/>
 			</s:Group>
 			
-			<s:BitmapImage visible="true" source="{medal2}" scaleX="0.6"
-				scaleY="0.6" x="17" y="-22" smooth="true"/>
+			<s:BitmapImage visible="true" source="{medal2}" scaleX="0.65"
+				scaleY="0.6" x="15" y="-22" smooth="true"/>
 			<s:Label id="_name1" text="Newsted" color="0xfdefb3" y="47" fontSize="12" 
 				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="5" />
 			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
@@ -323,7 +326,7 @@
 		
 		
 		
-		<s:Group x="225" y="48" id="place2">
+		<s:Group x="260" y="48" id="place2">
 			<s:BitmapImage id="pic2" source="{newsted}" width="53"
 				height="53" x="26" y="-8" smooth="true"/>
 			<s:BitmapImage source="{no_first}" scaleX="0.73" scaleY="0.8"
@@ -340,8 +343,8 @@
 					x="64" y="2" rotation="14" smooth="true"/>
 			</s:Group>
 			
-			<s:BitmapImage visible="true" source="{medal3}" scaleX="0.6"
-				scaleY="0.6" x="17" y="-22" smooth="true"/>
+			<s:BitmapImage visible="true" source="{medal3}" scaleX="0.65"
+				scaleY="0.6" x="15" y="-22" smooth="true"/>
 			<s:Label id="_name2" text="Newsted" color="0xfdefb3"  y="47" fontSize="12"
 				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="5" />
 			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
@@ -377,11 +380,11 @@
 			
 			<s:Label id="prg_title"  fontSize="13" fontWeight="bold" 
 				
-				x="100" y="68" width="250"  color="0x800000"  
+				x="120" y="68" width="250"  color="0x800000"  
 				filters="{[outlineWhite]}"  
 				text="Заработай третью звезду"/>
 				
-				<s:Label id="prg_info" x="55" y="83" fontSize="11" width="250"  fontWeight="bold"  
+				<s:Label id="prg_info" x="75" y="83" fontSize="11" width="250"  fontWeight="bold"  
 				color="0x400000" filters="{[outlineWhite]}"  
 				text="Тебе нужна победа в слоте, чтобы пройти уровень
 'Непроходимые джунгли' на 3 звезды! Вперёд и пусть удача сопутствует тебе!"/>
@@ -417,7 +420,7 @@
 		<s:Group bottom="-33" horizontalCenter="0">
 			<s:BitmapImage source="{playBtnBg}" scaleX="0.8" scaleY="0.8"  />
 			<s:Button x="33" y="3"  name="playBtn" label="Играть"
-				skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.BigGrinButtonSkin"/>
+				skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.BigGrinButtonSkin2"/>
 			
 		</s:Group>
 		
