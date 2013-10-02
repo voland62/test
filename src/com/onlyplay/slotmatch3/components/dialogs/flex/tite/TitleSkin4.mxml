@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx">
+
+
+	<fx:Metadata>
+		<![CDATA[ 
+			[HostComponent("com.onlyplay.slotmatch3.components.dialogs.flex.tite.Title")]
+		]]>
+	</fx:Metadata>
+
+
+	<fx:Declarations>
+		<s:DropShadowFilter id="whiteShadow" color="0xebdba5"
+			strength="1" blurX="1" blurY="1" distance="1" angle="75"/>
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="/Dialogs/Common/panel_header1.png"
+			,scaleGridTop="13", scaleGridBottom="14", 
+			scaleGridLeft="18", scaleGridRight="27"
+			)]
+			private static const BgClass : Class;
+		]]>
+	</fx:Script>
+
+	<s:BitmapImage id="bg" source="{BgClass}" left="0" right="0"/>
+	<s:Label id="label" verticalCenter="0" left="25" right="25" filters="{[whiteShadow]}"
+		fontWeight="bold" textAlign="center" fontSize="14" />
+
+</s:Skin>

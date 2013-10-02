@@ -13,7 +13,7 @@
 	
 	<!--xmlns:mx="library://ns.adobe.com/flex/mx" -->
 
-	<fx:Style>
+	<!--<fx:Style>
         global 
         {
             /* modal-transparency: 0; */
@@ -21,9 +21,49 @@
             modal-transparency-color: #000000;
             /* modal-transparency-duration: 100; */
         }
+		
+		
+		
 
     </fx:Style>
-
+-->
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace rl2 "http://ns.robotlegs.org/flex/rl2";
+		@namespace mvcs "robotlegs.bender.bundles.mvcs.*";
+		@namespace config "com.onlyplay.slotmatch3.config.*";
+		@namespace components "com.onlyplay.slotmatch3.components.*";
+		@namespace flint2d "http://flintparticles.org/2009/flint2d";
+		
+		 global 
+        {
+            /* modal-transparency: 0; */
+             /* modal-transparency-blur: 3; */
+            modal-transparency-color: #000000;
+            /* modal-transparency-duration: 100; */
+			
+			
+			
+			
+        }
+		
+			@font-face{
+				src:url("../../../fonts/FranklinGothicDemiCondC.otf");
+				fontFamily:ggg;
+				fontWeight:bold;
+			}
+			
+			s|Label {
+				fontFamily:ggg;
+			}
+		
+		
+		
+		
+	</fx:Style>
+	
 	
 
 	<fx:Script>

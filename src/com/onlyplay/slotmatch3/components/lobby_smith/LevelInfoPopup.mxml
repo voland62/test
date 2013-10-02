@@ -6,7 +6,7 @@
 	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
 	titleBgSkin="{TitleSkin3}" 
 	implements="com.onlyplay.slotmatch3.components.lobby_smith.IInterLevelDlg"
-	minHeight="500" minWidth="400" title="Гавайский остров"
+	minHeight="500" minWidth="400" title="Гавайский остров"  fontFamily="franklin"
 	creationComplete="onInit(event)" controlBarVisible="true">
 	
 	
@@ -29,7 +29,22 @@
 	</my:states>-->
 
 	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace my "com.onlyplay.slotmatch3.components.dialogs.flex.*";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace tite "com.onlyplay.slotmatch3.components.dialogs.flex.tite.*";
 		
+		@font-face{
+			src:url("../../../../../fonts/FranklinGothicDemiCondC.otf");
+			<!--src:url("G:\Files\Flex_embed_font_mxml\fonts\DAYTON__.TTF");-->
+			fontFamily:franklin;
+			fontWeight:bold;
+			
+		}
+		
+		<!--s|Label {
+			fontFamily:ggg;
+		}-->
 	</fx:Style>
 
 	<!--<s:Rect width="100%" height="100%">
@@ -233,8 +248,8 @@
 	<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RounPanel5Skin"
 		width="100%">
 
-		<s:Label x="30" y="10" text="Минимальная ставка:" fontWeight="bold"
-			fontSize="13" color="0xfdefb3" filters="{[outlineFilter]}"/>
+		<s:Label x="30" y="8" text="Минимальная ставка:" fontWeight="bold"
+			fontSize="15" color="0xfdefb3"  filters="{[outlineFilter]}"/>
 		
 			<my:CoinBitmapImage scaleX="0.8" scaleY="0.8" x="240" y="4" />
 			<s:Label id="minBet" text="25 000" color="0xfdefb3" fontWeight="bold"
@@ -249,7 +264,7 @@
 
 		<s:BitmapImage source="{brownFon}" width="360" height="130" x="-3" smooth="true"/>
 
-		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"
+		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin4"
 			width="60%" depth="1" top="-12" title="Лучшие игроки"
 			horizontalCenter="0"/>
 
@@ -274,11 +289,11 @@
 			
 			<s:BitmapImage visible="true" source="{medal1}" scaleX="0.6"
 				scaleY="0.6" x="17" y="-22" smooth="true"/>
-			<s:Label id="_name0" text="Newsted" color="0xfdefb3"  y="49" fontSize="10" 
+			<s:Label id="_name0" text="Newsted" color="0xfdefb3"  y="47" fontSize="12" 
 				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="0" />
 			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
 			<s:Label id="_score0" text="1234567" color="0x400000" x="38"
-				y="64" fontSize="10" fontWeight="bold"/>
+				y="63" fontSize="10" fontWeight="bold"/>
 		</s:Group>
 		
 		
@@ -303,11 +318,11 @@
 			
 			<s:BitmapImage visible="true" source="{medal2}" scaleX="0.6"
 				scaleY="0.6" x="17" y="-22" smooth="true"/>
-			<s:Label id="_name1" text="Newsted" color="0xfdefb3"  y="49" fontSize="10" 
+			<s:Label id="_name1" text="Newsted" color="0xfdefb3" y="47" fontSize="12" 
 				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="5" />
 			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
 			<s:Label id="_score1" text="1234567" color="0x400000" x="38"
-				y="64" fontSize="10" fontWeight="bold"/>
+				y="63" fontSize="10" fontWeight="bold"/>
 		</s:Group>
 		
 		
@@ -331,11 +346,11 @@
 			
 			<s:BitmapImage visible="true" source="{medal3}" scaleX="0.6"
 				scaleY="0.6" x="17" y="-22" smooth="true"/>
-			<s:Label id="_name2" text="Newsted" color="0xfdefb3"  y="49" fontSize="10" 
+			<s:Label id="_name2" text="Newsted" color="0xfdefb3"  y="47" fontSize="12"
 				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="5" />
 			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
 			<s:Label id="_score2" text="1234567" color="0x400000" x="38"
-				y="64" fontSize="10" fontWeight="bold"/>
+				y="63" fontSize="10" fontWeight="bold"/>
 		</s:Group>
 		
 
@@ -345,7 +360,7 @@
 	
 	
 	<s:Group width="100%" >
-		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"
+		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin4"
 			width="60%" depth="1" top="-15" title="Мастерство в комнате"
 			horizontalCenter="0"/>
 		<my:NeildPanel width="100%" height="140">
@@ -370,7 +385,7 @@
 				filters="{[outlineWhite]}"  
 				text="Заработай третью звезду"/>
 				
-				<s:Label id="prg_info" x="50" y="85" fontSize="11" width="280"  fontWeight="bold"  
+				<s:Label id="prg_info" x="40" y="85" fontSize="11" width="280"  fontWeight="bold"  
 				color="0x400000" filters="{[outlineWhite]}"  
 				text="Тебе нужна победа в слоте, чтобы пройти уровень
 'Непроходимые джунгли' на 3 звезды! Вперёд и пусть удача сопутствует тебе!"/>
@@ -379,7 +394,7 @@
 	
 	
 	<s:Group width="100%">
-		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"
+		<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin4"
 			width="60%" depth="1" top="-15" title="Возьми с собой!"
 			horizontalCenter="0"/>
 
@@ -405,7 +420,7 @@
 
 		<s:Group bottom="-33" horizontalCenter="0">
 			<s:BitmapImage source="{playBtnBg}" scaleX="0.8" scaleY="0.8"  />
-			<s:Button x="33" y="4"  name="playBtn" label="Играть"
+			<s:Button x="33" y="3"  name="playBtn" label="Играть"
 				skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.BigGrinButtonSkin"/>
 			
 		</s:Group>
