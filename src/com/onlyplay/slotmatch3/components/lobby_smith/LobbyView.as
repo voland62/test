@@ -1,7 +1,8 @@
 package com.onlyplay.slotmatch3.components.lobby_smith {
 	
 	import flash.display.*;
-	import flash.net.URLRequest;
+	import flash.net.*;
+	import flash.system.*;
 	import com.smith.gallery.SmtHrzGallery;
 	import com.smith.gallery.engine.GalleryEvent;
 	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyCellItem;
@@ -164,8 +165,18 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			var sFacebookName:String = "100006286838105";//например
 			var ldr:Loader = new Loader();
 			ldr.contentLoaderInfo.addEventListener(Event.COMPLETE, inPicReady);
+			var ldrCntxt:LoaderContext = new LoaderContext(true);
+			ldrCntxt.applicationDomain = new ApplicationDomain(ApplicationDomain.currentDomain);
+			ldrCntxt.securityDomain = SecurityDomain.currentDomain;
+			
+			
 			var req:URLRequest = new URLRequest("https://graph.facebook.com/" + sFacebookName + "/picture");
-			ldr.load(req);
+			if(Security.sandboxType == "remote"){
+				ldr.load(req, ldrCntxt);
+			}else {
+				ldr.load(req);
+			}
+				
 			
 		}
 		
