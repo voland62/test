@@ -1,6 +1,7 @@
 package com.onlyplay.slotmatch3.components.lobby_smith {
 	
 	import flash.display.*;
+	import flash.net.URLRequest;
 	import com.smith.gallery.SmtHrzGallery;
 	import com.smith.gallery.engine.GalleryEvent;
 	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyCellItem;
@@ -156,14 +157,26 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 		}
 		
+		
 		private function SetKing(data:PlayerShortProtobuf):void {
 			bg.king_mc.visible = true;
+			
+			var sFacebookName:String = "100006286838105";//например
+			var ldr:Loader = new Loader();
+			ldr.contentLoaderInfo.addEventListener(Event.COMPLETE, inPicReady);
+			var req:URLRequest = new URLRequest("https://graph.facebook.com/" + sFacebookName + "/picture");
+			ldr.load(req);
+			
+		}
+		
+		private function inPicReady(e:Event):void {
+			var bmp:Bitmap = bg.king_mc.getChildAt(0) as Bitmap;
+			bmp.bitmapData =  e.currentTarget.loader.content.bitmapData
+			
 		}
 		
 		
-		
-		
-		
+		//по приходу или изменению данных о мире
 		internal function onDataArrive(evt:DynamicEvent):void{
 			
 			islandsData = evt.data;
