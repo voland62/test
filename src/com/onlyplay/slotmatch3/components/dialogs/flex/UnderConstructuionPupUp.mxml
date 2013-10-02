@@ -6,7 +6,7 @@
 	</s:Group>-->
 
 	<s:BitmapImage source="@Embed(source='/assets/girl.png')"/>
-	<s:Button bottom="78" right="-5" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin"
+	<s:Button bottom="83"  right="-0" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin"
 		click="{dispatchEvent(new Event('close'));}"/>
 
 </s:Group>

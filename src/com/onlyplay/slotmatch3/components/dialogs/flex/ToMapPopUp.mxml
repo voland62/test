@@ -24,8 +24,8 @@
 
 			public function setWin(win : int, currentMoney : int) : void
 			{
-				//winLabel.text = win.toString();
-				//monetLabel.text = currentMoney.toString();
+				winLabel.text = win.toString();
+				monetLabel.text = currentMoney.toString();
 			}
 		]]>
 	</fx:Script>
@@ -102,7 +102,7 @@
 			<s:Button x="24" y="10" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
 				label="Забрать выигрыш" click="{dispatchEvent(new DynamicEvent('toMap'));}"
 				fontSize="16"/>
-			<s:Button fontSize="16" x="156" y="10" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+			<s:Button fontSize="13" x="156" y="10" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
 				label="Остаться"/>
 				
 			<!--<s:Button x="337" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
