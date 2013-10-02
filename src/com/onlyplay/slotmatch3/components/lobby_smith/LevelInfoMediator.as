@@ -30,7 +30,8 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 					
 					case "playBtn":
 						//FlexSprite(view).visible = false;
-						IInterLevelDlg(view).hide();
+						//IInterLevelDlg(view).hide();
+						view.dispatchEvent(new Event("close"));
 						//var event : DynamicEvent = new DynamicEvent("state_changes_request");
 						var event : DynamicEvent = new DynamicEvent("state_changes");
 						event.state = "game";

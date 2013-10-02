@@ -67,7 +67,8 @@
 
 						<fx:Declarations>
 							<s:DropShadowFilter id="whiteShedow"
-								color="0xEEEEEE" strength="1" blurX="1"
+								color="0xf8f8f8" strength="2" blurX="0"
+								angle="90"
 								blurY="1" distance="1"/>
 						</fx:Declarations>
 
@@ -76,7 +77,7 @@
 						<s:VGroup horizontalAlign="center" left="4"
 							right="4" top="3" bottom="1" gap="1">
 							<s:Label text="{resourceManager.getString('ruLocale', data.localeKey)}"
-								fontWeight="bold" filters="{[whiteShedow]}"/>
+								fontWeight="bold" fontSize="16" filters="{[whiteShedow]}"/>
 							<s:HGroup>
 								<s:BitmapImage width="70" height="70"
 									smooth="true" smoothingQuality="{BitmapSmoothingQuality.DEFAULT}"

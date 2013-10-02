@@ -53,7 +53,7 @@ package com.onlyplay.slotmatch3.view
 				addContextListener("ready", onReady);
 			}
 			
-			
+			addContextListener("state_changes", onStateChange);
 			
 			addContextListener("showSpin", showSpin);
 			addContextListener("showMatch", showMatch);
@@ -75,6 +75,15 @@ package com.onlyplay.slotmatch3.view
 			// addContextListener("currentExperienceChanged", onExperienceChanged);
 			addContextListener("matchTimerTick", onMatchCurrenTimeTick);
 			addContextListener("currentFlashEnergyChanged", onCurrentFlashEnergyChanged);
+		}
+
+		private function onStateChange( e:DynamicEvent ) : void
+		{
+			if (e.state == "game")
+			{
+				// Здесь мы рефрешим барабан при новом заходе
+				view.initSlot( gameModel.currentIsland.islandId, gameModel.currentLocation.locationId );
+			}
 		}
 
 		private function onFace( e:Event) : void

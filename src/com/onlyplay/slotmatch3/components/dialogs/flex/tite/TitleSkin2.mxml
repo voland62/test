@@ -26,8 +26,8 @@
 	</fx:Script>
 
 	<s:BitmapImage id="bg" source="{BgClass}" horizontalCenter="0"/>
-	<s:Label id="label" maxDisplayedLines="1" verticalCenter="16"
-		minHeight="23" horizontalCenter="0" fontSize="16" color="0xfee5b8"
+	<s:Label id="label" maxDisplayedLines="1" verticalCenter="11" 
+		minHeight="23" horizontalCenter="0" fontSize="18" color="0xfee5b8"
 		filters="{[labelFilter]}" fontWeight="bold">
 	</s:Label>
 
