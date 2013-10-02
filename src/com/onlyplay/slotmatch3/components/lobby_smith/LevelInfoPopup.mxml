@@ -35,11 +35,11 @@
 		@namespace tite "com.onlyplay.slotmatch3.components.dialogs.flex.tite.*";
 		
 		@font-face{
+			
 			src:url("../../../../../fonts/FranklinGothicDemiCondC.otf");
 			<!--src:url("G:\Files\Flex_embed_font_mxml\fonts\DAYTON__.TTF");-->
 			fontFamily:franklin;
 			fontWeight:bold;
-			
 		}
 		
 		<!--s|Label {
