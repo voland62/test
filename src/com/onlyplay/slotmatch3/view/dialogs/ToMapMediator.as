@@ -20,10 +20,9 @@ package com.onlyplay.slotmatch3.view.dialogs
 
 		override public function initialize() : void
 		{
-			
-			var win:int = 10;
-			var currentMoney:int = 10;
-			//view.setWin( win , currentMoney );
+			var win:int = gameModel.win;
+			var currentMoney:int = gameModel.userInfo.money;
+			view.setWin( win , currentMoney );
 			
 			addViewListener("toMap", onToMap);
 		}

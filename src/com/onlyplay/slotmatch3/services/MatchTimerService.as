@@ -51,5 +51,17 @@ package com.onlyplay.slotmatch3.services
 			_timeOffset = getTimer();
 			_timer.start();
 		}
+
+		public function pause() : void
+		{
+			_timeOffset = getTimer() - _timeOffset;
+			_timer.stop();
+		}
+		
+		public function resume():void
+		{
+			_timeOffset = getTimer() - _timeOffset;
+			_timer.start();
+		}
 	}
 }

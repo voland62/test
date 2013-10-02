@@ -1,13 +1,11 @@
 package com.onlyplay.slotmatch3.controller
 {
-	import flash.geom.Point;
-	import com.onlyplay.slotmatch3.components.games.slot.LinesData;
-	import com.onlyplay.slotmatch3.components.games.slot.LineVO;
 	import robotlegs.bender.bundles.mvcs.Command;
 
 	import com.onlyplay.slotmatch3.components.games.Parser;
+	import com.onlyplay.slotmatch3.components.games.slot.LineVO;
+	import com.onlyplay.slotmatch3.components.games.slot.LinesData;
 	import com.onlyplay.slotmatch3.model.GameModel;
-	import com.onlyplay.slotmatch3.services.ISlotService;
 	import com.onlyplay.slotmatch3.services.ServiceEvent;
 
 	import flash.events.Event;
@@ -18,8 +16,8 @@ package com.onlyplay.slotmatch3.controller
 	 */
 	public class OnSpinCommand extends Command
 	{
-		[Inject]
-		public var service : ISlotService;
+//		[Inject]
+//		public var service : ISlotService;
 		[Inject]
 		public var event : ServiceEvent;
 		[Inject]

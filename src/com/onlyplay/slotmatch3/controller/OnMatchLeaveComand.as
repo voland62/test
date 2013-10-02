@@ -1,8 +1,8 @@
 package com.onlyplay.slotmatch3.controller
 {
-	import flash.events.Event;
 	import robotlegs.bender.bundles.mvcs.Command;
 
+	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 
 	/**

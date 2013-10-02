@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.config
 {
+	import com.onlyplay.slotmatch3.controller.match.TimeOverCommand;
 	import com.onlyplay.slotmatch3.view.dialogs.ToMapMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.IToMap;
 	import com.onlyplay.slotmatch3.view.dialogs.ToSlotMediator;
@@ -118,16 +119,18 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("lineNumChanged").toCommand(LineNumChangingCommand);
 			commandMap.map("max_bet").toCommand(MaxBetCommand);
 			
-			// toMatch
+			// toMatch showSlot
 			commandMap.map("toMatch").toCommand(MakeMatchEnterRequestCommand);
 			commandMap.map("onBonus").toCommand(OnBonusCommand);
 			commandMap.map("onBoosterClick").toCommand(OnBoosterCommand);
 			commandMap.map("showPaymentsDialog").toCommand(ShowPopupCommand);
-			commandMap.map("timerFinish").toCommand(ShowPopupCommand);
+			commandMap.map("showTimeOverDialog").toCommand(ShowPopupCommand);
 			commandMap.map("showProfile").toCommand(ShowPopupCommand);
 			commandMap.map("showToMapMediator").toCommand(ShowPopupCommand);
 			commandMap.map("showInterLevelPupup").toCommand(ShowPopupCommand);
 			commandMap.map("underConstruction").toCommand(ShowPopupCommand);
+			commandMap.map("showToSlotPopup").toCommand(ShowPopupCommand);
+			commandMap.map("timerFinish").toCommand(ShowPopupCommand);
 			
 			commandMap.map("toSlot").toCommand(PlaySlotCommand);
 			

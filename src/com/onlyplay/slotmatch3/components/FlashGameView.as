@@ -189,9 +189,11 @@ package com.onlyplay.slotmatch3.components
 			_starProgress.setProgress(0.75, false);
 
 			_infoStarButton = new InfoButton();
+			_infoStarButton.addEventListener(MouseEvent.CLICK, function(e:Event):void{ dispatchEvent(new Event("uc"));});
 			addChild(_infoStarButton);
 
 			_infoRoomProgressButton = new InfoButton();
+			_infoRoomProgressButton.addEventListener(MouseEvent.CLICK, function(e:Event):void{ dispatchEvent(new Event("uc"));});
 			addChild(_infoRoomProgressButton);
 
 //			_paymentsFake = new PaymentsFakeClas();
@@ -235,6 +237,7 @@ package com.onlyplay.slotmatch3.components
 			experienceProgressBar.value = 1000;
 
 			_settingsButton = new SettingsButton();
+			_settingsButton.addEventListener(MouseEvent.CLICK, function(e:Event):void{ dispatchEvent(new Event("uc"));});
 			addChild(_settingsButton);
 
 			_photoButton = new PhotoButton();
@@ -242,9 +245,10 @@ package com.onlyplay.slotmatch3.components
 
 			_photoButton.addEventListener("click", function(_ : *) : void
 			{
-				_matchComponent.resetVisuals();
+				dispatchEvent(new Event("uc"));
+				//_matchComponent.resetVisuals();
 				// _matchComponent.startReinitAnimation();
-				_matchComponent.playShuffleAnimation();
+				//_matchComponent.playShuffleAnimation();
 				// Animations.spiralVideo(_animBase, 
 				// new Point(_matchComponent.x + (_matchComponent.width>>1), _matchComponent.y +(_matchComponent.height>>1)));
 			});
@@ -419,6 +423,8 @@ package com.onlyplay.slotmatch3.components
 			_lineButtonLeft.locked = val;
 			_lineButtonRight.locked = val;
 			_payButton.locked = val;
+			_mapButton.locked = val;
+			
 		}
 
 		private function onPlayButtonClick(e : MouseEvent) : void
@@ -645,6 +651,7 @@ package com.onlyplay.slotmatch3.components
 		{
 			if (_slotMashine ) _slotMashine.spin(newState);
 			disableButtons(true);
+			_toMach3Button.locked = true;
 		}
 
 		// public function drawLines(winLines : Array) : void
@@ -837,6 +844,7 @@ package com.onlyplay.slotmatch3.components
 			if ( _energyProgress ) _energyProgress.visible = false;
 			
 			_toMach3Button.locked = true;
+			_mapButton.locked = false;
 
 			addChildAt(_animBase, numChildren - 1);
 
@@ -895,6 +903,8 @@ package com.onlyplay.slotmatch3.components
 			_energyProgress.visible = true;
 
 			addChildAt(_animBase, numChildren - 1);
+			
+			_mapButton.locked = true;
 
 			// _matchComponent.startReinitAnimation();
 

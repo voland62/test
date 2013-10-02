@@ -15,8 +15,8 @@
 	<fx:Script>
 		<![CDATA[
 			[Embed(source="/Dialogs/ProfileDialog/profile_achievements_base.png"
-			,scaleGridTop="19", scaleGridBottom="42", 
-			scaleGridLeft="41", scaleGridRight="56"
+			,scaleGridTop="15", scaleGridBottom="32", 
+			scaleGridLeft="33", scaleGridRight="44"
 			)]
 			private static const BgClass : Class;
 		]]>
@@ -35,7 +35,7 @@
 
 	<s:HScrollBar viewport="{dataGroup}" left="0" right="0" verticalCenter="-8" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.HScrollBarSkin" />
 
-	<tite:Title id="titlePanel_" left="50" right="50" top="-15" 
+	<tite:Title id="titlePanel_" left="50" right="50" top="-12" 
 		horizontalCenter="0" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"/>
 
 	<s:Group id="bottomGroup" bottom="0" left="0" right="0"/>

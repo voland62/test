@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
-	titleBgSkin="{TitleSkin2}"
-	minHeight="600"
+	titleBgSkin="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin2"
+	minHeight="550"
 	implements="com.onlyplay.slotmatch3.view.dialogs.IProfilePopup"
 	bgSource="{_BgClassDark}" title="Профиль игрока" xmlns:mx="library://ns.adobe.com/flex/mx"
 	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
@@ -30,8 +30,6 @@
 
 	<fx:Script>
 		<![CDATA[
-			import com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin2;
-			import com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin0;
 			import spark.events.IndexChangeEvent;
 
 			// "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Dialogs/ProfileDialog/profile_player_my_base.png"
@@ -110,21 +108,21 @@
 	</fx:Script>
 
 	<my:layout>
-		<s:VerticalLayout paddingTop="0" paddingBottom="30"
+		<s:VerticalLayout paddingTop="30" paddingBottom="30"
 			horizontalAlign="center" paddingLeft="30" paddingRight="30"/>
 	</my:layout>
 
 	<s:Group>
 		<s:BitmapImage source="{_FaceFrame}"/>
-		<s:BitmapImage source="{FaceClass}" x="50" y="50"/>
-		<s:Label id="nameLabel" text="Александра Петровна" x="140" y="27"
-			fontSize="17" fontWeight="bold" textAlign="center" width="210"/>
+		<s:BitmapImage source="{FaceClass}" x="32" y="32"/>
+		<s:Label id="nameLabel" text="Александра Петровна" x="90" y="22"
+			fontSize="14" fontWeight="bold" textAlign="center" width="210"/>
 
-		<s:Button x="357" y="52" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.PlusButtonSkin"/>
-		<s:Label id="moneyLabel" text="1234567" x="215" y="68"
-			fontSize="20" fontWeight="bold" textAlign="center" width="130"/>
+		<s:Button x="281" y="41" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.PlusButtonSkin"/>
+		<s:Label id="moneyLabel" text="1234567" x="150" y="54"
+			fontSize="18" fontWeight="bold" textAlign="center" width="130"/>
 
-		<progress:GameProgress id="expProgress" x="124" y="104"
+		<progress:GameProgress id="expProgress" x="93" y="80"
 			displayPercents="false" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.progress.ProgressSkin1"/>
 
 	</s:Group>
@@ -144,7 +142,7 @@
 			<fx:Object label="Кубок" url="ach_4"/>
 			<fx:Object label="Конфеты" url="ach_3"/>
 			<fx:Object label="Пушка" url="ach_3x5"/>
-			<fx:Object label="Кубок" url="ach_4"/>x
+			<fx:Object label="Кубок" url="ach_4"/>
 		</s:ArrayList>
 	</fx:Declarations>
 
@@ -153,11 +151,11 @@
 			labelFunction="{tabsLabelFunction}" top="0" left="10"
 			depth="1" change="onTabChanged(event)"/>
 
-		<ns:Navigator id="nav" left="0" right="0" bottom="0" top="38"
+		<ns:Navigator id="nav" left="0" right="0" bottom="0" top="34"
 			skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NavSkin">
 			<s:Group name="Статистика">
 				<s:VGroup top="20" left="20" bottom="20" right="20"
-					gap="30">
+					gap="20">
 					<!--<s:Rect width="100%" height="100%">
 					<s:stroke>
 					<s:SolidColorStroke color="0xFF0000"/>
@@ -167,7 +165,7 @@
 					<s:SkinnableContainer width="100%" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin">
 						<s:layout>
 							<s:TileLayout paddingBottom="20"
-								paddingLeft="50" paddingRight="30"
+								paddingLeft="20" paddingRight="20"
 								horizontalGap="60" paddingTop="20"
 								requestedColumnCount="2"/>
 							<!--<s:VerticalLayout paddingBottom="20"
@@ -196,7 +194,7 @@
 
 					<scrollEl:ScrollablePanel verticalCenter="0"
 						horizontalCenter="0" width="100%" title="Достижения"
-						height="100%" dataProvider="{dp2}"
+						height="150" dataProvider="{dp2}"
 						itemRenderer="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.ScrollPanelItemRenderer">
 
 
@@ -238,18 +236,18 @@
 	<my:controlBarContent>
 		<!--<s:Group bottom="-45" horizontalCenter="0" excludeFrom="gifted">
 		</s:Group>-->
-		<s:Button label="Зактыть" bottom="-45" horizontalCenter="0"
+		<s:Button label="Зактыть" bottom="-37" horizontalCenter="0"
 			excludeFrom="gifted" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
 			click="{dispatchEvent(new Event(Event.CLOSE));}"/>
 
-		<s:Group bottom="-45" horizontalCenter="0" includeIn="gifted">
+		<s:Group bottom="-40" horizontalCenter="0" includeIn="gifted">
 			<s:BitmapImage source="{ButtonsBgClass}"/>
-			<s:Button x="24" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
-				label="Подарить" fontSize="16"/>
-			<s:Button fontSize="16" x="180" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+			<s:Button x="19" y="11" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+				label="Подарить" fontSize="13"/>
+			<s:Button fontSize="13" x="141" y="11" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
 				label="Подарить всем"/>
-			<s:Button x="337" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
-				fontSize="16" label="Закрыть" click="{dispatchEvent(new Event(Event.CLOSE));}"/>
+			<s:Button x="264" y="11" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
+				fontSize="13" label="Закрыть" click="{dispatchEvent(new Event(Event.CLOSE));}"/>
 
 			<!--<s:Button label="Зактыть" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
 			click="{dispatchEvent(new Event(Event.CLOSE));}"/>-->

@@ -4,6 +4,40 @@
 	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*" xmlns:config="com.onlyplay.slotmatch3.config.*"
 	xmlns:components="com.onlyplay.slotmatch3.components.*" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
 	width="760" applicationComplete="onComplete(event)" height="670">
+
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+		 global 
+        {
+            /* modal-transparency: 0; */
+             /* modal-transparency-blur: 3; */
+            modal-transparency-color: #000000;
+            /* modal-transparency-duration: 100; */
+			
+			
+			
+			
+        }
+		
+			@font-face{
+				src:url("/fonts/FranklinGothicDemiCondC.otf");
+				fontFamily:ggg;
+				fontWeight:bold;
+				advancedAntiAliasing: true; 
+    			embedAsCFF: true;
+				
+			}
+			
+			s|Label {
+				fontFamily:ggg;
+			}
+		
+		
+		
+		
+	</fx:Style>
+
 	<fx:Script>
 		<![CDATA[
 			import com.onlyplay.slotmatch3.components.dialogs.flex.ToMapPopUp;
@@ -11,6 +45,7 @@
 			import com.onlyplay.slotmatch3.components.dialogs.flex.ToSlotPopUp;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.Profile;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.Options;
+
 			import mx.resources.ResourceBundle;
 			import mx.rpc.events.ResultEvent;
 			import mx.events.FlexEvent;
@@ -25,8 +60,8 @@
 
 			[Bindable]
 			private var localeUrlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
-			//private var localeUrlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/";
-			
+
+			// private var localeUrlBase : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/";
 			// onlyplay.game-insight.com
 			// private var loader:URLLoader = new URLLoader();
 			private function onChage(e : IndexChangeEvent) : void
@@ -85,27 +120,26 @@
 			{
 				log("---TestFlexGuiWithServer.onLocationXML(e)");
 				// log(e.result);
-				
-				var rb:ResourceBundle = makeResourceBundle(e.result as XML);
-				resourceManager.addResourceBundle( rb );
+
+				var rb : ResourceBundle = makeResourceBundle(e.result as XML);
+				resourceManager.addResourceBundle(rb);
 				resourceManager.update();
 			}
 
 			private function makeResourceBundle(localeFile : XML) : ResourceBundle
 			{
 				// log( localeFile.dict.key.length() );
-				var rb:ResourceBundle = new ResourceBundle("ru_RU", "ruLocale");
-				for (var i : int = 0; i < localeFile.dict.key.length(); i++) 
+				var rb : ResourceBundle = new ResourceBundle("ru_RU", "ruLocale");
+				for (var i : int = 0; i < localeFile.dict.key.length(); i++)
 				{
-					var key:XML = localeFile.dict.key[i];
-					//trace('key: ' + (key)); 
-					var val:XML = localeFile.dict.string[i];
-					//trace('val: ' + (val));
-					
+					var key : XML = localeFile.dict.key[i];
+					// trace('key: ' + (key));
+					var val : XML = localeFile.dict.string[i];
+					// trace('val: ' + (val));
+
 					rb.content[key] = val;
-					
 				}
-					return rb;
+				return rb;
 			}
 		]]>
 	</fx:Script>
@@ -143,15 +177,15 @@
 			<fx:Object label="В слот"/>
 			<fx:Object label="В карту"/>
 			<fx:Object label="Level Info"/>
-			
+
 		</mx:ArrayList>
 
 	</s:List>
 
-	
-	
-	
-	
+
+
+
+
 
 
 </s:Application>

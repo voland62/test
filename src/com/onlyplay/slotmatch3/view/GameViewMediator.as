@@ -39,8 +39,9 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("onPhoto", onPhoto);
 			addViewListener("flashEnergy", onFlashEnergy);
 			addViewListener("showPaymentsDialog", onShowPaymentsDialog);
-			addViewListener("game_view:to_map", toMap)
+			addViewListener("game_view:to_map", toMap);
             addViewListener("onFace", onFace);
+            addViewListener("uc", function (e:Event):void{ dispatch(new DynamicEvent("underConstruction"));});
 			
 			//addContextListener("toSlot", onToSlot);
 			addContextListener( "showSlot" , showSlot);
@@ -53,7 +54,7 @@ package com.onlyplay.slotmatch3.view
 				addContextListener("ready", onReady);
 			}
 			
-			
+			addContextListener("state_changes", onStateChange);
 			
 			addContextListener("showSpin", showSpin);
 			addContextListener("showMatch", showMatch);
@@ -75,6 +76,15 @@ package com.onlyplay.slotmatch3.view
 			// addContextListener("currentExperienceChanged", onExperienceChanged);
 			addContextListener("matchTimerTick", onMatchCurrenTimeTick);
 			addContextListener("currentFlashEnergyChanged", onCurrentFlashEnergyChanged);
+		}
+
+		private function onStateChange( e:DynamicEvent ) : void
+		{
+			if (e.state == "game")
+			{
+				// Здесь мы рефрешим барабан при новом заходе
+				view.initSlot( gameModel.currentIsland.islandId, gameModel.currentLocation.locationId );
+			}
 		}
 
 		private function onFace( e:Event) : void
@@ -171,6 +181,7 @@ package com.onlyplay.slotmatch3.view
 
 		private function onToMatch(e : Event) : void
 		{
+			view.hideLines();			
 			dispatch(e);
 			// showMatch( null );
 			// dispatch(new Event("playMatch"));
@@ -178,7 +189,9 @@ package com.onlyplay.slotmatch3.view
 
 		private function onToSlot(e : Event) : void
 		{
-			dispatch(e);
+			var event :DynamicEvent = new DynamicEvent("showToSlotPopup");
+			dispatch(event);
+			//dispatch(e);
 			//view.setSlotState();
 		}
 
@@ -282,6 +295,7 @@ package com.onlyplay.slotmatch3.view
 			// 10;
 			if ( win > 0 )
 			{
+				view.setWin(gameModel.win);
 				view.playWinAnimation(win, gameModel.winLines, onWinAnimComeplete);
 				// или подписаться
 			}
@@ -307,7 +321,7 @@ package com.onlyplay.slotmatch3.view
 
 		private function showSpin(e : Event = null) : void
 		{
-			view.setWin(gameModel.win);
+			//view.setWin(gameModel.win);
 			view.showSping(gameModel.icons);
 			// view.drawLines(gameModel.winLines);
 		}

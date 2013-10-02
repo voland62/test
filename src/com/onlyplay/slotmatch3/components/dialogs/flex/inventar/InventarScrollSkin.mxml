@@ -7,8 +7,8 @@
 			[HostComponent("spark.components.Scroller")]
 		]]>
 	</fx:Metadata>
-	
-	<s:VScrollBar id="verticalScrollBar" visible="false" fixedThumbSize="true" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.vscrollbarSkin.VScrollBarSkin"/>
-	<!--<s:HScrollBar id="horizontalScrollBar" visible="false"/>-->
+
+	<s:VScrollBar id="verticalScrollBar" visible="false"
+		fixedThumbSize="true" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.vscrollbarSkin.VScrollBarSkin"/>
 
 </s:Skin>

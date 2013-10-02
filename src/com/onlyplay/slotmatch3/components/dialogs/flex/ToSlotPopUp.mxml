@@ -32,8 +32,8 @@
 	<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
 		
-         .sss {
-               fontSize:14;
+         .sss_slot {
+               fontSize:12;
                fontWeight:bold;
                color:#333333;
           }     
@@ -45,7 +45,7 @@
 
 	<s:VGroup left="40" right="40" top="40" bottom="50" gap="20"
 		horizontalAlign="center">
-		<s:Label text="Ваш выйгрыш составил:" styleName="sss"/>
+		<s:Label text="Ваш выйгрыш составил:" styleName="sss_slot"/>
 
 		<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RounPanel4Skin"
 			width="100%">
@@ -72,7 +72,7 @@
 		</s:SkinnableContainer>
 
 		<s:Label text="У Вас ещё осталось время вы, действительно хотите закончить игру и перейти в слот?"
-			styleName="sss" width="200"/>
+			styleName="sss_slot" width="200"/>
 
 	</s:VGroup>
 
@@ -81,9 +81,9 @@
 		<s:Group bottom="-26" horizontalCenter="0">
 			<s:BitmapImage source="{ButtonsBgClass}"/>
 			<s:Button x="24" y="12" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.YellowButtonSkin"
-				label="В слот" click="{dispatchEvent(new DynamicEvent('toMap'));}" fontSize="16"/>
+				label="В слот" click="{dispatchEvent(new DynamicEvent('toSlot'));}" fontSize="16"/>
 			<s:Button fontSize="16" x="155" y="12" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
-				label="Остаться"/>
+				label="Остаться" click="{dispatchEvent( new Event('close'));}"/>
 			<!--<s:Button x="337" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
 			fontSize="16" label="Закрыть" click="{dispatchEvent(new Event(Event.CLOSE));}"/>-->
 

@@ -32,7 +32,7 @@
 		]]>
 	</fx:Script>
 
-	<s:BitmapImage source.selectedStates="{OnClass}" source="{OffClass}"/>
+	<s:BitmapImage source.selectedStates="{OnClass}" source="{OffClass}" alpha.disabledStates="0.4"/>
 	
 
 		<!-- skin 
