@@ -101,15 +101,12 @@
 			private static const wordCloud:Class
 			
 			private var starProgressBar:star_bar_sborka;
-			//public var shopBtn : shop_btn;
+			
 			public var selectedIsland : int = 0;
-			public var selectedLocation : int = -1;
+			public var selectedLocation : int = -1;//-1 означает что отображается инфа об острове, а не о локации
 
 			private function onInit(e : Event) : void
 			{
-				
-				
-
 				starProgressBar = new star_bar_sborka();
 				progrBarPlace.addChild(starProgressBar);
 				

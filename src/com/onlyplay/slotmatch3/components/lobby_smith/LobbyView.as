@@ -163,20 +163,20 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			bg.king_mc.visible = true;
 			
 			var sFacebookName:String = "100006286838105";//например
+			
 			var ldr:Loader = new Loader();
 			ldr.contentLoaderInfo.addEventListener(Event.COMPLETE, inPicReady);
-			var ldrCntxt:LoaderContext = new LoaderContext(true);
-			ldrCntxt.applicationDomain = new ApplicationDomain(ApplicationDomain.currentDomain);
-			ldrCntxt.securityDomain = SecurityDomain.currentDomain;
-			
-			
 			var req:URLRequest = new URLRequest("https://graph.facebook.com/" + sFacebookName + "/picture");
+			
 			if(Security.sandboxType == "remote"){
-				ldr.load(req, ldrCntxt);
+				var ldrCntxt:LoaderContext = new LoaderContext(true);
+				ldrCntxt.applicationDomain = new ApplicationDomain(ApplicationDomain.currentDomain);
+				ldrCntxt.securityDomain = SecurityDomain.currentDomain;
 			}else {
-				ldr.load(req);
+				ldrCntxt = null;
 			}
-				
+		
+			ldr.load(req, ldrCntxt);
 			
 		}
 		
