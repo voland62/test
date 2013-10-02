@@ -75,6 +75,13 @@ package com.onlyplay.slotmatch3.controller.dialogs
 
 			if (clas)
 			{
+				// это есть способ передать в медиатор объект эвента
+				if ( injector.hasMapping(DynamicEvent))
+				{
+					injector.unmap(DynamicEvent); 
+				}
+				injector.map(DynamicEvent).toValue( e );
+				
 				var popup : IFlexDisplayObject = new clas();
 				viewManager.addContainer(popup as DisplayObjectContainer); // mediation
 				popup.addEventListener("close", onClose);
@@ -83,7 +90,7 @@ package com.onlyplay.slotmatch3.controller.dialogs
 			}
 			
 			
-			if (e.type == "showInterLevelPupup")(popup as LevelInfoPopup).show(e, gameModel.islands.islands)
+			//if (e.type == "showInterLevelPupup")(popup as LevelInfoPopup).show(e, gameModel.islands.islands)
 			
 			// if ( e.interface_ )
 			// {
@@ -116,6 +123,10 @@ package com.onlyplay.slotmatch3.controller.dialogs
 	
 		private function onClose(e : Event) : void
 		{
+			if ( injector.hasMapping(DynamicEvent))
+			{
+				injector.unmap(DynamicEvent); //map(DynamicEvent).toValue( e );
+			}
 			PopUpManager.removePopUp(e.currentTarget as IFlexDisplayObject);
 		}
 	}

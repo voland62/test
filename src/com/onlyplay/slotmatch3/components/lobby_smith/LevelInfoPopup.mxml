@@ -102,8 +102,8 @@
 			
 			private var starProgressBar:star_bar_sborka;
 			
-			public var selectedIslandId : int = 0;
-			public var selectedLocationId : int = -1;//-1 означает что отображается инфа об острове, а не о локации
+			private var selectedIslandId : int = 0;
+			private var selectedLocationId : int = -1;//-1 означает что отображается инфа об острове, а не о локации
 
 			private function onInit(e : Event) : void
 			{
@@ -126,7 +126,7 @@
 			
 			
 			// сохраняем выбранные параметры, чтобы было что передать на сервер
-			public function saveParams(isl : int, loc : int) : void
+			private function saveParams(isl : int, loc : int) : void
 			{
 				selectedIslandId = isl;
 				selectedLocationId = loc;

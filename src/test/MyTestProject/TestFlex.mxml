@@ -4,7 +4,7 @@
 	xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
 	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*"
 	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
-	xmlns:lobby="com.onlyplay.slotmatch3.components.lobby_smith.*">
+	backgroundColor="0xffffff" xmlns:lobby="com.onlyplay.slotmatch3.components.lobby_smith.*">
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
@@ -119,14 +119,14 @@
 
 
 
-	<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>
+	<!--<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>-->
 
 
 	<!--<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>-->
 
-	<!--<s:SkinnableContainer verticalCenter="0" horizontalCenter="0" width="400"
-	skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RounPanel4Skin">
-	</s:SkinnableContainer>-->
+	<s:SkinnableContainer verticalCenter="0" horizontalCenter="0" minHeight="2"
+		width="600" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RounPanel5Skin">
+	</s:SkinnableContainer>
 
 
 
