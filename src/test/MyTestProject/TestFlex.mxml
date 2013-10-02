@@ -19,6 +19,34 @@
 	</fx:Script>
 
 
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+		 global 
+        {
+            /* modal-transparency: 0; */
+             /* modal-transparency-blur: 3; */
+            modal-transparency-color: #000000;
+            /* modal-transparency-duration: 100; */
+			
+        }
+		
+			@font-face{
+				src:url("/fonts/FranklinGothicDemiCondC.otf");
+				fontFamily:ggg;
+				fontWeight:bold;
+				advancedAntiAliasing: false; 
+    			embedAsCFF: true;
+				
+			}
+			
+			s|Label {
+				fontFamily:ggg;
+			}
+		
+	</fx:Style>
+
+
 	<!--<fx:Style>
 	@namespace s "library://ns.adobe.com/flex/spark";
 	@namespace ns "http://flex.apache.org/experimental/ns";
@@ -34,8 +62,8 @@
 
 
 	<!--<s:Button label="close" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin2"
-		click="onClick(event)"/>
--->
+	click="onClick(event)"/>
+	-->
 
 
 	<!--<s:Scroller width="200" horizontalCenter="0" verticalCenter="0" >
@@ -78,26 +106,29 @@
 	<!--<flex:Profile verticalCenter="0" horizontalCenter="0"/>-->
 	<!--
 	
-		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.RedBandTitleSkin"
+	skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.RedBandTitleSkin"
 	-->
 
 	<!--<tite:Title
-		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1" 
-		title="hello man"
-		verticalCenter="0" horizontalCenter="0"/>-->
+	skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1" 
+	title="hello man"
+	verticalCenter="0" horizontalCenter="0"/>-->
 
 	<!--<flex:ToMapPopUp verticalCenter="0" horizontalCenter="0"/>-->
-	
-	
-	
-	
-	<!--<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>-->
-	
-	
-	<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>
-	
-	
-	
+
+
+
+
+	<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>
+
+
+	<!--<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>-->
+
+	<!--<s:SkinnableContainer verticalCenter="0" horizontalCenter="0" width="400"
+	skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RounPanel4Skin">
+	</s:SkinnableContainer>-->
+
+
 
 	<!--<mx:ProgressBar verticalCenter="20" horizontalCenter="0"/>-->
 

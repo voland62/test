@@ -41,6 +41,7 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("showPaymentsDialog", onShowPaymentsDialog);
 			addViewListener("game_view:to_map", toMap);
             addViewListener("onFace", onFace);
+            addViewListener("uc", function (e:Event):void{ dispatch(new DynamicEvent("underConstruction"));});
 			
 			//addContextListener("toSlot", onToSlot);
 			addContextListener( "showSlot" , showSlot);

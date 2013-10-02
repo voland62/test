@@ -102,7 +102,7 @@ package com.onlyplay.slotmatch3.controller
 			
 			// service.getUserData( gameModel.gameId );
 			
-			service.enterLocation( gameModel.currentIsland.islandId, gameModel.currentLocation.locationId );
+			//service.enterLocation( gameModel.currentIsland.islandId, gameModel.currentLocation.locationId );
 			
 			
 			// service.enterRoom();

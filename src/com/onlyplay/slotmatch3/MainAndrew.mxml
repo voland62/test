@@ -1,41 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-	xmlns:s="library://ns.adobe.com/flex/spark"
-	xmlns:mx="library://ns.adobe.com/flex/mx"
-	xmlns:rl2="http://ns.robotlegs.org/flex/rl2"
-	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*" 
-	xmlns:config="com.onlyplay.slotmatch3.config.*"
-	xmlns:components="com.onlyplay.slotmatch3.components.*" 
-	xmlns:flint2d="http://flintparticles.org/2009/flint2d"
-	preloader = "com.onlyplay.slotmatch3.view.preloader.PreloaderSWF"
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:rl2="http://ns.robotlegs.org/flex/rl2"
+	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*" xmlns:config="com.onlyplay.slotmatch3.config.*"
+	xmlns:components="com.onlyplay.slotmatch3.components.*" xmlns:flint2d="http://flintparticles.org/2009/flint2d"
+	preloader="com.onlyplay.slotmatch3.view.preloader.PreloaderSWF"
 	implements="com.onlyplay.slotmatch3.view.IApp" width="760" height="658"
 	frameRate="60" applicationComplete="onInit(event)">
-	
-	<!--xmlns:mx="library://ns.adobe.com/flex/mx" -->
 
-	<!--<fx:Style>
-        global 
-        {
-            /* modal-transparency: 0; */
-             /* modal-transparency-blur: 3; */
-            modal-transparency-color: #000000;
-            /* modal-transparency-duration: 100; */
-        }
-		
-		
-		
-
-    </fx:Style>
--->
-	
 	<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
-		@namespace mx "library://ns.adobe.com/flex/mx";
-		@namespace rl2 "http://ns.robotlegs.org/flex/rl2";
-		@namespace mvcs "robotlegs.bender.bundles.mvcs.*";
-		@namespace config "com.onlyplay.slotmatch3.config.*";
-		@namespace components "com.onlyplay.slotmatch3.components.*";
-		@namespace flint2d "http://flintparticles.org/2009/flint2d";
 		
 		 global 
         {
@@ -44,52 +17,50 @@
             modal-transparency-color: #000000;
             /* modal-transparency-duration: 100; */
 			
-			
-			
-			
         }
 		
-			<!--@font-face{
-				src:url("../../../fonts/FranklinGothicDemiCondC.otf");
+			@font-face{
+				src:url("/fonts/FranklinGothicDemiCondC.otf");
 				fontFamily:ggg;
 				fontWeight:bold;
+				advancedAntiAliasing: false; 
+    			embedAsCFF: true;
+				
 			}
 			
 			s|Label {
 				fontFamily:ggg;
-			}-->
-		
-		
-		
+			}
 		
 	</fx:Style>
-	
-	
+
+
 
 	<fx:Script>
 		<![CDATA[
 			import mx.events.DynamicEvent;
+
 			import alternativa.init.GUI;
+
 			import flash.display.DisplayObject;
 
 			import com.onlyplay.slotmatch3.components.FlashGameView;
 			import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
+
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			import mx.resources.ResourceBundle;
 			import mx.rpc.events.ResultEvent;
+
 			import com.onlyplay.slotmatch3.components.lobby_smith.Menu4View;
 			import com.onlyplay.slotmatch3.view.preloader.Preloader;
-			
+
 			private var _flashGameView : FlashGameView;
 			private var _lobbyVeiw : LobbyView;
 			[Bindable]
 			private var localeUrlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
-			
-			
-			
-			private var menu4:Menu4View;
-			
+			private var menu4 : Menu4View;
+
 			private function onInit(e : FlexEvent) : void // при неподключённом видео
 			// private function onInit(e:TimeEvent):void // при подключённом видеo
 			{
@@ -114,13 +85,13 @@
 				initLobbyView();
 				initStotMatchView();
 				_flashGameView.visible = false;
-				
+
 				menu4 = new Menu4View();
 				lobbyMenu4Holder.addChild(menu4);
-				
-				var pldr:Preloader=new Preloader()
+
+				var pldr : Preloader = new Preloader()
 				prldrHolder.addChild(pldr);
-				
+
 				onResize();
 			}
 
@@ -191,11 +162,10 @@
 				{
 					case  "lobby":
 						_lobbyVeiw.visible = true;
-						if(_flashGameView) _flashGameView.visible = false;
+						if (_flashGameView) _flashGameView.visible = false;
 						lobbyMenu4Holder.visible = true;
 						lobby_top.visible = true;
 						lobby_avatar.visible = true;
-
 						break;
 					case  "game":
 						_lobbyVeiw.visible = false;
@@ -210,29 +180,29 @@
 						log("This state is not supported:" + state);
 				}
 			}
-			
-			//--------------------- hint ------------------------------
-			public function getUnderConstrWnd(e:MouseEvent):void
+
+			// --------------------- hint ------------------------------
+			public function getUnderConstrWnd(e : MouseEvent) : void
 			{
-				//getObjById("fon").visible=true
-				dispatchEvent(new DynamicEvent ("underConstruction"));
+				// getObjById("fon").visible=true
+				dispatchEvent(new DynamicEvent("underConstruction"));
 			}
-			
-			
-			public function getObjById(sId:String):DisplayObject{
-				var result:DisplayObject = null;
-				
-				for (var i:uint = 0; i < FlexGlobals.topLevelApplication.numElements; i++ ) {
-					var aObj:DisplayObject = FlexGlobals.topLevelApplication.getElementAt(i);
-					if (aObj["id"] == sId) {
+
+			public function getObjById(sId : String) : DisplayObject
+			{
+				var result : DisplayObject = null;
+
+				for (var i : uint = 0; i < FlexGlobals.topLevelApplication.numElements; i++)
+				{
+					var aObj : DisplayObject = FlexGlobals.topLevelApplication.getElementAt(i);
+					if (aObj["id"] == sId)
+					{
 						result = aObj
 						break;
 					}
 				}
 				return result
 			}
-			
-			
 		]]>
 	</fx:Script>
 
@@ -257,15 +227,19 @@
 
 	<s:SpriteVisualElement id="gameViewPlaceHolder" width="760"
 		height="570"/>
-	
-		
-	
-	<s:Image source="@Embed(source='/assets/Mock_friends.png')" click = "getUnderConstrWnd(event)" y ="552"></s:Image>
 
-	<s:Image id="lobby_avatar" source="@Embed(source='/assets/Mock_user.png')" click="getUnderConstrWnd(event)"/>
-	<s:Image id="lobby_top" source="@Embed(source='/assets/Mock_top.png')"  click="getUnderConstrWnd(event)" y ="95"/>
-	<s:SpriteVisualElement id="lobbyMenu4Holder" y="474" />
-	
-	<s:SpriteVisualElement id="prldrHolder" />
+
+
+	<s:Image source="@Embed(source='/assets/Mock_friends.png')" click="getUnderConstrWnd(event)"
+		y="552">
+	</s:Image>
+
+	<s:Image id="lobby_avatar" source="@Embed(source='/assets/Mock_user.png')"
+		click="getUnderConstrWnd(event)"/>
+	<s:Image id="lobby_top" source="@Embed(source='/assets/Mock_top.png')"
+		click="getUnderConstrWnd(event)" y="95"/>
+	<s:SpriteVisualElement id="lobbyMenu4Holder" y="474"/>
+
+	<s:SpriteVisualElement id="prldrHolder"/>
 
 </s:Application>
