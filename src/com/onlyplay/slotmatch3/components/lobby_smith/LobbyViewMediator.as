@@ -19,6 +19,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 			addViewListener("openInterLevelDlg", OpenInterLevelDlg);
 			addViewListener("lobby:first_map_ready", dispatch);
+			addViewListener("underConstruction", dispatch)
 			
 			addContextListener("islandsDataChanges", view.onDataArrive)
 			
@@ -38,33 +39,11 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		private function OpenInterLevelDlg(e:DynamicEvent):void {
 			
 			var event :DynamicEvent = new DynamicEvent("showInterLevelPupup");
-			event._locType = e._type;
+			event._locType = e._locType;
 			event._island = e._island;
 			event._location = e._location;
 			dispatch(event);
-			
-//			var wnd:IInterLevelDlg = IInterLevelDlg(FlexGlobals.topLevelApplication.getObjById("interLevelDlg"));
-//			//wnd.saveParams
-//			
-//			var island:IslandProtobuf = gameModel.islands.islands[e._island]
-//			
-//			if (e._type == "islandInfo") {
-//				
-//				wnd.saveParams(e._island, -1)
-//				wnd.show(island);
-//				trace()
-//			}
-//			
-//			
-//			if (e._type == "locationInfo") {
-//				
-//				wnd.saveParams(e._island, e._location)
-//				wnd.show(island.locations[e._location])
-//				trace()
-//			}
-			
-			
-			
+	
 		}
 		
 		

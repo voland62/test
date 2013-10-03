@@ -63,7 +63,6 @@ package com.onlyplay.slotmatch3.components.lobby_smith
 					else if ( event._locType == "islandInfo" )
 					{
 						// Здесь мы вообще-то не должны быть так как это случай другого попапа не локэйшен инфо а айланд инфо
-						
 						view.dispatchEvent(new Event("close"));
 						service.enterLocation( 1, 1);
 						

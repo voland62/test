@@ -119,7 +119,7 @@
 
 
 
-	<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>
+	<lobby:LevelInfoPopup verticalCenter="0" horizontalCenter="0"/>
 
 
 	<!--<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>-->

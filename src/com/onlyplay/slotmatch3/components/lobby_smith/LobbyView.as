@@ -62,7 +62,11 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 			//bg.king_mc.visible = false;
 			
+			bg.lobby_isl_info_btn.addEventListener(MouseEvent.CLICK, onInfoClick);
+			
 		}
+		
+		
 		
 		
 		
@@ -128,9 +132,9 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	
 		private function onPlayClick(e:MouseEvent):void {
 			var evt:DynamicEvent = new DynamicEvent("openInterLevelDlg");
-			evt._type = "islandInfo";
+			evt._locType = "islandInfo";
 			evt._island = lastCursor;
-			evt._location = null;
+			evt._location = -1;
 			dispatchEvent(evt);
 		}
 		
@@ -222,6 +226,12 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 				dispatchEvent(new Event("lobby:first_map_ready", true));
 			}
 		}
+		
+		
+		private function onInfoClick(e:MouseEvent):void {
+			dispatchEvent(new DynamicEvent("underConstruction"));
+		}
+		
 		
 	}
 

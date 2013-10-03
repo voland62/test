@@ -3,14 +3,15 @@
 
 Кадр #    Байты кадра    Всего байт    Монтажный кадр
 ------    -----------    ----------    --------------
-     1        4860817       4860817    Монтажный кадр 1 (кадр экспорта классов AS 3.0)
+     1        4864677       4864677    Монтажный кадр 1 (кадр экспорта классов AS 3.0)
 
 Монтажный кадр      Байты графики    Байты текста    Байты ActionScript
 ----------------    -------------    ------------    ------------------
-Монтажный кадр 1                0               0                  9726
+Монтажный кадр 1                0               0                  9760
 
 Символ                    Байты графики    Байты текста    Байты ActionScript
 ----------------------    -------------    ------------    ------------------
+info_btn                              0               0                     0
 btn_kupit                             0               0                     0
 mcItems                               0             176                     0
 shop_btn                              0               0                     0
@@ -122,7 +123,7 @@ FranklinGothicDemiCondC         42057     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEF
                411    Монтажный кадр 1:Кадр 1:btn_play_sborka
                559    Монтажный кадр 1:Кадр 1:hawaii_island
                535    Монтажный кадр 1:Кадр 1:islands_smt_edited_fla.seagull_mc_30
-               565    Монтажный кадр 1:Кадр 1:lobby_sborka_cls
+               599    Монтажный кадр 1:Кадр 1:lobby_sborka_cls
                432    Монтажный кадр 1:Кадр 1:mcItems
                492    Монтажный кадр 1:Кадр 1:menu_4_sborka
                534    Монтажный кадр 1:Кадр 1:pirate_island
@@ -140,11 +141,11 @@ location_progress_pb_base.png                                             7305  
 location_progress_pb_full.png                                             1147         17152    Без потерь
 location_progress_star_base.png                                            943          3600    Качество JPEG=80
 location_progress_star.png                                                1428          3248    Без потерь
-hint-shadow.png                                                          23190        363000    Качество JPEG=80
-_splash_screen_facebook.png                                             118261       2006400    Качество JPEG=80
+hint-shadow.png                                                          23189        363000    Качество JPEG=80
+_splash_screen_facebook.png                                             118259       2006400    Качество JPEG=80
 _Pb.png                                                                   4019         40824    Качество JPEG=80
 _BG.png                                                                  10340        143840    Качество JPEG=80
-_Op.png                                                                   3845         15128    Качество JPEG=80
+_Op.png                                                                   3844         15128    Качество JPEG=80
 _GI.png                                                                   3260         21804    Качество JPEG=80
 _rock.png                                                                 2114          8680    Качество JPEG=80
 page_off.png                                                               403           676    Без потерь
@@ -152,11 +153,11 @@ page_on.png                                                                698  
 lobby_ui_main_buttons_base.png                                           20172        256208    Качество JPEG=80
 lobby_ui_button_friends.png                                               2792         20448    Качество JPEG=80
 lobby_ui_button_friends_pressed.png                                       2646         20448    Качество JPEG=80
-lobby_ui_button_ratings.png                                               2662         20448    Качество JPEG=80
+lobby_ui_button_ratings.png                                               2661         20448    Качество JPEG=80
 lobby_ui_button_ratings_pressed.png                                       2513         20448    Качество JPEG=80
 lobby_ui_button_achievements.png                                          2786         20736    Качество JPEG=80
 lobby_ui_button_achievements_pressed.png                                  2654         20736    Качество JPEG=80
-lobby_ui_button_g.png                                                     2510         20448    Качество JPEG=80
+lobby_ui_button_g.png                                                     2509         20448    Качество JPEG=80
 lobby_ui_button_g_pressed.png                                             2387         20448    Качество JPEG=80
 tap4_n.png                                                                2354         26700    Качество JPEG=80
 tap4_p.png                                                                2398         26700    Качество JPEG=80
@@ -166,13 +167,15 @@ tap3_n.png                                                                2378  
 tap3_p.png                                                                2395         26700    Качество JPEG=80
 tap1_n.png                                                                2412         26700    Качество JPEG=80
 tap1_p.png                                                                2418         26700    Качество JPEG=80
-map_island_title_base.png                                                25500        417120    Качество JPEG=80
-map_island_bg.png                                                        87734       2423808    Качество JPEG=80
+map_island_title_base.png                                                25499        417120    Качество JPEG=80
+map_island_bg.png                                                        87732       2423808    Качество JPEG=80
+lobby_ui_bn_i_norm.png                                                    1901          8832    Качество JPEG=80
+lobby_ui_bn_i_press.png                                                   1872          8832    Качество JPEG=80
 map_arrow_norm.png                                                        1603          5076    Без потерь
 map_arrow_press.png                                                        925          5076    Без потерь
 lobby_ui_button_play.png                                                  7271         97904    Качество JPEG=80
 lobby_ui_button_play_pressed.png                                          7197         97904    Качество JPEG=80
-pirate_island.png                                                       101399       1155648    Качество JPEG=80
+pirate_island.png                                                       101397       1155648    Качество JPEG=80
 sharks0000.png                                                            1239          9072    Без потерь
 sharks0001.png                                                            1244          9072    Без потерь
 sharks0002.png                                                            1284          9072    Без потерь
@@ -180,13 +183,13 @@ sharks0003.png                                                            1266  
 sharks0004.png                                                            1263          9072    Без потерь
 sharks0005.png                                                            1285          9072    Без потерь
 sharks0006.png                                                            1283          9072    Без потерь
-sharks0007.png                                                            1319          9072    Без потерь
+sharks0007.png                                                            1318          9072    Без потерь
 sharks0008.png                                                            1311          9072    Без потерь
-sharks0009.png                                                            1287          9072    Без потерь
+sharks0009.png                                                            1286          9072    Без потерь
 sharks0010.png                                                            1280          9072    Без потерь
 sharks0011.png                                                            1284          9072    Без потерь
 sharks0012.png                                                            1288          9072    Без потерь
-sharks0013.png                                                            1279          9072    Без потерь
+sharks0013.png                                                            1278          9072    Без потерь
 sharks0014.png                                                            1248          9072    Без потерь
 sharks0015.png                                                            1277          9072    Без потерь
 sharks0016.png                                                            1202          9072    Без потерь
@@ -215,14 +218,14 @@ sharks0038.png                                                            1231  
 sharks0039.png                                                            1254          9072    Без потерь
 sharks0040.png                                                            1286          9072    Без потерь
 sharks0041.png                                                            1281          9072    Без потерь
-sharks0042.png                                                            1327          9072    Без потерь
+sharks0042.png                                                            1326          9072    Без потерь
 sharks0043.png                                                            1308          9072    Без потерь
 sharks0044.png                                                            1279          9072    Без потерь
 sharks0045.png                                                            1238          9072    Без потерь
 sharks0046.png                                                            1192          9072    Без потерь
 sharks0047.png                                                            1201          9072    Без потерь
-sharks0048.png                                                            1239          9072    Без потерь
-sharks0049.png                                                            1263          9072    Без потерь
+sharks0048.png                                                            1238          9072    Без потерь
+sharks0049.png                                                            1262          9072    Без потерь
 sharks0050.png                                                            1244          9072    Без потерь
 torch_fire0000.png                                                         268           792    Без потерь
 torch_fire0001.png                                                         291           792    Без потерь
@@ -313,10 +316,10 @@ big_fire0034.png                                                          1231  
 big_fire0035.png                                                          1142          2720    Без потерь
 big_fire0036.png                                                          1166          2720    Без потерь
 big_fire0037.png                                                          1204          2720    Без потерь
-big_fire0038.png                                                          1159          2720    Без потерь
-big_fire0039.png                                                          1231          2720    Без потерь
-big_fire0040.png                                                          1247          2720    Без потерь
-big_fire0041.png                                                          1207          2720    Без потерь
+big_fire0038.png                                                          1158          2720    Без потерь
+big_fire0039.png                                                          1230          2720    Без потерь
+big_fire0040.png                                                          1246          2720    Без потерь
+big_fire0041.png                                                          1206          2720    Без потерь
 big_fire0042.png                                                          1297          2720    Без потерь
 big_fire0043.png                                                          1259          2720    Без потерь
 big_fire0044.png                                                          1237          2720    Без потерь
@@ -384,7 +387,7 @@ big_palm0003.png                                                          4827  
 big_palm0004.png                                                          4806         24948    Качество JPEG=80
 big_palm0005.png                                                          4789         24948    Качество JPEG=80
 big_palm0006.png                                                          4803         24948    Качество JPEG=80
-big_palm0007.png                                                          4804         24948    Качество JPEG=80
+big_palm0007.png                                                          4803         24948    Качество JPEG=80
 big_palm0008.png                                                          4808         24948    Качество JPEG=80
 big_palm0009.png                                                          4782         24948    Качество JPEG=80
 big_palm0010.png                                                          4780         24948    Качество JPEG=80
@@ -399,22 +402,22 @@ big_palm0018.png                                                          4789  
 big_palm0019.png                                                          4796         24948    Качество JPEG=80
 big_palm0020.png                                                          4778         24948    Качество JPEG=80
 big_palm0021.png                                                          4790         24948    Качество JPEG=80
-big_palm0022.png                                                          4788         24948    Качество JPEG=80
+big_palm0022.png                                                          4787         24948    Качество JPEG=80
 big_palm0023.png                                                          4796         24948    Качество JPEG=80
 big_palm0024.png                                                          4780         24948    Качество JPEG=80
 big_palm0025.png                                                          4778         24948    Качество JPEG=80
 big_palm0026.png                                                          4795         24948    Качество JPEG=80
-big_palm0027.png                                                          4796         24948    Качество JPEG=80
+big_palm0027.png                                                          4795         24948    Качество JPEG=80
 big_palm0028.png                                                          4814         24948    Качество JPEG=80
 big_palm0029.png                                                          4786         24948    Качество JPEG=80
-big_palm0030.png                                                          4788         24948    Качество JPEG=80
+big_palm0030.png                                                          4787         24948    Качество JPEG=80
 big_palm0031.png                                                          4795         24948    Качество JPEG=80
 big_palm0032.png                                                          4801         24948    Качество JPEG=80
 big_palm0033.png                                                          4790         24948    Качество JPEG=80
 big_palm0034.png                                                          4786         24948    Качество JPEG=80
 big_palm0035.png                                                          4784         24948    Качество JPEG=80
 big_palm0036.png                                                          4801         24948    Качество JPEG=80
-big_palm0037.png                                                          4820         24948    Качество JPEG=80
+big_palm0037.png                                                          4819         24948    Качество JPEG=80
 big_palm0038.png                                                          4806         24948    Качество JPEG=80
 big_palm0039.png                                                          4792         24948    Качество JPEG=80
 big_palm0040.png                                                          4778         24948    Качество JPEG=80
@@ -425,8 +428,8 @@ big_palm0044.png                                                          4819  
 big_palm0045.png                                                          4825         24948    Качество JPEG=80
 big_palm0046.png                                                          4810         24948    Качество JPEG=80
 big_palm0047.png                                                          4809         24948    Качество JPEG=80
-big_palm0048.png                                                          4828         24948    Качество JPEG=80
-big_palm0049.png                                                          4820         24948    Качество JPEG=80
+big_palm0048.png                                                          4827         24948    Качество JPEG=80
+big_palm0049.png                                                          4819         24948    Качество JPEG=80
 big_palm0050.png                                                          4834         24948    Качество JPEG=80
 evil_plant0000.png                                                        1702          8584    Качество JPEG=80
 evil_plant0001.png                                                        1704          8584    Качество JPEG=80
@@ -560,7 +563,7 @@ hotsprings_fog0026.png                                                    3021  
 hotsprings_fog0027.png                                                    3145         33024    Без потерь
 hotsprings_fog0028.png                                                    3280         33024    Без потерь
 hotsprings_fog0029.png                                                    3413         33024    Без потерь
-hotsprings_fog0030.png                                                    3541         33024    Без потерь
+hotsprings_fog0030.png                                                    3540         33024    Без потерь
 hotsprings_fog0031.png                                                    3654         33024    Без потерь
 hotsprings_fog0032.png                                                    3752         33024    Без потерь
 hotsprings_fog0033.png                                                    3802         33024    Без потерь
@@ -573,7 +576,7 @@ hotsprings_fog0039.png                                                    4063  
 hotsprings_fog0040.png                                                    3910         33024    Без потерь
 hotsprings_fog0041.png                                                    3812         33024    Без потерь
 hotsprings_fog0042.png                                                    3715         33024    Без потерь
-hotsprings_fog0043.png                                                    3525         33024    Без потерь
+hotsprings_fog0043.png                                                    3524         33024    Без потерь
 hotsprings_fog0044.png                                                    3421         33024    Без потерь
 hotsprings_fog0045.png                                                    3205         33024    Без потерь
 hotsprings_fog0046.png                                                    2961         33024    Без потерь
@@ -587,28 +590,28 @@ left_chest0002.png                                                        1175  
 left_chest0003.png                                                        1198          4080    Без потерь
 left_chest0004.png                                                        1176          4080    Без потерь
 left_chest0005.png                                                        1190          4080    Без потерь
-left_chest0006.png                                                        1191          4080    Без потерь
-left_chest0007.png                                                        1191          4080    Без потерь
+left_chest0006.png                                                        1190          4080    Без потерь
+left_chest0007.png                                                        1190          4080    Без потерь
 left_chest0008.png                                                        1183          4080    Без потерь
 left_chest0009.png                                                        1212          4080    Без потерь
 left_chest0010.png                                                        1192          4080    Без потерь
-left_chest0011.png                                                        1183          4080    Без потерь
-left_chest0012.png                                                        1175          4080    Без потерь
+left_chest0011.png                                                        1182          4080    Без потерь
+left_chest0012.png                                                        1174          4080    Без потерь
 left_chest0013.png                                                        1182          4080    Без потерь
 left_chest0014.png                                                        1194          4080    Без потерь
-left_chest0015.png                                                        1199          4080    Без потерь
+left_chest0015.png                                                        1198          4080    Без потерь
 left_chest0016.png                                                        1224          4080    Без потерь
 left_chest0017.png                                                        1236          4080    Без потерь
 left_chest0018.png                                                        1215          4080    Без потерь
 left_chest0019.png                                                        1229          4080    Без потерь
-left_chest0020.png                                                        1239          4080    Без потерь
-left_chest0021.png                                                        1207          4080    Без потерь
+left_chest0020.png                                                        1238          4080    Без потерь
+left_chest0021.png                                                        1206          4080    Без потерь
 left_chest0022.png                                                        1219          4080    Без потерь
 left_chest0023.png                                                        1198          4080    Без потерь
 left_chest0024.png                                                        1234          4080    Без потерь
-left_chest0025.png                                                        1239          4080    Без потерь
+left_chest0025.png                                                        1238          4080    Без потерь
 left_chest0026.png                                                        1227          4080    Без потерь
-left_chest0027.png                                                        1223          4080    Без потерь
+left_chest0027.png                                                        1222          4080    Без потерь
 left_chest0028.png                                                        1219          4080    Без потерь
 left_chest0029.png                                                        1202          4080    Без потерь
 left_chest0030.png                                                        1180          4080    Без потерь
@@ -623,9 +626,9 @@ left_chest0038.png                                                        1174  
 left_chest0039.png                                                        1181          4080    Без потерь
 left_chest0040.png                                                        1177          4080    Без потерь
 left_chest0041.png                                                        1171          4080    Без потерь
-left_chest0042.png                                                        1183          4080    Без потерь
+left_chest0042.png                                                        1182          4080    Без потерь
 left_chest0043.png                                                        1202          4080    Без потерь
-left_chest0044.png                                                        1199          4080    Без потерь
+left_chest0044.png                                                        1198          4080    Без потерь
 left_chest0045.png                                                        1191          4080    Без потерь
 left_chest0046.png                                                        1178          4080    Без потерь
 left_chest0047.png                                                        1204          4080    Без потерь
@@ -652,7 +655,7 @@ left_water_hilights0016.png                                               1011  
 left_water_hilights0017.png                                               1031         15808    Без потерь
 left_water_hilights0018.png                                               1006         15808    Без потерь
 left_water_hilights0019.png                                               1036         15808    Без потерь
-left_water_hilights0020.png                                               1111         15808    Без потерь
+left_water_hilights0020.png                                               1110         15808    Без потерь
 left_water_hilights0021.png                                               1120         15808    Без потерь
 left_water_hilights0022.png                                               1115         15808    Без потерь
 left_water_hilights0023.png                                               1141         15808    Без потерь
@@ -663,10 +666,10 @@ left_water_hilights0027.png                                               1162  
 left_water_hilights0028.png                                               1122         15808    Без потерь
 left_water_hilights0029.png                                               1132         15808    Без потерь
 left_water_hilights0030.png                                               1204         15808    Без потерь
-left_water_hilights0031.png                                               1199         15808    Без потерь
-left_water_hilights0032.png                                               1271         15808    Без потерь
+left_water_hilights0031.png                                               1198         15808    Без потерь
+left_water_hilights0032.png                                               1270         15808    Без потерь
 left_water_hilights0033.png                                               1244         15808    Без потерь
-left_water_hilights0034.png                                               1159         15808    Без потерь
+left_water_hilights0034.png                                               1158         15808    Без потерь
 left_water_hilights0035.png                                               1156         15808    Без потерь
 left_water_hilights0036.png                                               1150         15808    Без потерь
 left_water_hilights0037.png                                               1215         15808    Без потерь
@@ -677,7 +680,7 @@ left_water_hilights0041.png                                               1176  
 left_water_hilights0042.png                                               1125         15808    Без потерь
 left_water_hilights0043.png                                               1097         15808    Без потерь
 left_water_hilights0044.png                                               1095         15808    Без потерь
-left_water_hilights0045.png                                               1095         15808    Без потерь
+left_water_hilights0045.png                                               1094         15808    Без потерь
 left_water_hilights0046.png                                               1151         15808    Без потерь
 left_water_hilights0047.png                                               1141         15808    Без потерь
 left_water_hilights0048.png                                               1087         15808    Без потерь
@@ -692,14 +695,14 @@ left_pink_cry0005.png                                                      973  
 left_pink_cry0006.png                                                     1167          6400    Без потерь
 left_pink_cry0007.png                                                     1410          6400    Без потерь
 left_pink_cry0008.png                                                     1328          6400    Без потерь
-left_pink_cry0009.png                                                     1247          6400    Без потерь
+left_pink_cry0009.png                                                     1246          6400    Без потерь
 left_pink_cry0010.png                                                     1074          6400    Без потерь
 left_pink_cry0011.png                                                      908          6400    Без потерь
 left_pink_cry0012.png                                                      713          6400    Без потерь
 left_pink_cry0013.png                                                      786          6400    Без потерь
 left_pink_cry0014.png                                                      807          6400    Без потерь
 left_pink_cry0015.png                                                      943          6400    Без потерь
-left_pink_cry0016.png                                                     1095          6400    Без потерь
+left_pink_cry0016.png                                                     1094          6400    Без потерь
 left_pink_cry0017.png                                                     1191          6400    Без потерь
 left_pink_cry0018.png                                                     1275          6400    Без потерь
 left_pink_cry0019.png                                                     1251          6400    Без потерь
@@ -1166,7 +1169,7 @@ surf0020.png                                                              1127  
 surf0021.png                                                              1135         16576    Без потерь
 surf0022.png                                                              1135         16576    Без потерь
 surf0023.png                                                              1135         16576    Без потерь
-surf0024.png                                                              1135         16576    Без потерь
+surf0024.png                                                              1134         16576    Без потерь
 surf0025.png                                                               993         16576    Без потерь
 surf0026.png                                                              1057         16576    Без потерь
 surf0027.png                                                              1060         16576    Без потерь
@@ -1177,7 +1180,7 @@ surf0031.png                                                              1045  
 surf0032.png                                                              1080         16576    Без потерь
 surf0033.png                                                              1082         16576    Без потерь
 surf0034.png                                                              1127         16576    Без потерь
-surf0035.png                                                              1119         16576    Без потерь
+surf0035.png                                                              1118         16576    Без потерь
 surf0036.png                                                              1131         16576    Без потерь
 surf0037.png                                                              1170         16576    Без потерь
 surf0038.png                                                              1197         16576    Без потерь
@@ -1196,8 +1199,8 @@ surf0050.png                                                               735  
 tap_no_active.png                                                         4011         26700    Качество JPEG=80
 tap_no_active_press.png                                                   4034         26700    Качество JPEG=80
 star.png                                                                   529           900    Без потерь
-pirate_island_inactive.png                                              109998       1155648    Качество JPEG=80
-hawaii_island.png                                                       149452       1412984    Качество JPEG=80
+pirate_island_inactive.png                                              109996       1155648    Качество JPEG=80
+hawaii_island.png                                                       149449       1412984    Качество JPEG=80
 waterfall0000.png                                                         1843         19044    Качество JPEG=80
 waterfall0001.png                                                         1853         19044    Качество JPEG=80
 waterfall0002.png                                                         1847         19044    Качество JPEG=80
@@ -1259,8 +1262,8 @@ monets0006.png                                                            1113  
 monets0007.png                                                            1113          6300    Качество JPEG=80
 monets0008.png                                                            1115          6300    Качество JPEG=80
 monets0009.png                                                            1119          6300    Качество JPEG=80
-monets0010.png                                                            1119          6300    Качество JPEG=80
-monets0011.png                                                            1119          6300    Качество JPEG=80
+monets0010.png                                                            1118          6300    Качество JPEG=80
+monets0011.png                                                            1118          6300    Качество JPEG=80
 monets0012.png                                                            1118          6300    Качество JPEG=80
 monets0013.png                                                            1122          6300    Качество JPEG=80
 monets0014.png                                                            1118          6300    Качество JPEG=80
@@ -1269,7 +1272,7 @@ monets0016.png                                                            1123  
 monets0017.png                                                            1137          6300    Качество JPEG=80
 monets0018.png                                                            1141          6300    Качество JPEG=80
 monets0019.png                                                            1152          6300    Качество JPEG=80
-monets0020.png                                                            1183          6300    Качество JPEG=80
+monets0020.png                                                            1182          6300    Качество JPEG=80
 monets0021.png                                                            1221          6300    Качество JPEG=80
 monets0022.png                                                            1261          6300    Качество JPEG=80
 monets0023.png                                                            1195          6300    Качество JPEG=80
@@ -1353,7 +1356,7 @@ chestl0049.png                                                            1065  
 chestl0050.png                                                            1066          3696    Качество JPEG=80
 dolar0000.png                                                             1310          6784    Без потерь
 dolar0001.png                                                             1319          6784    Без потерь
-dolar0002.png                                                             1319          6784    Без потерь
+dolar0002.png                                                             1318          6784    Без потерь
 dolar0003.png                                                             1329          6784    Без потерь
 dolar0004.png                                                             1369          6784    Без потерь
 dolar0005.png                                                             1411          6784    Без потерь
@@ -1365,9 +1368,9 @@ dolar0010.png                                                             1804  
 dolar0011.png                                                             1614          6784    Без потерь
 dolar0012.png                                                             1486          6784    Без потерь
 dolar0013.png                                                             1365          6784    Без потерь
-dolar0014.png                                                             1319          6784    Без потерь
+dolar0014.png                                                             1318          6784    Без потерь
 dolar0015.png                                                             1304          6784    Без потерь
-dolar0016.png                                                             1311          6784    Без потерь
+dolar0016.png                                                             1310          6784    Без потерь
 dolar0017.png                                                             1309          6784    Без потерь
 dolar0018.png                                                             1312          6784    Без потерь
 dolar0019.png                                                             1304          6784    Без потерь
@@ -1375,22 +1378,22 @@ dolar0020.png                                                             1292  
 dolar0021.png                                                             1289          6784    Без потерь
 dolar0022.png                                                             1291          6784    Без потерь
 dolar0023.png                                                             1290          6784    Без потерь
-dolar0024.png                                                             1295          6784    Без потерь
-dolar0025.png                                                             1295          6784    Без потерь
+dolar0024.png                                                             1294          6784    Без потерь
+dolar0025.png                                                             1294          6784    Без потерь
 dolar0026.png                                                             1295          6784    Без потерь
 dolar0027.png                                                             1297          6784    Без потерь
-dolar0028.png                                                             1295          6784    Без потерь
+dolar0028.png                                                             1294          6784    Без потерь
 dolar0029.png                                                             1292          6784    Без потерь
 dolar0030.png                                                             1293          6784    Без потерь
 dolar0031.png                                                             1286          6784    Без потерь
-dolar0032.png                                                             1287          6784    Без потерь
+dolar0032.png                                                             1286          6784    Без потерь
 dolar0033.png                                                             1285          6784    Без потерь
 dolar0034.png                                                             1286          6784    Без потерь
 dolar0035.png                                                             1286          6784    Без потерь
-dolar0036.png                                                             1287          6784    Без потерь
+dolar0036.png                                                             1286          6784    Без потерь
 dolar0037.png                                                             1286          6784    Без потерь
-dolar0038.png                                                             1287          6784    Без потерь
-dolar0039.png                                                             1287          6784    Без потерь
+dolar0038.png                                                             1286          6784    Без потерь
+dolar0039.png                                                             1286          6784    Без потерь
 dolar0040.png                                                             1294          6784    Без потерь
 dolar0041.png                                                             1294          6784    Без потерь
 dolar0042.png                                                             1294          6784    Без потерь
@@ -1456,7 +1459,7 @@ dolora0050.png                                                            1685  
 l_waterfall0000.png                                                       1158          5016    Качество JPEG=80
 l_waterfall0001.png                                                       1154          5016    Качество JPEG=80
 l_waterfall0002.png                                                       1152          5016    Качество JPEG=80
-l_waterfall0003.png                                                       1151          5016    Качество JPEG=80
+l_waterfall0003.png                                                       1150          5016    Качество JPEG=80
 l_waterfall0004.png                                                       1151          5016    Качество JPEG=80
 l_waterfall0005.png                                                       1150          5016    Качество JPEG=80
 l_waterfall0006.png                                                       1156          5016    Качество JPEG=80
@@ -1466,9 +1469,9 @@ l_waterfall0009.png                                                       1140  
 l_waterfall0010.png                                                       1139          5016    Качество JPEG=80
 l_waterfall0011.png                                                       1150          5016    Качество JPEG=80
 l_waterfall0012.png                                                       1146          5016    Качество JPEG=80
-l_waterfall0013.png                                                       1143          5016    Качество JPEG=80
+l_waterfall0013.png                                                       1142          5016    Качество JPEG=80
 l_waterfall0014.png                                                       1144          5016    Качество JPEG=80
-l_waterfall0015.png                                                       1143          5016    Качество JPEG=80
+l_waterfall0015.png                                                       1142          5016    Качество JPEG=80
 l_waterfall0016.png                                                       1142          5016    Качество JPEG=80
 l_waterfall0017.png                                                       1138          5016    Качество JPEG=80
 l_waterfall0018.png                                                       1131          5016    Качество JPEG=80
@@ -1487,7 +1490,7 @@ l_waterfall0030.png                                                       1157  
 l_waterfall0031.png                                                       1159          5016    Качество JPEG=80
 l_waterfall0032.png                                                       1163          5016    Качество JPEG=80
 l_waterfall0033.png                                                       1163          5016    Качество JPEG=80
-l_waterfall0034.png                                                       1151          5016    Качество JPEG=80
+l_waterfall0034.png                                                       1150          5016    Качество JPEG=80
 l_waterfall0035.png                                                       1145          5016    Качество JPEG=80
 l_waterfall0036.png                                                       1158          5016    Качество JPEG=80
 l_waterfall0037.png                                                       1167          5016    Качество JPEG=80
@@ -1880,7 +1883,7 @@ surf0018.png                                                              4615  
 surf0019.png                                                              4479         63744    Качество JPEG=80
 surf0020.png                                                              4389         63744    Качество JPEG=80
 surf0021.png                                                              4254         63744    Качество JPEG=80
-surf0022.png                                                              4069         63744    Качество JPEG=80
+surf0022.png                                                              4068         63744    Качество JPEG=80
 surf0023.png                                                              4041         63744    Качество JPEG=80
 surf0024.png                                                              4076         63744    Качество JPEG=80
 surf0025.png                                                              4133         63744    Качество JPEG=80
@@ -1962,7 +1965,7 @@ ffire0049.png                                                              650  
 ffire0050.png                                                              703          4320    Без потерь
 volcano0000.png                                                           5740         88228    Качество JPEG=80
 volcano0001.png                                                           5730         88228    Качество JPEG=80
-volcano0002.png                                                           5803         88228    Качество JPEG=80
+volcano0002.png                                                           5802         88228    Качество JPEG=80
 volcano0003.png                                                           5861         88228    Качество JPEG=80
 volcano0004.png                                                           5914         88228    Качество JPEG=80
 volcano0005.png                                                           5998         88228    Качество JPEG=80
@@ -1977,7 +1980,7 @@ volcano0013.png                                                           6448  
 volcano0014.png                                                           6432         88228    Качество JPEG=80
 volcano0015.png                                                           6439         88228    Качество JPEG=80
 volcano0016.png                                                           6416         88228    Качество JPEG=80
-volcano0017.png                                                           6387         88228    Качество JPEG=80
+volcano0017.png                                                           6386         88228    Качество JPEG=80
 volcano0018.png                                                           6296         88228    Качество JPEG=80
 volcano0019.png                                                           6190         88228    Качество JPEG=80
 volcano0020.png                                                           6101         88228    Качество JPEG=80
@@ -1986,7 +1989,7 @@ volcano0022.png                                                           5726  
 volcano0023.png                                                           5491         88228    Качество JPEG=80
 volcano0024.png                                                           5430         88228    Качество JPEG=80
 volcano0025.png                                                           5475         88228    Качество JPEG=80
-volcano0026.png                                                           5547         88228    Качество JPEG=80
+volcano0026.png                                                           5546         88228    Качество JPEG=80
 volcano0027.png                                                           5661         88228    Качество JPEG=80
 volcano0028.png                                                           5722         88228    Качество JPEG=80
 volcano0029.png                                                           5815         88228    Качество JPEG=80
@@ -1996,9 +1999,9 @@ volcano0032.png                                                           5938  
 volcano0033.png                                                           5966         88228    Качество JPEG=80
 volcano0034.png                                                           5979         88228    Качество JPEG=80
 volcano0035.png                                                           6044         88228    Качество JPEG=80
-volcano0036.png                                                           6107         88228    Качество JPEG=80
+volcano0036.png                                                           6106         88228    Качество JPEG=80
 volcano0037.png                                                           6138         88228    Качество JPEG=80
-volcano0038.png                                                           6131         88228    Качество JPEG=80
+volcano0038.png                                                           6130         88228    Качество JPEG=80
 volcano0039.png                                                           6197         88228    Качество JPEG=80
 volcano0040.png                                                           6165         88228    Качество JPEG=80
 volcano0041.png                                                           6115         88228    Качество JPEG=80
@@ -2009,9 +2012,9 @@ volcano0045.png                                                           5873  
 volcano0046.png                                                           5768         88228    Качество JPEG=80
 volcano0047.png                                                           5687         88228    Качество JPEG=80
 volcano0048.png                                                           5609         88228    Качество JPEG=80
-volcano0049.png                                                           5611         88228    Качество JPEG=80
+volcano0049.png                                                           5610         88228    Качество JPEG=80
 volcano0050.png                                                           5696         88228    Качество JPEG=80
-wtr_src0000.png                                                           1295          8096    Качество JPEG=80
+wtr_src0000.png                                                           1294          8096    Качество JPEG=80
 wtr_src0001.png                                                           1295          8096    Качество JPEG=80
 wtr_src0002.png                                                           1298          8096    Качество JPEG=80
 wtr_src0003.png                                                           1303          8096    Качество JPEG=80
@@ -2021,13 +2024,13 @@ wtr_src0006.png                                                           1306  
 wtr_src0007.png                                                           1304          8096    Качество JPEG=80
 wtr_src0008.png                                                           1299          8096    Качество JPEG=80
 wtr_src0009.png                                                           1306          8096    Качество JPEG=80
-wtr_src0010.png                                                           1311          8096    Качество JPEG=80
+wtr_src0010.png                                                           1310          8096    Качество JPEG=80
 wtr_src0011.png                                                           1304          8096    Качество JPEG=80
 wtr_src0012.png                                                           1302          8096    Качество JPEG=80
 wtr_src0013.png                                                           1315          8096    Качество JPEG=80
 wtr_src0014.png                                                           1304          8096    Качество JPEG=80
 wtr_src0015.png                                                           1311          8096    Качество JPEG=80
-wtr_src0016.png                                                           1311          8096    Качество JPEG=80
+wtr_src0016.png                                                           1310          8096    Качество JPEG=80
 wtr_src0017.png                                                           1301          8096    Качество JPEG=80
 wtr_src0018.png                                                           1294          8096    Качество JPEG=80
 wtr_src0019.png                                                           1280          8096    Качество JPEG=80
@@ -2039,24 +2042,24 @@ wtr_src0024.png                                                           1284  
 wtr_src0025.png                                                           1289          8096    Качество JPEG=80
 wtr_src0026.png                                                           1289          8096    Качество JPEG=80
 wtr_src0027.png                                                           1300          8096    Качество JPEG=80
-wtr_src0028.png                                                           1303          8096    Качество JPEG=80
+wtr_src0028.png                                                           1302          8096    Качество JPEG=80
 wtr_src0029.png                                                           1293          8096    Качество JPEG=80
 wtr_src0030.png                                                           1303          8096    Качество JPEG=80
 wtr_src0031.png                                                           1318          8096    Качество JPEG=80
 wtr_src0032.png                                                           1314          8096    Качество JPEG=80
 wtr_src0033.png                                                           1297          8096    Качество JPEG=80
-wtr_src0034.png                                                           1303          8096    Качество JPEG=80
+wtr_src0034.png                                                           1302          8096    Качество JPEG=80
 wtr_src0035.png                                                           1314          8096    Качество JPEG=80
 wtr_src0036.png                                                           1301          8096    Качество JPEG=80
-wtr_src0037.png                                                           1303          8096    Качество JPEG=80
+wtr_src0037.png                                                           1302          8096    Качество JPEG=80
 wtr_src0038.png                                                           1310          8096    Качество JPEG=80
 wtr_src0039.png                                                           1310          8096    Качество JPEG=80
 wtr_src0040.png                                                           1305          8096    Качество JPEG=80
 wtr_src0041.png                                                           1304          8096    Качество JPEG=80
-wtr_src0042.png                                                           1303          8096    Качество JPEG=80
+wtr_src0042.png                                                           1302          8096    Качество JPEG=80
 wtr_src0043.png                                                           1292          8096    Качество JPEG=80
 wtr_src0044.png                                                           1290          8096    Качество JPEG=80
-wtr_src0045.png                                                           1295          8096    Качество JPEG=80
+wtr_src0045.png                                                           1294          8096    Качество JPEG=80
 wtr_src0046.png                                                           1296          8096    Качество JPEG=80
 wtr_src0047.png                                                           1306          8096    Качество JPEG=80
 wtr_src0048.png                                                           1302          8096    Качество JPEG=80
@@ -2113,7 +2116,7 @@ whirlpool0047.png                                                         1412  
 whirlpool0048.png                                                         1438          4680    Без потерь
 whirlpool0049.png                                                         1435          4680    Без потерь
 whirlpool0050.png                                                         1451          4680    Без потерь
-archipelago_island.png                                                  106003       1034400    Качество JPEG=80
+archipelago_island.png                                                  106001       1034400    Качество JPEG=80
 chest_left0000.png                                                          30          1632    Без потерь
 chest_left0001.png                                                          30          1632    Без потерь
 chest_left0002.png                                                          44          1632    Без потерь
@@ -2526,7 +2529,7 @@ left_waves0000.png                                                        2772  
 left_waves0001.png                                                        2733         17680    Без потерь
 left_waves0002.png                                                        2671         17680    Без потерь
 left_waves0003.png                                                        2595         17680    Без потерь
-left_waves0004.png                                                        2542         17680    Без потерь
+left_waves0004.png                                                        2541         17680    Без потерь
 left_waves0005.png                                                        2463         17680    Без потерь
 left_waves0006.png                                                        2465         17680    Без потерь
 left_waves0007.png                                                        2434         17680    Без потерь
@@ -2590,7 +2593,7 @@ mini_palm0013.png                                                         1274  
 mini_palm0014.png                                                         1267          4032    Качество JPEG=80
 mini_palm0015.png                                                         1277          4032    Качество JPEG=80
 mini_palm0016.png                                                         2015          4032    Без потерь
-mini_palm0017.png                                                         1271          4032    Качество JPEG=80
+mini_palm0017.png                                                         1270          4032    Качество JPEG=80
 mini_palm0018.png                                                         1263          4032    Качество JPEG=80
 mini_palm0019.png                                                         1258          4032    Качество JPEG=80
 mini_palm0020.png                                                         2005          4032    Без потерь
@@ -2608,24 +2611,24 @@ mini_palm0031.png                                                         1261  
 mini_palm0032.png                                                         1269          4032    Качество JPEG=80
 mini_palm0033.png                                                         1271          4032    Качество JPEG=80
 mini_palm0034.png                                                         1274          4032    Качество JPEG=80
-mini_palm0035.png                                                         1279          4032    Качество JPEG=80
+mini_palm0035.png                                                         1278          4032    Качество JPEG=80
 mini_palm0036.png                                                         1280          4032    Качество JPEG=80
 mini_palm0037.png                                                         1280          4032    Качество JPEG=80
 mini_palm0038.png                                                         1287          4032    Качество JPEG=80
 mini_palm0039.png                                                         1289          4032    Качество JPEG=80
-mini_palm0040.png                                                         1295          4032    Качество JPEG=80
+mini_palm0040.png                                                         1294          4032    Качество JPEG=80
 mini_palm0041.png                                                         1292          4032    Качество JPEG=80
 mini_palm0042.png                                                         1297          4032    Качество JPEG=80
 mini_palm0043.png                                                         2032          4032    Без потерь
-mini_palm0044.png                                                         1295          4032    Качество JPEG=80
+mini_palm0044.png                                                         1294          4032    Качество JPEG=80
 mini_palm0045.png                                                         2040          4032    Без потерь
 mini_palm0046.png                                                         1300          4032    Качество JPEG=80
 mini_palm0047.png                                                         1302          4032    Качество JPEG=80
 mini_palm0048.png                                                         1300          4032    Качество JPEG=80
 mini_palm0049.png                                                         1307          4032    Качество JPEG=80
 mini_palm0050.png                                                         1306          4032    Качество JPEG=80
-archipelago_island_inactive.png                                         103876       1034400    Качество JPEG=80
-amazone_island.png                                                      101920       1036476    Качество JPEG=80
+archipelago_island_inactive.png                                         103874       1034400    Качество JPEG=80
+amazone_island.png                                                      101918       1036476    Качество JPEG=80
 torch_fire0000.png                                                         452          1248    Без потерь
 torch_fire0001.png                                                         484          1248    Без потерь
 torch_fire0002.png                                                         483          1248    Без потерь
@@ -2677,7 +2680,7 @@ torch_fire0047.png                                                         407  
 torch_fire0048.png                                                         420          1248    Без потерь
 torch_fire0049.png                                                         429          1248    Без потерь
 torch_fire0050.png                                                         422          1248    Без потерь
-amazone_island_inactive.png                                              90709       1036476    Качество JPEG=80
+amazone_island_inactive.png                                              90708       1036476    Качество JPEG=80
 isc_loc_bn_magazine_norm.png                                              4548         44544    Качество JPEG=80
 isc_loc_bn_magazine_press.png                                             4365         44544    Качество JPEG=80
 isc_loc_spec_bg.png                                                       4589         66576    Качество JPEG=80
