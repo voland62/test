@@ -119,14 +119,14 @@
 
 
 
-	<!--<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>-->
+	<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>
 
 
 	<!--<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>-->
 
-	<s:SkinnableContainer verticalCenter="0" horizontalCenter="0" minHeight="2"
+	<!--<s:SkinnableContainer verticalCenter="0" horizontalCenter="0" minHeight="2"
 		width="600" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.RounPanel5Skin">
-	</s:SkinnableContainer>
+	</s:SkinnableContainer>-->
 
 
 

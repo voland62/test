@@ -1,7 +1,5 @@
 package com.onlyplay.slotmatch3.controller.match
 {
-	import com.onlyplay.slotmatch3.services.MatchEnergyFallingService;
-
 	import robotlegs.bender.bundles.mvcs.Command;
 
 	import com.onlyplay.slotmatch3.components.games.match.ItemModel;
@@ -35,13 +33,13 @@ package com.onlyplay.slotmatch3.controller.match
 			switch(event.bonusType)
 			{
 				case ItemModel.COIN:
-					gameModel.currentMoney += 10;
+					gameModel.currentMoney += model.matchModelProto.mbMoney;
 					model.currentCoinsAmount++;
 					// TODO: выйгрыш должен прилетель с эвентом
 					eventDispatcher.dispatchEvent(new Event("currentMoneyChanged"));
 					break;
 				case ItemModel.HOURGLASS:
-					model.startTime = model.currentTime + 10;
+					model.startTime = model.currentTime + model.matchModelProto.mbTime;
 					// model.maxTime = 30;
 					timerService.start();
 					break;

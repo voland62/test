@@ -130,7 +130,7 @@
 				<s:Label id="price" text="250 руб." x="40" y="95"
 					fontWeight="bold" fontSize="15" color="0xFFFFFF"
 					filters="{[outlineFilter]}"/>
-				<s:Label id="koeff" text="x2.25" x="135" y="50"
+				<s:Label id="koeff" text="x2.25" horizontalCenter="58" y="47"
 					fontWeight="bold" fontSize="20" color="0xFFFFFF"
 					filters="{[outlineFilter]}"/>
 			</s:Group>

@@ -29,7 +29,7 @@
 	<!--<s:Label id="label" verticalCenter="0" left="25" right="25"
 	filters="{[whiteShadow]} " fontWeight="bold" textAlign="center"/>-->
 
-	<s:Label id="label" maxDisplayedLines="1" verticalCenter="16"
+	<s:Label id="label" maxDisplayedLines="1" verticalCenter="14"
 		minHeight="23" horizontalCenter="0" fontSize="16" color="0xfee5b8"
 		filters="{[labelFilter]}" fontWeight="bold">
 	</s:Label>

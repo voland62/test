@@ -33,7 +33,7 @@
 		@namespace s "library://ns.adobe.com/flex/spark";
 		
          .sss_slot {
-               fontSize:12;
+               fontSize:15;
                fontWeight:bold;
                color:#333333;
           }     
@@ -72,7 +72,7 @@
 		</s:SkinnableContainer>
 
 		<s:Label text="У Вас ещё осталось время вы, действительно хотите закончить игру и перейти в слот?"
-			styleName="sss_slot" width="200"/>
+			styleName="sss_slot" width="220"/>
 
 	</s:VGroup>
 

@@ -329,6 +329,7 @@ package com.onlyplay.slotmatch3.view
 		private function onSpin(e : Event = null) : void
 		{
 			dispatch(e);
+			view.setPlayButtonState( false );
 			view.hideLines();
 		}
 

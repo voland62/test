@@ -783,7 +783,7 @@ package com.onlyplay.slotmatch3.components.games.match
 						// var newItem : Object = {x:i, y:-(newItemsInColomn.length + 1), type:getRandInt(type_num), id:(++idCounter).toString()};
 						var newItem : ItemModel = new ItemModel(i, -(newItemsInColomn.length + 1), getRandInt(type_num), (++idCounter).toString(), 1);
 						// --- microbonuses ----
-						if (Math.random() < 0.5)// XXX: magic number bring to conf
+						if (Math.random() < 0.1)// XXX: magic number bring to conf
 						{
 							newItem.microbonus = Util.randInt(3) + 1;
 						}
