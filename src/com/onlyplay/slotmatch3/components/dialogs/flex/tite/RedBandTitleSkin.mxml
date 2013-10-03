@@ -84,8 +84,8 @@
 
 
 
-		<s:Label id="label" maxDisplayedLines="1" top="14" minHeight="23"
-			horizontalCenter="0" fontSize="16" color="0xfee5b8"
+		<s:Label id="label" maxDisplayedLines="1" top="12" minHeight="23"
+			horizontalCenter="0" fontSize="20" color="0xfee5b8"
 			filters="{[labelFilter]}" fontWeight="bold">
 		</s:Label>
 	</s:Group>

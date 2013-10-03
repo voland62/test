@@ -8,13 +8,13 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 	public class RounPanel1Skin extends RoundPanelBaseSkin
 	{
 		[Embed(source="/Dialogs/Common/round_border_54.png", mimeType="image/png"
-		,scaleGridTop='26', scaleGridBottom='27',
-		scaleGridLeft='40', scaleGridRight='60'
+		,scaleGridTop='20', scaleGridBottom='21',
+		scaleGridLeft='29', scaleGridRight='47'
 		)]
 		private static const _BorderClass : Class;
 		[Embed(source="/Dialogs/Common/round_border_54_mask.png", mimeType="image/png"
-		,scaleGridTop='26', scaleGridBottom='27',
-		scaleGridLeft='40', scaleGridRight='60'
+		,scaleGridTop='20', scaleGridBottom='21',
+		scaleGridLeft='29', scaleGridRight='47'
 		)]
 		private static const _MaskClass : Class;
 

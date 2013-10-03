@@ -11,7 +11,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith
 	public interface IInterLevelDlg extends IEventDispatcher
 	{
 		function show(data:DynamicEvent, islands:Array) : void;
-		function hide(e:MouseEvent = null):void;
-		function saveParams(isl:int, loc:int):void;
+		//function hide(e:MouseEvent = null):void;
+		//function saveParams(isl:int, loc:int):void;
 	}
 }

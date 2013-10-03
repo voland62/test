@@ -90,8 +90,8 @@ package com.onlyplay.slotmatch3.components
 		// private static var BgClass : Class;
 		[Embed(source="/assets/facebook/facebook/backgrounds/amazonka.png", mimeType="image/png")]
 		private static var IslandBgClass : Class;
-		//[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/booster_all.png", mimeType="image/png")]
-		//private static var PaymentsFakeClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/booster_all.png")]
+		private static var PaymentsFakeClass : Class;
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/pl_schet.png", mimeType="image/png")]
 		private static var PlashkaBottomClass : Class;
 		[Embed(source="/assets/facebook/facebook/id_6/id_6/bg/up.png", mimeType="image/png")]
@@ -196,8 +196,8 @@ package com.onlyplay.slotmatch3.components
 			_infoRoomProgressButton.addEventListener(MouseEvent.CLICK, function(e:Event):void{ dispatchEvent(new Event("uc"));});
 			addChild(_infoRoomProgressButton);
 
-//			_paymentsFake = new PaymentsFakeClas();
-//			addChild(_paymentsFake);
+			_paymentsFake = new PaymentsFakeClass();
+			addChild(_paymentsFake);
 
 			_userName = createTf(100, 11);
 			_userName.text = "Лада";
@@ -530,8 +530,8 @@ package com.onlyplay.slotmatch3.components
 				_matchComponent.y = 69;
 			}
 
-			//_paymentsFake.x = _w - _paymentsFake.width;
-			//_paymentsFake.y = 65;
+			_paymentsFake.x = _w - _paymentsFake.width;
+			_paymentsFake.y = 65;
 
 			_userFace.x = 3;
 			_userFace.y = 3;
@@ -832,7 +832,7 @@ package com.onlyplay.slotmatch3.components
 			}
 			if (!_slotMashine) createSlotMashine();
 			_slotMashine.visible = true;
-			//_paymentsFake.visible = true;
+			_paymentsFake.visible = true;
 			_toMach3Button.visible = true;
 			if (_fakeProgressBg) _fakeProgressBg.visible = false;
 
@@ -857,7 +857,7 @@ package com.onlyplay.slotmatch3.components
 			if (!_matchComponent) createMatchComponent();
 			_matchComponent.animBaseForSpiral = _animBase;
 			_matchComponent.visible = true;
-			//_paymentsFake.visible = false;
+			_paymentsFake.visible = false;
 			_toMach3Button.visible = false;
 
 			if (!_fakeProgressBg)
@@ -1028,6 +1028,11 @@ package com.onlyplay.slotmatch3.components
 		{
 			var levelText : String = Util.formLevelMultiplyerString(multiplier);//(multiplier == int(multiplier)) ? multiplier.toString() : multiplier.toFixed(1);
 			_energyProgress.label = levelText + "x";
+		}
+
+		public function setPlayButtonState( isActive : Boolean) : void
+		{
+			_playButton.locked = !isActive;
 		}
 	}
 }

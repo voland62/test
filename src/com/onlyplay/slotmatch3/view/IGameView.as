@@ -70,6 +70,8 @@ package com.onlyplay.slotmatch3.view
 		function setMatchCurrentFlashEnergy(currentFlashEnergy : Number, maxFlashEnergy : Number, multiplier:Number, state:int) : void;
 
 		function initFlashEnergy(multiplier : Number) : void;
+
+		function setPlayButtonState(boolean : Boolean) : void;
 		
 	}
 }

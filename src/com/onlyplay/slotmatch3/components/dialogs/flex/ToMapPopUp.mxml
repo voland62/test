@@ -34,7 +34,7 @@
 		@namespace s "library://ns.adobe.com/flex/spark";
 		
          .sss1 {
-               fontSize:13;
+               fontSize:15;
                fontWeight:bold;
                color:#333333;
           }     
@@ -100,9 +100,9 @@
 		<s:Group bottom="-32" horizontalCenter="0">
 			<s:BitmapImage source="{ButtonsBgClass}"/>
 			<s:Button x="24" y="10" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
-				label="Забрать выигрыш" click="{dispatchEvent(new DynamicEvent('toMap'));}"
+				label="На карту" click="{dispatchEvent(new DynamicEvent('toMap'));}"
 				fontSize="16"/>
-			<s:Button fontSize="13" x="156" y="10" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+			<s:Button fontSize="16" x="156" y="10" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
 				label="Остаться"/>
 				
 			<!--<s:Button x="337" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"

@@ -20,18 +20,24 @@
 
 	<fx:Script>
 		<![CDATA[
+			import spark.core.MaskType;
+
 			[Embed(source="/Dialogs/Common/round_border_38.png", mimeType="image/png"
 			,scaleGridTop='18', scaleGridBottom='20',
 			scaleGridLeft='29', scaleGridRight='50'
 			)]
-			private  const _BorderClass : Class;
+			private static  const _BorderClass : Class;
 			[Embed(source="/Dialogs/Common/round_border_38_mask.png", mimeType="image/png"
 			,scaleGridTop='18', scaleGridBottom='20',
 			scaleGridLeft='29', scaleGridRight='50'
 			)]
-			private  const _MaskClass : Class;
+			private static  const _MaskClass : Class;
 			[Embed(source="/Dialogs/Common/tile_blue.png", mimeType="image/png")]
 			private  const _BgClass : Class;
+			[Embed(source="/Dialogs/Common/blue_light.png"
+			,scaleGridTop='8', scaleGridBottom='41',
+			scaleGridLeft='23', scaleGridRight='28')]
+			private static  const _AdditiveClass : Class;
 
 			protected function get borderClass() : Class
 			{
@@ -47,6 +53,11 @@
 			{
 				return _BgClass;
 			}
+
+			protected function get additive() : Class
+			{
+				return _AdditiveClass;
+			}
 			
 			// mask="{maskImage}" maskType="alpha"
 			
@@ -56,11 +67,14 @@
 
 
 	<s:BitmapImage left="0" right="0" source="{bgClass}" height="{frameImage.height}"
-		mask="{maskImage}" maskType="alpha"
-		fillMode="repeat" scaleMode="zoom"/>
+		mask="{maskImage}" maskType="{MaskType.ALPHA}" fillMode="repeat"
+		scaleMode="zoom"/>
 	<s:Group id="maskImage" left="0" right="0">
 		<s:BitmapImage left="0" right="0" source="{maskClass}"/>
+
 	</s:Group>
+	<s:BitmapImage width="95%"  horizontalCenter="0" height="{frameImage.height}" source="{additive}" 
+		smooth="true" blendMode="{BlendMode.ADD}" alpha="0.25"/>
 	<s:BitmapImage id="frameImage" left="0" right="0" source="{borderClass}"/>
 	<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0"
 		minWidth="0" minHeight="0">
