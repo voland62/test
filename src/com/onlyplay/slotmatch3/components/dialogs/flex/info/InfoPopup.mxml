@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+	skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.info.InfoPopupSkin1"
+	creationComplete="onCreationComplete(event)"
+	
+	title="Ошибка" xmlns:mx="library://ns.adobe.com/flex/mx">
+
+
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			[Embed(source="/Dialogs/Common/buttons_base_green.png")]
+			private static const BtBaseClass : Class;
+			
+			
+
+			public function set info(text : String) : void
+			{
+				infoLabel.text = text;
+				invalidateSize();
+			}
+
+			private function onCreationComplete(e : FlexEvent) : void
+			{
+				info = "Отсутствует подключение к интернету. Проверьте настройки или попробуйте позже."
+			}
+		]]>
+	</fx:Script>
+
+	<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin"
+		left="20" right="20" bottom="20" top="20" >
+		<s:Label id="infoLabel" fontSize="16" fontWeight="bold" top="20" bottom="20" textAlign="center" horizontalCenter="0" width="240" verticalCenter="0"/>
+
+	</s:SkinnableContainer>
+
+
+	<my:controlBarContent>
+		<s:Group horizontalCenter="0" bottom="-30">
+			<s:BitmapImage source="{BtBaseClass}"/>
+			<s:Button label="Ок" fontSize="16" horizontalCenter="0" top="6" click="{dispatchEvent(new Event('close'));}"
+				skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"/>
+		</s:Group>
+	</my:controlBarContent>
+
+</my:GamePopup>

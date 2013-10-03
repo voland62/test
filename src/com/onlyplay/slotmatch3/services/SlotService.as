@@ -35,8 +35,14 @@ package com.onlyplay.slotmatch3.services
 
 			connector.addEventListener("onConnect", onConnect);
 			connector.addEventListener("onMessage", onMessage);
+			connector.addEventListener("fall", onFall);
 
 			connector.connect(serverUrl, port);
+		}
+
+		private function onFall(event : Event) : void
+		{
+			eventDispatcher.dispatchEvent( new DynamicEvent( "connectFall" ));
 		}
 
 		private function onMessage(e : DynamicEvent) : void

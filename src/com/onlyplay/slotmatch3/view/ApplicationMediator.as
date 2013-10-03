@@ -1,8 +1,10 @@
 package com.onlyplay.slotmatch3.view
 {
-	import flash.events.Event;
-	import mx.events.DynamicEvent;
 	import robotlegs.bender.bundles.mvcs.Mediator;
+
+	import mx.events.DynamicEvent;
+
+	import flash.events.Event;
 
 	/**
 	 * @author Andrew
@@ -18,6 +20,12 @@ package com.onlyplay.slotmatch3.view
 			addContextListener("state_changes", onStateChanges);
 			//addViewListener("underConstruction", function (e:Event):void { dispatch(e); } );
 			addViewListener("underConstruction", dispatch);
+			addContextListener("init", onInit);
+		}
+
+		private function onInit( e:Event ) : void
+		{
+			view.setGameState( "lobby" );
 		}
 
 		private function onStateChanges(e:DynamicEvent) : void
