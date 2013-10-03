@@ -156,9 +156,10 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		
 		
 		private function SetListener(btn:LocationBtnMock):void {
+			
 			btn.addEventListener(MouseEvent.CLICK, function():void{
 													var evt:DynamicEvent = new DynamicEvent("openInterLevelDlg", true);
-													evt._type = "locationInfo";
+													evt._locType = "locationInfo";
 													evt._island = LobbyView.lastCursor;
 													evt._location = uint(btn.name.substr(4));
 													dispatchEvent(evt); }

@@ -69,6 +69,9 @@
 			[Bindable]
 			private var localeUrlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
 			private var menu4 : Menu4View;
+			
+			public static var preloaderText:String = "";
+			public static var preloaderFrame:uint = 1
 
 			private function onInit(e : FlexEvent) : void // при неподключённом видео
 			// private function onInit(e:TimeEvent):void // при подключённом видеo

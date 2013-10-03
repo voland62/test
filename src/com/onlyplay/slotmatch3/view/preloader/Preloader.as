@@ -4,10 +4,11 @@ package com.onlyplay.slotmatch3.view.preloader {
 	import flash.events.Event;
 	import mx.core.FlexGlobals;
 	import flash.utils.setTimeout;
+	import com.onlyplay.slotmatch3.MainAndrew;
 	
 	public class Preloader extends Sprite {
 
-		private var bTimeExpired:Boolean = false;
+		//private var bTimeExpired:Boolean = false;
 		private var bContentReady:Boolean = false;
 		private const MIN_TIME:uint = 3000;
 		
@@ -19,22 +20,25 @@ package com.onlyplay.slotmatch3.view.preloader {
 			init();
 		}
 		
+		
+		
 		private function init():void {
-			/*graphics.beginFill(0xff0000);
-			graphics.drawRect(0, 0, 760, 658);
-			graphics.endFill();
-			setTimeout(TimeExpired, MIN_TIME)*/
-			
 			mov = new splash_sborka();
-			mov.gotoAndStop(50);
+			mov.gotoAndStop(MainAndrew.preloaderFrame);
+			mov.prldr_text.text = MainAndrew.preloaderText;
+			
+			var Ys:Vector.<int> = Vector.<int>([560, 545, 535, 527])
+			mov.prldr_text.y = Ys[mov.prldr_text.numLines - 1];
+			
 			addChild(mov);
 		}
 		
-		
+	
 		/*private function TimeExpired():void {
 			bTimeExpired = true;
 			//HideTest();
 		}*/
+		
 		
 		internal function ContentReady():void {
 			
@@ -45,7 +49,6 @@ package com.onlyplay.slotmatch3.view.preloader {
 		
 		private function HideTest():void {
 			//if (bTimeExpired && bContentReady) {
-				
 				var top:*= FlexGlobals.topLevelApplication;
 				var obj:Object = top.getObjById("prldrHolder");
 				top.removeElement(obj);

@@ -4,7 +4,7 @@
 	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
 	xmlns:mx="library://ns.adobe.com/flex/mx" 
 	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
-	titleBgSkin="{TitleSkin3}" 
+	titleBgSkin="{TitleSkin5}" 
 	implements="com.onlyplay.slotmatch3.components.lobby_smith.IInterLevelDlg"
 	minHeight="500" minWidth="400" title="Гавайский остров"  fontFamily="franklin"
 	creationComplete="onInit(event)" controlBarVisible="true">
@@ -22,12 +22,12 @@
 	</fx:Declarations>
 	
 	
-	
 	<!--<my:states>
 		<s:State name="normal"/>
 		<s:State name="maxResult"/>
 	</my:states>-->
 
+	
 	<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
 		@namespace my "com.onlyplay.slotmatch3.components.dialogs.flex.*";
@@ -37,14 +37,10 @@
 		@font-face{
 			
 			src:url("../../../../../fonts/FranklinGothicDemiCondC.otf");
-			<!--src:url("G:\Files\Flex_embed_font_mxml\fonts\DAYTON__.TTF");-->
 			fontFamily:franklin;
 			fontWeight:bold;
 		}
 		
-		<!--s|Label {
-			fontFamily:ggg;
-		}-->
 	</fx:Style>
 
 	<!--<s:Rect width="100%" height="100%">
@@ -104,9 +100,10 @@
 			
 			private var starProgressBar:star_bar_sborka;
 			
-			private var selectedIslandId : int = 0;
-			private var selectedLocationId : int = -1;//-1 означает что отображается инфа об острове, а не о локации
-
+			public var selectedIslandId : int = 0;
+			public var selectedLocationId : int = -1;//-1 означает что отображается инфа об острове, а не о локации
+			public var selectedLocationOpened:Boolean = false;
+			
 			private function onInit(e : Event) : void
 			{
 				starProgressBar = new star_bar_sborka();
@@ -122,16 +119,18 @@
 			}
 			
 			
+			
 			public function hide(e : MouseEvent = null) : void{
 				visible = false
 			};
 			
 			
 			// сохраняем выбранные параметры, чтобы было что передать на сервер
-			private function saveParams(isl : int, loc : int) : void
+			public function saveParams(isl : int, loc : int, isOpened:Boolean) : void
 			{
 				selectedIslandId = isl;
 				selectedLocationId = loc;
+				selectedLocationOpened = isOpened;
 			}
 			
 			
@@ -140,14 +139,15 @@
 				var island:IslandProtobuf = islands[e._island]			
 				
 				if (e._locType == "islandInfo") {
-					saveParams(island.islandId, -1)
+					saveParams(island.islandId, -1, false)
 					fillData(island);
 				}
 			
 			
 				if (e._locType == "locationInfo") {
-					saveParams(island.islandId, island.locations[e._location]["locationId"]);
-					fillData(island.locations[e._location])
+					var location:LocationProtobuf = island.locations[e._location]
+					saveParams(island.islandId, location.locationId, location.opened);
+					fillData(location)
 				}
 			
 			}
@@ -224,10 +224,14 @@
 					mov.scaleX = mov.scaleY = 0.65
 					mov.gotoAndStop(i + 1);
 					mov.y = -15
-					mov.x= gap * (i+1) + i*74 
+					mov.x= gap * (i+1) + i*74;
+					mov.btn_label.mouseEnabled=false;
+					mov.btn_label.text = "Купить";
+					mov.name = "shopBtn_" + String(i);
+					mov.btn_bye.addEventListener(MouseEvent.CLICK, onShopBtnClick)
 					shopItems.addChild(mov);
 					
-					var txt:TextField = new TextField();
+					/*var txt:TextField = new TextField();
 					txt.x=mov.x+12;
 					txt.y=mov.y+66;
 					txt.text="Купить";
@@ -235,9 +239,16 @@
 					shopItems.addChild(txt);
 					
 					var tf:TextFormat=new TextFormat("Arial",13,0xfdefb3,true)
-					txt.setTextFormat(tf);
+					txt.setTextFormat(tf);*/
 				}
 			}
+			
+			
+			private function onShopBtnClick(e:MouseEvent):void{
+				dispatchEvent(new DynamicEvent('underConstruction'))
+			}
+			
+			
 		]]>
 	</fx:Script>
 
@@ -292,7 +303,7 @@
 				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="0" />
 			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
 			<s:Label id="_score0" text="1234567" color="0x400000" x="38"
-				y="63" fontSize="10" fontWeight="bold"/>
+				y="63" fontSize="11" fontWeight="bold"/>
 		</s:Group>
 		
 		
@@ -321,7 +332,7 @@
 				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="5" />
 			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
 			<s:Label id="_score1" text="1234567" color="0x400000" x="38"
-				y="63" fontSize="10" fontWeight="bold"/>
+				y="63" fontSize="11" fontWeight="bold"/>
 		</s:Group>
 		
 		
@@ -349,7 +360,7 @@
 				fontWeight="bold"  filters="{[outlineFilter]}" horizontalCenter="5" />
 			<my:CoinBitmapImage scaleX="0.45" scaleY="0.45"  x="26" y="60" />
 			<s:Label id="_score2" text="1234567" color="0x400000" x="38"
-				y="63" fontSize="10" fontWeight="bold"/>
+				y="63" fontSize="11" fontWeight="bold"/>
 		</s:Group>
 		
 
