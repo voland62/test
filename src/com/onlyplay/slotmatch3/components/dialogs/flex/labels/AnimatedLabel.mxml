@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Label xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:s="library://ns.adobe.com/flex/spark"
+         xmlns:mx="library://ns.adobe.com/flex/mx"
+		 >
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import com.greensock.TweenLite;
+			import com.onlyplay.util.StringUtils;
+			
+			private var _curValue:Number = int.MAX_VALUE
+			public var needAnimate:Boolean = true;
+			public var needFormat:Boolean = false;
+			private var newValue:Number;
+			private var formatter:Function = StringUtils.Format3Digits;
+			
+			//############### property   newValue ######################
+			public function get curValue():Number {return _curValue};
+			public function set curValue(value:Number):void {_curValue = value};
+			
+			//############### property   text ######################
+			override public function get text():String {return super.text};
+			override public function set text(value:String):void {
+				
+				if (isNaN(Number(value))) return;
+				
+				if (_curValue == int.MAX_VALUE) {
+					_curValue = Number(value);
+					if (needFormat) value = formatter(value);
+					super.text = value;
+				}else {
+					newValue = Number(value);
+					RenderText();
+				}	
+			}
+			
+			private function RenderText():void{
+				
+				if (needAnimate) {
+					TweenLite.to(this, 2, {curValue:newValue, onUpdate:Update, onComplete:Complete, ease:"linear"} );
+				}else {
+					var val:String = String(newValue);
+					super.text = needFormat ? formatter(val) : val;
+				}
+			}
+			
+			private function Update():void {
+				var val:String =  String(int(_curValue - _curValue % 10));
+				super.text = needFormat ? formatter(val) : val;
+			}
+			
+			private function Complete():void {
+				var val:String = String(int(_curValue))
+				super.text = needFormat ? formatter(val) : val;
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+</s:Label>

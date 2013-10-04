@@ -16,7 +16,6 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	public class LobbyView extends Sprite {
 		
 		private var bg:lobby_sborka_cls;
-		//private var fakeServerData:Vector.<Object>;
 		private var gallery:SmtHrzGallery;
 		private var posInd:Sprite;
 		private var islandsData:IslandsProtobuf;
@@ -28,10 +27,7 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		private var avatarLayer:Bitmap;
 		
 		
-//		[Inject]
-//		public var gameModel : GameModel;
-		
-		
+
 		public function LobbyView() {
 			init ();
 		}
@@ -86,9 +82,6 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 				
 			}
 			
-			
-			//bg.lobby_header_txt.filters=[new GlowFilter(0,1,4,4,3)]
-			
 			SetPositIndicator(0);
 		}
 		
@@ -100,6 +93,37 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			MovieClip(posInd.getChildByName("point_" + ind)).gotoAndStop(2);
 		}
 		//--------------------------------------------------------------------
+		
+		//по приходу или изменению данных о мире
+		internal function onDataArrive(evt:DynamicEvent):void{
+			
+			islandsData = evt.data;
+			
+			//типа пришли данные с сервака 
+			var realIslandsData:Vector.<Object> = new Vector.<Object>();
+			
+			var moveClasses:Vector.<Class> = Vector.<Class>([hawaii_island, amazone_island, archipelago_island, pirate_island]);
+			var locatNames:Vector.<String> = Vector.<String>(["Гавайский остров", "Амазонка", "Подводный архипелаг", "Пиратский остров"])
+			
+			//определяем данные, названия и мувиклипы островов
+			for (var i:uint = 0; i < islandsData.islands.length; i++) {
+				var locat:* = {};
+				locat.locationMov = new moveClasses[i]();
+				locat.sName = locatNames[i];
+				locat.info = islandsData.islands[i]
+				
+				realIslandsData.push(locat as Object);
+			}
+			//--------------------------------------------------------------------------------
+			
+			BuildLocations(realIslandsData);
+			
+			//событие данные пришли первый раз - первая карта загружена - снимаем прелоадер
+			if (FlexGlobals.topLevelApplication.getObjById("prldrHolder")){
+				dispatchEvent(new Event("lobby:first_map_ready", true));
+			}
+		}
+		
 		
 		private function BuildLocations(data:Vector.<Object> ):void {
 			
@@ -121,25 +145,17 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			//выносим кнопки  выше галереи
 			bg.addChild(bg.lobby_btn_left);
 			bg.addChild(bg.lobby_btn_right);
-			
 			bg.addChild(bg.play_btn);
 			
-			
+			//определяем текущий курсор галлереи
 			GalleryCursorChanges(null);
-			
 		}
 		
 	
-		private function onPlayClick(e:MouseEvent):void {
-			var evt:DynamicEvent = new DynamicEvent("openInterLevelDlg");
-			evt._locType = "islandInfo";
-			evt._island = lastCursor;
-			evt._location = -1;
-			dispatchEvent(evt);
-		}
 		
 		
 		
+		//текущий остров изменился
 		public function GalleryCursorChanges(e:GalleryEvent = null):void {
 			
 			var ind:uint;
@@ -150,13 +166,13 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 				ind = e.data.newCursor;
 				lastCursor = ind;
 			}
-			
+			//индикатор 4 точки
 			SetPositIndicator(ind);
 			
 			bg.lobby_header_txt.text = gallery.dataProvider[ind].sName;
 			islandName = bg.lobby_header_txt.text;
 			
-			//король
+			//устанавливаем короля 
 			bg.king_mc.visible = false;
 			bg.king_mc.scaleX = bg.king_mc.scaleY = 0.75
 			
@@ -170,13 +186,15 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		}
 		
 		
+		
+		//визуализируем короля и его аватарку
 		private function SetKing(data:PlayerShortProtobuf):void {
 			bg.king_mc.visible = true;
 			
 			var sFacebookName:String = "100006286838105";//например
 			
 			var ldr:Loader = new Loader();
-			ldr.contentLoaderInfo.addEventListener(Event.COMPLETE, inPicReady);
+			ldr.contentLoaderInfo.addEventListener(Event.COMPLETE, onPicReady);
 			var req:URLRequest = new URLRequest("https://graph.facebook.com/" + sFacebookName + "/picture");
 			
 			if(Security.sandboxType == "remote"){
@@ -191,41 +209,24 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 			
 		}
 		
-		private function inPicReady(e:Event):void {
+		//аватарка короля пришла
+		private function onPicReady(e:Event):void {
 			var bmp:Bitmap = bg.king_mc.getChildAt(0) as Bitmap;
 			bmp.bitmapData =  e.currentTarget.loader.content.bitmapData
 			
 		}
 		
 		
-		//по приходу или изменению данных о мире
-		internal function onDataArrive(evt:DynamicEvent):void{
-			
-			islandsData = evt.data;
-			
-			//типа пришли данные с сервака 
-			var realIslandsData:Vector.<Object> = new Vector.<Object>();
-			
-			var moveClasses:Vector.<Class> = Vector.<Class>([hawaii_island, amazone_island, archipelago_island, pirate_island]);
-			var locatNames:Vector.<String> = Vector.<String>(["Гавайский остров", "Амазонка", "Подводный архипелаг", "Пиратский остров"])
-			
-			for (var i:uint = 0; i < islandsData.islands.length; i++) {
-				var locat:* = {};
-				locat.locationMov = new moveClasses[i]();
-				locat.sName = locatNames[i];
-				locat.info = islandsData.islands[i]
-				
-				realIslandsData.push(locat as Object);
-			}
-			//--------------------------------------------------------------------------------
-			
-			BuildLocations(realIslandsData);
-			
-			//событие карта загружена
-			if (FlexGlobals.topLevelApplication.getObjById("prldrHolder")){
-				dispatchEvent(new Event("lobby:first_map_ready", true));
-			}
+		
+		
+		private function onPlayClick(e:MouseEvent):void {
+			var evt:DynamicEvent = new DynamicEvent("openInterLevelDlg");
+			evt._locType = "islandInfo";
+			evt._island = lastCursor;
+			evt._location = -1;
+			dispatchEvent(evt);
 		}
+		
 		
 		
 		private function onInfoClick(e:MouseEvent):void {

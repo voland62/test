@@ -274,7 +274,7 @@ internal  class AssetLoader  extends EventDispatcher {
                 if (content is Bitmap) {
                         _contentBitmapData = (content as Bitmap).bitmapData;
                         _contentData = _contentBitmapData;
-                        trace( "bitmap loaded" );
+                        //trace( "bitmap loaded" );
                 }else if ( (content is DisplayObject) && !( content is Bitmap ) ) {
                         
                         //var bmpd : BitmapData = new BitmapData( w, h, true, 0);

@@ -13,7 +13,6 @@ package com.onlyplay.slotmatch3.view.preloader {
 	
 	public class PreloaderSWF extends  SparkDownloadProgressBar{
 
-		
 		private var mov:splash_sborka;
 		private const lastFrame:uint = 90;
 		private const hintTexts:Vector.<String> = Vector.<String>([
@@ -52,6 +51,7 @@ package com.onlyplay.slotmatch3.view.preloader {
 		override protected function completeHandler (event:Event) : void {
 			
 			mov.gotoAndStop(lastFrame);
+			
 			//сохраняем данные - они понадобятся второму прелоадеру
 			MainAndrew.preloaderText = mov.prldr_text.text;
 			MainAndrew.preloaderFrame = lastFrame;
