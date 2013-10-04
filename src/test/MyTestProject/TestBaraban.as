@@ -38,14 +38,32 @@ package test.MyTestProject
 			bt.graphics.beginFill(0x1dace2);
 			bt.graphics.drawRoundRect(0, 0, 100, 20, 5);
 			bt.graphics.endFill();
+			
 
 			var padding : Number = 10;
 			bt.x = stage.stageWidth - bt.width - padding;
 			bt.y = stage.stageHeight - bt.height - padding;
 			bt.addEventListener(MouseEvent.CLICK, onSpinMouseClick);
 			addChild(bt);
+			
+			// ------------
+			var bt2 : Sprite = new Sprite();
+			bt2.graphics.beginFill(0xff8000);
+			bt2.graphics.drawRoundRect(0, 0, 100, 20, 5);
+			bt2.graphics.endFill();
+			bt2.x = stage.stageWidth - bt2.width - padding;
+			bt2.y = stage.stageHeight - bt2.height - bt.height - padding -  padding;
+			bt2.addEventListener(MouseEvent.CLICK, onStopMouseClick);
+			addChild(bt2);
 
 			addEventListener(Event.ADDED_TO_STAGE, onStage);
+		}
+
+		private function onStopMouseClick(e : MouseEvent) : void
+		{
+			//var newState : Array = [Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12)];
+			var newState:Array = [2,2,2,2,2];
+			baraban.stopRequest( newState );
 		}
 
 		private function onStage(e : Event) : void
@@ -58,7 +76,9 @@ package test.MyTestProject
 		{
 			// log("TestSlots.onSpinMouseClick(e)");
 			var newState : Array = [Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12)];
-			baraban.spin(newState, 3);
+			//var newState:Array = [ Util.randInt(12) ];
+			
+			baraban.spin(newState, NaN);
 		}
 	}
 }
