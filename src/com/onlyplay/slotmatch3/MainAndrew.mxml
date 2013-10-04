@@ -54,6 +54,7 @@
 
 			import com.onlyplay.slotmatch3.components.lobby_smith.Menu4View;
 			import com.onlyplay.slotmatch3.view.preloader.Preloader;
+			import com.onlyplay.util.StringUtils;
 
 			private var _flashGameView : FlashGameView;
 			private var _lobbyVeiw : LobbyView;
@@ -94,7 +95,7 @@
 
 				var pldr : Preloader = new Preloader()
 				prldrHolder.addChild(pldr);
-
+				
 				onResize();
 			}
 

@@ -4,7 +4,7 @@
 	xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
 	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*"
 	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
-	backgroundColor="0xffffff" xmlns:lobby="com.onlyplay.slotmatch3.components.lobby_smith.*">
+	backgroundColor="0xffffff" xmlns:lbls="com.onlyplay.slotmatch3.components.dialogs.flex.labels.*">
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
@@ -119,7 +119,7 @@
 
 
 
-	<lobby:LevelInfoPopup verticalCenter="0" horizontalCenter="0"/>
+	<lbls:AnimatedLabel id="lbl" verticalCenter="0" horizontalCenter="0" text="11" click="{lbl.text='1234'}" needAnimate="true" needFormat="true" />
 
 
 	<!--<flex:UnderConstructuionPupUp verticalCenter="0" horizontalCenter="0"/>-->
