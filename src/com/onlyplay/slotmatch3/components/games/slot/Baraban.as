@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.components.games.slot
 {
+	import com.greensock.TimelineLite;
 	import assets.AssetsStorage;
 
 	import com.greensock.TweenLite;
@@ -228,7 +229,8 @@ package com.onlyplay.slotmatch3.components.games.slot
 			var lastY:Number = bounds.y - _baraban.y - _itemHeight;
 			var currentY:Number = lastY;
 			 
-			// порождаем вновь созванные
+			// порождаем вновь созданные
+			var timeline:TimelineLite = new TimelineLite( {onComplete:function ():void{ dispatchEvent(new Event( "AnimEnded" ));}} );
 			for (var i : int = 0; i < _items.length; i++)
 			{
 				if ( !_baraban.getChildByName(i.toString()))
@@ -245,8 +247,10 @@ package com.onlyplay.slotmatch3.components.games.slot
 				var delay:Number = 1;
 				var icon:DisplayObject = _baraban.getChildByName(i.toString());
 				var newY:Number = icon.y - lastY - _itemHeight;
-				TweenLite.to(icon, delay, {y:newY});	
+				timeline.insert( TweenLite.to(icon, delay, {y:newY}));	
 			}
+			
+			
 		}
 
 		private function startAnim(duration : Number) : void

@@ -221,7 +221,7 @@ package com.onlyplay.slotmatch3.components.games.slot
 
 		private function onAnimEnded(e : Event) : void
 		{
-			// log("SlotMashine.onAnimEnded(e)");
+			log("SlotMashine.onAnimEnded(e)");
 			(e.target as IEventDispatcher).removeEventListener("AnimEnded", onAnimEnded);
 			dispatchEvent(e);
 		}

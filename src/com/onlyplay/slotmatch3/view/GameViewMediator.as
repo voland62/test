@@ -304,6 +304,8 @@ package com.onlyplay.slotmatch3.view
 				view.playWinAnimation(win, gameModel.winLines, onWinAnimComeplete);
 				// или подписаться
 			}
+			
+			dispatch( new Event("tryStopSpin") );
 		}
 
 		private function onWinAnimComeplete() : void
@@ -327,7 +329,8 @@ package com.onlyplay.slotmatch3.view
 		private function showSpin(e : Event = null) : void
 		{
 			
-			view.showSpin();
+			//view.showSpin();
+			view.stopSpinRequest(gameModel.icons);
 		}
 
 		private function onSpin(e : Event = null) : void

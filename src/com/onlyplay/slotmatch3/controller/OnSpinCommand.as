@@ -53,7 +53,8 @@ package com.onlyplay.slotmatch3.controller
 				}
 			}
 			
-			eventDispatcher.dispatchEvent(new Event("showSpin"));
+			//eventDispatcher.dispatchEvent(new Event("showSpin"));
+			eventDispatcher.dispatchEvent(new Event("tryStopSpin"));
 		}
 		
 		// TODO: вынести либо в GameModel либо в SlotModel дибо в утиль

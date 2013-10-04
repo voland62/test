@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.config
 {
+	import com.onlyplay.slotmatch3.controller.spin.TryStopSpin;
 	import com.onlyplay.slotmatch3.view.dialogs.InfoPopupMediator;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.info.InfoPopup;
 	import com.onlyplay.slotmatch3.controller.match.TimeOverCommand;
@@ -108,6 +109,8 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("init").toCommand(InitCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(LoginResponseProtobuf)).toCommand(OnLoginCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(LocationEnterResponseProtobuf)).toCommand(OnEnterLocationCommand);
+			
+			// это комманда - по приходу спин-данных (новое состояние барабана)
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(SpinResponseProtobuf)).toCommand(OnSpinCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchEnterResponseProtobuf)).toCommand(OnMatchEnterCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(RoomChangedEventProtobuf)).toCommand(OnRoomChangeedCommand);
@@ -115,7 +118,9 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map(ServiceEvent.CHANGES).toCommand(OnChageCommand);
 			commandMap.map("requestRoomProgress").toCommand(RequestRoomProgressCommand);
 			commandMap.map("onFlashEnergyIncrease").toCommand(OnFlashEnergyEncreaseCommand);
-			commandMap.map("spin").toCommand(SpinCommand);
+			commandMap.map("spin").toCommand(SpinCommand);// Это комманда при клике на кнопку
+			commandMap.map("tryStopSpin").toCommand(TryStopSpin);// Это комманда проверяет горовы ли данные и если да - то стартит торможение барабана
+			
 			
 			commandMap.map("betPerLineChanged").toCommand(BetPerLineChangingCommand);
 			commandMap.map("lineNumChanged").toCommand(LineNumChangingCommand);
