@@ -11,6 +11,7 @@ package com.onlyplay.slotmatch3.components
 	import com.greensock.TweenLite;
 	import com.greensock.TweenMax;
 	import com.greensock.easing.Linear;
+	import com.onlyplay.slotmatch3.components.games.Parser;
 	import com.onlyplay.slotmatch3.components.games.Util;
 	import com.onlyplay.slotmatch3.components.games.WinBubble;
 	import com.onlyplay.slotmatch3.components.games.elements.BetButtonLeft;
@@ -154,7 +155,7 @@ package com.onlyplay.slotmatch3.components
 			 *  в упор не вижу причины
 			 */
 			_renderer = rend;
-			_renderer ||= new BitmapRenderer(new Rectangle( 0, 0, 760, 570));
+			_renderer ||= new BitmapRenderer(new Rectangle(0, 0, 760, 570));
 
 			_islandBg = new IslandBgClass();
 			addChild(_islandBg);
@@ -164,10 +165,13 @@ package com.onlyplay.slotmatch3.components
 
 			// createSlotMashine();
 
-			_userFace = new Sprite(); 
+			_userFace = new Sprite();
 			addChild(_userFace);
 			_userFace.addChild(new FaceClass());
-			_userFace.addEventListener(MouseEvent.CLICK, function (e:Event):void {    dispatchEvent(new Event("onFace"));});
+			_userFace.addEventListener(MouseEvent.CLICK, function(e : Event) : void
+			{
+				dispatchEvent(new Event("onFace"));
+			});
 
 			_plashka = new PlashkaBottomClass();
 			addChild(_plashka);
@@ -189,11 +193,17 @@ package com.onlyplay.slotmatch3.components
 			_starProgress.setProgress(0.75, false);
 
 			_infoStarButton = new InfoButton();
-			_infoStarButton.addEventListener(MouseEvent.CLICK, function(e:Event):void{ dispatchEvent(new Event("uc"));});
+			_infoStarButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
+			{
+				dispatchEvent(new Event("uc"));
+			});
 			addChild(_infoStarButton);
 
 			_infoRoomProgressButton = new InfoButton();
-			_infoRoomProgressButton.addEventListener(MouseEvent.CLICK, function(e:Event):void{ dispatchEvent(new Event("uc"));});
+			_infoRoomProgressButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
+			{
+				dispatchEvent(new Event("uc"));
+			});
 			addChild(_infoRoomProgressButton);
 
 			_paymentsFake = new PaymentsFakeClass();
@@ -237,7 +247,10 @@ package com.onlyplay.slotmatch3.components
 			experienceProgressBar.value = 1000;
 
 			_settingsButton = new SettingsButton();
-			_settingsButton.addEventListener(MouseEvent.CLICK, function(e:Event):void{ dispatchEvent(new Event("uc"));});
+			_settingsButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
+			{
+				dispatchEvent(new Event("uc"));
+			});
 			addChild(_settingsButton);
 
 			_photoButton = new PhotoButton();
@@ -246,9 +259,9 @@ package com.onlyplay.slotmatch3.components
 			_photoButton.addEventListener("click", function(_ : *) : void
 			{
 				dispatchEvent(new Event("uc"));
-				//_matchComponent.resetVisuals();
+				// _matchComponent.resetVisuals();
 				// _matchComponent.startReinitAnimation();
-				//_matchComponent.playShuffleAnimation();
+				// _matchComponent.playShuffleAnimation();
 				// Animations.spiralVideo(_animBase, 
 				// new Point(_matchComponent.x + (_matchComponent.width>>1), _matchComponent.y +(_matchComponent.height>>1)));
 			});
@@ -291,7 +304,10 @@ package com.onlyplay.slotmatch3.components
 
 			_payButton = new PayButton();
 			addChild(_payButton);
-			_payButton.addEventListener( MouseEvent.CLICK , function( e:Event ):void{ dispatchEvent(new Event("showPaymentsDialog")) ;});
+			_payButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
+			{
+				dispatchEvent(new Event("showPaymentsDialog")) ;
+			});
 
 			_maxBetButton = new MaxBetButton();
 			_maxBetButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
@@ -300,7 +316,6 @@ package com.onlyplay.slotmatch3.components
 			});
 			addChild(_maxBetButton);
 
-					
 			_mapButton = new MapButton();
 			addChild(_mapButton);
 			_mapButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
@@ -308,13 +323,11 @@ package com.onlyplay.slotmatch3.components
 				dispatchEvent(new DynamicEvent("game_view:to_map"));
 			});
 
-			
-			
 			_toMach3Button = new ToMach3Button();
 			_toMach3Button.locked = true;
 			_toMach3Button.addEventListener(MouseEvent.CLICK, function(e : Event) : void
 			{
-				dispatchEvent(new Event("toMatch")); 
+				dispatchEvent(new Event("toMatch"));
 			});
 			addChild(_toMach3Button);
 
@@ -375,13 +388,13 @@ package com.onlyplay.slotmatch3.components
 
 			// _renderer = new BitmapRenderer(new Rectangle(0, 0, 300, 300));
 			// _renderer.mouseChildren = false;
-//			 (_renderer as InteractiveObject).mouseEnabled = false;
-//			//
-//			var rendererBase:DisplayObjectContainer = new Sprite();
-//			rendererBase.mouseChildren = false;
-//			rendererBase.mouseEnabled = false;
-//			addChild( rendererBase );
-//			rendererBase.addChild(_renderer as DisplayObject);
+			// (_renderer as InteractiveObject).mouseEnabled = false;
+			//			//
+			// var rendererBase:DisplayObjectContainer = new Sprite();
+			// rendererBase.mouseChildren = false;
+			// rendererBase.mouseEnabled = false;
+			// addChild( rendererBase );
+			// rendererBase.addChild(_renderer as DisplayObject);
 
 			_animBase = new Sprite();
 			_animBase.mouseChildren = false;
@@ -424,7 +437,6 @@ package com.onlyplay.slotmatch3.components
 			_lineButtonRight.locked = val;
 			_payButton.locked = val;
 			_mapButton.locked = val;
-			
 		}
 
 		private function onPlayButtonClick(e : MouseEvent) : void
@@ -647,9 +659,9 @@ package com.onlyplay.slotmatch3.components
 			onResize();
 		}
 
-		public function showSping(newState : Array) : void
+		public function showSpin() : void
 		{
-			if (_slotMashine ) _slotMashine.spin(newState);
+			if (_slotMashine ) _slotMashine.spin();
 			disableButtons(true);
 			_toMach3Button.locked = true;
 		}
@@ -842,7 +854,7 @@ package com.onlyplay.slotmatch3.components
 
 			if (_boosterPanel) _boosterPanel.visible = false;
 			if ( _energyProgress ) _energyProgress.visible = false;
-			
+
 			_toMach3Button.locked = true;
 			_mapButton.locked = false;
 
@@ -903,7 +915,7 @@ package com.onlyplay.slotmatch3.components
 			_energyProgress.visible = true;
 
 			addChildAt(_animBase, numChildren - 1);
-			
+
 			_mapButton.locked = true;
 
 			// _matchComponent.startReinitAnimation();
@@ -964,9 +976,8 @@ package com.onlyplay.slotmatch3.components
 			{
 				_slotMashine.playWinLinesAnim(winLines);
 			}
-			
+
 			_toMach3Button.locked = false;
-			
 		}
 
 		public function setStarsProgress(commonPercentage : Number) : void
@@ -983,7 +994,18 @@ package com.onlyplay.slotmatch3.components
 			{
 				dict[i] = Util.getIconUrl(islandId, locationId, i);
 			}
-			_slotMashine.init(dict);
+			var randState:Array =  getRandInitState()
+			_slotMashine.init(dict, randState);
+		}
+
+		private function getRandInitState() : Array
+		{
+			var newState : Array = [];
+			for (var i : int = 0; i < 5; i++)
+			{
+				newState.push(Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12));
+			}
+			return Parser.parseSpinData(newState);
 		}
 
 		public function hideLines() : void
@@ -1005,10 +1027,8 @@ package com.onlyplay.slotmatch3.components
 					_matchComponent.playHammerBooster();
 					break;
 				case Booster.TIME:
-					
-					var pivotPoint:Point = new Point( _timeProgress.x, _timeProgress.y );
-					
-					Animations.playTimeBoosterAnimation( _animBase, pivotPoint );
+					var pivotPoint : Point = new Point(_timeProgress.x, _timeProgress.y);
+					Animations.playTimeBoosterAnimation(_animBase, pivotPoint);
 					break;
 				default:
 			}
@@ -1026,13 +1046,19 @@ package com.onlyplay.slotmatch3.components
 
 		public function initFlashEnergy(multiplier : Number) : void
 		{
-			var levelText : String = Util.formLevelMultiplyerString(multiplier);//(multiplier == int(multiplier)) ? multiplier.toString() : multiplier.toFixed(1);
+			var levelText : String = Util.formLevelMultiplyerString(multiplier);
+			// (multiplier == int(multiplier)) ? multiplier.toString() : multiplier.toFixed(1);
 			_energyProgress.label = levelText + "x";
 		}
 
-		public function setPlayButtonState( isActive : Boolean) : void
+		public function setPlayButtonState(isActive : Boolean) : void
 		{
 			_playButton.locked = !isActive;
+		}
+
+		public function stopSpinRequest(newState : Array) : void
+		{
+			_slotMashine.stopRequest(newState);
 		}
 	}
 }

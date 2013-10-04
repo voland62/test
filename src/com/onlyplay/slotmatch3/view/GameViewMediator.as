@@ -326,9 +326,8 @@ package com.onlyplay.slotmatch3.view
 
 		private function showSpin(e : Event = null) : void
 		{
-			//view.setWin(gameModel.win);
-			view.showSping(gameModel.icons);
-			// view.drawLines(gameModel.winLines);
+			
+			view.showSpin();
 		}
 
 		private function onSpin(e : Event = null) : void
@@ -336,6 +335,7 @@ package com.onlyplay.slotmatch3.view
 			dispatch(e);
 			view.setPlayButtonState( false );
 			view.hideLines();
+			view.showSpin();
 		}
 
 		private function showMatch(e : Event) : void

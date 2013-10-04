@@ -39,8 +39,7 @@ package test.MyTestProject
 			// Icons.init( dict );
 
 			slotMashine = new SlotMashine();
-			slotMashine.init(dict);
-			// slotMashine.init( dict );
+			slotMashine.init(dict, getTestState());
 			addChild(slotMashine);
 
 			// spin bt
@@ -66,8 +65,20 @@ package test.MyTestProject
 			b_bt.y = a_bt.y - a_bt.height - padding;
 			b_bt.addEventListener(MouseEvent.CLICK, onAnimWinLinesClick);
 			addChild(b_bt);
+			
+			var c_bt : DisplayObject = createBt(0xd5006a);
+			// var padding : Number = 10;
+			c_bt.x = stage.stageWidth - c_bt.width - padding;
+			c_bt.y = b_bt.y - b_bt.height - padding;
+			c_bt.addEventListener(MouseEvent.CLICK, onStopBtClick);
+			addChild(c_bt);
 
 			addEventListener(Event.ADDED_TO_STAGE, onStage);
+		}
+
+		private function onStopBtClick(e : MouseEvent) : void
+		{
+			slotMashine.stopRequest( getTestState() );
 		}
 
 		private function onAnimWinLinesClick(e : MouseEvent) : void
@@ -129,24 +140,30 @@ package test.MyTestProject
 			slotMashine.x = stage.stageWidth >> 1;
 			slotMashine.y = stage.stageHeight >> 1;
 		}
+		
+		
+		private function getTestState():Array
+		{
+			var newState : Array = [];
+				for (var i : int = 0; i < 5; i++)
+				{
+					// newState.push([Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12)]);
+					// newState.push(0,1,2,3,4);
+					newState.push(i, i, i, i, i);
+					// newState.push([0,1,2,3,4]);
+				}
+	
+				return Parser.parseSpinData(newState);
+			
+		}
 
 		private function onSpinMouseClick(e : MouseEvent) : void
 		{
 			// log("TestSlots.onSpinMouseClick(e)");
 			// var newState:Array = [Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12),Util.randInt(12)];
 
-			var newState : Array = [];
-			for (var i : int = 0; i < 5; i++)
-			{
-				// newState.push([Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12)]);
-				// newState.push(0,1,2,3,4);
-				newState.push(i, i, i, i, i);
-				// newState.push([0,1,2,3,4]);
-			}
 
-			var nnn : Array = Parser.parseSpinData(newState);
-
-			slotMashine.spin(nnn);
+			slotMashine.spin( );
 			// slotMashine.spin( newState );
 		}
 	}

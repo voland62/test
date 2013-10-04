@@ -1,24 +1,19 @@
 package com.onlyplay.slotmatch3.components.games.slot
 {
-	import flash.utils.getTimer;
-	import flash.utils.Timer;
-	import flash.display.BitmapData;
-
 	import assets.AssetsStorage;
-
-	import flash.utils.Dictionary;
-	import flash.display.DisplayObject;
 
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Linear;
-	import com.greensock.loading.ImageLoader;
-	import com.greensock.loading.LoaderMax;
-	import com.onlyplay.slotmatch3.components.games.Util;
 
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.geom.Rectangle;
+	import flash.utils.Dictionary;
+	import flash.utils.getTimer;
 
 	/**
 	 * @author Andrew
@@ -75,8 +70,8 @@ package com.onlyplay.slotmatch3.components.games.slot
 			addChild(_baraban);
 
 			_mask = new Sprite();
-			// addChild(_mask);
-			// _baraban.mask = _mask;
+			addChild(_mask);
+			_baraban.mask = _mask;
 
 			_tint = new TintClass();
 			_tint.height += 2;
@@ -87,10 +82,10 @@ package com.onlyplay.slotmatch3.components.games.slot
 			redraw();
 		}
 
-		public function init(map : Dictionary) : void
+		public function init(map : Dictionary, state:Array) : void
 		{
 			_map = map;
-			initModel();
+			initModel( state );
 			initView();
 		}
 
@@ -136,13 +131,14 @@ package com.onlyplay.slotmatch3.components.games.slot
 			return itemView;
 		}
 
-		private function initModel() : void
+		private function initModel( newState:Array) : void
 		{
-			_items.length = 0;
-			for (var i : int = 0; i < _itemsNum; i++)
-			{
-				_items.push(Util.randInt(_itemsTypesNum));
-			}
+			//_items.length = 0;
+			_items = newState;
+//			for (var i : int = 0; i < _itemsNum; i++)
+//			{
+//				_items.push(Util.randInt(_itemsTypesNum));
+//			}
 		}
 
 		private function redraw() : void
@@ -158,22 +154,23 @@ package com.onlyplay.slotmatch3.components.games.slot
 			g.endFill();
 		}
 
-		public function spin(newState : Array, duration : Number) : void
+		public function spin( duration : Number) : void
 		{
 			// делаем, пока по-самому простому - в лоб
-			var fakeItemsNum : int = 0;
-			// 20 * duration;// attention!!! duration in seconds
-			var fakeItems : Array = [];
-			newState = newState.reverse();
+//			var fakeItemsNum : int = 0;
+//			// 20 * duration;// attention!!! duration in seconds
+//			var fakeItems : Array = [];
+//			newState = newState.reverse();
+//
+//			for (var i : int = 0; i < fakeItemsNum; i++)
+//			{
+//				fakeItems.push(Util.randInt(_itemsTypesNum));
+//			}
 
-			for (var i : int = 0; i < fakeItemsNum; i++)
-			{
-				fakeItems.push(Util.randInt(_itemsTypesNum));
-			}
+			//_items = _items.concat(fakeItems, newState);
+			//_items = _items.concat( newState);
 
-			_items = _items.concat(fakeItems, newState);
-
-			initView();
+			// initView();
 
 			// startAnim(duration);
 			startAnim2(duration);
@@ -195,7 +192,10 @@ package com.onlyplay.slotmatch3.components.games.slot
 
 			addEventListener(Event.ENTER_FRAME, loop);
 		}
-
+		
+		
+		
+		private const VELOCITY : Number = 10;
 		private function loop(e : Event) : void
 		{
 			if ( !isNaN(_endTime) && (_endTime - getTimer()) <= 0)
@@ -204,34 +204,48 @@ package com.onlyplay.slotmatch3.components.games.slot
 				return;
 			}
 
-			var delta : Number = 0.5;
 			for (var i : int = 0; i < _baraban.numChildren; i++)
 			{
 				var icon : DisplayObject = _baraban.getChildAt(i);
-				var base : Number = _h + _itemHeight;
-				icon.y = ((icon.y + delta + base) % base) - base;
+				var base : Number = _h ;
+				icon.y = ((icon.y + VELOCITY + base) % base) - base;
 			}
 		}
 
 		public function stopRequest(newModel : Array) : void
 		{
-			_items = _items.concat(newModel);
+			// отключаем loop
+			if (hasEventListener(Event.ENTER_FRAME))
+			{
+				removeEventListener(Event.ENTER_FRAME, loop);
+			}
 			
+			_items = _items.concat(newModel);
 			//_baraban.removeChildren();
-
+			
+			// находим самый верхний icon на данный момент
+			var bounds:Rectangle = _baraban.getRect(this);
+			var lastY:Number = bounds.y - _baraban.y - _itemHeight;
+			var currentY:Number = lastY;
+			 
+			// порождаем вновь созванные
 			for (var i : int = 0; i < _items.length; i++)
 			{
 				if ( !_baraban.getChildByName(i.toString()))
 				{
 					var itemView : Sprite = createItemView(_items[i]);
 					itemView.name = i.toString();
-					_baraban.addChild(itemView);
-					itemView.y = - (i + 1) * _itemHeight;
-					
-					log("Baraban.stopRequest(newModel)");
-					
+					_baraban.addChild( itemView );
+					itemView.y = currentY ;//- (i + 1) * _itemHeight;
+					currentY -= _itemHeight;	
 				}
+				// добавляем твиннер
 				
+				// TODO: вычислять delay на основе VELOCITY
+				var delay:Number = 1;
+				var icon:DisplayObject = _baraban.getChildByName(i.toString());
+				var newY:Number = icon.y - lastY - _itemHeight;
+				TweenLite.to(icon, delay, {y:newY});	
 			}
 		}
 

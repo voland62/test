@@ -149,13 +149,18 @@ package com.onlyplay.slotmatch3.components.games.slot
 			// drawLines([[[2, 3], [3, 5]]]);
 		}
 
-		public function init(d : Dictionary) : void
+		public function init(d : Dictionary, newState : Array) : void
 		{
 			iconsMap = d;
-
-			for each (var baraban : Baraban in _baranans) {
-				baraban.init(d);
+			for (var i : int = 0; i < _baranans.length; i++) {
+				var baraban:Baraban = _baranans[i];
+				var barState:Array = newState[i];
+				baraban.init(d, barState);
 			}
+//			for each (var baraban : Baraban in _baranans)
+//			{
+//				baraban.init(d, newState);
+//			}
 		}
 
 		private function  refresh() : void
@@ -200,17 +205,18 @@ package com.onlyplay.slotmatch3.components.games.slot
 			_chanesTop2Right.y = _chanesTop2Left.y;
 		}
 
-		public function spin(newState : Array) : void
+		public function spin() : void
 		{
-			var durationBase : Number = 1;
+			// var durationBase : Number = 1;
 			for (var i : int = 0; i < barabansNum; i++)
 			{
 				var baraban : Baraban = _baranans[i] as Baraban;
-				var duration : Number = durationBase + 0.3 * i;
-				baraban.spin(newState[i], duration);
+				// var duration : Number = durationBase + 0.3 * i;
+				// baraban.spin(newState[i], duration);
+				baraban.spin(NaN);
 			}
 
-			(_baranans[_baranans.length - 1] as Baraban).addEventListener("AnimEnded", onAnimEnded);
+			// (_baranans[_baranans.length - 1] as Baraban).addEventListener("AnimEnded", onAnimEnded);
 		}
 
 		private function onAnimEnded(e : Event) : void
@@ -222,15 +228,13 @@ package com.onlyplay.slotmatch3.components.games.slot
 
 		public function drawLines(winLines : Array) : void
 		{
-			
 			// _linesBase.graphics.clear();
 			_linesBase.removeChildren();
 			_winIconsBase.removeChildren();
 			// reset lines
 			_leftLinesPanel.resetBages();
 			_rightLinesPanel.resetBages();
-			//hideLines();
-
+			// hideLines();
 
 			for each (var line : LineVO in winLines)
 			{
@@ -245,8 +249,8 @@ package com.onlyplay.slotmatch3.components.games.slot
 
 		private function drawLine(line : LineVO) : void
 		{
-			var thinkness:Number = 5;
-			
+			var thinkness : Number = 5;
+
 			var color : int = line.color;
 			// 0xFFFFFF * Math.random();
 			var lin : Shape = new Shape();
@@ -293,6 +297,7 @@ package com.onlyplay.slotmatch3.components.games.slot
 
 		// public var _ttt:DisplayObject;
 		private var _winTimeLine : TimelineMax;
+
 		public function playWinLinesAnim(winLines : Array) : void
 		{
 			_winTimeLine = new TimelineMax({repeat:-1});
@@ -376,50 +381,49 @@ package com.onlyplay.slotmatch3.components.games.slot
 			}
 		}
 
-//		private function getIconsbyLine(line : LineVO) : Array
-//		{
-//			var icons : Array = [];
-//			for (var i : int = 0; i < line.iconsCount; i++)
-//			{
-//				var name : String = line.lineId + "_" + i;
-//				icons.push(_winIconsBase.getChildByName(name));
-//			}
-//			return icons;
-//		}
-//
-//		private function drawWinIcons(winLines : Array) : void
-//		{
-//			for each (var line : LineVO in winLines)
-//			{
-//				line.iconsCount;
-//				line.winIconsTypes;
-//				line.points;
-//
-//				for (var i : int = 0; i < line.iconsCount; i++)
-//				{
-//					var p : Point = trans.transformPoint(line.points[i] as Point);
-//					var winIc : Sprite = new winIcon();
-//					//
-//					// winIc.width = winIc.height = 84;
-//					winIc.x = p.x;
-//					winIc.y = p.y;
-//					_winIconsBase.addChild(winIc);
-//
-//					log(iconsMap[line.winIconsTypes[i]]);
-//
-//					AssetsStorage.instance.getAsset(iconsMap[line.winIconsTypes[i]], function(bm : BitmapData) : void
-//					{
-//						var ic : Bitmap = new Bitmap(bm);
-//						ic.smoothing = true;
-//						ic.width = ic.height = 70;
-//						ic.x -= ic.width >> 1;
-//						ic.y -= ic.height >> 1;
-//						winIc.addChild(ic);
-//					});
-//				}
-//			}
-//		}
-
+		// private function getIconsbyLine(line : LineVO) : Array
+		// {
+		// var icons : Array = [];
+		// for (var i : int = 0; i < line.iconsCount; i++)
+		// {
+		// var name : String = line.lineId + "_" + i;
+		// icons.push(_winIconsBase.getChildByName(name));
+		// }
+		// return icons;
+		// }
+		//
+		// private function drawWinIcons(winLines : Array) : void
+		// {
+		// for each (var line : LineVO in winLines)
+		// {
+		// line.iconsCount;
+		// line.winIconsTypes;
+		// line.points;
+		//
+		// for (var i : int = 0; i < line.iconsCount; i++)
+		// {
+		// var p : Point = trans.transformPoint(line.points[i] as Point);
+		// var winIc : Sprite = new winIcon();
+		//					//
+		//					//  winIc.width = winIc.height = 84;
+		// winIc.x = p.x;
+		// winIc.y = p.y;
+		// _winIconsBase.addChild(winIc);
+		//
+		// log(iconsMap[line.winIconsTypes[i]]);
+		//
+		// AssetsStorage.instance.getAsset(iconsMap[line.winIconsTypes[i]], function(bm : BitmapData) : void
+		// {
+		// var ic : Bitmap = new Bitmap(bm);
+		// ic.smoothing = true;
+		// ic.width = ic.height = 70;
+		// ic.x -= ic.width >> 1;
+		// ic.y -= ic.height >> 1;
+		// winIc.addChild(ic);
+		// });
+		// }
+		// }
+		// }
 		private function drawWinIcons2(winLines : Array) : void
 		{
 			// здесь тип иконки спросить у барабана
@@ -504,14 +508,26 @@ package com.onlyplay.slotmatch3.components.games.slot
 			_winIconsBase.removeChildren();
 			_leftLinesPanel.resetBages();
 			_rightLinesPanel.resetBages();
-			
+
 			if ( _winTimeLine )
 			{
 				_winTimeLine.kill();
 				_winTimeLine.clear();
 				_winTimeLine = null;
 			}
-			
+		}
+
+		public function stopRequest(newState : Array) : void
+		{
+			for (var i : int = 0; i < barabansNum; i++)
+			{
+				var baraban : Baraban = _baranans[i] as Baraban;
+				// var duration : Number = durationBase + 0.3 * i;
+				// baraban.spin(newState[i], duration);
+				baraban.stopRequest(newState[i]);
+			}
+
+			(_baranans[_baranans.length - 1] as Baraban).addEventListener("AnimEnded", onAnimEnded);
 		}
 	}
 }
