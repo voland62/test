@@ -39,6 +39,7 @@ package net
 		private function closeHandler(event : Event) : void
 		{
 			log("closeHandler: " + event);
+			dispatchEvent( new Event("fall") );
 		}
 
 		private function connectHandler(event : Event) : void
@@ -61,6 +62,7 @@ package net
 		private function ioErrorHandler(event : IOErrorEvent) : void
 		{
 			log("ioErrorHandler: " + event);
+			dispatchEvent( new Event("fall") );
 		}
 
 		private function securityErrorHandler(event : SecurityErrorEvent) : void

@@ -9,6 +9,7 @@
 
 	<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace g "com.onlyplay.slotmatch3.components.dialogs.flex.*";
 		
 		 global 
         {
@@ -31,6 +32,14 @@
 			s|Label {
 				fontFamily:ggg;
 			}
+		
+		
+		/* 	Так это выставляет вефолтовый скин для GamePopup. Как это сделать в смом классе так что-бы его наследники
+			могли переопределять это свойство - я не понял */
+		g|GamePopup
+		{
+    		skinClass: ClassReference("com.onlyplay.slotmatch3.components.dialogs.flex.DialogType1BasePopupSkin");
+		}
 		
 	</fx:Style>
 

@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.controller.dialogs
 {
+	import com.onlyplay.slotmatch3.components.dialogs.flex.info.InfoPopup;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.ToMapPopUp;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.UnderConstructuionPupUp;
 	import spark.components.Alert;
@@ -68,6 +69,9 @@ package com.onlyplay.slotmatch3.controller.dialogs
 					break;
 				case "showToSlotPopup":
 					clas = ToSlotPopUp;
+					break;
+				case "connectFall":
+					clas = InfoPopup;
 					break;
 				default:
 					log("There ins't popup for event:" + e.type);

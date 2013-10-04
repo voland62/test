@@ -85,6 +85,11 @@ package com.onlyplay.slotmatch3.view
 				// Здесь мы рефрешим барабан при новом заходе
 				view.initSlot( gameModel.currentIsland.islandId, gameModel.currentLocation.locationId );
 			}
+			
+			if ( e.state == "lobby" )
+			{
+				view.hideLines();
+			}
 		}
 
 		private function onFace( e:Event) : void

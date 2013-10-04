@@ -129,6 +129,10 @@
 			public function initFlashEnergy(multiplier : Number) : void
 			{
 			}
+
+			public function setPlayButtonState(boolean : Boolean) : void
+			{
+			}
 		]]>
 	</fx:Script>
 

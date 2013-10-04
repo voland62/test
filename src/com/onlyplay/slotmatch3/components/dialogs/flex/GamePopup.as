@@ -8,6 +8,7 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 	/**
 	 * @author Andrew
 	 */
+	
 	[Style(name="titleBgSkin", type="Class", inherit="yes")]
 	[Style(name="closeBtSkin", type="Object", inherit="yes")]
 	[Style(name="bgSource", type="Object", inherit="no")]
@@ -38,10 +39,42 @@ package com.onlyplay.slotmatch3.components.dialogs.flex
 
 		public function GamePopup()
 		{
-			setStyle("skinClass", DialogType1BasePopupSkin);
-			setStyle("bgSource", _BgClassLight);
 			
+			super();
+			//setStyle("skinClass", DialogType1BasePopupSkin);
+			setStyle("bgSource", _BgClassLight);
+			log( "~~", getStyle("skinClass"));
 		}
+		
+		
+
+		
+		override public function initialize() : void
+		{
+			//if ( !getStyle("skinClass"))
+			log("GamePopup.initialize()");
+			log( "--", getStyle("skinClass"));
+			//setStyle("skinClass", DialogType1BasePopupSkin);
+			super.initialize();
+			log( getStyle("skinClass"));
+		}
+
+		
+		
+		
+//		override public function setStyle(styleProp : String, newValue : *) : void
+//		{
+//			log("GamePopup.setStyle(styleProp, newValue)");
+//			log( getStyle("skinClass"));
+//			super.setStyle(styleProp, newValue);
+//			log( getStyle("skinClass"));
+//		}
+		
+//		override protected function commitProperties() : void
+//		{
+//			log("GamePopup.commitProperties()");
+//			super.commitProperties();
+//		}
 
 		override protected function partAdded(partName : String, instance : Object) : void
 		{

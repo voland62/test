@@ -1,5 +1,7 @@
 package com.onlyplay.slotmatch3.config
 {
+	import com.onlyplay.slotmatch3.view.dialogs.InfoPopupMediator;
+	import com.onlyplay.slotmatch3.components.dialogs.flex.info.InfoPopup;
 	import com.onlyplay.slotmatch3.controller.match.TimeOverCommand;
 	import com.onlyplay.slotmatch3.view.dialogs.ToMapMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.IToMap;
@@ -132,6 +134,11 @@ package com.onlyplay.slotmatch3.config
 			commandMap.map("showToSlotPopup").toCommand(ShowPopupCommand);
 			commandMap.map("timerFinish").toCommand(ShowPopupCommand);
 			
+			// по событию потери коннекта, сейчас просто высовывваем попап
+			// но думаю сделать отдельную комманду для этого....
+			commandMap.map("connectFall").toCommand(ShowPopupCommand);
+			
+			
 			commandMap.map("toSlot").toCommand(PlaySlotCommand);
 			
 			
@@ -149,6 +156,7 @@ package com.onlyplay.slotmatch3.config
 			mediatorMap.map(IApp).toMediator(ApplicationMediator);
 			mediatorMap.map(IToSlot).toMediator(ToSlotMediator);
 			mediatorMap.map(IToMap).toMediator(ToMapMediator);
+			mediatorMap.map(InfoPopup).toMediator(InfoPopupMediator);
 			
 			//mediatorMap.map(Preloader).toMediator(PreloaderMediator)
 			
