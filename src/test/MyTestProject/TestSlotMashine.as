@@ -65,7 +65,7 @@ package test.MyTestProject
 			b_bt.y = a_bt.y - a_bt.height - padding;
 			b_bt.addEventListener(MouseEvent.CLICK, onAnimWinLinesClick);
 			addChild(b_bt);
-			
+
 			var c_bt : DisplayObject = createBt(0xd5006a);
 			// var padding : Number = 10;
 			c_bt.x = stage.stageWidth - c_bt.width - padding;
@@ -75,15 +75,17 @@ package test.MyTestProject
 
 			addEventListener(Event.ADDED_TO_STAGE, onStage);
 		}
-
+		
+		
+		private var __newState:Array;
 		private function onStopBtClick(e : MouseEvent) : void
 		{
-			slotMashine.stopRequest( getTestState() );
+			__newState = getTestState();
+			slotMashine.stopRequest( __newState );
 		}
 
 		private function onAnimWinLinesClick(e : MouseEvent) : void
 		{
-
 			var winLines : Array = genLines();
 
 			slotMashine.playWinLinesAnim(winLines);
@@ -91,21 +93,21 @@ package test.MyTestProject
 
 		private function genLines() : Array
 		{
-			var newState : Array = [];
-			for (var i : int = 0; i < 5; i++)
-			{
-				newState.push(i, i, i, i, i);
-			}
+//			var newState : Array = [];
+//			for (var i : int = 0; i < 5; i++)
+//			{
+//				newState.push(i, i, i, i, i);
+//			}
 
-			var nnn : Array = Parser.parseSpinData(newState);
-			
+			var nnn : Array = Parser.parseSpinData(__newState);
+
 			var line1 : LineVO = new LineVO();
 			line1.points = [new Point(1, 2), new Point(2, 3), new Point(3, 3), new Point(4, 3), new Point(5, 3)];
 			line1.lineId = 1;
 			line1.color = 0xFF0000;
 			line1.iconsCount = 2;
 			line1.winIconsTypes = LineVO.calcWinTypes(line1.points, nnn);
-			
+
 			var line2 : LineVO = new LineVO();
 			line2.points = [new Point(5, 3), new Point(4, 2), new Point(3, 1), new Point(2, 1), new Point(1, 1)];
 			line2.lineId = 23;
@@ -113,7 +115,7 @@ package test.MyTestProject
 			line2.iconsCount = 3;
 			line2.winIconsTypes = LineVO.calcWinTypes(line2.points, nnn);
 			var lines : Array = [line1, line2];
-			//var lines : Array = [line1];
+			// var lines : Array = [line1];
 			return lines;
 		}
 
@@ -140,21 +142,21 @@ package test.MyTestProject
 			slotMashine.x = stage.stageWidth >> 1;
 			slotMashine.y = stage.stageHeight >> 1;
 		}
-		
-		
-		private function getTestState():Array
+
+		private function getTestState() : Array
 		{
 			var newState : Array = [];
-				for (var i : int = 0; i < 5; i++)
-				{
-					// newState.push([Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12)]);
-					// newState.push(0,1,2,3,4);
-					newState.push(i, i, i, i, i);
-					// newState.push([0,1,2,3,4]);
-				}
-	
-				return Parser.parseSpinData(newState);
-			
+			for (var i : int = 0; i < 5; i++)
+			{
+				// newState.push([Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12)]);
+				 newState.push(Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12));
+				// newState.push(0,1,2,3,4);
+				// newState.push(i, i, i, i, i);
+				//newState.push(i + 1, i + 1, i + 1, i + 1, i + 1);
+				// newState.push([0,1,2,3,4]);
+			}
+
+			return Parser.parseSpinData(newState);
 		}
 
 		private function onSpinMouseClick(e : MouseEvent) : void
@@ -162,8 +164,7 @@ package test.MyTestProject
 			// log("TestSlots.onSpinMouseClick(e)");
 			// var newState:Array = [Util.randInt(12), Util.randInt(12), Util.randInt(12), Util.randInt(12),Util.randInt(12)];
 
-
-			slotMashine.spin( );
+			slotMashine.spin();
 			// slotMashine.spin( newState );
 		}
 	}

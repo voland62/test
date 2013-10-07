@@ -1,6 +1,5 @@
 package com.onlyplay.slotmatch3.config
 {
-	import com.onlyplay.slotmatch3.controller.match.OnFlashEnergyEncreaseCommand;
 	import net.IConnector;
 	import net.MessagesMap;
 	import net.SocketConnector;
@@ -21,14 +20,15 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.controller.OnLoginCommand;
 	import com.onlyplay.slotmatch3.controller.OnMatchEnterCommand;
 	import com.onlyplay.slotmatch3.controller.OnRoomChangeedCommand;
-	import com.onlyplay.slotmatch3.controller.OnSpinCommand;
 	import com.onlyplay.slotmatch3.controller.RequestRoomProgressCommand;
-	import com.onlyplay.slotmatch3.controller.SpinCommand;
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.BetPerLineChangingCommand;
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.LineNumChangingCommand;
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.MaxBetCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnBonusCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnBoosterCommand;
+	import com.onlyplay.slotmatch3.controller.match.OnFlashEnergyEncreaseCommand;
+	import com.onlyplay.slotmatch3.controller.spin.OnSpinCommand;
+	import com.onlyplay.slotmatch3.controller.spin.SpinCommand;
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.model.MatchGameModel;
 	import com.onlyplay.slotmatch3.services.BoosterTimerService;

@@ -25,10 +25,13 @@ package com.onlyplay.slotmatch3.controller.spin
 		
 		override public function execute() : void
 		{
-			var ready:Boolean = true;
-			if (ready)
+			log("TryStopSpin.execute()");
+			//var ready:Boolean = true;
+			if ( gameModel.spinReadyFlag && gameModel.spinTimerCompleteFlag )
 			{
 				eventDispatcher.dispatchEvent(new Event("showSpin"));
+				gameModel.spinReadyFlag = false;
+				gameModel.spinTimerCompleteFlag = false;
 			}
 		}
 	}

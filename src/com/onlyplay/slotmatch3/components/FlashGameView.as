@@ -1,5 +1,7 @@
 package com.onlyplay.slotmatch3.components
 {
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	import alternativa.gui.container.linear.VBox;
 	import alternativa.gui.container.tabPanel.TabData;
 	import alternativa.gui.controls.button.BaseButton;
@@ -162,6 +164,9 @@ package com.onlyplay.slotmatch3.components
 
 			addChild(_slotMashineBase);
 			addChild(_matchComponentBase);
+			
+			
+			_spinTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onSpinTimerComplete);
 
 			// createSlotMashine();
 
@@ -403,12 +408,17 @@ package com.onlyplay.slotmatch3.components
 			addChild(_animBase);
 		}
 
-		private function onAnimComplete(e : Event) : void
+		private function onSpinTimerComplete(event : TimerEvent) : void
 		{
-			(e.currentTarget as DisplayObjectContainer).removeChild(e.target.parent as DisplayObject);
-			log("----FlashGameView.onAnimComplete(e)");
-			// System.gc();
+			dispatchEvent(new Event ("onSpinTimer"));
 		}
+
+//		private function onAnimComplete(e : Event) : void
+//		{
+//			(e.currentTarget as DisplayObjectContainer).removeChild(e.target.parent as DisplayObject);
+//			log("----FlashGameView.onAnimComplete(e)");
+//			// System.gc();
+//		}
 
 		private function createSlotMashine() : void
 		{
@@ -658,12 +668,19 @@ package com.onlyplay.slotmatch3.components
 			_h = h;
 			onResize();
 		}
-
+		
+		private const SPIN_TIME:Number = 1000;// три секунды
+		private var _spinTimer:Timer = new Timer( SPIN_TIME, 1 );
 		public function showSpin() : void
 		{
-			if (_slotMashine ) _slotMashine.spin();
-			disableButtons(true);
-			_toMach3Button.locked = true;
+			if ( _slotMashine )
+			{				 
+				_slotMashine.spin();
+				disableButtons(true);
+				_toMach3Button.locked = true;
+				_spinTimer.reset();
+				_spinTimer.start();
+			}
 		}
 
 		// public function drawLines(winLines : Array) : void

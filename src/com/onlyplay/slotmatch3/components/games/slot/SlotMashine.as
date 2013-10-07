@@ -519,12 +519,14 @@ package com.onlyplay.slotmatch3.components.games.slot
 
 		public function stopRequest(newState : Array) : void
 		{
+			
+			var timeOffset:Number = 0.25;
 			for (var i : int = 0; i < barabansNum; i++)
 			{
 				var baraban : Baraban = _baranans[i] as Baraban;
 				// var duration : Number = durationBase + 0.3 * i;
 				// baraban.spin(newState[i], duration);
-				baraban.stopRequest(newState[i]);
+				baraban.stopRequest(newState[i], timeOffset * i);
 			}
 
 			(_baranans[_baranans.length - 1] as Baraban).addEventListener("AnimEnded", onAnimEnded);

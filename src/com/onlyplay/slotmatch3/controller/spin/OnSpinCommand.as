@@ -1,4 +1,4 @@
-package com.onlyplay.slotmatch3.controller
+package com.onlyplay.slotmatch3.controller.spin
 {
 	import robotlegs.bender.bundles.mvcs.Command;
 
@@ -35,8 +35,8 @@ package com.onlyplay.slotmatch3.controller
 			
 			// lines
 			var message : SpinResponseProtobuf = event.message as SpinResponseProtobuf;
-			var newState:Array = Parser.parseSpinData( message.icons);
-			trace('message.icons: ' + (message.icons));
+			var newState:Array = Parser.parseSpinData( message.icons );
+			//trace('message.icons: ' + (message.icons));
 			gameModel.icons = newState;
 			
 			//return;
@@ -54,6 +54,7 @@ package com.onlyplay.slotmatch3.controller
 			}
 			
 			//eventDispatcher.dispatchEvent(new Event("showSpin"));
+			gameModel.spinReadyFlag = true;
 			eventDispatcher.dispatchEvent(new Event("tryStopSpin"));
 		}
 		
@@ -76,7 +77,7 @@ package com.onlyplay.slotmatch3.controller
 			lineVO.color = LinesData.getColorById(protoLine.lineNumber);
 			lineVO.points = LinesData.getLinePointsById(protoLine.lineNumber);
 			lineVO.iconsCount = protoLine.iconsCount;
-			lineVO.winIconsTypes = LineVO.calcWinTypes( lineVO.points, icons);
+			lineVO.winIconsTypes = LineVO.calcWinTypes( lineVO.points, icons );
 			return lineVO;
 		}
 
