@@ -8,7 +8,7 @@ package com.onlyplay.slotmatch3.view.preloader {
 	import flash.utils.setTimeout;
 	import mx.preloaders.SparkDownloadProgressBar;
 	import flash.geom.Rectangle;
-	import com.onlyplay.slotmatch3.MainAndrew;
+	//import com.onlyplay.slotmatch3.MainAndrew;
 	
 	
 	public class PreloaderSWF extends  SparkDownloadProgressBar{
@@ -32,7 +32,8 @@ package com.onlyplay.slotmatch3.view.preloader {
 			mov = new splash_sborka();
 			mov.prldr_text.text = ""
 			mov.gotoAndStop(1);
-			mov.prldr_text.text = hintTexts[GetRandomNumber(0, hintTexts.length - 1)]
+			//mov.prldr_text.text = hintTexts[GetRandomNumber(0, hintTexts.length - 1)]
+			mov.prldr_text.text = "Амулет - хороший способ заработать больше денег и опыта"
 			
 			var Ys:Vector.<int> = Vector.<int>([560, 545, 535, 527])
 			mov.prldr_text.y = Ys[mov.prldr_text.numLines - 1];
@@ -42,9 +43,9 @@ package com.onlyplay.slotmatch3.view.preloader {
 		
 
 		
-		override protected function progressHandler (e:ProgressEvent):void{
+		override protected function progressHandler (e:ProgressEvent):void{	
 			var frame:int = int(e.bytesLoaded / e.bytesTotal * lastFrame);
-			mov.gotoAndStop(Math.max(frame,1));
+			mov.gotoAndStop(Math.max(frame, 1));
 		}
 	
 		
@@ -53,8 +54,8 @@ package com.onlyplay.slotmatch3.view.preloader {
 			mov.gotoAndStop(lastFrame);
 			
 			//сохраняем данные - они понадобятся второму прелоадеру
-			MainAndrew.preloaderText = mov.prldr_text.text;
-			MainAndrew.preloaderFrame = lastFrame;
+			//MainAndrew.preloaderText = mov.prldr_text.text;
+			//MainAndrew.preloaderFrame = lastFrame;
 			
 		}
 		

@@ -11,7 +11,7 @@
 
 
 	<fx:Declarations>
-		<s:GlowFilter id="labelFilter" color="0" strength="3" blurX="4"
+		<s:GlowFilter id="labelFilter" color="0x603000" strength="3" blurX="4"
 			blurY="4"/>
 	</fx:Declarations>
 

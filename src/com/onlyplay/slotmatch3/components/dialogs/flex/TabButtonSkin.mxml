@@ -65,7 +65,7 @@
 
 	<s:Label id="labelDisplay" textAlign="center" verticalAlign="middle" filters="{[whiteShedow]}"
 		fontWeight="bold" maxDisplayedLines="1" verticalCenter="1"
-		left="20" right="20"/>
+		left="20" right="20" fontSize="15" />
 
 
 </s:Skin>

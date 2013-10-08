@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+	xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
+	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*"
+	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
+	backgroundColor="0xffffff" xmlns:lobby="com.onlyplay.slotmatch3.components.lobby_smith.*"
+	xmlns:info="com.onlyplay.slotmatch3.components.dialogs.flex.info.*"
+	xmlns:shop="com.onlyplay.slotmatch3.components.shop.*"
+	height="800"
+	
+	>
+	
+	<fx:Script>	
+	</fx:Script>
+
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace g "com.onlyplay.slotmatch3.components.dialogs.flex.*";
+		
+		 global 
+        {
+            /* modal-transparency: 0; */
+             /* modal-transparency-blur: 3; */
+            modal-transparency-color: #000000;
+            /* modal-transparency-duration: 100; */
+			
+        }
+		
+			@font-face{
+				src:url("/fonts/FranklinGothicDemiCondC.otf");
+				fontFamily:ggg;
+				fontWeight:bold;
+				advancedAntiAliasing: false; 
+    			embedAsCFF: true;
+				
+			}
+			
+			s|Label {
+				fontFamily:ggg;
+			}
+		
+		
+		/* 	Так это выставляет вефолтовый скин для GamePopup. Как это сделать в смом классе так что-бы его наследники
+			могли переопределять это свойство - я не понял */
+		g|GamePopup
+		{
+    		skinClass: ClassReference("com.onlyplay.slotmatch3.components.dialogs.flex.DialogType1BasePopupSkin");
+		}
+		
+	</fx:Style>
+
+	
+	<shop:Shop verticalCenter="0" horizontalCenter="0"/>
+	<!--<lobby:LevelInfoPopup />-->
+
+
+
+</s:Application>

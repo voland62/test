@@ -37,9 +37,6 @@
 	<s:BitmapImage source="{DecorClass}" rotation="-90" bottom="-2" left="4"/>
 	
 	
-	
-	
-
 	<ns:NavigatorGroup id="contentGroup" left="0" right="0" top="0"
 		bottom="0" minWidth="0" minHeight="0"/>
 

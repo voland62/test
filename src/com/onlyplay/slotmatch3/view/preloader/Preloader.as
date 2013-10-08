@@ -24,11 +24,15 @@ package com.onlyplay.slotmatch3.view.preloader {
 		
 		private function init():void {
 			mov = new splash_sborka();
-			mov.gotoAndStop(MainAndrew.preloaderFrame);
-			mov.prldr_text.text = MainAndrew.preloaderText;
+			//mov.gotoAndStop(MainAndrew.preloaderFrame);
+			mov.gotoAndStop(90)
+			//mov.prldr_text.text = MainAndrew.preloaderText;
+			mov.prldr_text.text = "Амулет - хороший способ заработать больше денег и опыта";
 			
 			var Ys:Vector.<int> = Vector.<int>([560, 545, 535, 527])
+			
 			mov.prldr_text.y = Ys[mov.prldr_text.numLines - 1];
+			
 			
 			addChild(mov);
 		}
