@@ -238,7 +238,7 @@ package com.onlyplay.slotmatch3.components.games.slot
 				
 				//var timeOffset:Number = 0.3;
 				// порождаем вновь созданные
-				var timeline:TimelineLite = new TimelineLite( { onComplete:function ():void{ dispatchEvent(new Event( "AnimEnded" ));}} );
+				var timeline:TimelineLite = new TimelineLite( { onComplete:onComplete } );
 				
 				for (var i : int = 0; i < newModel.length; i++) 
 				{
@@ -249,34 +249,23 @@ package com.onlyplay.slotmatch3.components.games.slot
 						currentY -= _itemHeight;
 				}
 				
-				for each (var d : DisplayObject in _baraban ) 
+				// TODO: вычислять delay на основе VELOCITY
+				var delay:Number = 0.3;
+				for (var j : int = 0; j < _baraban.numChildren; j++) 
 				{
-					// TODO: вычислять delay на основе VELOCITY
-					var delay:Number = 0.25;
-					// var icon:DisplayObject = _baraban.getChildByName(i.toString());
-					var newY:Number = d.y - lastY - _itemHeight;
-					timeline.insert( TweenLite.to(d, delay, {y:newY}) );		
+					var icon:DisplayObject = _baraban.getChildAt(j);
+					var newY:Number = icon.y - lastY - _itemHeight;
+					timeline.insert( TweenLite.to(icon, delay, {y:newY}) );
+					
+					
 				}
 				
-//				for (var i : int = 0; i < _items.length; i++)
-//				{
-//					if ( !_baraban.getChildByName(i.toString()))
-//					{
-//						var itemView : Sprite = createItemView(_items[i]);
-//						itemView.name = i.toString();
-//						_baraban.addChild( itemView );
-//						itemView.y = currentY ;//- (i + 1) * _itemHeight;
-//						currentY -= _itemHeight;	
-//					}
-//					// добавляем твиннер
-//					
-//					// TODO: вычислять delay на основе VELOCITY
-//					var delay:Number = 0.25;
-//					var icon:DisplayObject = _baraban.getChildByName(i.toString());
-//					var newY:Number = icon.y - lastY - _itemHeight;
-//					timeline.insert( TweenLite.to(icon, delay, {y:newY}) );
-//				}	
 				
+				function onComplete():void
+				{
+					initView();
+					dispatchEvent(new Event( "AnimEnded" ));
+				}	
 			}
 		}
 		
