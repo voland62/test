@@ -30,6 +30,7 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("inc", onInc);
 			addViewListener("dec", onDec);
 			addViewListener("AnimEnded", onAnimEnded);
+			addViewListener("onSpinTimer", onSpinTimerComplete);
 			addViewListener("lines_dec", onLinesDec);
 			addViewListener("lines_inc", onLinesInc);
 			addViewListener("max_bet", onMaxBet);
@@ -239,6 +240,9 @@ package com.onlyplay.slotmatch3.view
 		{
 			eventDispatcher.dispatchEvent(e);
 			view.hideLines();
+			view.setPlayButtonState( false );
+			//view.hideLines();
+			view.showSpin();
 		}
 
 		private function onDec(e : DynamicEvent) : void
@@ -290,12 +294,20 @@ package com.onlyplay.slotmatch3.view
 			view.setExperinece(gameModel.currentExperience.experience, gameModel.currentExperience.level, gameModel.currentExperience.leftVal, gameModel.currentExperience.rightVal);
 			view.setMoney(gameModel.currentMoney);
 		}
-
-		private function onAnimEnded(e : Event) : void
+		
+		
+		
+		private function onSpinTimerComplete(e : Event) : void
+		{
+			gameModel.spinTimerCompleteFlag = true;
+			dispatch( new Event("tryStopSpin") );
+		}
+		
+		private function onAnimEnded( e:Event ):void
 		{
 			view.setReady();
 
-			var wasWin : Boolean = true;
+			// var wasWin : Boolean = true;
 			var win : Number = gameModel.win;
 			// 10;
 			if ( win > 0 )
@@ -305,6 +317,7 @@ package com.onlyplay.slotmatch3.view
 				// или подписаться
 			}
 		}
+		
 
 		private function onWinAnimComeplete() : void
 		{
@@ -326,16 +339,18 @@ package com.onlyplay.slotmatch3.view
 
 		private function showSpin(e : Event = null) : void
 		{
-			//view.setWin(gameModel.win);
-			view.showSping(gameModel.icons);
-			// view.drawLines(gameModel.winLines);
+			
+			//view.showSpin();
+			view.stopSpinRequest(gameModel.icons);
 		}
 
 		private function onSpin(e : Event = null) : void
 		{
-			dispatch(e);
+			dispatch(e);// "spin"
 			view.setPlayButtonState( false );
 			view.hideLines();
+			view.showSpin();
+			//gameModel.spinTimerCompleteFlag = false;
 		}
 
 		private function showMatch(e : Event) : void

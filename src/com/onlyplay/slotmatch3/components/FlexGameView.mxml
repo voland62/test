@@ -22,10 +22,6 @@
 			{
 			}
 
-			public function showSping(newState : Array) : void
-			{
-			}
-
 			public function drawLines(winLines : Array) : void
 			{
 			}
@@ -131,6 +127,14 @@
 			}
 
 			public function setPlayButtonState(boolean : Boolean) : void
+			{
+			}
+
+			public function showSpin() : void
+			{
+			}
+
+			public function stopSpinRequest(newState : Array) : void
 			{
 			}
 		]]>
