@@ -46,11 +46,12 @@
 
 	<fx:Script>
 		<![CDATA[
+			import com.onlyplay.slotmatch3.components.shop.Shop;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.ToMapPopUp;
 			import com.onlyplay.slotmatch3.components.lobby_smith.LevelInfoPopup;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.ToSlotPopUp;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.Profile;
-			import com.onlyplay.slotmatch3.components.dialogs.flex.Shop;
+			//import com.onlyplay.slotmatch3.components.dialogs.flex.Shop;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.Options;
 
 			import mx.resources.ResourceBundle;

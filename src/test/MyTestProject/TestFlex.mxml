@@ -123,9 +123,7 @@
 
 	<!--<flex:ToMapPopUp verticalCenter="0" horizontalCenter="0"/>-->
 
-	<info:InfoPopup verticalCenter="0" horizontalCenter="0"/>
-
-
+	<!--<info:InfoPopup verticalCenter="0" horizontalCenter="0"/>-->
 
 	<!--<flex:ToSlotPopUp verticalCenter="0" horizontalCenter="0"/>-->
 
@@ -140,6 +138,12 @@
 
 	<!--<mx:ProgressBar verticalCenter="20" horizontalCenter="0"/>-->
 
+
+	<!--<s:SkinnableContainer width="300" height="200" verticalCenter="20"
+		horizontalCenter="0" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin3"/>-->
+
+	<flex:PaymentsTablePopUp verticalCenter="0" horizontalCenter="0"/>
+	
 
 
 </s:Application>

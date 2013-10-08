@@ -1,5 +1,6 @@
 package com.onlyplay.slotmatch3.config
 {
+	import test.MyTestProject.controller.TestOnLoginCommand;
 	import net.IConnector;
 	import net.MessagesMap;
 	import net.SocketConnector;
@@ -80,7 +81,7 @@ package com.onlyplay.slotmatch3.config
 
 			// controller
 			commandMap.map("init").toCommand(InitCommand);
-			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(LoginResponseProtobuf)).toCommand(OnLoginCommand);
+			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(LoginResponseProtobuf)).toCommand(TestOnLoginCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(LocationEnterResponseProtobuf)).toCommand(OnEnterLocationCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(SpinResponseProtobuf)).toCommand(OnSpinCommand);
 			commandMap.map(ServiceEvent.PREFIX + MessagesMap.getIdByClass(MatchEnterResponseProtobuf)).toCommand(OnMatchEnterCommand);
