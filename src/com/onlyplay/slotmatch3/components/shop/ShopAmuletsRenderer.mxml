@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+               xmlns:s="library://ns.adobe.com/flex/spark" 
+               xmlns:mx="library://ns.adobe.com/flex/halo"
+			   xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
+			   fontFamily="franklin"
+			  >
+	
+	<fx:Declarations>
+		<s:GlowFilter id="outlineFilter" color="0" strength="3" blurX="4" blurY="4"/>
+		<s:DropShadowFilter id="outlineWhite" color="0xfff7e8" angle="93" distance="1"  />
+	</fx:Declarations>
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace my "com.onlyplay.slotmatch3.components.dialogs.flex.*";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace tite "com.onlyplay.slotmatch3.components.dialogs.flex.tite.*";
+		
+		@font-face{
+			
+			src:url("../../../../../fonts/FranklinGothicDemiCondC.otf");
+			fontFamily:franklin;
+			fontWeight:bold;
+		}
+		
+	</fx:Style>
+	
+	
+	<fx:Script>
+		<![CDATA[
+			
+			
+		
+			[Embed(source="../../../../../../Resources/Dialogs/Common/panel_header1.png", scaleGridTop="7", scaleGridBottom="18", scaleGridLeft="16", scaleGridRight="29")]
+			private static const chapterHeader : Class;
+			
+			[Embed(source = "../../../../../../Resources/Dialogs/Common/panel1_base.png",  mimeType="image/png"
+			,scaleGridTop="15", scaleGridBottom="30", 
+			scaleGridLeft="15", scaleGridRight="16"
+			)]
+			private static const ramka:Class
+			
+			[Embed(source="../../../../../../Resources/Dialogs/MagazineDialog/magazine_amulet_panel.png")]
+			private static const itemRamka:Class
+			
+			[Embed(source="../../../../../../Resources/Amulets/amulet_8.png")]
+			private static const amulets1:Class
+			/*[Embed(source="../../../../../../Resources/Boosters/booster_2.png")]
+			private static const boosters2:Class
+			[Embed(source="../../../../../../Resources/Boosters/booster_3.png")]
+			private static const boosters3:Class
+			[Embed(source="../../../../../../Resources/Boosters/booster_4.png")]
+			private static const boosters4:Class*/
+			
+			[Embed(source="../../../../../../Resources/Dialogs/MagazineDialog/magazine_price_base.png")]
+			private static const price:Class
+			
+			[Embed(source = "../../../../../../Resources/Dialogs/MagazineDialog/magazine_button_base.png",
+			scaleGridTop="12", scaleGridBottom="18", scaleGridLeft="12", scaleGridRight="22")]
+			private static const buttonBase:Class
+			
+			
+		
+		]]>
+	</fx:Script>
+	
+	<!--<s:layout>
+		<s:HorizontalLayout/>
+	</s:layout>-->
+	
+	<s:Group y="15">
+		
+		<s:Image top="-2" bottom="-2" left="-2" right="-2" width="265" height="180" source="{ramka}"/>
+		<tite:Title
+			width="92%" depth="1" top="-14" title="{data.lbl}"
+			 skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin4"
+			horizontalCenter="0"/>
+		
+		
+		<!--рамка и товар  ней-->
+		<s:Image top="5" bottom="5" left="10" source="{itemRamka}"  />
+		<s:Image id="itemPlace" source="{amulets1}" width="87" height="87" x="35" y="36" smooth="true" />
+		
+		
+		
+		
+		
+		
+		<!--ярлычок с ценой-->
+		<s:Image x="24" y="105" source="{price}" />
+		<!--<s:Label text="$ {data.price}" color="0xfdefb3" fontWeight="bold"-->
+		<s:Label text="$ {data.price}" color="0xffffff" fontWeight="bold"
+			fontSize="14" x="57" y="135"  filters="{[outlineFilter]}" />
+		
+		<!--колличество итемов-->
+		<s:Label text="У тебя: " fontWeight="bold" fontSize="14" x="75" y="20" filters="{[outlineWhite]}"/>
+		<s:Label text="{data.num}" fontWeight="bold" fontSize="16" x="118" y="18" filters="{[outlineWhite]}"  />
+		
+		<!--множитель-->
+		<!--<s:Label text="x {data.koef}" color="0xfdefb3" fontWeight="bold"
+			fontSize="14" x="105" y="105"  filters="{[outlineFilter]}" />-->
+		
+		<!-- описание -->	
+		<s:Label text="{data.text}" width="120" fontWeight="bold" x="145" y="20" fontSize="14" filters="{[outlineWhite]}"/>
+		
+		<!--кнопка купить-->
+		<s:Image x="150" bottom="4" source="{buttonBase}"  width="92" height="38" />
+		<s:Button id="kupit" label="Купить" x="150" bottom="6" name="btn_{data.ind}"
+				skinClass="com.onlyplay.slotmatch3.components.shop.ShopButtonSkin"
+				/>
+		
+		
+	</s:Group>
+	
+	<!--click = "{dispatchEvent(new DynamicEvent('underConstruction'))}"-->
+
+	
+	
+</s:ItemRenderer>

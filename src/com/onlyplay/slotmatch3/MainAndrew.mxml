@@ -254,7 +254,9 @@
 	<s:Image source="@Embed(source='/assets/Mock_friends.png')" click="getUnderConstrWnd(event)"
 		y="552">
 	</s:Image>
-
+	
+	
+	
 	<s:SpriteVisualElement id="prldrHolder"/>
 
 </s:Application>

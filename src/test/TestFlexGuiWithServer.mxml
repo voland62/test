@@ -50,6 +50,7 @@
 			import com.onlyplay.slotmatch3.components.lobby_smith.LevelInfoPopup;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.ToSlotPopUp;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.Profile;
+			import com.onlyplay.slotmatch3.components.dialogs.flex.Shop;
 			import com.onlyplay.slotmatch3.components.dialogs.flex.Options;
 
 			import mx.resources.ResourceBundle;
@@ -96,6 +97,9 @@
 						break;
 					case "В карту":
 						PopupClass = ToMapPopUp;
+						break;
+					case "Магазин":
+						PopupClass = Shop;
 						break;
 					default:
 						log("Нема такого диалога:" + dialogList.selectedItem.label);
@@ -183,6 +187,7 @@
 			<fx:Object label="В слот"/>
 			<fx:Object label="В карту"/>
 			<fx:Object label="Level Info"/>
+			<fx:Object label="Магазин"/>
 
 		</mx:ArrayList>
 

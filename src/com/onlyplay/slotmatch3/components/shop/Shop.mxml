@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:lbls="com.onlyplay.slotmatch3.components.dialogs.flex.labels.*"
+	xmlns:ns="http://flex.apache.org/experimental/ns" 
+	xmlns:scrollEl="com.onlyplay.slotmatch3.components.dialogs.flex.scrollEl.*"
+	minHeight="550" minWidth="650"
+	bgSource="{_BgClassDark}" title="Магазин" 
+	titleBgSkin="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkinShop" 
+	initialize="init()"
+	>
+
+<!--implements="com.onlyplay.slotmatch3.view.dialogs.IProfilePopup"
+	xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*"
+	titleBgSkin="{'ShopSkin'}"-->
+
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+		
+         .sss {
+               color:#444444;
+               fontWeight:"bold";        
+          }     
+		
+	</fx:Style>
+
+	<my:states>
+		<s:State name="normal"/>
+		<s:State name="gifted"/>
+		<s:State name="inventar"/>
+	</my:states>
+
+
+	<fx:Script>
+		<![CDATA[
+			import flash.events.Event;
+			import spark.events.IndexChangeEvent;
+			import mx.utils.ObjectProxy;
+			import mx.collections.ArrayCollection;
+
+			
+			[Bindable]
+			[Embed(source="/Dialogs/Common/buttons_base_green_green_red.png", mimeType="image/png")]
+			private var ButtonsBgClass : Class;
+			
+			[Embed(source="../../../../../../Resources/Dialogs/Common/tile_brown.png")]
+			private static const backGround:Class;
+			
+			[Embed(source = "../../../../../../Resources/Dialogs/MagazineDialog/magazine_money_base.png")]
+			private static const moneyBg:Class;
+			
+			[Bindable]
+			private var boostersData:ArrayCollection
+			private var tempData:Array;
+			private var rawBoostersData:Array;
+			
+			private function init():void {
+				addEventListener(MouseEvent.CLICK, onClick, true);
+				
+				
+				rawBoostersData=[
+				{lbl:"Перетюгель", num:"18",  price:"1.44", koef:"6", ind:"0",
+					text:"Уничтожает фишки одного цвета и заряжает некотрые из оставшихся"},
+				{lbl:"Квакиратор", num:"45",  price:"2.55", koef:"7", ind:"1",
+					text:"Уничтожает фишки одного цвета и заряжает некотрые из оставшихся"},
+				{lbl:"Рубинатор", num:"5",  price:"3.66", koef:"8",  ind:"2",
+					text:"Уничтожает фишки одного цвета и заряжает некотрые из оставшихся"},
+				{lbl:"Варокет", num:"12",  price:"4.77", koef:"9",  ind:"3",
+					text:"Уничтожает фишки одного цвета и заряжает некотрые из оставшихся"},
+				{lbl:"Рыкоскоп", num:"78", price:"5.88", koef:"10", ind:"4",
+					text:"Уничтожает фишки одного цвета и заряжает некотрые из оставшихся"},
+				{lbl:"Бурмалярик", num:"30", price:"6.11", koef:"2", ind:"5",
+					text:"Уничтожает фишки одного цвета и заряжает некотрые из оставшихся"},
+				{lbl:"Кандебовик", num:"23",  price:"7.22", koef:"3", ind:"6",
+					text:"Уничтожает фишки одного цвета и заряжает некотрые из оставшихся"},
+				{lbl:"Кубляун", num:"45",  price:"8.66", koef:"4", ind:"7",
+					text:"Уничтожает фишки одного цвета и заряжает некотрые из оставшихся"},
+				{lbl:"Ябрышко", num:"20",  price:"9.33", koef:"5", ind:"8",
+					text:"Уничтожает фишки одного цвета и заряжает некотрые из оставшихся"}
+				]
+				
+				tempData = [];
+				for (var i:uint = 0; i < rawBoostersData.length; i++) {
+					tempData.push(new ObjectProxy(rawBoostersData[i]))
+				}
+				
+				boostersData = new ArrayCollection(tempData);
+				
+			}
+			
+			private function onClick(e:Event):void {
+				trace (e.target.name)
+			}
+			
+			
+			public function setDp( dp:Array ):void{
+				secondTabList.dataProvider = new ArrayList( dp );
+			}
+
+			
+
+			private function onTabChanged(e : IndexChangeEvent) : void
+			{
+				
+				if (nav.selectedItem == giftss)
+				{
+			
+					currentState = "gifted";
+					
+				}
+				else
+				{
+					currentState = "normal";
+				}
+			}
+
+			private function tabsLabelFunction(item : Object) : String
+			{
+				return item.name;
+			}
+
+			public function setState(state : String) : void
+			{
+				currentState = state;
+				//tabBar.invalidateProperties();
+			}
+		]]>
+	</fx:Script>
+
+	
+
+	<fx:Declarations>
+		<s:ArrayList id="dp">
+			<fx:Object label="Статистика"/>
+			<fx:Object label="Подарить подарок"/>
+		</s:ArrayList>
+		
+		<s:GlowFilter id="brownOutline" blurX="4" blurY="4" color="0x603000" /> 
+		
+	</fx:Declarations>
+	
+	<!--<s:Image source="{backGround}"/>-->
+	
+	<s:Group width="100%" height="100%" top="30" left="30" right="30" bottom="30">
+		
+		
+		
+		<s:TabBar id="tabBar" dataProvider="{nav}" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.TabBarSkin"
+			labelFunction="{tabsLabelFunction}" top="0" left="10"
+			depth="1" change="onTabChanged(event)"/>
+		
+		<ns:Navigator id="nav" left="0" right="0" bottom="0" top="34" 
+			skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NavSkin">
+			<s:Group name="Бустеры" >
+				<s:List id="firstTabList" top="20" bottom="20" left="20" right="10" 
+					
+					skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.inventar.SimpleListSkin"
+					itemRenderer="com.onlyplay.slotmatch3.components.shop.ShopBustersRenderer"
+					dataProvider="{boostersData}" useVirtualLayout="false">
+					
+					<s:layout>
+						<s:TileLayout verticalGap="20" horizontalGap="10" />
+					</s:layout>
+				</s:List>
+				
+			</s:Group>
+
+			<s:Group id="giftss" top="20" bottom="20" left="20" right="10"
+				name="Амулеты" >
+				<s:List id="secondTabList" top="20" bottom="20" left="20" right="10"
+					skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.inventar.SimpleListSkin"
+					itemRenderer="com.onlyplay.slotmatch3.components.shop.ShopAmuletsRenderer"
+					dataProvider="{boostersData}" useVirtualLayout="false">
+					
+					<s:layout>
+						<s:TileLayout verticalGap="20" horizontalGap="10" />
+					</s:layout>
+				</s:List>
+				
+				<!--<s:Rect top="0" bottom="0" left="0" right="0">
+				<s:stroke>
+				<s:SolidColorStroke color="0x00ffff"/>
+				</s:stroke>
+				</s:Rect>-->
+			</s:Group>
+
+		</ns:Navigator>
+		
+		<s:Image source="{moneyBg}" x="420" y="-10" scaleX="0.95" scaleY="0.95" />
+		<lbls:AnimatedLabel x="460" y="4"  needFormat="true" needAnimate="false" color="0x400000" fontSize="14" fontWeight="bold" text="12345678" />
+		
+		<s:Button id="kupit"  x="527" y="-8" name="btn_plus"
+				skinClass="com.onlyplay.slotmatch3.components.shop.ShopPlusSkin"
+				/>
+		
+	</s:Group>
+
+
+
+	<my:controlBarContent>
+		<!--<s:Group bottom="-45" horizontalCenter="0" excludeFrom="gifted">
+		</s:Group>-->
+		<s:Button label="Закрыть" bottom="-37" horizontalCenter="0"
+			excludeFrom="gifted" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
+			click="{dispatchEvent(new Event(Event.CLOSE));}"/>
+
+		<s:Group bottom="-40" horizontalCenter="0" includeIn="gifted">
+			<s:BitmapImage source="{ButtonsBgClass}"/>
+			<s:Button x="19" y="11" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+				label="Подарить" fontSize="13"/>
+			<s:Button fontSize="13" x="141" y="11" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+				label="Подарить всем"/>
+			<s:Button x="264" y="11" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
+				fontSize="13" label="Закрыть" click="{dispatchEvent(new Event(Event.CLOSE));}"/>
+
+			<!--<s:Button label="Зактыть" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
+			click="{dispatchEvent(new Event(Event.CLOSE));}"/>-->
+		</s:Group>
+
+
+	</my:controlBarContent>
+
+</my:GamePopup>
