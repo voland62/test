@@ -1,4 +1,4 @@
-package com.onlyplay.slotmatch3.controller
+package com.onlyplay.slotmatch3.controller.spin
 {
 	import robotlegs.bender.bundles.mvcs.Command;
 
@@ -35,7 +35,10 @@ package com.onlyplay.slotmatch3.controller
 				//log('gameModel.currentMoney: ' + (gameModel.currentMoney));
 				gameModel.win = 0;
 				eventDispatcher.dispatchEvent(new Event("currentMoneyChanged"));
-
+				
+				gameModel.spinReadyFlag = false;
+				gameModel.spinTimerCompleteFlag = false;
+				
 				service.spin(gameModel.currentBet.lines.length, gameModel.currentBet.betPerLine);
 			}
 		}

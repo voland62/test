@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <flex:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
 	titleBgSkin="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin2"
 	implements="com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup"
 	minHeight="500" minWidth="600" title="Таблица выплат"
-	controlBarVisible="true">
+	controlBarVisible="true" creationComplete="onComplete(event)">
 
 
 
 	<fx:Script>
 		<![CDATA[
+			import mx.events.FlexEvent;
+
+			import org.apache.flex.collections.ArrayList;
+
 			import mx.collections.ArrayCollection;
 
 			[Embed(source="/Dialogs/PaytableDialog/paytable_decoration.png")]
 			private var DecorClass : Class;
-			
 			[Embed(source="/Dialogs/Common/buttons_base_red_v2.png")]
 			private const ButtonsBg : Class;
-			
 			[Bindable]
 			private var dp : ArrayCollection = new ArrayCollection([]);
-			
+
 			public function setList(multiplayersList : Array) : void
 			{
 				// dp.source = multiplayersList;
 				dp = new ArrayCollection(multiplayersList);
 			}
 
+			[Bindable]
+			private var mockDp : ArrayList = new ArrayList(["andrew", "nick", "fedya"]);
 
+			private function onComplete(e : FlexEvent) : void
+			{
+				// tab.selectedIndex = 0;
+				// tab.invalidateProperties();
+			}
 			
 			// skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.PaymentsTableSkin"		
 
@@ -35,83 +45,250 @@
 	</fx:Script>
 
 
-	<flex:NeildPanel top="40" left="30" right="30" bottom="40">
+	<fx:Style>
+		.microbonuses1{
+            fontSize: 15;
+            color:#ddc193;
+            fontWeight:bold;
+            fontFamily:ggg;
+        }
+		.microbonuses2{
+            fontSize: 14;
+            color:#feeac7;
+            fontWeight:bold;
+            fontFamily:ggg;
+        }
+		
+	</fx:Style>
 
-		<s:DataGroup top="20 left=20" right="20" bottom="20"
-			dataProvider="{dp}">
-			<s:layout>
-				<s:TileLayout horizontalGap="10" verticalGap="10"
-					orientation="rows" requestedColumnCount="3"
-					requestedRowCount="4" rowHeight="87" columnWidth="156"/>
-			</s:layout>
 
-			<s:itemRenderer>
 
-				<fx:Component>
-					<s:ItemRenderer>
+	<ns:NavigatorGroup id="nav" top="40" left="30" right="30" bottom="40"
+		selectedIndex="0">
 
-						<fx:Script>
-							<![CDATA[
-								import mx.graphics.BitmapSmoothingQuality;
-								// var iconsBasePath : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Slot/slot_icons/";
+		<!--  first tab -->
+		<flex:NeildPanel top="0" left="0" right="0" bottom="0">
 
-							]]>
-						</fx:Script>
+			<s:DataGroup top="20 left=20" right="20" bottom="20"
+				dataProvider="{dp}">
+				<s:layout>
+					<s:TileLayout horizontalGap="10" verticalGap="10"
+						orientation="rows" requestedColumnCount="3"
+						requestedRowCount="4" rowHeight="87"
+						columnWidth="156"/>
+				</s:layout>
 
-						<s:Rect top="0" left="0" right="0" bottom="0"
-							radiusX="4" radiusY="4">
+				<s:itemRenderer>
+
+					<fx:Component>
+						<s:ItemRenderer>
+
+							<fx:Script>
+								<![CDATA[
+									import mx.graphics.BitmapSmoothingQuality;
+									// var iconsBasePath : String = "D:/reps/slogmatch3_2/trunk/client/ios/puzzleslots/SlotMatch3/Resources/Slot/slot_icons/";
+
+								]]>
+							</fx:Script>
+
+							<s:Rect top="0" left="0" right="0" bottom="0"
+								radiusX="4" radiusY="4">
+								<s:fill>
+									<s:SolidColor color="0xddc294"/>
+								</s:fill>
+							</s:Rect>
+
+							<fx:Declarations>
+								<s:DropShadowFilter id="whiteShedow"
+									color="0xf8f8f8" strength="2"
+									blurX="0" angle="90" blurY="1"
+									distance="1"/>
+							</fx:Declarations>
+
+
+
+							<s:VGroup horizontalAlign="center" left="4"
+								right="4" top="3" bottom="1" gap="1">
+								<s:Label text="{resourceManager.getString('ruLocale', data.localeKey)}"
+									fontWeight="bold" fontSize="16"
+									filters="{[whiteShedow]}"/>
+								<s:HGroup>
+									<s:BitmapImage width="70" height="70"
+										smooth="true"
+										smoothingQuality="{BitmapSmoothingQuality.DEFAULT}"
+										source="{data.url}"/>
+
+									<s:VGroup>
+										<s:Label fontWeight="bold"
+											text="{'x2=' + data.x2}"
+											color="0x860202"/>
+										<s:Label fontWeight="bold"
+											text="{'x3=' + data.x3}"
+											color="0x860202"/>
+										<s:Label fontWeight="bold"
+											text="{'x4=' + data.x4}"
+											color="0x860202"/>
+										<s:Label fontWeight="bold"
+											text="{'x5=' + data.x5}"
+											color="0x860202"/>
+									</s:VGroup>
+
+								</s:HGroup>
+							</s:VGroup>
+
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+
+			</s:DataGroup>
+
+		</flex:NeildPanel>
+
+
+		<!--  second tab   
+	
+		-->
+
+		<s:VGroup left="0" right="0" top="0" bottom="0" gap="20">
+			<!-- бустеры -->
+			<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin"
+				width="100%" height="70%">
+				<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"
+					depth="1" title="Бустеры" horizontalCenter="0"
+					top="-12" width="40%"/>
+				<s:Group left="0" right="0" top="0" bottom="0">
+					<s:layout>
+						<s:TileLayout paddingTop="20" paddingBottom="20"
+							paddingLeft="20" paddingRight="20"
+							verticalGap="10"
+							horizontalGap="10"
+							columnAlign="justifyUsingWidth"
+							rowAlign="justifyUsingHeight"
+							requestedColumnCount="3"
+							requestedRowCount="2"/>
+					</s:layout>
+					<s:Group width="100%" height="100%">
+						<s:Rect minWidth="100" minHeight="50" radiusX="5"
+							radiusY="5" top="0" bottom="0" left="0"
+							right="0">
 							<s:fill>
-								<s:SolidColor color="0xddc294"/>
+								<s:SolidColor color="0xff8000"/>
 							</s:fill>
 						</s:Rect>
+					</s:Group>
+					<s:Group width="100%" height="100%">
+						<s:Rect minWidth="100" minHeight="50" radiusX="5"
+							radiusY="5" top="0" bottom="0" left="0"
+							right="0">
+							<s:fill>
+								<s:SolidColor color="0xff8000"/>
+							</s:fill>
+						</s:Rect>
+					</s:Group>
+					<s:Group width="100%" height="100%">
+						<s:Rect minWidth="100" minHeight="50" radiusX="5"
+							radiusY="5" top="0" bottom="0" left="0"
+							right="0">
+							<s:fill>
+								<s:SolidColor color="0xff8000"/>
+							</s:fill>
+						</s:Rect>
+					</s:Group>
+					<s:Group width="100%" height="100%">
+						<s:Rect minWidth="100" minHeight="50" radiusX="5"
+							radiusY="5" top="0" bottom="0" left="0"
+							right="0">
+							<s:fill>
+								<s:SolidColor color="0xff8000"/>
+							</s:fill>
+						</s:Rect>
+					</s:Group>
+					<s:Group width="100%" height="100%">
+						<s:Rect minWidth="100" minHeight="50" radiusX="5"
+							radiusY="5" top="0" bottom="0" left="0"
+							right="0">
+							<s:fill>
+								<s:SolidColor color="0xff8000"/>
+							</s:fill>
+						</s:Rect>
+					</s:Group>
+					<s:Group width="100%" height="100%">
+						<s:Rect minWidth="100" minHeight="50" radiusX="5"
+							radiusY="5" top="0" bottom="0" left="0"
+							right="0">
+							<s:fill>
+								<s:SolidColor color="0xff8000"/>
+							</s:fill>
+						</s:Rect>
+					</s:Group>
 
-						<fx:Declarations>
-							<s:DropShadowFilter id="whiteShedow"
-								color="0xf8f8f8" strength="2" blurX="0"
-								angle="90"
-								blurY="1" distance="1"/>
-						</fx:Declarations>
+				</s:Group>
 
 
+			</s:SkinnableContainer>
 
-						<s:VGroup horizontalAlign="center" left="4"
-							right="4" top="3" bottom="1" gap="1">
-							<s:Label text="{resourceManager.getString('ruLocale', data.localeKey)}"
-								fontWeight="bold" fontSize="16" filters="{[whiteShedow]}"/>
-							<s:HGroup>
-								<s:BitmapImage width="70" height="70"
-									smooth="true" smoothingQuality="{BitmapSmoothingQuality.DEFAULT}"
-									source="{data.url}"/>
 
-								<s:VGroup>
-									<s:Label fontWeight="bold" text="{'x2=' + data.x2}"
-										color="0x860202"/>
-									<s:Label fontWeight="bold" text="{'x3=' + data.x3}"
-										color="0x860202"/>
-									<s:Label fontWeight="bold" text="{'x4=' + data.x4}"
-										color="0x860202"/>
-									<s:Label fontWeight="bold" text="{'x5=' + data.x5}"
-										color="0x860202"/>
-								</s:VGroup>
+			<!-- микробонусы -->
+			<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin3"
+				width="100%" height="30%">
 
-							</s:HGroup>
+				<tite:Title skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"
+					depth="1" title="Микробонусы" horizontalCenter="0"
+					top="-11" width="40%"/>
+
+				<s:HGroup paddingBottom="10" paddingLeft="20"
+					paddingRight="20" paddingTop="20">
+
+					<s:HGroup width="30%">
+						<s:BitmapImage source="@Embed(source='/Icons/icon_microbonus_energy.png')"/>
+						<s:VGroup>
+							<s:Label text="Энергия" styleName="microbonuses1"/>
+							<s:Label text="Ваша полоска множителя увеличивается"
+								width="120" styleName="microbonuses2"/>
 						</s:VGroup>
+					</s:HGroup>
 
-					</s:ItemRenderer>
-				</fx:Component>
-			</s:itemRenderer>
+					<s:HGroup width="30%">
+						<s:BitmapImage source="@Embed(source='/Icons/icon_microbonus_money.png')"/>
+						<s:VGroup>
+							<s:Label text="Золото" styleName="microbonuses1"/>
+							<s:Label text="Банк пополняется на 50 монет."
+								width="120" styleName="microbonuses2"/>
+						</s:VGroup>
+					</s:HGroup>
 
-		</s:DataGroup>
+					<s:HGroup width="30%">
+						<s:BitmapImage source="@Embed(source='/Icons/icon_microbonus_move.png')"/>
+						<s:VGroup>
+							<s:Label text="Время" styleName="microbonuses1"/>
+							<s:Label text="Прибавка составляет 10 секунд к игровому времени."
+								width="120" styleName="microbonuses2"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:HGroup>
+
+			</s:SkinnableContainer>
+		</s:VGroup>
+
+	</ns:NavigatorGroup>
 
 
 
-	</flex:NeildPanel>
-
+	<s:TabBar id="tab" left="25" bottom="14" dataProvider="{nav}">
+		<s:layout>
+			<s:HorizontalLayout gap="5"/>
+		</s:layout>
+		<s:itemRenderer>
+			<fx:Component>
+				<s:ButtonBarButton skinClass="com.onlyplay.slotmatch3.components.lobby.elements.flex2.LobbyRadioButtonSkin"/>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:TabBar>
 
 	<flex:controlBarContent>
 
 		<s:Group bottom="-37" horizontalCenter="0">
-			<s:Button  label="Зактыть" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
+			<s:Button label="Зактыть" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
 				click="{dispatchEvent(new Event(Event.CLOSE));}"/>
 		</s:Group>
 

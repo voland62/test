@@ -34,6 +34,8 @@ package com.onlyplay.slotmatch3.model
 		public var achievements : AchievementsProtobuf;
 		public var amulets : AmuletsProtobuf;
 		public var multipliers : Array;
+		public var spinReadyFlag : Boolean;
+		public var spinTimerCompleteFlag : Boolean;
 		
 		
 		

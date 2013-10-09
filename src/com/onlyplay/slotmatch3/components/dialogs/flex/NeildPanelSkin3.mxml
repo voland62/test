@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:core="mx.core.*">
+
+
+	<fx:Metadata>
+		[HostComponent("spark.components.SkinnableContainer")]
+	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.graphics.BitmapFillMode;
+			[Embed(source="/Dialogs/Common/tile_brown.png")]
+			private static const BgClass : Class;
+			
+			[Embed(source="/Dialogs/Common/panel3_base.png"
+			,scaleGridTop="22", scaleGridBottom="85", 
+			scaleGridLeft="22", scaleGridRight="35"
+			)]
+			private static const TableClass : Class;
+			
+			[Embed(source="/Dialogs/Common/panel1_base_mask.png"
+			,scaleGridTop="16", scaleGridBottom="30", 
+			scaleGridLeft="16", scaleGridRight="17"
+			)]
+			private static const MaskClass : Class;
+
+			// panel1_base_mask.png
+			// public var frame : Sprite = new Sprite();
+			override protected function createChildren() : void
+			{
+				/*
+				 *  TODO: подумать как сделать более элегантно
+				 */
+
+				// var corners : Bitmap = new DialogClasses.TableClass();
+				// frame.addChild(corners);
+				// frame.scale9Grid = new Rectangle(DialogClasses.tableCorner, DialogClasses.tableCorner, 2, 2);
+				super.createChildren();
+			}
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+	<!--<s:Group top="0" bottom="0" left="0" right="0" 
+	scaleGridLeft="10"
+	scaleGridRight="12"
+	scaleGridTop="10"
+	scaleGridBottom="12"
+	>
+	</s:Group >-->
+
+	<s:Group top="0" bottom="0" left="0" right="0" >
+		<s:BitmapImage top="0" bottom="0" left="0" right="0" source="{BgClass}" fillMode="{BitmapFillMode.REPEAT}" mask="{maskGroup}" maskType="alpha"/>
+		<s:BitmapImage top="-2" bottom="-2" left="-2" right="-2" 
+			source="{TableClass}"/>
+	</s:Group>
+
+	<s:Group id="maskGroup" top="0" bottom="0" left="0" right="0" >
+		<s:BitmapImage source="{MaskClass}" top="0" bottom="0" left="0" 
+			right="0"/>
+
+	</s:Group>
+
+
+	<!--<s:Rect left="0" right="0" top="0" bottom="0">
+	<s:stroke>
+	<s:SolidColorStroke color="0xff0000"/>
+	</s:stroke>
+	</s:Rect>-->
+
+	<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0"
+		minWidth="0" minHeight="0">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+	</s:Group>
+
+
+</s:Skin>

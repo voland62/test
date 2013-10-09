@@ -1,4 +1,4 @@
-package com.onlyplay.slotmatch3.controller
+package com.onlyplay.slotmatch3.controller.spin
 {
 	import robotlegs.bender.bundles.mvcs.Command;
 
@@ -28,26 +28,21 @@ package com.onlyplay.slotmatch3.controller
 		override public function execute() : void
 		{
 			log("OnSpinCommand.execute()");
-			log(event.message.toString());
-
-			// return;
-
+			//log(event.message.toString());
+			
+			
+			
+			
 			// lines
 			var message : SpinResponseProtobuf = event.message as SpinResponseProtobuf;
-			var newState:Array = Parser.parseSpinData( message.icons);
-			trace('message.icons: ' + (message.icons));
+			var newState:Array = Parser.parseSpinData( message.icons );
+			//trace('message.icons: ' + (message.icons));
 			gameModel.icons = newState;
-			//trace('gameModel.icons: ' + (gameModel.icons));
-//
-			//var lines : Array = Parser.parseByteArray(message.winLines);
-//			var linesPoints : Array = [];
-//			for each (var i : int in lines)
-//			{
-//				linesPoints.push(LinesData.lines[i]);
-//			}
-//
-			gameModel.winLines = convertProtoLinesToVoLines(message.winLines.lines,gameModel.icons);//message.winLines.lines;
-			//line1.winIconsTypes = LineVO.calcWinTypes(line1.points, nnn);
+			
+			//return;
+			
+			gameModel.winLines = convertProtoLinesToVoLines(message.winLines.lines,gameModel.icons);
+			
 			gameModel.win = message.winMoney;
 			
 			if ( gameModel.winLines && gameModel.winLines.length > 0 )
@@ -55,41 +50,12 @@ package com.onlyplay.slotmatch3.controller
 				if (! (gameModel.winLines[0] as LineVO).points)
 				{
 					log( gameModel.winLines  );
-					
 				}
 			}
 			
-			if (message.winMoney)
-			{
-				// здесь мы стартуем анимацию вылета выйгрыша
-				//eventDispatcher.dispatchEvent(new DynamicEvent(""));
-			}
-			
-			//message.winLines
-			//gameModel
-			
-//
-//			// total win
-//			var winMultiplyers : Array = Parser.parseByteArray(message.winLinesMultipliers, 2);
-//			var winItemsInLines : Array = Parser.parseByteArray(message.winLinesIconsAmount);
-//
-//			var totalWin : Number = 0;
-//
-//			for (var j : int = 0; j < winMultiplyers.length; j++)
-//			{
-//				totalWin += winMultiplyers[j] * winItemsInLines[j];
-//			}
-//
-//			gameModel.win = totalWin;
-//			trace('totalWin: ' + (totalWin));
-//
-//			if ( gameModel.win > 0)
-//			{
-//				service.dispatchLastProgressToAll( gameModel.win );
-//			}
-//
-//			// populating model
-			eventDispatcher.dispatchEvent(new Event("showSpin"));
+			//eventDispatcher.dispatchEvent(new Event("showSpin"));
+			gameModel.spinReadyFlag = true;
+			eventDispatcher.dispatchEvent(new Event("tryStopSpin"));
 		}
 		
 		// TODO: вынести либо в GameModel либо в SlotModel дибо в утиль
@@ -111,7 +77,7 @@ package com.onlyplay.slotmatch3.controller
 			lineVO.color = LinesData.getColorById(protoLine.lineNumber);
 			lineVO.points = LinesData.getLinePointsById(protoLine.lineNumber);
 			lineVO.iconsCount = protoLine.iconsCount;
-			lineVO.winIconsTypes = LineVO.calcWinTypes( lineVO.points, icons);
+			lineVO.winIconsTypes = LineVO.calcWinTypes( lineVO.points, icons );
 			return lineVO;
 		}
 

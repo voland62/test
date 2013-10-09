@@ -14,7 +14,9 @@ package com.onlyplay.slotmatch3.view
 
 		function set h(val : Number) : void;
 
-		function showSping(newState : Array) : void;
+		function showSpin() : void;
+		
+		function stopSpinRequest( newState:Array ):void;
 
 		//function drawLines(winLines : Array) : void;
 
