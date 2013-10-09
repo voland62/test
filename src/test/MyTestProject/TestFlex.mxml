@@ -5,6 +5,8 @@
 	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*"
 	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
 	backgroundColor="0xffffff" xmlns:lobby="com.onlyplay.slotmatch3.components.lobby_smith.*"
+	width="800"
+	height="600"
 	xmlns:info="com.onlyplay.slotmatch3.components.dialogs.flex.info.*">
 	<fx:Script>
 		<![CDATA[
