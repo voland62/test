@@ -18,28 +18,28 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 	 */
 	public class Booster extends GUIobject
 	{
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/boost_main.png", mimeType="image/png")]
-		protected static var BgClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/num.png", mimeType="image/png")]
-		protected static var NumClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/active_main.png", mimeType="image/png")]
-		protected static var ProgressStrokeClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/molot_a.png", mimeType="image/png")]
-		public static var HammerAClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/molot_n.png", mimeType="image/png")]
-		public static var HammerNClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/bomba_a.png", mimeType="image/png")]
-		public static var BombaAClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/bomba_n.png", mimeType="image/png")]
-		public static var BombaNClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/kub_a.png", mimeType="image/png")]
-		public static var KubAClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/kub_n.png", mimeType="image/png")]
-		public static var KubNClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/time_a.png", mimeType="image/png")]
-		public static var HourGlassAClass : Class;
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/time_n.png", mimeType="image/png")]
-		public static var HourGlassNClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/boost_main.png")]
+		protected static const BgClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/num.png")]
+		protected static const NumClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/active_main.png")]
+		protected static const ProgressStrokeClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/molot_a.png")]
+		public static const HammerAClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/molot_n.png")]
+		public static const HammerNClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/bomba_a.png")]
+		public static const BombaAClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/bomba_n.png")]
+		public static const BombaNClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/kub_a.png")]
+		public static const KubAClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/kub_n.png")]
+		public static const KubNClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/time_a.png")]
+		public static const HourGlassAClass : Class;
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/time_n.png")]
+		public static const HourGlassNClass : Class;
 		private var _bg : DisplayObject;
 		private var _mask : Shape;
 		private var _icon : DisplayObject;

@@ -15,6 +15,7 @@
 	
 	<fx:Script fb:purpose="styling">
 		<![CDATA[
+			import spark.components.supportClasses.Skin;
 			/**
 			 * @private
 			 */

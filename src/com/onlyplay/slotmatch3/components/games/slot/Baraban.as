@@ -228,7 +228,7 @@ package com.onlyplay.slotmatch3.components.games.slot
 				}
 				
 				//_items = _items.concat(newModel);
-				_items = newModel;
+				_items = newModel.reverse();
 				//_baraban.removeChildren();
 				
 				// находим самый верхний icon на данный момент

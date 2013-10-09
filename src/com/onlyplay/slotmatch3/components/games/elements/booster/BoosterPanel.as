@@ -14,7 +14,7 @@ package com.onlyplay.slotmatch3.components.games.elements.booster
 	 */
 	public class BoosterPanel extends GUIobject
 	{
-		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/bg_4.png", mimeType="image/png")]
+		[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/booster/bg_4.png")]
 		protected static var BgClass : Class;
 		private var _timeBooster : Booster;
 		private var _cubeBooster : Booster;

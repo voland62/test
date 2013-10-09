@@ -144,7 +144,10 @@
 	<!--<s:SkinnableContainer width="300" height="200" verticalCenter="20"
 		horizontalCenter="0" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin3"/>-->
 
-	<flex:PaymentsTablePopUp verticalCenter="0" horizontalCenter="0"/>
+	<!--<flex:PaymentsTablePopUp verticalCenter="0" horizontalCenter="0"/>-->
+	
+	
+	
 	
 
 

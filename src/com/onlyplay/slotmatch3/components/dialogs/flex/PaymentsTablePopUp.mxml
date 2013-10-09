@@ -7,10 +7,15 @@
 	minHeight="500" minWidth="600" title="Таблица выплат"
 	controlBarVisible="true" creationComplete="onComplete(event)">
 
-
+	<fx:Declarations>
+		<s:DropShadowFilter id="whiteShedow" color="0xf8f8f8"
+			strength="2" blurX="0" angle="90" blurY="1" distance="1"/>
+	</fx:Declarations>
 
 	<fx:Script>
 		<![CDATA[
+			import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
+
 			import mx.events.FlexEvent;
 
 			import org.apache.flex.collections.ArrayList;
@@ -55,6 +60,18 @@
 		.microbonuses2{
             fontSize: 14;
             color:#feeac7;
+            fontWeight:bold;
+            fontFamily:ggg;
+        }
+		.boosters1{
+            fontSize: 16;
+            color:#362116;
+            fontWeight:bold;
+            fontFamily:ggg;
+        }
+		.boosters2{
+            fontSize: 12;
+            color:#362116;
             fontWeight:bold;
             fontFamily:ggg;
         }
@@ -160,70 +177,127 @@
 					<s:layout>
 						<s:TileLayout paddingTop="20" paddingBottom="20"
 							paddingLeft="20" paddingRight="20"
-							verticalGap="10"
-							horizontalGap="10"
-							columnAlign="justifyUsingWidth"
-							rowAlign="justifyUsingHeight"
+							verticalGap="10" horizontalGap="10"
+							columnAlign="justifyUsingWidth" rowAlign="justifyUsingHeight"
 							requestedColumnCount="3"
 							requestedRowCount="2"/>
 					</s:layout>
+
 					<s:Group width="100%" height="100%">
 						<s:Rect minWidth="100" minHeight="50" radiusX="5"
 							radiusY="5" top="0" bottom="0" left="0"
 							right="0">
 							<s:fill>
-								<s:SolidColor color="0xff8000"/>
+								<s:SolidColor color="0xddc192"/>
 							</s:fill>
 						</s:Rect>
+
+						<s:VGroup horizontalAlign="center"
+							paddingBottom="5" paddingLeft="5"
+							paddingRight="5" paddingTop="5">
+							<s:Label text="Мега-бомба" filters="{[whiteShedow]}"
+								styleName="boosters1"/>
+							<s:HGroup>
+								<s:BitmapImage source="{Booster.BombaNClass}"/>
+								<s:Label text="Взрывает 9 элементов вокруг эпицентра."
+									filters="{[whiteShedow]}"
+									styleName="boosters2" width="80"/>
+
+							</s:HGroup>
+						</s:VGroup>
+
 					</s:Group>
 					<s:Group width="100%" height="100%">
 						<s:Rect minWidth="100" minHeight="50" radiusX="5"
 							radiusY="5" top="0" bottom="0" left="0"
 							right="0">
 							<s:fill>
-								<s:SolidColor color="0xff8000"/>
+								<s:SolidColor color="0xddc192"/>
 							</s:fill>
 						</s:Rect>
+
+						<s:VGroup horizontalAlign="center"
+							paddingBottom="5" paddingLeft="5"
+							paddingRight="5" paddingTop="5">
+							<s:Label text="Время" filters="{[whiteShedow]}"
+								styleName="boosters1"/>
+							<s:HGroup>
+								<s:BitmapImage source="{Booster.HourGlassNClass}"/>
+								<s:Label text="Уничтожает фишки одного цвета и заряжает некоторые из оставшихся."
+									filters="{[whiteShedow]}"
+									styleName="boosters2" width="80"/>
+
+							</s:HGroup>
+						</s:VGroup>
 					</s:Group>
 					<s:Group width="100%" height="100%">
 						<s:Rect minWidth="100" minHeight="50" radiusX="5"
 							radiusY="5" top="0" bottom="0" left="0"
 							right="0">
 							<s:fill>
-								<s:SolidColor color="0xff8000"/>
+								<s:SolidColor color="0xddc192"/>
 							</s:fill>
 						</s:Rect>
+						
+					<s:VGroup horizontalAlign="center"
+							paddingBottom="5" paddingLeft="5"
+							paddingRight="5" paddingTop="5">
+							<s:Label text="Молоток" filters="{[whiteShedow]}"
+								styleName="boosters1"/>
+							<s:HGroup>
+								<s:BitmapImage source="{Booster.HammerNClass}"/>
+								<s:Label text="Уничтожает текущее и создает новое игировое поле."
+									filters="{[whiteShedow]}"
+									styleName="boosters2" width="80"/>
+							</s:HGroup>
+						</s:VGroup>
+						
 					</s:Group>
 					<s:Group width="100%" height="100%">
 						<s:Rect minWidth="100" minHeight="50" radiusX="5"
 							radiusY="5" top="0" bottom="0" left="0"
 							right="0">
 							<s:fill>
-								<s:SolidColor color="0xff8000"/>
+								<s:SolidColor color="0xf6e2c1"/>
 							</s:fill>
 						</s:Rect>
+
 					</s:Group>
 					<s:Group width="100%" height="100%">
 						<s:Rect minWidth="100" minHeight="50" radiusX="5"
 							radiusY="5" top="0" bottom="0" left="0"
 							right="0">
 							<s:fill>
-								<s:SolidColor color="0xff8000"/>
+								<s:SolidColor color="0xddc192"/>
 							</s:fill>
 						</s:Rect>
+
+						<s:VGroup horizontalAlign="center"
+							paddingBottom="5" paddingLeft="5"
+							paddingRight="5" paddingTop="5">
+							<s:Label text="Новое поле" filters="{[whiteShedow]}"
+								styleName="boosters1"/>
+							<s:HGroup>
+								<s:BitmapImage source="{Booster.KubNClass}"/>
+								<s:Label text="Добавляет 10 секунд игрового времени."
+									filters="{[whiteShedow]}"
+									styleName="boosters2" width="80"/>
+
+							</s:HGroup>
+						</s:VGroup>
+
 					</s:Group>
 					<s:Group width="100%" height="100%">
 						<s:Rect minWidth="100" minHeight="50" radiusX="5"
 							radiusY="5" top="0" bottom="0" left="0"
 							right="0">
 							<s:fill>
-								<s:SolidColor color="0xff8000"/>
+								<s:SolidColor color="0xf6e2c1"/>
 							</s:fill>
 						</s:Rect>
 					</s:Group>
 
 				</s:Group>
-
 
 			</s:SkinnableContainer>
 
