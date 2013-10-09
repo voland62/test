@@ -64,12 +64,15 @@
 			import com.onlyplay.slotmatch3.components.lobby_smith.Menu4View;
 			import com.onlyplay.slotmatch3.view.preloader.Preloader;
 			import com.onlyplay.util.StringUtils;
-
+			import com.onlyplay.slotmatch3.components.lobby_user_info.LobbyUserInfoView;
+			
 			private var _flashGameView : FlashGameView;
 			private var _lobbyVeiw : LobbyView;
 			[Bindable]
 			private var localeUrlBase : String = "http://onlyplay.game-insight.com/puzzleslots/flash/";
 			private var menu4 : Menu4View;
+			private var lobbyUserInfo:LobbyUserInfoView;
+			
 			
 			public static var preloaderText:String = "";
 			public static var preloaderFrame:uint = 1
@@ -101,7 +104,11 @@
 
 				menu4 = new Menu4View();
 				lobbyMenu4Holder.addChild(menu4);
-
+				
+				lobbyUserInfo = new LobbyUserInfoView();
+				lobby_avatar.addChild(lobbyUserInfo);
+				
+				
 				var pldr : Preloader = new Preloader()
 				prldrHolder.addChild(pldr);
 				
@@ -233,7 +240,7 @@
 
 	</fx:Declarations>
 
-
+	<s:Image source='@Embed(source="../../../../Resources/Lobby/Top/top_bg.png")' y="0" x="-60" />
 	<s:SpriteVisualElement id="lobbyBase" width="760" height="570"
 		left="170"/>
 
@@ -245,10 +252,14 @@
 
 	
 
-	<s:Image id="lobby_avatar" source="@Embed(source='/assets/Mock_user.png')"
-		click="getUnderConstrWnd(event)"/>
+	
+	
+	
 	<s:Image id="lobby_top" source="@Embed(source='/assets/Mock_top.png')"
 		click="getUnderConstrWnd(event)" y="95"/>
+	
+	<s:SpriteVisualElement id="lobby_avatar" />
+		
 	<s:SpriteVisualElement id="lobbyMenu4Holder" y="474"/>
 	
 	<s:Image source="@Embed(source='/assets/Mock_friends.png')" click="getUnderConstrWnd(event)"

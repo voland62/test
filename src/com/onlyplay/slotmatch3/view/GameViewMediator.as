@@ -6,7 +6,8 @@ package com.onlyplay.slotmatch3.view
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.model.MatchGameModel;
 	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
-
+	import com.onlyplay.util.LoadUtils;
+	import flash.display.Bitmap
 	import mx.events.DynamicEvent;
 
 	import flash.events.Event;
@@ -289,6 +290,11 @@ package com.onlyplay.slotmatch3.view
 			view.setName(gameModel.userInfo.name);
 			view.setExperinece(gameModel.currentExperience.experience, gameModel.currentExperience.level, gameModel.currentExperience.leftVal, gameModel.currentExperience.rightVal);
 			view.setMoney(gameModel.currentMoney);
+			LoadUtils.GetUserPic(gameModel.userInfo, onAvatarReady);
+		}
+		
+		private function onAvatarReady(data:*):void {
+			view.setUserAvatar(data.content as Bitmap)
 		}
 
 		private function onAnimEnded(e : Event) : void

@@ -82,6 +82,7 @@ package com.onlyplay.slotmatch3.controller
 			var ev:DynamicEvent = new DynamicEvent("currenBetUpdated");
 			ev.showLines = false;
 			eventDispatcher.dispatchEvent(ev);
+			
 			eventDispatcher.dispatchEvent(new Event("userDataUpdated"));
 			
 			var lobbyEvt:DynamicEvent = new DynamicEvent("islandsDataReady");

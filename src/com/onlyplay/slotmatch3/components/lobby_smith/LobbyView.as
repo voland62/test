@@ -5,6 +5,8 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	import flash.system.*;
 	import com.smith.gallery.SmtHrzGallery;
 	import com.smith.gallery.engine.GalleryEvent;
+	import com.smith.loader.KaoLoader;
+	import com.smith.graph.SmtGraphUtils;
 	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyCellItem;
 	import flash.events.*;
 	import com.onlyplay.slotmatch3.model.GameModel;
@@ -12,7 +14,8 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 	import IslandsProtobuf;
 	import flash.filters.GlowFilter;
 	import mx.core.FlexGlobals
-
+	import com.onlyplay.util.*;
+	
 	public class LobbyView extends Sprite {
 		
 		private var bg:lobby_sborka_cls;
@@ -189,33 +192,19 @@ package com.onlyplay.slotmatch3.components.lobby_smith {
 		
 		//визуализируем короля и его аватарку
 		private function SetKing(data:PlayerShortProtobuf):void {
+		
 			bg.king_mc.visible = true;
-			
-			var sFacebookName:String = "100006286838105";//например
-			
-			var ldr:Loader = new Loader();
-			ldr.contentLoaderInfo.addEventListener(Event.COMPLETE, onPicReady);
-			var req:URLRequest = new URLRequest("https://graph.facebook.com/" + sFacebookName + "/picture");
-			
-			if(Security.sandboxType == "remote"){
-				var ldrCntxt:LoaderContext = new LoaderContext(true);
-				ldrCntxt.applicationDomain = new ApplicationDomain(ApplicationDomain.currentDomain);
-				ldrCntxt.securityDomain = SecurityDomain.currentDomain;
-			}else {
-				ldrCntxt = null;
-			}
-		
-			ldr.load(req, ldrCntxt);
+			LoadUtils.GetUserPic(data, onPicReady);
 			
 		}
 		
-		//аватарка короля пришла
-		private function onPicReady(e:Event):void {
+		
+		public function onPicReady(data:*):void {
+			if (!data.content)return
 			var bmp:Bitmap = bg.king_mc.getChildAt(0) as Bitmap;
-			bmp.bitmapData =  e.currentTarget.loader.content.bitmapData
-			
+			bmp.bitmapData = data.content.bitmapData;
+			SmtGraphUtils.ResizeBitmap(bmp, 50, 50, bmp.bitmapData, 0, 0);
 		}
-		
 		
 		
 		
