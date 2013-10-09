@@ -1,6 +1,7 @@
 package com.onlyplay.slotmatch3.view
 {
 	import flash.events.IEventDispatcher;
+	import flash.display.Bitmap;
 	/**
 	 * @author Design3d
 	 */
@@ -75,5 +76,6 @@ package com.onlyplay.slotmatch3.view
 
 		function setPlayButtonState(boolean : Boolean) : void;
 		
+		function setUserAvatar(avatar:Bitmap):void;
 	}
 }

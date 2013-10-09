@@ -47,7 +47,7 @@ package com.onlyplay.slotmatch3.components
 	import com.onlyplay.slotmatch3.components.games.slot.SlotMashine;
 	import com.onlyplay.slotmatch3.view.IGameView;
 	import com.onlyplay.util.Sparkler2;
-
+	import com.smith.graph.SmtGraphUtils;
 	import org.flintparticles.common.counters.Steady;
 	import org.flintparticles.common.emitters.Emitter;
 	import org.flintparticles.common.events.EmitterEvent;
@@ -1073,9 +1073,21 @@ package com.onlyplay.slotmatch3.components
 			_playButton.locked = !isActive;
 		}
 
+		
+		
+		public function setUserAvatar(avatar:Bitmap):void {
+			if (!avatar) return;
+			SmtGraphUtils.ResizeBitmap(avatar, 62, 62, avatar.bitmapData, 0, 0)
+			_userFace.removeChildAt(0);
+			_userFace.addChild(avatar);
+		}
+		
+
+
 		public function stopSpinRequest(newState : Array) : void
 		{
 			_slotMashine.stopRequest(newState);
 		}
+
 	}
 }

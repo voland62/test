@@ -5,6 +5,8 @@ package com.onlyplay.util {
 	 */
 	public class StringUtils {
 		
+		
+		
 		public function StringUtils() {
 			
 		}
@@ -33,6 +35,18 @@ package com.onlyplay.util {
 				
 			}
 			return znakStr + strOut.join("") + drobStr;
+		}
+		
+		
+		
+		
+		
+		public static function Strip(str:String, pat1:String, pat2:String):String {
+			var out:String = str;
+			while (out.indexOf(pat1) != -1) {
+				out = out.replace(pat1, pat2);
+			}
+			return out;
 		}
 		
 		
