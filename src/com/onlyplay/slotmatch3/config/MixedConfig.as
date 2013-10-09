@@ -13,18 +13,10 @@ package com.onlyplay.slotmatch3.config
 
 	import test.MyTestProject.model.UserModel;
 
-	import com.onlyplay.slotmatch3.components.dialogs.flex.ToSlotPopUp;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.info.InfoPopup;
 	import com.onlyplay.slotmatch3.components.games.elements.booster.BoosterPanel;
-	import com.onlyplay.slotmatch3.components.lobby_smith.IInterLevelDlg;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LevelInfoMediator;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LevelInfoPopup;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyCellItem;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LobbyViewMediator;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LocationBtn;
-	import com.onlyplay.slotmatch3.components.lobby_smith.LocationInfoDlg;
-	import com.onlyplay.slotmatch3.components.lobby_smith.Menu4View;
+	import com.onlyplay.slotmatch3.components.lobby_smith.*;
+	import com.onlyplay.slotmatch3.components.lobby_user_info.*;
 	import com.onlyplay.slotmatch3.controller.InitCommand;
 	import com.onlyplay.slotmatch3.controller.MakeMatchEnterRequestCommand;
 	import com.onlyplay.slotmatch3.controller.OnChageCommand;
@@ -38,12 +30,10 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.LineNumChangingCommand;
 	import com.onlyplay.slotmatch3.controller.currentBetChanging.MaxBetCommand;
 	import com.onlyplay.slotmatch3.controller.dialogs.ShowPopupCommand;
-	import com.onlyplay.slotmatch3.controller.lobby.StateChangesCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnBonusCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnBoosterCommand;
 	import com.onlyplay.slotmatch3.controller.match.OnFlashEnergyEncreaseCommand;
 	import com.onlyplay.slotmatch3.controller.match.PlaySlotCommand;
-	import com.onlyplay.slotmatch3.controller.match.TimeOverCommand;
 	import com.onlyplay.slotmatch3.controller.spin.OnSpinCommand;
 	import com.onlyplay.slotmatch3.controller.spin.SpinCommand;
 	import com.onlyplay.slotmatch3.controller.spin.TryStopSpin;
@@ -60,27 +50,18 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.view.GameViewMediator;
 	import com.onlyplay.slotmatch3.view.IApp;
 	import com.onlyplay.slotmatch3.view.IGameView;
-	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
+	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsView;
 	import com.onlyplay.slotmatch3.view.dialogs.IProfilePopup;
 	import com.onlyplay.slotmatch3.view.dialogs.ITimeOverPopup;
 	import com.onlyplay.slotmatch3.view.dialogs.IToMap;
 	import com.onlyplay.slotmatch3.view.dialogs.IToSlot;
 	import com.onlyplay.slotmatch3.view.dialogs.InfoPopupMediator;
-	import com.onlyplay.slotmatch3.view.dialogs.PaymentsPopupMediator;
+	import com.onlyplay.slotmatch3.view.dialogs.PaymentsViewMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.ProfilePopupMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.TimeOverPopupMediator;
-
-	import com.onlyplay.slotmatch3.components.lobby_smith.*;
-	import com.onlyplay.slotmatch3.view.preloader.*;
-	import com.onlyplay.slotmatch3.controller.lobby.StateChangesCommand
-	import com.onlyplay.slotmatch3.components.lobby_user_info.*;
-
 	import com.onlyplay.slotmatch3.view.dialogs.ToMapMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.ToSlotMediator;
-	import com.onlyplay.slotmatch3.view.preloader.Preloader;
-	import com.onlyplay.slotmatch3.view.preloader.PreloaderMediator;
-	import com.onlyplay.slotmatch3.view.preloader.PreloaderSWF;
-
+	import com.onlyplay.slotmatch3.view.preloader.*;
 
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -168,7 +149,7 @@ package com.onlyplay.slotmatch3.config
 
 			// view ServerRoomPlayerStateProtobuf
 			mediatorMap.map(IGameView).toMediator(GameViewMediator);
-			mediatorMap.map(IPaymentsPopup).toMediator(PaymentsPopupMediator);
+			mediatorMap.map(IPaymentsView).toMediator(PaymentsViewMediator);
 			mediatorMap.map(ITimeOverPopup).toMediator(TimeOverPopupMediator);
 			mediatorMap.map(IProfilePopup).toMediator(ProfilePopupMediator);
 			mediatorMap.map(BoosterPanel).toMediator(BoosterPanelMediator);
@@ -179,6 +160,7 @@ package com.onlyplay.slotmatch3.config
 			mediatorMap.map(IToMap).toMediator(ToMapMediator);
 			mediatorMap.map(InfoPopup).toMediator(InfoPopupMediator);
 			mediatorMap.map(ILobbyUserInfo).toMediator(LobbyUserInfoMediator)
+			//mediatorMap.map(IPaymentsPanel).toMediator(PaymentsPanelMediator);
 			//mediatorMap.map(Preloader).toMediator(PreloaderMediator)
 			
 			//preloader

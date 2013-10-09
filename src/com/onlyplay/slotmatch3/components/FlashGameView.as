@@ -212,7 +212,7 @@ package com.onlyplay.slotmatch3.components
 			addChild(_infoRoomProgressButton);
 
 			_paymentsFake = new PaymentsFakeClass();
-			addChild(_paymentsFake);
+			// addChild(_paymentsFake);
 
 			_userName = createTf(100, 11);
 			_userName.text = "Лада";
@@ -311,7 +311,7 @@ package com.onlyplay.slotmatch3.components
 			addChild(_payButton);
 			_payButton.addEventListener(MouseEvent.CLICK, function(e : Event) : void
 			{
-				dispatchEvent(new Event("showPaymentsDialog")) ;
+				dispatchEvent(new DynamicEvent("showPaymentsDialog"));
 			});
 
 			_maxBetButton = new MaxBetButton();

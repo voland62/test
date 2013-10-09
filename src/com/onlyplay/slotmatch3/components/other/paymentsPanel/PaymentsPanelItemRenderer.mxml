@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" autoDrawBackground="false">
+
+	<fx:Library>
+		<fx:Definition name="MiniCoin">
+			<s:BitmapImage source="@Embed(source='/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/icon_moneta.png')"/>
+		</fx:Definition>
+	</fx:Library>
+
+	<!--<s:Rect top="0" left="0" right="0" bottom="0" radiusX="4" radiusY="4"
+		alpha="0.3">
+		<s:fill>
+			<s:SolidColor color="0xddc294"/>
+		</s:fill>
+	</s:Rect>-->
+
+	<fx:Declarations>
+		<s:DropShadowFilter id="whiteShedow" color="0xf8f8f8"
+			strength="2" blurX="0" angle="90" blurY="1" distance="1"/>
+	</fx:Declarations>
+
+	<fx:Style>
+		.paymenstPanel
+		{
+			color:#b5b394;
+			fontWeight:bold;
+			fontSize:12;
+			fontFamily:ggg;
+		}
+	</fx:Style>
+
+
+
+	<s:VGroup horizontalAlign="center" left="4" right="4" top="3"
+		bottom="1" gap="1">
+		<!--<s:Label text="{resourceManager.getString('ruLocale', data.localeKey)}"
+		"D:\work\workspaces\fdt_ws\slotmatch\src\assets\facebook\facebook\id_6\id_6\booster_paytable\ paytable\icon_moneta.png"
+		fontWeight="bold" fontSize="16" filters="{[whiteShedow]}"/>-->
+		<s:HGroup gap="1">
+			<s:BitmapImage width="60" height="60" smooth="true"
+				source="{data.url}"/>
+
+			<s:VGroup gap="2">
+				<s:HGroup gap="0" verticalAlign="middle">
+					<s:Label text="x2=" styleName="paymenstPanel"/>
+					<fx:MiniCoin/>
+					<s:Label text="{data.x2}" styleName="paymenstPanel"/>
+				</s:HGroup>
+				<s:HGroup gap="0" verticalAlign="middle">
+					<s:Label text="x3=" styleName="paymenstPanel"/>
+					<fx:MiniCoin/>
+					<s:Label text="{data.x3}" styleName="paymenstPanel"/>
+				</s:HGroup>
+				<s:HGroup gap="0" verticalAlign="middle">
+					<s:Label text="x4=" styleName="paymenstPanel"/>
+					<fx:MiniCoin/>
+					<s:Label text="{data.x4}" styleName="paymenstPanel"/>
+				</s:HGroup>
+				<s:HGroup gap="0" verticalAlign="middle">
+					<s:Label text="x5=" styleName="paymenstPanel"/>
+					<fx:MiniCoin/>
+					<s:Label text="{data.x5}" styleName="paymenstPanel"/>
+				</s:HGroup>
+			</s:VGroup>
+
+		</s:HGroup>
+	</s:VGroup>
+
+</s:ItemRenderer>

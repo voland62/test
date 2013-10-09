@@ -3,7 +3,7 @@
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:flex="com.onlyplay.slotmatch3.components.dialogs.flex.*"
 	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
 	titleBgSkin="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin2"
-	implements="com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup"
+	implements="com.onlyplay.slotmatch3.view.dialogs.IPaymentsView"
 	minHeight="500" minWidth="600" title="Таблица выплат"
 	controlBarVisible="true" creationComplete="onComplete(event)">
 

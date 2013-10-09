@@ -137,6 +137,10 @@
 			public function stopSpinRequest(newState : Array) : void
 			{
 			}
+
+			public function setUserAvatar(avatar : Bitmap) : void
+			{
+			}
 		]]>
 	</fx:Script>
 

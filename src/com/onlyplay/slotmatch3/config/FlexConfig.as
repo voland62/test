@@ -34,11 +34,11 @@ package com.onlyplay.slotmatch3.config
 	import com.onlyplay.slotmatch3.services.MatchTimerService;
 	import com.onlyplay.slotmatch3.services.ServiceEvent;
 	import com.onlyplay.slotmatch3.services.SlotService;
-	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
+	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsView;
 	import com.onlyplay.slotmatch3.view.dialogs.IProfilePopup;
 	import com.onlyplay.slotmatch3.view.dialogs.ITimeOverPopup;
 	import com.onlyplay.slotmatch3.view.dialogs.IToSlot;
-	import com.onlyplay.slotmatch3.view.dialogs.PaymentsPopupMediator;
+	import com.onlyplay.slotmatch3.view.dialogs.PaymentsViewMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.ProfilePopupMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.TimeOverPopupMediator;
 	import com.onlyplay.slotmatch3.view.dialogs.ToSlotMediator;
@@ -101,7 +101,7 @@ package com.onlyplay.slotmatch3.config
 			
 			// view
 			mediatorMap.map(ITimeOverPopup).toMediator(TimeOverPopupMediator);
-			mediatorMap.map(IPaymentsPopup).toMediator(PaymentsPopupMediator);
+			mediatorMap.map(IPaymentsView).toMediator(PaymentsViewMediator);
 			mediatorMap.map(IProfilePopup).toMediator(ProfilePopupMediator);
 			mediatorMap.map(IToSlot).toMediator(ToSlotMediator);
 			

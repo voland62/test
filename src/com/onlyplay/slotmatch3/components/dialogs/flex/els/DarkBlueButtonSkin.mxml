@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+
+	<fx:Metadata>
+		/** 
+		 * @copy spark.skins.spark.ApplicationSkin#hostComponent
+		 */
+		[HostComponent("spark.components.Button")]
+	</fx:Metadata>
+
+	<!--<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+		
+         .sss {
+               fontSize:20;        
+          }     
+		
+	</fx:Style>-->
+	
+	
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/bn_podrobnee_normal.png")]
+			private static const UpClass : Class;
+			
+			[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/bn_podrobnee_press.png")]
+			private static const DownClass : Class;
+//			[Embed(source="/Dialogs/Common/bn_common1_pass.png")]
+//			private static const DisableClass : Class;
+			
+			// "D:\work\workspaces\fdt_ws\slotmatch\src\assets\facebook\facebook\id_6\id_6\booster_paytable\ paytable\bn_podrobnee_normal.png"
+			// color="0xf1ddcb"
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<s:GlowFilter id="outlineFilter" color="0" strength="3" blurX="4"
+			blurY="4"/>
+	</fx:Declarations>
+
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+
+
+	<s:BitmapImage source.over="{UpClass}" source.up="{UpClass}"
+		source.down="{DownClass}"/>
+
+	<s:Label id="labelDisplay" textAlign="center" maxDisplayedLines="1"
+		fontWeight="bold"  filters="{[outlineFilter]}"
+		color="0xf1ddcb"
+		
+		horizontalCenter="0" verticalCenter="-5" verticalAlign="middle"
+		verticalCenter.down="-4" horizontalCenter.down="1">
+	</s:Label>
+</s:Skin>
+
+

@@ -5,7 +5,7 @@ package com.onlyplay.slotmatch3.view
 	import com.onlyplay.slotmatch3.components.games.elements.FreezeProgress;
 	import com.onlyplay.slotmatch3.model.GameModel;
 	import com.onlyplay.slotmatch3.model.MatchGameModel;
-	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
+	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsView;
 	import com.onlyplay.util.LoadUtils;
 	import flash.display.Bitmap
 	import mx.events.DynamicEvent;
@@ -40,7 +40,7 @@ package com.onlyplay.slotmatch3.view
 			addViewListener("onBonus", onBonus);
 			addViewListener("onPhoto", onPhoto);
 			addViewListener("flashEnergy", onFlashEnergy);
-			addViewListener("showPaymentsDialog", onShowPaymentsDialog);
+			addViewListener("showPaymentsDialog", dispatch);
 			addViewListener("game_view:to_map", toMap);
             addViewListener("onFace", onFace);
             addViewListener("uc", function (e:Event):void{ dispatch(new DynamicEvent("underConstruction"));});
@@ -104,14 +104,17 @@ package com.onlyplay.slotmatch3.view
 		private function showSlot( e:Event ) : void
 		{
 			view.setSlotState();
+			
+			var ev:DynamicEvent = new DynamicEvent("state_changes");
+			ev.state = "slot"; 
+			dispatch(ev);
 		}
 
-		private function onShowPaymentsDialog(e : Event) : void
-		{
-			var event:DynamicEvent = new DynamicEvent( e.type );
-			event.interface_ = IPaymentsPopup;
-			dispatch(event);
-		}
+//		private function onShowPaymentsDialog(e : Event) : void
+//		{
+//			var event:DynamicEvent = new DynamicEvent( e.type );
+//			dispatch(event);
+//		}
 
 		private function onFlashEnergy(e : DynamicEvent) : void
 		{
@@ -364,6 +367,10 @@ package com.onlyplay.slotmatch3.view
 			view.setMatchState();
 			view.matchReinit(matchGameModel.matchModelProto.iconEnergy);
 			view.initFlashEnergy(matchGameModel.currentLevel.multiplier);
+			
+			var ev:DynamicEvent = new DynamicEvent("state_changes");
+			ev.state = "match"; 
+			dispatch(ev);
 		}
 		
 		private function toMap(e:DynamicEvent) :void{			

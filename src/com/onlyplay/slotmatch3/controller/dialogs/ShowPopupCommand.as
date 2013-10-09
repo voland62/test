@@ -9,7 +9,7 @@ package com.onlyplay.slotmatch3.controller.dialogs
 	import com.onlyplay.slotmatch3.components.dialogs.flex.Profile;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.TimeOverPopup;
 	import com.onlyplay.slotmatch3.components.dialogs.flex.PaymentsTablePopUp;
-	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsPopup;
+	import com.onlyplay.slotmatch3.view.dialogs.IPaymentsView;
 
 	import robotlegs.bender.bundles.mvcs.Command;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;

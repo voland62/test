@@ -5,14 +5,19 @@
 	xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:progress="com.onlyplay.slotmatch3.components.dialogs.flex.progress.*"
 	xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*"
 	backgroundColor="0xffffff" xmlns:lobby="com.onlyplay.slotmatch3.components.lobby_smith.*"
-	width="800"
-	height="600"
-	xmlns:info="com.onlyplay.slotmatch3.components.dialogs.flex.info.*">
+	width="800" height="600" xmlns:info="com.onlyplay.slotmatch3.components.dialogs.flex.info.*"
+	xmlns:paymentsPanel="com.onlyplay.slotmatch3.components.other.paymentsPanel.*"
+	xmlns:kinetic="com.onlyplay.slotmatch3.components.other.kinetic.*">
 	<fx:Script>
 		<![CDATA[
+			import com.onlyplay.slotmatch3.components.games.elements.booster.Booster;
+
+			import org.apache.flex.collections.ArrayList;
+
 			import mx.collections.ArrayCollection;
 
 			private var dp : ArrayCollection = new ArrayCollection(["пушка", "конфеты", "Звезда", "пушка", "конфеты", "Звезда", "пушка", "конфеты", "Звезда"]);
+			private var dp2 : ArrayList = new ArrayList([{x1:10, x2:20, x3:30, x4:40, x5:50, url:Booster.BombaNClass}, {x1:10, x2:20, x3:30, x4:40, x5:50, url:Booster.HammerNClass}, {x1:10, x2:20, x3:30, x4:40, x5:50, url:Booster.HourGlassNClass}, {x1:10, x2:20, x3:30, x4:40, x5:50, url:Booster.KubNClass}]);
 
 			private function onClick(event : MouseEvent) : void
 			{
@@ -142,13 +147,59 @@
 
 
 	<!--<s:SkinnableContainer width="300" height="200" verticalCenter="20"
-		horizontalCenter="0" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin3"/>-->
+	horizontalCenter="0" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin3"/>-->
 
 	<!--<flex:PaymentsTablePopUp verticalCenter="0" horizontalCenter="0"/>-->
-	
-	
-	
-	
 
+	<!--<paymentsPanel:PaymentsPanel dataProvider="{dp}" verticalCenter="0" horizontalCenter="0" height="100" />-->
+
+	<!--<paymentsPanel:PaymentsPanel  verticalCenter="0" horizontalCenter="0" dataProvider="{dp2}"/>-->
+
+	<!--<s:Scroller verticalCenter="0"
+	horizontalCenter="0" height="100" >
+
+	<s:DataGroup dataProvider="{dp}" >
+	<s:layout>
+	<s:VerticalLayout/>
+	</s:layout>
+
+	<s:itemRenderer>
+	<fx:Component>
+	<s:ItemRenderer autoDrawBackground="false">
+	<s:Label text="{data}"/>
+	</s:ItemRenderer>
+	</fx:Component>
+	</s:itemRenderer>
+	</s:DataGroup>
+
+	</s:Scroller>-->
+
+	<!--<fx:Declarations>
+		<kinetic:KineticScrollManager target="{imageContainer}"/>
+	</fx:Declarations>-->
+
+	<!--<s:Group id="imageContainer" width="200" height="200" clipAndEnableScrolling="true" 
+		verticalCenter="0" horizontalCenter="0">
+		<s:Group>
+			<s:BitmapImage source="@Embed(source='/assets/ID_6_2_m1.png')"/>
+		</s:Group>
+	</s:Group>-->
+
+	<!--<mx:Canvas id="imageContainer" width="200" height="200" verticalCenter="0" horizontalCenter="0">
+	</mx:Canvas>-->
+	
+	
+	<!--<paymentsPanel:PaymentsPanel dataProvider="{dp2}"  verticalCenter="0" horizontalCenter="0"/>-->
+
+	<!--<flex:SlotInfoPopup verticalCenter="0" horizontalCenter="0"/>-->
+	
+	<!--
+
+		"D:\work\workspaces\fdt_ws\slotmatch\Resources\Dialogs\Common\panel2_base.png"
+	-->
+	
+	<s:SkinnableContainer skinClass="">
+	</s:SkinnableContainer>
+	
 
 </s:Application>

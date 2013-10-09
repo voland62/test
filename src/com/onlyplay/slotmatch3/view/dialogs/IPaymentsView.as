@@ -5,7 +5,7 @@ package com.onlyplay.slotmatch3.view.dialogs
 	/**
 	 * @author Andrew
 	 */
-	public interface IPaymentsPopup extends IEventDispatcher
+	public interface IPaymentsView extends IEventDispatcher
 	{
 		function setList( multiplayersList:Array ):void
 	}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:kinetic="com.onlyplay.slotmatch3.components.other.kinetic.*"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:tite="com.onlyplay.slotmatch3.components.dialogs.flex.tite.*">
+
+	<fx:Metadata>
+		<![CDATA[ 
+			[HostComponent("spark.components.SkinnableDataContainer")]
+		]]>
+	</fx:Metadata>
+
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="/assets/facebook/facebook/id_6/id_6/booster_paytable/ paytable/bg_paytable.png", mimeType="image/png")]
+			private static const BgClass : Class;
+
+		]]>
+	</fx:Script>
+
+	<!--<fx:Declarations>
+	<kinetic:KineticScrollManager target="{container}"/>
+	</fx:Declarations>-->
+
+
+	<!--<s:Group id="container" clipAndEnableScrolling="true" left="0" right="0" top="0" bottom="0">
+	
+		
+	</s:Group>-->
+
+	<s:BitmapImage id="bg" source="{BgClass}"/>
+
+	<tite:Title title="Выплаты" horizontalCenter="0" top="20" depth="1"
+		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.tite.TitleSkin1"/>
+
+	<s:Scroller id="scroller" horizontalScrollPolicy="off" top="40"
+		right="0" height="{bg.height - 90}" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.inventar.InventarScrollSkin">
+		<s:DataGroup id="dataGroup" minWidth="0" minHeight="0">
+			<s:layout>
+				<s:VerticalLayout horizontalAlign="contentJustify"/>
+			</s:layout>
+		</s:DataGroup>
+	</s:Scroller>
+
+	<s:Button id="button" label="Подробнее" bottom="12" horizontalCenter="0" color="0xffffff"
+		skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.DarkBlueButtonSkin"/>
+
+	<!--<s:Group height="100" id="dataGroupContainer" >
+	</s:Group>-->
+
+	<!--<s:Rect left="0" right="0" top="0" bottom="0">
+	<s:stroke>
+	<s:SolidColorStroke color="0xff0000"/>
+	</s:stroke>
+	</s:Rect>-->
+
+</s:Skin>

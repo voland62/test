@@ -3,6 +3,7 @@
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:rl2="http://ns.robotlegs.org/flex/rl2"
 	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*" xmlns:config="com.onlyplay.slotmatch3.config.*"
 	xmlns:components="com.onlyplay.slotmatch3.components.*" xmlns:flint2d="http://flintparticles.org/2009/flint2d"
+	xmlns:paymentsPanel="com.onlyplay.slotmatch3.components.other.paymentsPanel.*"
 	preloader="com.onlyplay.slotmatch3.view.preloader.PreloaderSWF"
 	implements="com.onlyplay.slotmatch3.view.IApp" width="760" height="658"
 	frameRate="60" applicationComplete="onInit(event)">
@@ -47,24 +48,21 @@
 
 	<fx:Script>
 		<![CDATA[
-			import mx.events.DynamicEvent;
-
 			import alternativa.init.GUI;
-
-			import flash.display.DisplayObject;
 
 			import com.onlyplay.slotmatch3.components.FlashGameView;
 			import com.onlyplay.slotmatch3.components.lobby_smith.LobbyView;
+			import com.onlyplay.slotmatch3.components.lobby_smith.Menu4View;
+			import com.onlyplay.slotmatch3.components.lobby_user_info.LobbyUserInfoView;
+			import com.onlyplay.slotmatch3.view.preloader.Preloader;
 
 			import mx.core.FlexGlobals;
+			import mx.events.DynamicEvent;
 			import mx.events.FlexEvent;
 			import mx.resources.ResourceBundle;
 			import mx.rpc.events.ResultEvent;
 
-			import com.onlyplay.slotmatch3.components.lobby_smith.Menu4View;
-			import com.onlyplay.slotmatch3.view.preloader.Preloader;
-			import com.onlyplay.util.StringUtils;
-			import com.onlyplay.slotmatch3.components.lobby_user_info.LobbyUserInfoView;
+			import flash.display.DisplayObject;
 			
 			private var _flashGameView : FlashGameView;
 			private var _lobbyVeiw : LobbyView;
@@ -75,7 +73,8 @@
 			
 			
 			public static var preloaderText:String = "";
-			public static var preloaderFrame:uint = 1
+			public static var preloaderFrame : uint = 1
+			
 
 			private function onInit(e : FlexEvent) : void // при неподключённом видео
 			// private function onInit(e:TimeEvent):void // при подключённом видеo
@@ -127,6 +126,7 @@
 					_flashGameView.h = 570;
 					// _flashGameView.visible = false;
 				}
+
 			}
 
 			private function initLobbyView() : void
@@ -186,8 +186,10 @@
 						lobbyMenu4Holder.visible = true;
 						lobby_top.visible = true;
 						lobby_avatar.visible = true;
+						paymenstPanel.visible = false;
 						break;
 					case  "game":
+						paymenstPanel.visible = true;
 						_lobbyVeiw.visible = false;
 						// if (!_flashGameView) initStotMatchView();
 						_flashGameView.visible = true;
@@ -195,6 +197,15 @@
 						lobby_top.visible = false;
 						lobby_avatar.visible = false;
 						break;
+						
+					// TODO: избавиться от этого бреда - лучший выход - сделать Payments panel - дочерним элементом gaveView
+					case "slot":
+						paymenstPanel.visible = true;
+						break;
+					case "match":
+						paymenstPanel.visible = false;
+						break;	
+					
 					default:
 						log("MainAndrew.setGameState(state)");
 						log("This state is not supported:" + state);
@@ -249,7 +260,8 @@
 		height="570"/>
 
 
-
+	
+	<paymentsPanel:PaymentsPanel id="paymenstPanel" right="0" top="67" visible="false"/>
 	
 
 	

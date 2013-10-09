@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<my:GamePopup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:my="com.onlyplay.slotmatch3.components.dialogs.flex.*"
+	
+	titleBgSkin="com.onlyplay.slotmatch3.components.dialogs.flex.tite.RedBandTitleSkin"
+	
+	bgSource="{_BgClassLight}" title="Цель в слоте"
+	closeBtSkin="{CloseButtonSkin2}" minHeight="260" xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Script>
+		<![CDATA[
+			import com.onlyplay.slotmatch3.components.dialogs.flex.els.CloseButtonSkin2;
+
+			import mx.events.DynamicEvent;
+
+			// "D:\reps\slotmatch3_3\Resources\Dialogs\Common\tile_paper.png"
+			// "D:\reps\slotmatch3_3\Resources\Dialogs\Common\buttons_base_orange_green.png"
+			[Embed(source="/Dialogs/Common/tile_paper.png")]
+			private static const PaperClass : Class;
+			[Embed(source="/Dialogs/Common/buttons_base_orange_green.png")]
+			private static const ButtonsBgClass : Class;
+
+
+		]]>
+	</fx:Script>
+
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+         .sss1 {
+               fontSize:15;
+               fontWeight:bold;
+               color:#333333;
+          }     
+		
+	</fx:Style>
+
+	<s:SkinnableContainer skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.NeildPanelSkin"
+		left="30" right="30" bottom="30" top="0">
+		<s:layout>
+			<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingBottom="20" paddingTop="20" horizontalAlign="center"/>
+		</s:layout>
+
+		<s:Label text="Стань победителем в слоте" fontSize="20" color="0x760c01"/>
+		
+	</s:SkinnableContainer>
+
+	<my:controlBarContent>
+
+		<s:Group bottom="-36" horizontalCenter="0">
+			<!--<s:BitmapImage source="{ButtonsBgClass}"/>-->
+			<s:Button x="24" y="10" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin"
+				label="Закрыть" click="{dispatchEvent(new DynamicEvent('close'));}"
+				fontSize="16"/>
+			<!--<s:Button fontSize="16" x="156" y="10" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.GreenButtonSkin"
+				label="Остаться"/>-->
+				
+			<!--<s:Button x="337" y="14" skinClass="com.onlyplay.slotmatch3.components.dialogs.flex.els.RedButtonSkin0"
+			fontSize="16" label="Закрыть" click="{dispatchEvent(new Event(Event.CLOSE));}"/>-->
+
+
+		</s:Group>
+
+
+	</my:controlBarContent>
+
+
+</my:GamePopup>

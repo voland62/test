@@ -50,7 +50,7 @@ package com.onlyplay.slotmatch3.components.lobby_user_info {
 		
 		
 		public function onFotoReady(data:*):void {
-			if (!data.content)return
+			if (!data.content)return;
 			avatar.bitmapData = data.content.bitmapData;
 			SmtGraphUtils.ResizeBitmap(avatar, 90, 90, avatar.bitmapData, 0, 0);
 		}
